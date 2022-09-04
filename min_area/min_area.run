@@ -1,0 +1,12 @@
+reset;
+
+# MINOS does not do MIP but CPLEX does do NLP.
+option solver minos;
+
+model min_area.mod;
+
+data min_area.dat;
+
+solve;
+
+display component_counts;
