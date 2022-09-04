@@ -39,7 +39,7 @@ s.t. range {i in Components}: component_counts[i] >= 1;
 
 s.t. power_constraint: sum {i in Components} component_counts[i] * component_powers[i] <= P_max;
 s.t. bump_constraint: sum {i in Components} component_counts[i] * component_areas[i] >= 
-bump_pitch * bump_pitch * ((sum {i in Components} component_counts[i] * component_powers[i])/voltage/current_per_bump*2 + mc_bump_count + io_bump_count);
+bump_pitch * bump_pitch * ((sum {i in Components} component_counts[i] * component_powers[i]) / voltage / current_per_bump * 2 + mc_bump_count + io_bump_count);
 
 s.t. wire_constraint: sqrt((sum {i in Components} component_counts[i] * component_areas[i]) / 6) * 6 * package_layer / link_pitch >= 
 component_counts['mc'] * wires_per_mc;

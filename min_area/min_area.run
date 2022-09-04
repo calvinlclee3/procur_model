@@ -1,6 +1,7 @@
 reset;
 
-# MINOS does not do MIP but CPLEX does do NLP.
+# MINOS does not do MIP (no integers)
+# but CPLEX does not do NLP (there is a square root in the model).
 option solver minos;
 
 model min_area.mod;
