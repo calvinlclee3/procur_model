@@ -1,9 +1,12 @@
 reset;
 
-# MINOS does not do MIP (no integers)
-# but CPLEX does not do NLP (there is a square root in the model).
-option solver minos;
-
+# Two MINLP solvers that is currently working (300 var bound): Couenne and Bonmin
+# https://github.com/coin-or/Bonmin
+# https://github.com/coin-or/Couenne
+# Bonmin is a local MINLP solver, Couenne is a global NLP/MINLP solver. 
+# Typically Bonmin can solve larger problems than Couenne, but you get local solutions.
+option solver couenne;
+# option solver bonmin;
 model min_area.mod;
 
 data min_area.dat;
@@ -11,3 +14,4 @@ data min_area.dat;
 solve;
 
 display component_counts;
+display A_die;

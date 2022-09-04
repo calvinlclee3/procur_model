@@ -5,26 +5,26 @@ param theta_ca := 56;
 param theta_jb := 58;
 param theta_ba := 52; 
 param T_ambient := 25;
-param T_j_max := 12500;
+param T_j_max := 125000;
 
 param component_areas :=
-                core      5
-                l3_cache  4
-                mc        2
-                io        1;
-
-param component_powers :=
-                core      100
-                l3_cache  25
+                core      500
+                l3_cache  200
                 mc        20
                 io        10;
 
+param component_powers :=
+                core      0.01
+                l3_cache  0.01
+                mc        0.02
+                io        0.012;
+
 param voltage := 1.2;
 param current_per_bump := 0.5;
-param mc_bump_count := 20;
-param io_bump_count := 10;
-param bump_pitch := 0.0005;
+param mc_bump_count := 2;
+param io_bump_count := 1;
+param bump_pitch := 5;
 
-param package_layer := 60;
-param link_pitch := 0.4;
-param wires_per_mc := 20;
+param package_layer := 6;
+param link_pitch := 4;
+param wires_per_mc := 200;
