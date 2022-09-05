@@ -8,10 +8,10 @@ param T_ambient := 25;
 param T_j_max := 125000;
 
 param component_areas :=
-                core      500
-                l3_cache  200
-                mc        20
-                io        10;
+                core      501
+                l3_cache  201
+                mc        21
+                io        11;
 
 param component_powers :=
                 core      0.01
