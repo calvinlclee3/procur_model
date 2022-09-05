@@ -1,4 +1,4 @@
-set Components := core, l3_cache, mc, io;
+set Components := core, l3, mc, io;
 
 param theta_jc := 45;
 param theta_ca := 56;
@@ -9,22 +9,24 @@ param T_j_max := 125000;
 
 param component_areas :=
                 core      501
-                l3_cache  201
+                l3        201
                 mc        21
                 io        11;
 
-param component_powers :=
-                core      0.01
-                l3_cache  0.01
-                mc        0.02
-                io        0.012;
+param core_power := 0.01;
+param l3_power := 0.01;
+param io_power := 0.012;
 
+param bump_pitch := 5;
 param voltage := 1.2;
 param current_per_bump := 0.5;
 param mc_bump_count := 2;
 param io_bump_count := 1;
-param bump_pitch := 5;
 
 param package_layer := 6;
 param link_pitch := 4;
 param wires_per_mc := 200;
+
+param energy_per_wire := 0.5;
+param ghz := 0.0001;
+param power_ctrl := 0.01;
