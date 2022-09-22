@@ -28,5 +28,5 @@ param link_pitch := 4;
 param wires_per_mc := 200;
 
 param energy_per_wire := 0.5;
-param ghz := 0.0001;
+param mem_freq := 0.0001;
 param power_ctrl := 0.01;
