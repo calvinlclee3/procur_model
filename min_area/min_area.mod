@@ -13,14 +13,12 @@ param T_j_max;
 param component_areas {i in Components}; 
 
 # power of each component
-param core_power;
 param l3_power;
 param io_power;
 
-
 # bump parameters
 param bump_pitch;
-param voltage;
+param die_voltage;                  # for the entire die
 param current_per_bump;
 param mc_bump_count;
 param io_bump_count;
@@ -38,6 +36,7 @@ param power_ctrl;
 # performance parameters
 param arithmetic_intensity;    # number of operations per byte of memory transfer
 param IPC;                     # instructions per cycle
+param core_capacitance;        # for the core only
 
 
 # Compute max power allowed by thermal constraint.
@@ -57,20 +56,29 @@ var component_counts {i in Components} integer;
 
 
 # ****************************** DEPENDENT VARIABLES ******************************
-
+var core_power;
 var A_die;
 var P_die;
 var power_bump_count;
 var max_wire;
+var core_freq;
+var peak_perf;
+var peak_bw;
 
 s.t. def_A_die: A_die == sum {i in Components} component_counts[i] * component_areas[i];
 
 s.t. def_P_die: P_die == component_counts['core'] * core_power + component_counts['io'] * io_power+
                          component_counts['l3'] * l3_power + component_counts['mc'] * mc_power;
 
-s.t. def_power_bump_count: power_bump_count == (P_die) / (voltage * current_per_bump) * 2;
+s.t. def_power_bump_count: power_bump_count == (P_die) / (die_voltage * current_per_bump) * 2;
 
 s.t. def_max_wire: max_wire == sqrt((sum {i in Components} component_counts[i] * component_areas[i]) / 6) * 6 * package_layer / link_pitch;
+
+s.t. def_core_power: core_power == core_capacitance * die_voltage * die_voltage * core_freq;
+
+s.t. def_peak_perf: peak_perf == core_freq * IPC * component_counts['core'];
+
+s.t. def_peak_bw: peak_bw == component_counts['l3'] + component_counts['mc']; # Placeholder!
 
 
 # ****************************** OBJECTIVE ******************************
@@ -84,3 +92,5 @@ s.t. range {i in Components}: component_counts[i] >= 1;
 s.t. power_constraint: P_die <= P_max;
 s.t. bump_constraint: A_die >= bump_pitch * bump_pitch * (power_bump_count + mc_bump_count + io_bump_count);
 s.t. wire_constraint: max_wire >= component_counts['mc'] * wires_per_mc;
+s.t. roofline: peak_perf == arithmetic_intensity * peak_bw;
+s.t. performance_theshold: peak_perf >= 500;

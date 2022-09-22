@@ -13,5 +13,16 @@ data min_area.dat;
 
 solve;
 
+
+
 display component_counts;
 display A_die;
+
+display arithmetic_intensity;
+display IPC;
+display core_capacitance;
+display core_power;
+display core_freq;
+display peak_perf;
+display peak_bw;
+
