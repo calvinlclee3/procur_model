@@ -35,8 +35,10 @@ param energy_per_wire;
 param mem_freq;
 param power_ctrl;
 
-# number of operations per byte of memory transfer
-param arithmetic_intensity;
+# performance parameters
+param arithmetic_intensity;    # number of operations per byte of memory transfer
+param IPC;                     # instructions per cycle
+
 
 # Compute max power allowed by thermal constraint.
 param theta_ja := (theta_jc + theta_ca)*(theta_jb + theta_ba)/(theta_jc + theta_ca + theta_jb + theta_ba);
@@ -56,18 +58,19 @@ var component_counts {i in Components} integer;
 
 # ****************************** DEPENDENT VARIABLES ******************************
 
+var A_die;
 var P_die;
+var power_bump_count;
+var max_wire;
+
+s.t. def_A_die: A_die == sum {i in Components} component_counts[i] * component_areas[i];
+
 s.t. def_P_die: P_die == component_counts['core'] * core_power + component_counts['io'] * io_power+
                          component_counts['l3'] * l3_power + component_counts['mc'] * mc_power;
 
-var power_bump_count;
 s.t. def_power_bump_count: power_bump_count == (P_die) / (voltage * current_per_bump) * 2;
 
-var max_wire;
 s.t. def_max_wire: max_wire == sqrt((sum {i in Components} component_counts[i] * component_areas[i]) / 6) * 6 * package_layer / link_pitch;
-
-var A_die;
-s.t. def_A_die: A_die == sum {i in Components} component_counts[i] * component_areas[i];
 
 
 # ****************************** OBJECTIVE ******************************
