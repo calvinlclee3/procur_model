@@ -18,11 +18,20 @@ solve;
 display component_counts;
 display A_die;
 
+display P_max;
+display P_die;
+
+display A_die;
+display bump_pitch * bump_pitch * (power_bump_count + mc_bump_count + io_bump_count);
+
+display max_wire;
+display component_counts['mc'] * wires_per_mc;
+
+display peak_perf;
 display arithmetic_intensity;
-display IPC;
-display core_capacitance;
+display peak_bw;
+
 display core_power;
 display core_freq;
-display peak_perf;
-display peak_bw;
+
 

@@ -36,7 +36,7 @@ param power_ctrl;
 # performance parameters
 param arithmetic_intensity;    # number of operations per byte of memory transfer
 param IPC;                     # instructions per cycle
-param core_capacitance;        # for the core only
+param core_capacitance;        # for the core only, per core
 
 
 # Compute max power allowed by thermal constraint.
@@ -56,9 +56,10 @@ var component_counts {i in Components} integer;
 
 
 # ****************************** DEPENDENT VARIABLES ******************************
-var core_power;
+
 var A_die;
 var P_die;
+var core_power;
 var power_bump_count;
 var max_wire;
 var core_freq;
@@ -78,7 +79,7 @@ s.t. def_core_power: core_power == core_capacitance * die_voltage * die_voltage 
 
 s.t. def_peak_perf: peak_perf == core_freq * IPC * component_counts['core'];
 
-s.t. def_peak_bw: peak_bw == component_counts['l3'] + component_counts['mc']; # Placeholder!
+s.t. def_peak_bw: peak_bw == 0.3 * component_counts['l3'] + 0.7 * component_counts['mc']; # Placeholder!
 
 
 # ****************************** OBJECTIVE ******************************
@@ -89,8 +90,8 @@ minimize min_area: A_die;
 # ****************************** CONSTRAINTS ******************************
 
 s.t. range {i in Components}: component_counts[i] >= 1;
-s.t. power_constraint: P_die <= P_max;
+s.t. power_constraint: P_max >= P_die;
 s.t. bump_constraint: A_die >= bump_pitch * bump_pitch * (power_bump_count + mc_bump_count + io_bump_count);
 s.t. wire_constraint: max_wire >= component_counts['mc'] * wires_per_mc;
 s.t. roofline: peak_perf == arithmetic_intensity * peak_bw;
-s.t. performance_theshold: peak_perf >= 500;
+s.t. performance_theshold: peak_perf >= 200;
