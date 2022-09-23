@@ -36,7 +36,9 @@ param power_ctrl;
 # performance parameters
 param arithmetic_intensity;    # number of operations per byte of memory transfer
 param IPC;                     # instructions per cycle
-param core_capacitance;        # for the core only, per core
+param capacitance_per_core;    # for the core only, per core
+param l3_count_weight;
+param mc_count_weight;
 
 
 # Compute max power allowed by thermal constraint.
@@ -75,11 +77,11 @@ s.t. def_power_bump_count: power_bump_count == (P_die) / (die_voltage * current_
 
 s.t. def_max_wire: max_wire == sqrt((sum {i in Components} component_counts[i] * component_areas[i]) / 6) * 6 * package_layer / link_pitch;
 
-s.t. def_core_power: core_power == core_capacitance * die_voltage * die_voltage * core_freq;
+s.t. def_core_power: core_power == capacitance_per_core * die_voltage * die_voltage * core_freq;
 
 s.t. def_peak_perf: peak_perf == core_freq * IPC * component_counts['core'];
 
-s.t. def_peak_bw: peak_bw == 0.3 * component_counts['l3'] + 0.7 * component_counts['mc']; # Placeholder!
+s.t. def_peak_bw: peak_bw == l3_count_weight * component_counts['l3'] + mc_count_weight * component_counts['mc']; # Placeholder!
 
 
 # ****************************** OBJECTIVE ******************************
