@@ -7,9 +7,9 @@ reset;
 # Typically Bonmin can solve larger problems than Couenne, but you get local solutions.
 option solver couenne;
 # option solver bonmin;
-model min_area.mod;
+model analytical_model.mod;
 
-data min_area.dat;
+data analytical_model.dat;
 
 solve;
 
