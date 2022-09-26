@@ -40,6 +40,7 @@ param capacitance_per_core;    # for the core only, per core
 param l3_count_weight;
 param mc_count_weight;
 param core_freq_max;
+param core_freq_nominal;
 param IPC_max;
 
 # objective-dependent constraint
@@ -76,9 +77,12 @@ var max_wire >= 0;
 var core_freq >= 0;
 var peak_perf >= 0;         # also known as compute throughput
 var peak_bw >= 0;
+var core_freq_area_multiplier >= 0;
 
-s.t. def_A_die: A_die == component_counts['core'] * component_areas['core'] + component_counts['io'] * component_areas['io'] +
-                         component_counts['l3'] * component_areas['l3'] + component_counts['mc'] * component_areas['mc'];
+s.t. def_A_die: A_die == component_counts['core'] * component_areas['core'] * core_freq_area_multiplier + 
+                         component_counts['io']   * component_areas['io'] +
+                         component_counts['l3']   * component_areas['l3'] +
+                         component_counts['mc']   * component_areas['mc'];
 
 s.t. def_P_die: P_die == component_counts['core'] * core_power + component_counts['io'] * io_power+
                          component_counts['l3'] * l3_power + component_counts['mc'] * mc_power;
@@ -87,12 +91,17 @@ s.t. def_power_bump_count: power_bump_count == (P_die) / (die_voltage * current_
 
 s.t. def_max_wire: max_wire == sqrt((sum {i in Components} component_counts[i] * component_areas[i]) / 6) * 6 * package_layer / link_pitch;
 
-s.t. def_core_power: core_power == capacitance_per_core * die_voltage * die_voltage * core_freq;
+s.t. def_core_power: core_power == capacitance_per_core * (die_voltage**2) * core_freq;
 
 s.t. def_peak_perf: peak_perf == core_freq * IPC * component_counts['core'];
 
 s.t. def_peak_bw: peak_bw == l3_count_weight * component_counts['l3'] + mc_count_weight * component_counts['mc']; # Placeholder!
 
+# s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == (if core_freq <= core_freq_nominal then 1 else
+# ((core_freq / core_freq_nominal) - 1) * 2 + 1);
+
+s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == ((core_freq / core_freq_nominal) - 1) * 2 + 1;
+#s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == ((core_freq / core_freq_nominal) - 1) * 2 + 1;
 
 # ****************************** OBJECTIVE ******************************
 
@@ -112,7 +121,7 @@ s.t. range {i in Components}: component_counts[i] >= 1;
 s.t. freq_constraint: core_freq <= core_freq_max;
 #s.t. IPC_constraint: IPC <= IPC_max;
 s.t. thermal_constraint: P_max >= P_die; # usual direction
-s.t. bump_constraint: A_die >= bump_pitch * bump_pitch * (power_bump_count + mc_bump_count + io_bump_count); # unusual direction
+s.t. bump_constraint: A_die >= (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count); # unusual direction
 s.t. wire_constraint: max_wire >= component_counts['mc'] * wires_per_mc;
 s.t. roofline: peak_perf == arithmetic_intensity * peak_bw;
 

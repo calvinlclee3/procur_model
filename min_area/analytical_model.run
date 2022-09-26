@@ -44,7 +44,9 @@ display peak_perf;
 display arithmetic_intensity;
 display peak_bw;
 
-display core_power;
 display core_freq;
+display core_freq_max;
+display core_freq_nominal;
+display core_freq_area_multiplier;
 
 
