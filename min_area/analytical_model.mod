@@ -39,6 +39,8 @@ param IPC;                     # instructions per cycle
 param capacitance_per_core;    # for the core only, per core
 param l3_count_weight;
 param mc_count_weight;
+param core_freq_max;
+param IPC_max;
 
 # objective-dependent constraint
 param PerfLB;
@@ -66,16 +68,17 @@ var component_counts {i in Components} integer;
 
 # ****************************** DEPENDENT VARIABLES ******************************
 
-var A_die;
-var P_die;
-var core_power;
-var power_bump_count;
-var max_wire;
-var core_freq;
-var peak_perf;         # also known as compute throughput
-var peak_bw;
+var A_die >= 0;
+var P_die >= 0;
+var core_power >= 0;
+var power_bump_count >= 0;
+var max_wire >= 0;
+var core_freq >= 0;
+var peak_perf >= 0;         # also known as compute throughput
+var peak_bw >= 0;
 
-s.t. def_A_die: A_die == sum {i in Components} component_counts[i] * component_areas[i];
+s.t. def_A_die: A_die == component_counts['core'] * component_areas['core'] + component_counts['io'] * component_areas['io'] +
+                         component_counts['l3'] * component_areas['l3'] + component_counts['mc'] * component_areas['mc'];
 
 s.t. def_P_die: P_die == component_counts['core'] * core_power + component_counts['io'] * io_power+
                          component_counts['l3'] * l3_power + component_counts['mc'] * mc_power;
@@ -94,35 +97,36 @@ s.t. def_peak_bw: peak_bw == l3_count_weight * component_counts['l3'] + mc_count
 # ****************************** OBJECTIVE ******************************
 
 # [Minimize Area]
-#minimize min_area: A_die;
+minimize min_area: A_die;
 
 # [Minimize Power]
 #minimize min_power: P_die;
 
 # [Maximize Performance]
-maximize max_performance: peak_perf;
+#maximize max_performance: peak_perf;
 
 
 # ****************************** OBJECTIVE-INDEPENDENT CONSTRAINTS ******************************
 
 s.t. range {i in Components}: component_counts[i] >= 1;
+s.t. freq_constraint: core_freq <= core_freq_max;
+#s.t. IPC_constraint: IPC <= IPC_max;
 s.t. thermal_constraint: P_max >= P_die; # usual direction
 s.t. bump_constraint: A_die >= bump_pitch * bump_pitch * (power_bump_count + mc_bump_count + io_bump_count); # unusual direction
 s.t. wire_constraint: max_wire >= component_counts['mc'] * wires_per_mc;
 s.t. roofline: peak_perf == arithmetic_intensity * peak_bw;
-# Perhaps we need a maximum bound on core_freq. Right now, the model can decrease area with no cost to perf or power 
-# by halfing number of cores and doubling the clock rate.
+
 
 # ****************************** OBJECTIVE-DEPENDENT CONSTRAINTS ******************************
 
 # [Minimize Area]:
+s.t. performance_constraint: peak_perf >= PerfLB;
 #s.t. power_constraint: P_die <= PowerUB;
-#s.t. performance_constraint: peak_perf >= PerfLB;
 
 # [Minimize Power]
 #s.t. area_constraint: A_die <= AreaUB;
 #s.t. performance_constraint: peak_perf >= PerfLB;
 
 # [Maximize Performance]
-s.t. area_constraint: A_die <= AreaUB;
+#s.t. area_constraint: A_die <= AreaUB;
 #s.t. power_constraint: P_die <= PowerUB;

@@ -16,7 +16,20 @@ solve;
 
 
 display component_counts;
+
+display "******************************";
+
 display A_die;
+display P_die;
+display peak_perf;
+
+display "******************************";
+
+display core_freq_max;
+display core_freq;
+
+display IPC_max;
+display IPC;
 
 display P_max;
 display P_die;
