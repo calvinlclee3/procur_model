@@ -100,19 +100,18 @@ s.t. def_peak_bw: peak_bw == l3_count_weight * component_counts['l3'] + mc_count
 # s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == (if core_freq <= core_freq_nominal then 1 else
 # ((core_freq / core_freq_nominal) - 1) * 2 + 1);
 
-s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == ((core_freq / core_freq_nominal) - 1) * 2 + 1;
-#s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == ((core_freq / core_freq_nominal) - 1) * 2 + 1;
+s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == << core_freq_nominal; 0, (1 / core_freq_nominal) * 2 >> core_freq_nominal + 1; # REPLACE WITH CORE_FREQ
 
 # ****************************** OBJECTIVE ******************************
 
 # [Minimize Area]
-minimize min_area: A_die;
+#minimize min_area: A_die;
 
 # [Minimize Power]
 #minimize min_power: P_die;
 
 # [Maximize Performance]
-#maximize max_performance: peak_perf;
+maximize max_performance: peak_perf;
 
 
 # ****************************** OBJECTIVE-INDEPENDENT CONSTRAINTS ******************************
@@ -129,7 +128,7 @@ s.t. roofline: peak_perf == arithmetic_intensity * peak_bw;
 # ****************************** OBJECTIVE-DEPENDENT CONSTRAINTS ******************************
 
 # [Minimize Area]:
-s.t. performance_constraint: peak_perf >= PerfLB;
+#s.t. performance_constraint: peak_perf >= PerfLB;
 #s.t. power_constraint: P_die <= PowerUB;
 
 # [Minimize Power]
@@ -137,5 +136,5 @@ s.t. performance_constraint: peak_perf >= PerfLB;
 #s.t. performance_constraint: peak_perf >= PerfLB;
 
 # [Maximize Performance]
-#s.t. area_constraint: A_die <= AreaUB;
+s.t. area_constraint: A_die <= AreaUB;
 #s.t. power_constraint: P_die <= PowerUB;

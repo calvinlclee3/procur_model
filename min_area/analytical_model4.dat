@@ -1,10 +1,10 @@
 set Components := core, l3, mc, io;
 
 # thermal parameters
-param theta_jc := 0.01;
-param theta_ca := 0.01;
-param theta_jb := 0.01;
-param theta_ba := 0.01; 
+param theta_jc := 0.1;
+param theta_ca := 0.1;
+param theta_jb := 0.1;
+param theta_ba := 0.1; 
 param T_ambient := 25;
 param T_j_max := 400;
 
@@ -12,7 +12,7 @@ param T_j_max := 400;
 param component_areas :=
                 core      10
                 l3        3
-                mc        0.2
+                mc        2
                 io        1;
 
 # power of each component
@@ -32,16 +32,16 @@ param link_pitch := 0.04;
 
 # memory controller parameters
 param wires_per_mc := 200;
-param energy_per_wire := 0.0001;
+param energy_per_wire := 0.5;
 param mem_freq := 4.8;
 param power_ctrl := 0.01;
 
 # performance parameters
-param arithmetic_intensity := 0.5;
+param arithmetic_intensity := 2;
 param IPC := 0.2;
 param capacitance_per_core := 1;
-param l3_count_weight := 0.1;
-param mc_count_weight := 0.5;
+param l3_count_weight := 0.3;
+param mc_count_weight := 0.7;
 param core_freq_max := 5.5;
 param core_freq_nominal := 2.4;
 param IPC_max := 1;
@@ -50,6 +50,6 @@ param IPC_max := 1;
 param PerfLB := 200;
 param PerfUB := 0;
 param AreaLB := 0;
-param AreaUB := 1000;
+param AreaUB := 200000;
 param PowerLB := 0;
 param PowerUB := 2000;
