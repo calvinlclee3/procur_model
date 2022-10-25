@@ -43,8 +43,7 @@ param capacitance_per_core := 1;
 param l3_count_weight := 0.1;
 param mc_count_weight := 0.5;
 param core_freq_max := 5.5;
-param core_freq_nominal := 2.4;
-param IPC_max := 1;
+param core_freq_nominal := 3.2;
 
 # objective-dependent constraint
 param PerfLB := 200;

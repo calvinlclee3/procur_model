@@ -25,28 +25,14 @@ display peak_perf;
 
 display "******************************";
 
-display core_freq_max;
-display core_freq;
+display core_freq_max, core_freq;
 
-display IPC_max;
-display IPC;
+display P_max, P_die;
 
-display P_max;
-display P_die;
+display A_die, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count);
 
-display A_die;
-display bump_pitch * bump_pitch * (power_bump_count + mc_bump_count + io_bump_count);
+display max_wire, component_counts['mc'] * wires_per_mc;
 
-display max_wire;
-display component_counts['mc'] * wires_per_mc;
+display peak_perf, arithmetic_intensity, peak_bw;
 
-display peak_perf;
-display arithmetic_intensity;
-display peak_bw;
-
-display core_freq;
-display core_freq_max;
-display core_freq_nominal;
-display core_freq_area_multiplier;
-
-
+display core_freq, core_freq_max, core_freq_nominal, core_freq_area_multiplier;
