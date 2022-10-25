@@ -18,7 +18,7 @@ param io_power;
 
 # bump parameters
 param bump_pitch;
-param die_voltage;                  # for the entire die
+param die_voltage;              # for the entire die
 param current_per_bump;
 param mc_bump_count;
 param io_bump_count;
@@ -31,7 +31,7 @@ param link_pitch;
 param wires_per_mc;
 param energy_per_wire;
 param mem_freq;
-param power_ctrl;
+param power_ctrl;              # per memory controller
 
 # performance parameters
 param arithmetic_intensity;    # number of operations per byte of memory transfer
@@ -85,18 +85,21 @@ var peak_bw >= 0;
 var core_freq_area_multiplier >= 0;
 
 s.t. def_A_die: A_die == component_counts['core'] * component_areas['core'] * core_freq_area_multiplier + 
-                         component_counts['io']   * component_areas['io'] +
-                         component_counts['l3']   * component_areas['l3'] +
+                         component_counts['io']   * component_areas['io']   +
+                         component_counts['l3']   * component_areas['l3']   +
                          component_counts['mc']   * component_areas['mc'];
 
 s.t. def_P_die: P_die == component_counts['core'] * core_power + component_counts['io'] * io_power+
-                         component_counts['l3'] * l3_power + component_counts['mc'] * mc_power;
+                         component_counts['l3']   * l3_power   + component_counts['mc'] * mc_power;
 
 s.t. def_core_power: core_power == capacitance_per_core * (die_voltage**2) * core_freq;
 
 s.t. def_power_bump_count: power_bump_count == (P_die) / (die_voltage * current_per_bump) * 2;
 
-s.t. def_max_wire: max_wire == sqrt((sum {i in Components} component_counts[i] * component_areas[i]) / 6) * 6 * package_layer / link_pitch;
+s.t. def_max_wire: max_wire == sqrt((component_counts['core'] * component_areas['core'] * core_freq_area_multiplier + 
+                                     component_counts['io']   * component_areas['io']   +
+                                     component_counts['l3']   * component_areas['l3']   +
+                                     component_counts['mc']   * component_areas['mc']) / 6) * 6 * package_layer / link_pitch;
 
 s.t. def_core_freq: core_freq == 0*f1 + core_freq_nominal*f2 + core_freq_max*f3;
 
@@ -112,7 +115,7 @@ s.t. SOS2_constraint_9: b1 + b3 <= 1;
 
 s.t. def_peak_perf: peak_perf == core_freq * IPC * component_counts['core'];
 
-s.t. def_peak_bw: peak_bw == l3_count_weight * component_counts['l3'] + mc_count_weight * component_counts['mc']; # Placeholder!
+s.t. def_peak_bw: peak_bw == l3_count_weight * component_counts['l3'] + mc_count_weight * component_counts['mc'];
 
 s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == 1*f1 + 1*f2 + (2*core_freq_max/core_freq_nominal - 1)*f3;
 
