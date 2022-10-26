@@ -37,3 +37,29 @@ display max_wire, component_counts['mc'] * wires_per_mc;
 display peak_perf, arithmetic_intensity, peak_bw;
 
 display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_area_multiplier;
+
+# ****************************** SAVE TO FILE ******************************
+
+display component_counts >> max_perf_area.txt;
+
+display "******************************";
+
+display A_die * 1E6 >> max_perf_area.txt;
+display P_die >> max_perf_area.txt;
+display peak_perf >> max_perf_area.txt;
+
+display "******************************";
+
+display core_freq_max * 1E-9, core_freq * 1E-9 >> max_perf_area.txt;
+
+display P_max, P_die >> max_perf_area.txt;
+
+display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count) * 1E6 >> max_perf_area.txt;
+
+display AreaUB * 1E6, A_die * 1E6 >> max_perf_area.txt;
+
+display max_wire, component_counts['mc'] * wires_per_mc >> max_perf_area.txt;
+
+display peak_perf, arithmetic_intensity, peak_bw >> max_perf_area.txt;
+
+display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_area_multiplier >> max_perf_area.txt;

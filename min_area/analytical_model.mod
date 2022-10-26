@@ -39,6 +39,7 @@ param IPC;                     # instructions per cycle
 param capacitance_per_core;    # for the core only, per core
 param l3_count_weight;
 param mc_count_weight;
+param core_freq_min;
 param core_freq_max;
 param core_freq_nominal;
 
@@ -137,7 +138,8 @@ maximize max_performance: peak_perf;
 # ****************************** OBJECTIVE-INDEPENDENT CONSTRAINTS ******************************
 
 s.t. range {i in Components}: component_counts[i] >= 1;
-s.t. freq_constraint: core_freq_max >= core_freq;
+s.t. freq_lower_bound: core_freq >= core_freq_min;
+s.t. freq_upper_bound: core_freq_max >= core_freq;
 s.t. thermal_constraint: P_max >= P_die;                                                             # usual direction
 s.t. bump_constraint: A_die >= (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count); # unusual direction
 s.t. wire_constraint: max_wire >= component_counts['mc'] * wires_per_mc;

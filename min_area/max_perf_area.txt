@@ -1,0 +1,520 @@
+component_counts [*] :=
+core  1
+  io  1
+  l3  1
+  mc  6
+;
+
+A_die*1e+06 = 190
+
+P_die = 97.7664
+
+peak_perf = 1.1e+10
+
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 3.46457
+
+P_max = 287.5
+P_die = 97.7664
+
+A_die*1e+06 = 190
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.14376
+
+AreaUB*1e+06 = 200
+A_die*1e+06 = 190
+
+max_wire = 8103.33
+component_counts['mc']*wires_per_mc = 1728
+
+peak_perf = 1.1e+10
+arithmetic_intensity = 10
+peak_bw = 1.1e+09
+
+core_freq*1e-09 = 3.46457
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_area_multiplier = 1
+
+component_counts [*] :=
+core   4
+  io   1
+  l3   1
+  mc  14
+;
+
+A_die*1e+06 = 300
+
+P_die = 188.122
+
+peak_perf = 1.9e+10
+
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 1.49606
+
+P_max = 287.5
+P_die = 188.122
+
+A_die*1e+06 = 300
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.60638
+
+AreaUB*1e+06 = 300
+A_die*1e+06 = 300
+
+max_wire = 10182.3
+component_counts['mc']*wires_per_mc = 4032
+
+peak_perf = 1.9e+10
+arithmetic_intensity = 10
+peak_bw = 1.9e+09
+
+core_freq*1e-09 = 1.49606
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_area_multiplier = 1
+
+component_counts [*] :=
+core   3
+  io   1
+  l3   2
+  mc  14
+;
+
+A_die*1e+06 = 390
+
+P_die = 208.122
+
+peak_perf = 2.4e+10
+
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 2.51969
+
+P_max = 287.5
+P_die = 208.122
+
+A_die*1e+06 = 390
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.70878
+
+AreaUB*1e+06 = 400
+A_die*1e+06 = 390
+
+max_wire = 11610.1
+component_counts['mc']*wires_per_mc = 4032
+
+peak_perf = 2.4e+10
+arithmetic_intensity = 10
+peak_bw = 2.4e+09
+
+core_freq*1e-09 = 2.51969
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_area_multiplier = 1
+
+component_counts [*] :=
+core   3
+  io   1
+  l3   3
+  mc  15
+;
+
+A_die*1e+06 = 500
+
+P_die = 239.416
+
+peak_perf = 3e+10
+
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 3.14961
+
+P_max = 287.5
+P_die = 239.416
+
+A_die*1e+06 = 500
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.86901
+
+AreaUB*1e+06 = 500
+A_die*1e+06 = 500
+
+max_wire = 13145.3
+component_counts['mc']*wires_per_mc = 4320
+
+peak_perf = 3e+10
+arithmetic_intensity = 10
+peak_bw = 3e+09
+
+core_freq*1e-09 = 3.14961
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_area_multiplier = 1
+
+component_counts [*] :=
+core   3
+  io   1
+  l3   4
+  mc  14
+;
+
+A_die*1e+06 = 590
+
+P_die = 248.122
+
+peak_perf = 3.4e+10
+
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 3.56955
+
+P_max = 287.5
+P_die = 248.122
+
+A_die*1e+06 = 590
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.91358
+
+AreaUB*1e+06 = 600
+A_die*1e+06 = 590
+
+max_wire = 14280
+component_counts['mc']*wires_per_mc = 4032
+
+peak_perf = 3.4e+10
+arithmetic_intensity = 10
+peak_bw = 3.4e+09
+
+core_freq*1e-09 = 3.56955
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_area_multiplier = 1
+
+component_counts [*] :=
+core   8
+  io   1
+  l3   5
+  mc  10
+;
+
+A_die*1e+06 = 700
+
+P_die = 222.944
+
+peak_perf = 3.5e+10
+
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 1.37795
+
+P_max = 287.5
+P_die = 222.944
+
+A_die*1e+06 = 700
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.78467
+
+AreaUB*1e+06 = 700
+A_die*1e+06 = 700
+
+max_wire = 15553.8
+component_counts['mc']*wires_per_mc = 2880
+
+peak_perf = 3.5e+10
+arithmetic_intensity = 10
+peak_bw = 3.5e+09
+
+core_freq*1e-09 = 1.37795
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_area_multiplier = 1
+
+component_counts [*] :=
+core   8
+  io   1
+  l3   6
+  mc  10
+;
+
+A_die*1e+06 = 800
+
+P_die = 242.944
+
+peak_perf = 4e+10
+
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 1.5748
+
+P_max = 287.5
+P_die = 242.944
+
+A_die*1e+06 = 800
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.88707
+
+AreaUB*1e+06 = 800
+A_die*1e+06 = 800
+
+max_wire = 16627.7
+component_counts['mc']*wires_per_mc = 2880
+
+peak_perf = 4e+10
+arithmetic_intensity = 10
+peak_bw = 4e+09
+
+core_freq*1e-09 = 1.5748
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_area_multiplier = 1
+
+component_counts [*] :=
+core  9
+  io  1
+  l3  7
+  mc  9
+;
+
+A_die*1e+06 = 900
+
+P_die = 251.65
+
+peak_perf = 4.4e+10
+
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 1.53981
+
+P_max = 287.5
+P_die = 251.65
+
+A_die*1e+06 = 900
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.93165
+
+AreaUB*1e+06 = 900
+A_die*1e+06 = 900
+
+max_wire = 17636.3
+component_counts['mc']*wires_per_mc = 2592
+
+peak_perf = 4.4e+10
+arithmetic_intensity = 10
+peak_bw = 4.4e+09
+
+core_freq*1e-09 = 1.53981
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_area_multiplier = 1
+
+component_counts [*] :=
+core  5
+  io  1
+  l3  9
+  mc  2
+;
+
+A_die*1e+06 = 990
+
+P_die = 212.589
+
+peak_perf = 4.7e+10
+
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 2.96063
+
+P_max = 287.5
+P_die = 212.589
+
+A_die*1e+06 = 990
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.73165
+
+AreaUB*1e+06 = 1000
+A_die*1e+06 = 990
+
+max_wire = 18497.4
+component_counts['mc']*wires_per_mc = 576
+
+peak_perf = 4.7e+10
+arithmetic_intensity = 10
+peak_bw = 4.7e+09
+
+core_freq*1e-09 = 2.96063
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_area_multiplier = 1
+
+component_counts [*] :=
+core  8
+  io  1
+  l3  9
+  mc  8
+;
+
+A_die*1e+06 = 1080
+
+P_die = 280.355
+
+peak_perf = 5.3e+10
+
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 2.08661
+
+P_max = 287.5
+P_die = 280.355
+
+A_die*1e+06 = 1080
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 2.07862
+
+AreaUB*1e+06 = 1100
+A_die*1e+06 = 1080
+
+max_wire = 19319.6
+component_counts['mc']*wires_per_mc = 2304
+
+peak_perf = 5.3e+10
+arithmetic_intensity = 10
+peak_bw = 5.3e+09
+
+core_freq*1e-09 = 2.08661
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_area_multiplier = 1
+
+
+
+component_counts [*] :=
+core   5
+  io   1
+  l3  13
+  mc   1
+;
+
+A_die*1e+06 = 1395.49
+
+P_die = 281.294
+
+peak_perf = 6.6e+10
+
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 4.15748
+
+P_max = 287.5
+P_die = 281.294
+
+A_die*1e+06 = 1395.49
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 2.08343
+
+AreaUB*1e+06 = 1400
+A_die*1e+06 = 1395.49
+
+max_wire = 21960.9
+component_counts['mc']*wires_per_mc = 288
+
+peak_perf = 6.6e+10
+arithmetic_intensity = 10
+peak_bw = 6.6e+09
+
+core_freq*1e-09 = 4.15748
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_area_multiplier = 1.30971
+
+component_counts [*] :=
+core   6
+  io   1
+  l3  13
+  mc   1
+;
+
+A_die*1e+06 = 1390
+
+P_die = 281.294
+
+peak_perf = 6.6e+10
+
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 3.46457
+
+P_max = 287.5
+P_die = 281.294
+
+A_die*1e+06 = 1390
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 2.08343
+
+AreaUB*1e+06 = 1500
+A_die*1e+06 = 1390
+
+max_wire = 21917.7
+component_counts['mc']*wires_per_mc = 288
+
+peak_perf = 6.6e+10
+arithmetic_intensity = 10
+peak_bw = 6.6e+09
+
+core_freq*1e-09 = 3.46457
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_area_multiplier = 1
+
+component_counts [*] :=
+core   6
+  io   1
+  l3  13
+  mc   1
+;
+
+A_die*1e+06 = 1390
+
+P_die = 281.294
+
+peak_perf = 6.6e+10
+
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 3.46457
+
+P_max = 287.5
+P_die = 281.294
+
+A_die*1e+06 = 1390
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 2.08343
+
+AreaUB*1e+06 = 1600
+A_die*1e+06 = 1390
+
+max_wire = 21917.7
+component_counts['mc']*wires_per_mc = 288
+
+peak_perf = 6.6e+10
+arithmetic_intensity = 10
+peak_bw = 6.6e+09
+
+core_freq*1e-09 = 3.46457
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_area_multiplier = 1
+
+component_counts [*] :=
+core   6
+  io   1
+  l3  13
+  mc   1
+;
+
+A_die*1e+06 = 1390
+
+P_die = 281.294
+
+peak_perf = 6.6e+10
+
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 3.46457
+
+P_max = 287.5
+P_die = 281.294
+
+A_die*1e+06 = 1390
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 2.08343
+
+AreaUB*1e+06 = 1700
+A_die*1e+06 = 1390
+
+max_wire = 21917.7
+component_counts['mc']*wires_per_mc = 288
+
+peak_perf = 6.6e+10
+arithmetic_intensity = 10
+peak_bw = 6.6e+09
+
+core_freq*1e-09 = 3.46457
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_area_multiplier = 1
+

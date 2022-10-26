@@ -42,13 +42,14 @@ param IPC := 3.175;
 param capacitance_per_core := 2.96080965E-9;
 param l3_count_weight := .5E9;
 param mc_count_weight := .1E9;
+param core_freq_min := 0.8E9;
 param core_freq_max := 5E9;
 param core_freq_nominal := 3.6E9;
 
 # objective-dependent constraint
-param PerfLB := 200;
+param PerfLB := 1E9;
 param PerfUB := -1;
 param AreaLB := -1;
-param AreaUB := 800E-6;
+param AreaUB := 1700E-6;
 param PowerLB := -1;
 param PowerUB := 2000;
