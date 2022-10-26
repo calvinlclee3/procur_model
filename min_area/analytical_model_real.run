@@ -1,0 +1,39 @@
+reset;
+
+# Two MINLP solvers that is currently working (300 var bound): Couenne and Bonmin
+# https://github.com/coin-or/Bonmin
+# https://github.com/coin-or/Couenne
+# Bonmin is a local MINLP solver, Couenne is a global NLP/MINLP solver. 
+# Typically Bonmin can solve larger problems than Couenne, but you get local solutions.
+option solver couenne;
+# option solver bonmin;
+model analytical_model.mod;
+
+data analytical_model_real.dat;
+
+solve;
+
+
+display component_counts;
+
+display "******************************";
+
+display A_die * 1E6;
+display P_die;
+display peak_perf;
+
+display "******************************";
+
+display core_freq_max * 1E-9, core_freq * 1E-9;
+
+display P_max, P_die;
+
+display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count) * 1E6;
+
+display AreaUB * 1E6, A_die * 1E6;
+
+display max_wire, component_counts['mc'] * wires_per_mc;
+
+display peak_perf, arithmetic_intensity, peak_bw;
+
+display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_area_multiplier;

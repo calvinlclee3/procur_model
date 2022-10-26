@@ -47,8 +47,8 @@ param core_freq_nominal := 3.2;
 
 # objective-dependent constraint
 param PerfLB := 200;
-param PerfUB := 0;
-param AreaLB := 0;
+param PerfUB := -1;
+param AreaLB := -1;
 param AreaUB := 1000;
-param PowerLB := 0;
+param PowerLB := -1;
 param PowerUB := 2000;

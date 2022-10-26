@@ -1,0 +1,7 @@
+component_counts [*] :=
+core   38
+  io    1
+  l3  200
+  mc   58
+;
+

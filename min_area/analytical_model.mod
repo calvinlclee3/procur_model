@@ -138,8 +138,7 @@ maximize max_performance: peak_perf;
 
 s.t. range {i in Components}: component_counts[i] >= 1;
 s.t. freq_constraint: core_freq_max >= core_freq;
-#s.t. IPC_constraint: IPC <= IPC_max;
-s.t. thermal_constraint: P_max >= P_die; # usual direction
+s.t. thermal_constraint: P_max >= P_die;                                                             # usual direction
 s.t. bump_constraint: A_die >= (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count); # unusual direction
 s.t. wire_constraint: max_wire >= component_counts['mc'] * wires_per_mc;
 s.t. roofline: peak_perf == arithmetic_intensity * peak_bw;
