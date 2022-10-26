@@ -1,54 +1,54 @@
 set Components := core, l3, mc, io;
 
 # thermal parameters
-param theta_jc := 0.01;
-param theta_ca := 0.01;
-param theta_jb := 0.01;
-param theta_ba := 0.01; 
+param theta_jc := 0.1;
+param theta_ca := 0.2;
+param theta_jb := 0.5;
+param theta_ba := 1.5; 
 param T_ambient := 25;
-param T_j_max := 400;
+param T_j_max := 100;
 
 # area of each component
 param component_areas :=
-                core      10
-                l3        3
-                mc        0.2
-                io        1;
+                core      10E-6 
+                l3        100E-6
+                mc        10E-6
+                io        20E-6;
 
 # power of each component
-param l3_power := 0.01;
-param io_power := 0.02;
+param l3_power := 20;
+param io_power := 10;
 
 # bump parameters
-param bump_pitch := 0.04;
+param bump_pitch := 40E-6;
 param die_voltage := 1.2;
-param current_per_bump := 0.003;
-param mc_bump_count := 300;
-param io_bump_count := 100;
+param current_per_bump := 520.8333333E-3;
+param mc_bump_count := 288;
+param io_bump_count := 114;
 
 # wire parameters
 param package_layer := 6;
-param link_pitch := 0.04;
+param link_pitch := 25E-6;
 
 # memory controller parameters
-param wires_per_mc := 200;
-param energy_per_wire := 0.0001;
-param mem_freq := 4.8;
-param power_ctrl := 0.01;
+param wires_per_mc := 288;
+param energy_per_wire := 6.697674419E-12;
+param mem_freq := 4300E6;
+param power_ctrl := 3;
 
 # performance parameters
-param arithmetic_intensity := 0.5;
-param IPC := 0.2;
-param capacitance_per_core := 1;
-param l3_count_weight := 0.1;
-param mc_count_weight := 0.5;
-param core_freq_max := 5.5;
-param core_freq_nominal := 3.2;
+param arithmetic_intensity := 10;
+param IPC := 3.175;
+param capacitance_per_core := 2.96080965E-9;
+param l3_count_weight := .5E9;
+param mc_count_weight := .1E9;
+param core_freq_max := 5E9;
+param core_freq_nominal := 3.6E9;
 
 # objective-dependent constraint
 param PerfLB := 200;
 param PerfUB := -1;
 param AreaLB := -1;
-param AreaUB := 1000;
+param AreaUB := 800E-6;
 param PowerLB := -1;
 param PowerUB := 2000;

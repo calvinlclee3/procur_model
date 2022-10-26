@@ -14,25 +14,26 @@ data analytical_model.dat;
 solve;
 
 
-
 display component_counts;
 
 display "******************************";
 
-display A_die;
+display A_die * 1E6;
 display P_die;
 display peak_perf;
 
 display "******************************";
 
-display core_freq_max, core_freq;
+display core_freq_max * 1E-9, core_freq * 1E-9;
 
 display P_max, P_die;
 
-display A_die, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count);
+display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count) * 1E6;
+
+display AreaUB * 1E6, A_die * 1E6;
 
 display max_wire, component_counts['mc'] * wires_per_mc;
 
 display peak_perf, arithmetic_intensity, peak_bw;
 
-display core_freq, core_freq_max, core_freq_nominal, core_freq_area_multiplier;
+display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_area_multiplier;
