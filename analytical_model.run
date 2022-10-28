@@ -85,3 +85,47 @@ data analytical_model.dat;
 let arithmetic_intensity := 32;
 solve;
 commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let arithmetic_intensity := 36;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let arithmetic_intensity := 40;
+solve;
+commands display.run;
+
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let arithmetic_intensity := 44;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let arithmetic_intensity := 48;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let arithmetic_intensity := 52;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let arithmetic_intensity := 56;
+solve;
+commands display.run;
+
