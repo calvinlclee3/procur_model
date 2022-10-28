@@ -24,33 +24,31 @@ display AreaUB * 1E6, A_die * 1E6;
 
 # ****************************** SAVE TO FILE ******************************
 
-print("****************************** RUN START ******************************") >> max_perf_IPC.txt;
+print("****************************** RUN START ******************************") >> min_area_die_voltage.txt;
 
-display component_counts >> max_perf_IPC.txt;
+display component_counts >> min_area_die_voltage.txt;
 
-display A_die * 1E6 >> max_perf_IPC.txt;
-display P_die >> max_perf_IPC.txt;
-display core_freq * 1E-9 >> max_perf_IPC.txt;
-display peak_perf >> max_perf_IPC.txt;
+display A_die * 1E6 >> min_area_die_voltage.txt;
+display P_die >> min_area_die_voltage.txt;
+display core_freq * 1E-9 >> min_area_die_voltage.txt;
+display peak_perf >> min_area_die_voltage.txt;
 
-print("==============================") >> max_perf_IPC.txt;
+print("==============================") >> min_area_die_voltage.txt;
 
-display core_freq_max * 1E-9, core_freq * 1E-9, core_freq_min * 1E-9 >> max_perf_IPC.txt;
+display core_freq_max * 1E-9, core_freq * 1E-9, core_freq_min * 1E-9 >> min_area_die_voltage.txt;
 
-display P_max, P_die >> max_perf_IPC.txt;
+display P_max, P_die >> min_area_die_voltage.txt;
 
-display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count) * 1E6 >> max_perf_IPC.txt;
+display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count) * 1E6 >> min_area_die_voltage.txt;
 
-display max_wire, component_counts['mc'] * wires_per_mc >> max_perf_IPC.txt;
+display max_wire, component_counts['mc'] * wires_per_mc >> min_area_die_voltage.txt;
 
-display peak_perf, arithmetic_intensity, peak_bw >> max_perf_IPC.txt;
+display peak_perf, arithmetic_intensity, peak_bw >> min_area_die_voltage.txt;
 
-display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_area_multiplier >> max_perf_IPC.txt;
+display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_area_multiplier >> min_area_die_voltage.txt;
 
-display AreaUB * 1E6, A_die * 1E6 >> max_perf_IPC.txt;
+display peak_perf, PerfLB >> min_area_die_voltage.txt;
 
-display IPC >> max_perf_IPC.txt;
+display die_voltage >> min_area_die_voltage.txt;
 
-display component_areas['core'] * 1E6 >> max_perf_IPC.txt;
-
-print("****************************** RUN   END ******************************") >> max_perf_IPC.txt;
+print("****************************** RUN   END ******************************") >> min_area_die_voltage.txt;
