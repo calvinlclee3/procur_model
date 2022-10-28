@@ -127,13 +127,13 @@ s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == 1*f1 + 1*f2 + (
 # ****************************** OBJECTIVE ******************************
 
 # [Minimize Area]
-minimize min_area: A_die;
+#minimize min_area: A_die;
 
 # [Minimize Power]
 #minimize min_power: P_die;
 
 # [Maximize Performance]
-#maximize max_performance: peak_perf;
+maximize max_performance: peak_perf;
 
 
 # ****************************** OBJECTIVE-INDEPENDENT CONSTRAINTS ******************************
@@ -150,7 +150,7 @@ s.t. roofline: peak_perf == arithmetic_intensity * peak_bw;
 # ****************************** OBJECTIVE-DEPENDENT CONSTRAINTS ******************************
 
 # [Minimize Area]:
-s.t. performance_constraint: peak_perf >= PerfLB;
+#s.t. performance_constraint: peak_perf >= PerfLB;
 #s.t. power_constraint: P_die <= PowerUB;
 
 # [Minimize Power]
@@ -158,5 +158,5 @@ s.t. performance_constraint: peak_perf >= PerfLB;
 #s.t. performance_constraint: peak_perf >= PerfLB;
 
 # [Maximize Performance]
-#s.t. area_constraint: AreaUB >= A_die;
+s.t. area_constraint: AreaUB >= A_die;
 #s.t. power_constraint: P_die <= PowerUB;
