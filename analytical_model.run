@@ -1,0 +1,115 @@
+reset;
+
+# Two MINLP solvers that is currently working (300 var bound): Couenne and Bonmin
+# https://github.com/coin-or/Bonmin
+# https://github.com/coin-or/Couenne
+# Bonmin is a local MINLP solver, Couenne is a global NLP/MINLP solver. 
+# Typically Bonmin can solve larger problems than Couenne, but you get local solutions.
+option solver couenne;
+# option solver bonmin;
+
+model analytical_model.mod;
+data analytical_model.dat;
+solve;
+commands display.run;
+# let {j in 1.._nvars} _var[j] := _var[j].init0;
+
+
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let l3_count_weight := .15E9;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let l3_count_weight := .2E9;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let l3_count_weight := .25E9;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let l3_count_weight := .3E9;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let l3_count_weight := .35E9;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let l3_count_weight := .4E9;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let l3_count_weight := .45E9;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let l3_count_weight := .5E9;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let l3_count_weight := .55E9;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let l3_count_weight := .6E9;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let l3_count_weight := .65E9;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let l3_count_weight := .7E9;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let l3_count_weight := .75E9;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let l3_count_weight := .8E9;
+solve;
+commands display.run;

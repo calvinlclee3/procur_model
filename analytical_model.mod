@@ -157,5 +157,5 @@ s.t. roofline: peak_perf == arithmetic_intensity * peak_bw;
 #s.t. performance_constraint: peak_perf >= PerfLB;
 
 # [Maximize Performance]
-s.t. area_constraint: A_die <= AreaUB;
+s.t. area_constraint: AreaUB >= A_die;
 #s.t. power_constraint: P_die <= PowerUB;
