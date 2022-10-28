@@ -52,4 +52,4 @@ param PerfUB := -1;
 param AreaLB := -1;
 param AreaUB := 1000E-6;
 param PowerLB := -1;
-param PowerUB := 2000;
+param PowerUB := 280;
