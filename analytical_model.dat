@@ -50,6 +50,6 @@ param core_freq_nominal := 3.6E9;
 param PerfLB := 1E9;
 param PerfUB := -1;
 param AreaLB := -1;
-param AreaUB := 200E-6;
+param AreaUB := 1000E-6;
 param PowerLB := -1;
 param PowerUB := 2000;
