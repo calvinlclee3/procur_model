@@ -24,31 +24,31 @@ display AreaUB * 1E6, A_die * 1E6;
 
 # ****************************** SAVE TO FILE ******************************
 
-print("****************************** RUN START ******************************") >> max_perf_l3_count_weight_2.txt;
+print("****************************** RUN START ******************************") >> max_perf_l3_count_weight.txt;
 
-display component_counts >> max_perf_l3_count_weight_2.txt;
+display component_counts >> max_perf_l3_count_weight.txt;
 
-display A_die * 1E6 >> max_perf_l3_count_weight_2.txt;
-display P_die >> max_perf_l3_count_weight_2.txt;
-display core_freq * 1E-9 >> max_perf_l3_count_weight_2.txt;
-display peak_perf >> max_perf_l3_count_weight_2.txt;
+display A_die * 1E6 >> max_perf_l3_count_weight.txt;
+display P_die >> max_perf_l3_count_weight.txt;
+display core_freq * 1E-9 >> max_perf_l3_count_weight.txt;
+display peak_perf >> max_perf_l3_count_weight.txt;
 
-print("==============================") >> max_perf_l3_count_weight_2.txt;
+print("==============================") >> max_perf_l3_count_weight.txt;
 
-display core_freq_max * 1E-9, core_freq * 1E-9, core_freq_min * 1E-9 >> max_perf_l3_count_weight_2.txt;
+display core_freq_max * 1E-9, core_freq * 1E-9, core_freq_min * 1E-9 >> max_perf_l3_count_weight.txt;
 
-display P_max, P_die >> max_perf_l3_count_weight_2.txt;
+display P_max, P_die >> max_perf_l3_count_weight.txt;
 
-display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count) * 1E6 >> max_perf_l3_count_weight_2.txt;
+display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count) * 1E6 >> max_perf_l3_count_weight.txt;
 
-display max_wire, component_counts['mc'] * wires_per_mc >> max_perf_l3_count_weight_2.txt;
+display max_wire, component_counts['mc'] * wires_per_mc >> max_perf_l3_count_weight.txt;
 
-display peak_perf, arithmetic_intensity, peak_bw >> max_perf_l3_count_weight_2.txt;
+display peak_perf, arithmetic_intensity, peak_bw >> max_perf_l3_count_weight.txt;
 
-display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_area_multiplier >> max_perf_l3_count_weight_2.txt;
+display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_area_multiplier >> max_perf_l3_count_weight.txt;
 
-display AreaUB * 1E6, A_die * 1E6 >> max_perf_l3_count_weight_2.txt;
+display AreaUB * 1E6, A_die * 1E6 >> max_perf_l3_count_weight.txt;
 
-display l3_count_weight >> max_perf_l3_count_weight_2.txt;
+display l3_count_weight >> max_perf_l3_count_weight.txt;
 
-print("****************************** RUN   END ******************************") >> max_perf_l3_count_weight_2.txt;
+print("****************************** RUN   END ******************************") >> max_perf_l3_count_weight.txt;

@@ -85,6 +85,9 @@ var peak_perf >= 0;         # also known as compute throughput
 var peak_bw >= 0;
 var core_freq_area_multiplier >= 0;
 
+s.t. def_core_freq: core_freq == 0*f1 + core_freq_nominal*f2 + core_freq_max*f3;
+
+
 s.t. def_A_die: A_die == component_counts['core'] * component_areas['core'] * core_freq_area_multiplier + 
                          component_counts['io']   * component_areas['io']   +
                          component_counts['l3']   * component_areas['l3']   +
@@ -93,7 +96,7 @@ s.t. def_A_die: A_die == component_counts['core'] * component_areas['core'] * co
 s.t. def_P_die: P_die == component_counts['core'] * core_power + component_counts['io'] * io_power+
                          component_counts['l3']   * l3_power   + component_counts['mc'] * mc_power;
 
-s.t. def_core_power: core_power == capacitance_per_core * (die_voltage**2) * core_freq;
+s.t. def_core_power: core_power == (0*f1 + core_freq_nominal*f2 + core_freq_max*f3) * capacitance_per_core * (die_voltage**2) ;
 
 s.t. def_power_bump_count: power_bump_count == (P_die) / (die_voltage * current_per_bump) * 2;
 
@@ -101,8 +104,6 @@ s.t. def_max_wire: max_wire == sqrt((component_counts['core'] * component_areas[
                                      component_counts['io']   * component_areas['io']   +
                                      component_counts['l3']   * component_areas['l3']   +
                                      component_counts['mc']   * component_areas['mc']) / 6) * 6 * package_layer / link_pitch;
-
-s.t. def_core_freq: core_freq == 0*f1 + core_freq_nominal*f2 + core_freq_max*f3;
 
 s.t. SOS2_constraint_1: 0 <= f1 <= 1;
 s.t. SOS2_constraint_2: 0 <= f2 <= 1;
