@@ -14,146 +14,146 @@ solve;
 commands display.run;
 # let {j in 1.._nvars} _var[j] := _var[j].init0;
 
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 450;
-solve;
-commands display.run;
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 450;
+# solve;
+# commands display.run;
 
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 400;
-solve;
-commands display.run;
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 400;
+# solve;
+# commands display.run;
 
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 350;
-solve;
-commands display.run;
-
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 300;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 280;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 270;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 260;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 250;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 240;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 230;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 220;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 210;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 200;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 190;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 180;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 170;
-solve;
-commands display.run;
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 350;
+# solve;
+# commands display.run;
 
 
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 160;
-solve;
-commands display.run;
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 300;
+# solve;
+# commands display.run;
 
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 150;
-solve;
-commands display.run;
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 280;
+# solve;
+# commands display.run;
+
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 270;
+# solve;
+# commands display.run;
+
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 260;
+# solve;
+# commands display.run;
+
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 250;
+# solve;
+# commands display.run;
+
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 240;
+# solve;
+# commands display.run;
+
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 230;
+# solve;
+# commands display.run;
+
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 220;
+# solve;
+# commands display.run;
+
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 210;
+# solve;
+# commands display.run;
+
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 200;
+# solve;
+# commands display.run;
+
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 190;
+# solve;
+# commands display.run;
+
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 180;
+# solve;
+# commands display.run;
+
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 170;
+# solve;
+# commands display.run;
 
 
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 140;
-solve;
-commands display.run;
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 160;
+# solve;
+# commands display.run;
+
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 150;
+# solve;
+# commands display.run;
 
 
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 130;
-solve;
-commands display.run;
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 140;
+# solve;
+# commands display.run;
+
+
+# reset;
+# model analytical_model.mod;
+# data analytical_model.dat;
+# let PowerUB := 130;
+# solve;
+# commands display.run;

@@ -133,9 +133,10 @@ s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == 1*f1 + 1*f2 + (
 #minimize min_power: P_die;
 
 # [Maximize Performance]
-maximize max_performance: peak_perf;
+#maximize max_performance: peak_perf;
 
-
+# [Custom Metric]
+maximize custom_metric: ((1/P_die)) * ((1/A_die))* peak_perf;
 # ****************************** OBJECTIVE-INDEPENDENT CONSTRAINTS ******************************
 
 s.t. range {i in Components}: component_counts[i] >= 1;
@@ -158,5 +159,9 @@ s.t. roofline: peak_perf == arithmetic_intensity * peak_bw;
 #s.t. performance_constraint: peak_perf >= PerfLB;
 
 # [Maximize Performance]
-s.t. area_constraint: AreaUB >= A_die;
+#s.t. area_constraint: AreaUB >= A_die;
 #s.t. power_constraint: PowerUB >= P_die;
+
+# [Custom Metric]
+s.t. area_constraint: AreaUB >= A_die;
+s.t. performance_constraint: peak_perf >= PerfLB;
