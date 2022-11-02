@@ -115,6 +115,8 @@ s.t. SOS2_constraint_7: f3 <= b3;
 s.t. SOS2_constraint_8: b1 + b2 + b3 <= 2;
 s.t. SOS2_constraint_9: b1 + b3 <= 1;
 
+# s.t. def_core_freq: core_freq == 0*f1 + core_freq_nominal*f2 + core_freq_max*f3;
+
 s.t. def_peak_perf: peak_perf == core_freq * IPC * component_counts['core'];
 
 s.t. def_peak_bw: peak_bw == l3_count_weight * component_counts['l3'] + mc_count_weight * component_counts['mc'];
