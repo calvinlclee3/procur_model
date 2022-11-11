@@ -130,7 +130,9 @@ s.t. def_peak_bw: peak_bw == l3_count_weight * component_counts['l3'] + mc_count
 # 5% increase in core_freq -> 10% increase in component_areas['core']
 s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == 1*f1 + 1*f2 + (2*core_freq_max/core_freq_nominal - 1)*f3;
 
-# perf = min (compute_throughput, arithmetic_intensity * peak_bw)
+# perf = min (compute_throughput, arithmetic_intensity * peak_bw) (min not supported by solver)
+# The condition above guarantees below, but not the other way around.
+# For max performance, it is equivalent, but might not be for min area.
 s.t. def_perf_1: perf <= compute_throughput;
 s.t. def_perf_2: perf <= arithmetic_intensity * peak_bw;
 
