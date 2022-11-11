@@ -121,15 +121,17 @@ s.t. def_peak_perf: peak_perf == core_freq * IPC * component_counts['core'];
 
 s.t. def_peak_bw: peak_bw == l3_count_weight * component_counts['l3'] + mc_count_weight * component_counts['mc'];
 
+# 5% increase in core_freq -> 10% increase in component_areas['core']
 s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == 1*f1 + 1*f2 + (2*core_freq_max/core_freq_nominal - 1)*f3;
 
 # Implementation using AMPL native piece-wise linear function syntax.
-# s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == << core_freq_nominal; 0, (1 / core_freq_nominal) * 2 >> core_freq + 1; # REPLACE WITH CORE_FREQ
+# s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == << core_freq_nominal; 0, (1 / core_freq_nominal) * 2 >> core_freq + 1;
+
 
 # ****************************** OBJECTIVE ******************************
 
 # [Minimize Area]
-#minimize min_area: A_die;
+minimize min_area: A_die;
 
 # [Minimize Power]
 #minimize min_power: P_die;
@@ -138,7 +140,9 @@ s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == 1*f1 + 1*f2 + (
 #maximize max_performance: peak_perf;
 
 # [Custom Metric]
-maximize custom_metric: ((1/P_die)) * ((1/A_die))* peak_perf;
+#maximize custom_metric: ((1/P_die)) * ((1/A_die))* peak_perf;
+
+
 # ****************************** OBJECTIVE-INDEPENDENT CONSTRAINTS ******************************
 
 s.t. range {i in Components}: component_counts[i] >= 1;
@@ -165,5 +169,5 @@ s.t. roofline: peak_perf == arithmetic_intensity * peak_bw;
 #s.t. power_constraint: PowerUB >= P_die;
 
 # [Custom Metric]
-s.t. area_constraint: AreaUB >= A_die;
-s.t. performance_constraint: peak_perf >= PerfLB;
+#s.t. area_constraint: AreaUB >= A_die;
+#s.t. performance_constraint: peak_perf >= PerfLB;

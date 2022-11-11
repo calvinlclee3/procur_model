@@ -46,10 +46,13 @@ param core_freq_min := 0.8E9;
 param core_freq_max := 5E9;
 param core_freq_nominal := 3.6E9;
 
-# objective-dependent constraint
+# objective-dependent constraints
+# Minimal performance possible given integrality constraint: 6E9
 param PerfLB := 8E9;
 param PerfUB := -1;
 param AreaLB := -1;
-param AreaUB := 1000E-6;
+# 1000E-6
+param AreaUB := 1000E-6; 
 param PowerLB := -1;
-param PowerUB := 280;
+# P_max: 287.5
+param PowerUB := 287.5;

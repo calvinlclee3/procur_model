@@ -12,7 +12,6 @@ model analytical_model.mod;
 data analytical_model.dat;
 solve;
 commands display.run;
-# let {j in 1.._nvars} _var[j] := _var[j].init0;
 
 # reset;
 # model analytical_model.mod;
