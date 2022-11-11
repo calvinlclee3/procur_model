@@ -4,7 +4,7 @@ display component_counts;
 display A_die * 1E6;
 display P_die;
 display core_freq * 1E-9;
-display compute_throughput;
+display perf;
 
 print("==============================");
 
@@ -32,7 +32,7 @@ display component_counts >> min_metric_metric.txt;
 display A_die * 1E6 >> min_metric_metric.txt;
 display P_die >> min_metric_metric.txt;
 display core_freq * 1E-9 >> min_metric_metric.txt;
-display compute_throughput >> min_metric_metric.txt;
+display perf >> min_metric_metric.txt;
 
 print("==============================") >> min_metric_metric.txt;
 

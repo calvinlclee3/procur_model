@@ -88,6 +88,7 @@ var b3 binary;
 var compute_throughput >= 0;         # also known as compute throughput
 var peak_bw >= 0;
 var core_freq_area_multiplier >= 0;
+var perf >= 0;
 
 s.t. def_core_freq: core_freq == 0*f1 + core_freq_nominal*f2 + core_freq_max*f3;
 
@@ -129,23 +130,27 @@ s.t. def_peak_bw: peak_bw == l3_count_weight * component_counts['l3'] + mc_count
 # 5% increase in core_freq -> 10% increase in component_areas['core']
 s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == 1*f1 + 1*f2 + (2*core_freq_max/core_freq_nominal - 1)*f3;
 
-# Implementation using AMPL native piece-wise linear function syntax.
+# perf = min (compute_throughput, arithmetic_intensity * peak_bw)
+s.t. def_perf_1: perf <= compute_throughput;
+s.t. def_perf_2: perf <= arithmetic_intensity * peak_bw;
+
+# Implementation using AMPL built-in piece-wise linear function syntax (not supported by solver).
 # s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == << core_freq_nominal; 0, (1 / core_freq_nominal) * 2 >> core_freq + 1;
 
 
 # ****************************** OBJECTIVE ******************************
 
 # [Minimize Area]
-#minimize min_area: A_die;
+minimize min_area: A_die;
 
 # [Minimize Power]
 #minimize min_power: P_die;
 
 # [Maximize Performance]
-maximize max_performance: compute_throughput;
+#maximize max_performance: perf;
 
 # [Custom Metric]
-#maximize custom_metric: ((1/P_die)) * ((1/A_die))* compute_throughput;
+#maximize custom_metric: ((1/P_die)) * ((1/A_die))* perf;
 
 
 # ****************************** OBJECTIVE-INDEPENDENT CONSTRAINTS ******************************
@@ -156,23 +161,22 @@ s.t. freq_upper_bound: core_freq_max >= core_freq;
 s.t. thermal_constraint: P_max >= P_die;                                                             # usual direction
 s.t. bump_constraint: A_die >= (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count); # unusual direction
 s.t. wire_constraint: max_wire >= component_counts['mc'] * wires_per_mc;
-s.t. roofline: compute_throughput == arithmetic_intensity * peak_bw;
 
 
 # ****************************** OBJECTIVE-DEPENDENT CONSTRAINTS ******************************
 
 # [Minimize Area]:
-#s.t. performance_constraint: compute_throughput >= PerfLB;
+#s.t. performance_constraint: perf >= PerfLB;
 #s.t. power_constraint: P_die <= PowerUB;
 
 # [Minimize Power]
 #s.t. area_constraint: A_die <= AreaUB;
-#s.t. performance_constraint: compute_throughput >= PerfLB;
+#s.t. performance_constraint: perf >= PerfLB;
 
 # [Maximize Performance]
-s.t. area_constraint: AreaUB >= A_die;
+#s.t. area_constraint: AreaUB >= A_die;
 #s.t. power_constraint: PowerUB >= P_die;
 
 # [Custom Metric]
 #s.t. area_constraint: AreaUB >= A_die;
-#s.t. performance_constraint: compute_throughput >= PerfLB;
+#s.t. performance_constraint: perf >= PerfLB;
