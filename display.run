@@ -20,7 +20,7 @@ display peak_perf, arithmetic_intensity, peak_bw;
 
 display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_min * 1E-9, core_freq_area_multiplier;
 
-display AreaUB * 1E6, A_die * 1E6;
+display die_voltage, die_voltage_max, die_voltage_nominal, core_power;
 
 print("****************************** RUN   END ******************************");
 
@@ -48,6 +48,6 @@ display peak_perf, arithmetic_intensity, peak_bw >> min_metric_metric.txt;
 
 display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_min * 1E-9, core_freq_area_multiplier >> min_metric_metric.txt;
 
-display AreaUB * 1E6, A_die * 1E6 >> min_metric_metric.txt;
+display die_voltage, die_voltage_max, die_voltage_nominal, core_power >> min_metric_metric.txt;
 
 print("****************************** RUN   END ******************************") >> min_metric_metric.txt;

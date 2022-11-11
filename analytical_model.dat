@@ -21,7 +21,7 @@ param io_power := 10;
 
 # bump parameters
 param bump_pitch := 40E-6;
-param die_voltage := 1.2;
+param die_voltage_nominal := 1.2;
 param current_per_bump := 520.8333333E-3;
 param mc_bump_count := 288;
 param io_bump_count := 114;
@@ -48,7 +48,7 @@ param core_freq_nominal := 3.6E9;
 
 # objective-dependent constraints
 # Minimal performance possible given integrality constraint: 6E9
-param PerfLB := 8E9;
+param PerfLB := 6E9;
 param PerfUB := -1;
 param AreaLB := -1;
 # 1000E-6

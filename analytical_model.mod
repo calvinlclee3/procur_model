@@ -18,7 +18,7 @@ param io_power;
 
 # bump parameters
 param bump_pitch;
-param die_voltage;              # for the entire die
+param die_voltage_nominal;              # for the entire die
 param current_per_bump;
 param mc_bump_count;
 param io_bump_count;
@@ -56,6 +56,9 @@ param theta_ja := (theta_jc + theta_ca)*(theta_jb + theta_ba)/(theta_jc + theta_
 param delta_T := T_j_max - T_ambient;
 param P_max := delta_T / theta_ja;
 
+# Compute max die voltage.
+param die_voltage_max := (core_freq_max / core_freq_nominal) * die_voltage_nominal; 
+
 # Compute power of memory controller.
 param power_phys := energy_per_wire * mem_freq * wires_per_mc;
 param mc_power := power_phys + power_ctrl;
@@ -71,6 +74,7 @@ var component_counts {i in Components} integer;
 
 var A_die >= 0;
 var P_die >= 0;
+var die_voltage >= 0;
 var core_power >= 0;
 var power_bump_count >= 0;
 var max_wire >= 0;
@@ -87,7 +91,6 @@ var core_freq_area_multiplier >= 0;
 
 s.t. def_core_freq: core_freq == 0*f1 + core_freq_nominal*f2 + core_freq_max*f3;
 
-
 s.t. def_A_die: A_die == component_counts['core'] * component_areas['core'] * core_freq_area_multiplier + 
                          component_counts['io']   * component_areas['io']   +
                          component_counts['l3']   * component_areas['l3']   +
@@ -96,9 +99,11 @@ s.t. def_A_die: A_die == component_counts['core'] * component_areas['core'] * co
 s.t. def_P_die: P_die == component_counts['core'] * core_power + component_counts['io'] * io_power+
                          component_counts['l3']   * l3_power   + component_counts['mc'] * mc_power;
 
+s.t. def_die_voltage: die_voltage == ((0*f1 + core_freq_nominal*f2 + core_freq_max*f3) / core_freq_nominal) * die_voltage_nominal;
+
 s.t. def_core_power: core_power == (0*f1 + core_freq_nominal*f2 + core_freq_max*f3) * capacitance_per_core * (die_voltage**2) ;
 
-s.t. def_power_bump_count: power_bump_count == (P_die) / (die_voltage * current_per_bump) * 2;
+s.t. def_power_bump_count: power_bump_count == (P_die) / (die_voltage_max * current_per_bump) * 2;
 
 s.t. def_max_wire: max_wire == sqrt((component_counts['core'] * component_areas['core'] * core_freq_area_multiplier + 
                                      component_counts['io']   * component_areas['io']   +
@@ -131,13 +136,13 @@ s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == 1*f1 + 1*f2 + (
 # ****************************** OBJECTIVE ******************************
 
 # [Minimize Area]
-minimize min_area: A_die;
+#minimize min_area: A_die;
 
 # [Minimize Power]
 #minimize min_power: P_die;
 
 # [Maximize Performance]
-#maximize max_performance: peak_perf;
+maximize max_performance: peak_perf;
 
 # [Custom Metric]
 #maximize custom_metric: ((1/P_die)) * ((1/A_die))* peak_perf;
@@ -165,7 +170,7 @@ s.t. roofline: peak_perf == arithmetic_intensity * peak_bw;
 #s.t. performance_constraint: peak_perf >= PerfLB;
 
 # [Maximize Performance]
-#s.t. area_constraint: AreaUB >= A_die;
+s.t. area_constraint: AreaUB >= A_die;
 #s.t. power_constraint: PowerUB >= P_die;
 
 # [Custom Metric]
