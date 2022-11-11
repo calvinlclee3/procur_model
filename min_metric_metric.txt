@@ -744,3 +744,233 @@ die_voltage_max = 1.66667
 die_voltage_nominal = 1.2
 
 ****************************** RUN   END ******************************
+****************************** RUN START ******************************
+component_counts [*] :=
+core  22
+  io   1
+  l3  13
+  mc   1
+;
+
+A_die*1e+06 = 1550
+
+P_die = 287.4
+
+core_freq*1e-09 = 0.944882
+
+peak_perf = 6.6e+10
+
+==============================
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 0.944882
+core_freq_min*1e-09 = 0.8
+
+P_max = 287.5
+P_die = 287.4
+
+A_die*1e+06 = 1550
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.70267
+
+max_wire = 23144.8
+component_counts['mc']*wires_per_mc = 288
+
+peak_perf = 6.6e+10
+arithmetic_intensity = 10
+peak_bw = 6.6e+09
+
+core_freq*1e-09 = 0.944882
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_min*1e-09 = 0.8
+core_freq_area_multiplier = 1
+
+die_voltage = 0.314961
+die_voltage_max = 1.66667
+die_voltage_nominal = 1.2
+core_power = 0.277524
+
+****************************** RUN   END ******************************
+****************************** RUN START ******************************
+component_counts [*] :=
+core  22
+  io   1
+  l3  13
+  mc   1
+;
+
+A_die*1e+06 = 1550
+
+P_die = 287.4
+
+core_freq*1e-09 = 0.944882
+
+compute_throughput = 6.6e+10
+
+==============================
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 0.944882
+core_freq_min*1e-09 = 0.8
+
+P_max = 287.5
+P_die = 287.4
+
+A_die*1e+06 = 1550
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.70267
+
+max_wire = 23144.8
+component_counts['mc']*wires_per_mc = 288
+
+compute_throughput = 6.6e+10
+arithmetic_intensity = 10
+peak_bw = 6.6e+09
+
+core_freq*1e-09 = 0.944882
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_min*1e-09 = 0.8
+core_freq_area_multiplier = 1
+
+die_voltage = 0.314961
+die_voltage_max = 1.66667
+die_voltage_nominal = 1.2
+core_power = 0.277524
+
+****************************** RUN   END ******************************
+****************************** RUN START ******************************
+component_counts [*] :=
+core  22
+  io   1
+  l3  13
+  mc   1
+;
+
+A_die*1e+06 = 1550
+
+P_die = 287.4
+
+core_freq*1e-09 = 0.944882
+
+compute_throughput = 6.6e+10
+
+==============================
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 0.944882
+core_freq_min*1e-09 = 0.8
+
+P_max = 287.5
+P_die = 287.4
+
+A_die*1e+06 = 1550
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.70267
+
+max_wire = 23144.8
+component_counts['mc']*wires_per_mc = 288
+
+compute_throughput = 6.6e+10
+arithmetic_intensity = 10
+peak_bw = 6.6e+09
+
+core_freq*1e-09 = 0.944882
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_min*1e-09 = 0.8
+core_freq_area_multiplier = 1
+
+die_voltage = 0.314961
+die_voltage_max = 1.66667
+die_voltage_nominal = 1.2
+core_power = 0.277524
+
+****************************** RUN   END ******************************
+****************************** RUN START ******************************
+component_counts [*] :=
+core  22
+  io   1
+  l3  13
+  mc   1
+;
+
+A_die*1e+06 = 1550
+
+P_die = 287.4
+
+core_freq*1e-09 = 0.944882
+
+compute_throughput = 6.6e+10
+
+==============================
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 0.944882
+core_freq_min*1e-09 = 0.8
+
+P_max = 287.5
+P_die = 287.4
+
+A_die*1e+06 = 1550
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.70267
+
+max_wire = 23144.8
+component_counts['mc']*wires_per_mc = 288
+
+compute_throughput = 6.6e+10
+arithmetic_intensity = 10
+peak_bw = 6.6e+09
+
+core_freq*1e-09 = 0.944882
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_min*1e-09 = 0.8
+core_freq_area_multiplier = 1
+
+die_voltage = 0.314961
+die_voltage_max = 1.66667
+die_voltage_nominal = 1.2
+core_power = 0.277524
+
+****************************** RUN   END ******************************
+****************************** RUN START ******************************
+component_counts [*] :=
+core  4
+  io  1
+  l3  9
+  mc  2
+;
+
+A_die*1e+06 = 982.24
+
+P_die = 279.286
+
+core_freq*1e-09 = 3.70079
+
+compute_throughput = 4.7e+10
+
+==============================
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 3.70079
+core_freq_min*1e-09 = 0.8
+
+P_max = 287.5
+P_die = 279.286
+
+A_die*1e+06 = 982.24
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.67276
+
+max_wire = 18424.5
+component_counts['mc']*wires_per_mc = 576
+
+compute_throughput = 4.7e+10
+arithmetic_intensity = 10
+peak_bw = 4.7e+09
+
+core_freq*1e-09 = 3.70079
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_min*1e-09 = 0.8
+core_freq_area_multiplier = 1.05599
+
+die_voltage = 1.2336
+die_voltage_max = 1.66667
+die_voltage_nominal = 1.2
+core_power = 16.6744
+
+****************************** RUN   END ******************************

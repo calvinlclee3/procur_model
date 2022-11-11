@@ -4,7 +4,7 @@ display component_counts;
 display A_die * 1E6;
 display P_die;
 display core_freq * 1E-9;
-display peak_perf;
+display compute_throughput;
 
 print("==============================");
 
@@ -16,7 +16,7 @@ display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bu
 
 display max_wire, component_counts['mc'] * wires_per_mc;
 
-display peak_perf, arithmetic_intensity, peak_bw;
+display compute_throughput, arithmetic_intensity, peak_bw;
 
 display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_min * 1E-9, core_freq_area_multiplier;
 
@@ -32,7 +32,7 @@ display component_counts >> min_metric_metric.txt;
 display A_die * 1E6 >> min_metric_metric.txt;
 display P_die >> min_metric_metric.txt;
 display core_freq * 1E-9 >> min_metric_metric.txt;
-display peak_perf >> min_metric_metric.txt;
+display compute_throughput >> min_metric_metric.txt;
 
 print("==============================") >> min_metric_metric.txt;
 
@@ -44,7 +44,7 @@ display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bu
 
 display max_wire, component_counts['mc'] * wires_per_mc >> min_metric_metric.txt;
 
-display peak_perf, arithmetic_intensity, peak_bw >> min_metric_metric.txt;
+display compute_throughput, arithmetic_intensity, peak_bw >> min_metric_metric.txt;
 
 display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_min * 1E-9, core_freq_area_multiplier >> min_metric_metric.txt;
 

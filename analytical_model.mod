@@ -85,7 +85,7 @@ var f3;
 var b1 binary;
 var b2 binary;
 var b3 binary;
-var peak_perf >= 0;         # also known as compute throughput
+var compute_throughput >= 0;         # also known as compute throughput
 var peak_bw >= 0;
 var core_freq_area_multiplier >= 0;
 
@@ -122,7 +122,7 @@ s.t. SOS2_constraint_9: b1 + b3 <= 1;
 
 # s.t. def_core_freq: core_freq == 0*f1 + core_freq_nominal*f2 + core_freq_max*f3;
 
-s.t. def_peak_perf: peak_perf == core_freq * IPC * component_counts['core'];
+s.t. def_compute_throughput: compute_throughput == core_freq * IPC * component_counts['core'];
 
 s.t. def_peak_bw: peak_bw == l3_count_weight * component_counts['l3'] + mc_count_weight * component_counts['mc'];
 
@@ -142,10 +142,10 @@ s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == 1*f1 + 1*f2 + (
 #minimize min_power: P_die;
 
 # [Maximize Performance]
-maximize max_performance: peak_perf;
+maximize max_performance: compute_throughput;
 
 # [Custom Metric]
-#maximize custom_metric: ((1/P_die)) * ((1/A_die))* peak_perf;
+#maximize custom_metric: ((1/P_die)) * ((1/A_die))* compute_throughput;
 
 
 # ****************************** OBJECTIVE-INDEPENDENT CONSTRAINTS ******************************
@@ -156,18 +156,18 @@ s.t. freq_upper_bound: core_freq_max >= core_freq;
 s.t. thermal_constraint: P_max >= P_die;                                                             # usual direction
 s.t. bump_constraint: A_die >= (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count); # unusual direction
 s.t. wire_constraint: max_wire >= component_counts['mc'] * wires_per_mc;
-s.t. roofline: peak_perf == arithmetic_intensity * peak_bw;
+s.t. roofline: compute_throughput == arithmetic_intensity * peak_bw;
 
 
 # ****************************** OBJECTIVE-DEPENDENT CONSTRAINTS ******************************
 
 # [Minimize Area]:
-#s.t. performance_constraint: peak_perf >= PerfLB;
+#s.t. performance_constraint: compute_throughput >= PerfLB;
 #s.t. power_constraint: P_die <= PowerUB;
 
 # [Minimize Power]
 #s.t. area_constraint: A_die <= AreaUB;
-#s.t. performance_constraint: peak_perf >= PerfLB;
+#s.t. performance_constraint: compute_throughput >= PerfLB;
 
 # [Maximize Performance]
 s.t. area_constraint: AreaUB >= A_die;
@@ -175,4 +175,4 @@ s.t. area_constraint: AreaUB >= A_die;
 
 # [Custom Metric]
 #s.t. area_constraint: AreaUB >= A_die;
-#s.t. performance_constraint: peak_perf >= PerfLB;
+#s.t. performance_constraint: compute_throughput >= PerfLB;

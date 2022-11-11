@@ -52,7 +52,7 @@ param PerfLB := 6E9;
 param PerfUB := -1;
 param AreaLB := -1;
 # 1000E-6
-param AreaUB := 1000E-6; 
+param AreaUB := 2000E-6; 
 param PowerLB := -1;
 # P_max: 287.5
 param PowerUB := 287.5;
