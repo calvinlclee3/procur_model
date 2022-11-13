@@ -40,6 +40,7 @@ param power_ctrl := 3;
 param arithmetic_intensity := 10;
 param IPC := 3.175;
 param capacitance_per_core := 2.96080965E-9;
+param l3_hit_rate := 0.8;
 param l3_count_weight := .5E9;
 param mc_count_weight := .1E9;
 param core_freq_min := 0.8E9;

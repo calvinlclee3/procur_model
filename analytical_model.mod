@@ -37,6 +37,7 @@ param power_ctrl;              # per memory controller
 param arithmetic_intensity;    # number of operations per byte of memory transfer
 param IPC;                     # instructions per cycle
 param capacitance_per_core;    # for the core only, per core
+param l3_hit_rate;
 param l3_count_weight;
 param mc_count_weight;
 param core_freq_min;
@@ -63,6 +64,8 @@ param die_voltage_max := (core_freq_max / core_freq_nominal) * die_voltage_nomin
 param power_phys := energy_per_wire * mem_freq * wires_per_mc;
 param mc_power := power_phys + power_ctrl;
 
+# Compute the ratio (number of l3) : (number of mc).
+param l3_to_mc_ratio := 1/(1 - l3_hit_rate);
 
 # ****************************** DECISION VARIABLES ******************************
 
@@ -89,6 +92,11 @@ var compute_throughput >= 0;         # also known as compute throughput
 var peak_bw >= 0;
 var core_freq_area_multiplier >= 0;
 var perf >= 0;
+var l3_count_dictated >= 0;
+var mc_count_dictated >= 0;
+var l3_count_effective >= 0;
+var mc_count_effective >= 0;
+
 
 s.t. def_core_freq: core_freq == 0*f1 + core_freq_nominal*f2 + core_freq_max*f3;
 
@@ -125,7 +133,17 @@ s.t. SOS2_constraint_9: b1 + b3 <= 1;
 
 s.t. def_compute_throughput: compute_throughput == core_freq * IPC * component_counts['core'];
 
-s.t. def_peak_bw: peak_bw == l3_count_weight * component_counts['l3'] + mc_count_weight * component_counts['mc'];
+s.t. def_l3_count_dictated: l3_count_dictated == component_counts['mc'] * l3_to_mc_ratio;
+
+s.t. def_mc_count_dictated: mc_count_dictated == component_counts['l3'] / l3_to_mc_ratio;
+
+s.t. def_l3_count_effective_1: l3_count_effective <= component_counts['l3'];
+s.t. def_l3_count_effective_2: l3_count_effective <= l3_count_dictated;
+
+s.t. def_mc_count_effective_1: mc_count_effective <= component_counts['mc'];
+s.t. def_mc_count_effective_2: mc_count_effective <= mc_count_dictated;
+
+s.t. def_peak_bw: peak_bw == l3_count_weight * l3_count_effective + mc_count_weight * mc_count_effective;
 
 # 5% increase in core_freq -> 10% increase in component_areas['core']
 s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == 1*f1 + 1*f2 + (2*core_freq_max/core_freq_nominal - 1)*f3;
@@ -143,13 +161,13 @@ s.t. def_perf_2: perf <= arithmetic_intensity * peak_bw;
 # ****************************** OBJECTIVE ******************************
 
 # [Minimize Area]
-minimize min_area: A_die;
+#minimize min_area: A_die;
 
 # [Minimize Power]
 #minimize min_power: P_die;
 
 # [Maximize Performance]
-#maximize max_performance: perf;
+maximize max_performance: perf;
 
 # [Custom Metric]
 #maximize custom_metric: ((1/P_die)) * ((1/A_die))* perf;
@@ -176,7 +194,7 @@ s.t. wire_constraint: max_wire >= component_counts['mc'] * wires_per_mc;
 #s.t. performance_constraint: perf >= PerfLB;
 
 # [Maximize Performance]
-#s.t. area_constraint: AreaUB >= A_die;
+s.t. area_constraint: AreaUB >= A_die;
 #s.t. power_constraint: PowerUB >= P_die;
 
 # [Custom Metric]

@@ -22,6 +22,16 @@ display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_f
 
 display die_voltage, die_voltage_max, die_voltage_nominal, core_power;
 
+print("==============================");
+
+display l3_hit_rate, l3_to_mc_ratio;
+
+display component_counts['l3'], component_counts['mc'];
+
+display l3_count_dictated, mc_count_dictated;
+
+display l3_count_effective, mc_count_effective;
+
 print("****************************** RUN   END ******************************");
 
 # ****************************** SAVE TO FILE ******************************
@@ -49,5 +59,15 @@ display compute_throughput, arithmetic_intensity, peak_bw >> min_metric_metric.t
 display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_min * 1E-9, core_freq_area_multiplier >> min_metric_metric.txt;
 
 display die_voltage, die_voltage_max, die_voltage_nominal, core_power >> min_metric_metric.txt;
+
+print("==============================") >> min_metric_metric.txt;
+
+display l3_hit_rate, l3_to_mc_ratio >> min_metric_metric.txt;
+
+display component_counts['l3'], component_counts['mc'] >> min_metric_metric.txt;
+
+display l3_count_dictated, mc_count_dictated >> min_metric_metric.txt;
+
+display l3_count_effective, mc_count_effective >> min_metric_metric.txt;
 
 print("****************************** RUN   END ******************************") >> min_metric_metric.txt;
