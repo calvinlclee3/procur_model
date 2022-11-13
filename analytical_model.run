@@ -17,111 +17,62 @@ commands display.run;
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let IPC := 3.5;
-let component_areas['core'] := 12.1520243E-6;
+let l3_hit_rate := .1;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let IPC := 4;
-let component_areas['core'] := 15.87203174E-6;
+let l3_hit_rate := .2;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let IPC := 4.5;
-let component_areas['core'] := 20.08804018E-6;
+let l3_hit_rate := .3;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let IPC := 5;
-let component_areas['core'] := 24.8000496E-6;
+let l3_hit_rate := .4;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let IPC := 5.5;
-let component_areas['core'] := 30.00806002E-6;
+let l3_hit_rate := .5;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let IPC := 6;
-let component_areas['core'] := 35.71207142E-6;
+let l3_hit_rate := .6;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let IPC := 6.5;
-let component_areas['core'] := 41.91208382E-6;
+let l3_hit_rate := .7;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let IPC := 7;
-let component_areas['core'] := 48.60809722E-6;
+let l3_hit_rate := .8;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let IPC := 7.5;
-let component_areas['core'] := 55.8001116E-6;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let IPC := 8;
-let component_areas['core'] := 63.48812698E-6;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let IPC := 8.5;
-let component_areas['core'] := 71.67214334E-6;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let IPC := 9;
-let component_areas['core'] := 80.3521607E-6;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let IPC := 9.5;
-let component_areas['core'] := 89.52817906E-6;
-solve;
-commands display.run;
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let IPC := 10;
-let component_areas['core'] := 99.2001984E-6;
+let l3_hit_rate := .9;
 solve;
 commands display.run;
