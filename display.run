@@ -38,40 +38,40 @@ print("****************************** RUN   END ******************************")
 
 # ****************************** SAVE TO FILE ******************************
 
-print("****************************** RUN START ******************************") >> max_perf_area.txt;
-display component_counts >> max_perf_area.txt;
+print("****************************** RUN START ******************************") >> max_perf_arithmetic_intensity.txt;
+display component_counts >> max_perf_arithmetic_intensity.txt;
 
-display A_die * 1E6 >> max_perf_area.txt;
-display P_die >> max_perf_area.txt;
-display core_freq * 1E-9 >> max_perf_area.txt;
-display perf >> max_perf_area.txt;
+display A_die * 1E6 >> max_perf_arithmetic_intensity.txt;
+display P_die >> max_perf_arithmetic_intensity.txt;
+display core_freq * 1E-9 >> max_perf_arithmetic_intensity.txt;
+display perf >> max_perf_arithmetic_intensity.txt;
 
-print("==============================") >> max_perf_area.txt;
+print("==============================") >> max_perf_arithmetic_intensity.txt;
 
-display core_freq_max * 1E-9, core_freq * 1E-9, core_freq_min * 1E-9 >> max_perf_area.txt;
+display core_freq_max * 1E-9, core_freq * 1E-9, core_freq_min * 1E-9 >> max_perf_arithmetic_intensity.txt;
 
-display P_max, P_die >> max_perf_area.txt;
+display P_max, P_die >> max_perf_arithmetic_intensity.txt;
 
-display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count) * 1E6 >> max_perf_area.txt;
+display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count) * 1E6 >> max_perf_arithmetic_intensity.txt;
 
-display max_wire, component_counts['mc'] * wires_per_mc >> max_perf_area.txt;
+display max_wire, component_counts['mc'] * wires_per_mc >> max_perf_arithmetic_intensity.txt;
 
-display compute_throughput, arithmetic_intensity, peak_bw >> max_perf_area.txt;
+display compute_throughput, arithmetic_intensity, peak_bw >> max_perf_arithmetic_intensity.txt;
 
-display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_min * 1E-9, core_freq_area_multiplier >> max_perf_area.txt;
+display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_min * 1E-9, core_freq_area_multiplier >> max_perf_arithmetic_intensity.txt;
 
-display die_voltage, die_voltage_max, die_voltage_nominal, core_power >> max_perf_area.txt;
+display die_voltage, die_voltage_max, die_voltage_nominal, core_power >> max_perf_arithmetic_intensity.txt;
 
-print("==============================") >> max_perf_area.txt;
+print("==============================") >> max_perf_arithmetic_intensity.txt;
 
-display l3_hit_rate, l3_to_mc_ratio >> max_perf_area.txt;
+display l3_hit_rate, l3_to_mc_ratio >> max_perf_arithmetic_intensity.txt;
 
-display component_counts['l3'], component_counts['mc'] >> max_perf_area.txt;
+display component_counts['l3'], component_counts['mc'] >> max_perf_arithmetic_intensity.txt;
 
-display l3_count_dictated, mc_count_dictated >> max_perf_area.txt;
+display l3_count_dictated, mc_count_dictated >> max_perf_arithmetic_intensity.txt;
 
-display l3_count_effective, mc_count_effective >> max_perf_area.txt;
+display l3_count_effective, mc_count_effective >> max_perf_arithmetic_intensity.txt;
 
-display AreaUB * 1E6, A_die * 1E6 >> max_perf_area.txt;
+display AreaUB * 1E6, A_die * 1E6 >> max_perf_arithmetic_intensity.txt;
 
-print("****************************** RUN   END ******************************") >> max_perf_area.txt;
+print("****************************** RUN   END ******************************") >> max_perf_arithmetic_intensity.txt;
