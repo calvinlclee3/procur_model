@@ -17,98 +17,111 @@ commands display.run;
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 1;
-solve;
-commands display.run;
-
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let arithmetic_intensity := 2;
+let IPC := 3.5;
+let component_areas['core'] := 12.1520243E-6;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 4;
+let IPC := 4;
+let component_areas['core'] := 15.87203174E-6;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 8;
+let IPC := 4.5;
+let component_areas['core'] := 20.08804018E-6;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 12;
+let IPC := 5;
+let component_areas['core'] := 24.8000496E-6;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 16;
+let IPC := 5.5;
+let component_areas['core'] := 30.00806002E-6;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 20;
+let IPC := 6;
+let component_areas['core'] := 35.71207142E-6;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 24;
+let IPC := 6.5;
+let component_areas['core'] := 41.91208382E-6;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 28;
+let IPC := 7;
+let component_areas['core'] := 48.60809722E-6;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 32;
+let IPC := 7.5;
+let component_areas['core'] := 55.8001116E-6;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 36;
+let IPC := 8;
+let component_areas['core'] := 63.48812698E-6;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 40;
+let IPC := 8.5;
+let component_areas['core'] := 71.67214334E-6;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 44;
+let IPC := 9;
+let component_areas['core'] := 80.3521607E-6;
 solve;
 commands display.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 48;
+let IPC := 9.5;
+let component_areas['core'] := 89.52817906E-6;
+solve;
+commands display.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let IPC := 10;
+let component_areas['core'] := 99.2001984E-6;
 solve;
 commands display.run;
