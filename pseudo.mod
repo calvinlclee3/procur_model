@@ -14,3 +14,4 @@ var peak_bw; # effective memory bandwidth available to the core
 s.t. constraint: peak_bw <= l3_bw * component_counts['l3'] * l3_hit_rate;
 s.t. constraint: peak_bw <= mc_bw * component_counts['mc'] * l3_miss_rate;
 
+# Then use peak_bw in the Roofline Model.
