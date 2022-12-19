@@ -37,9 +37,11 @@ param power_ctrl;              # per memory controller
 param arithmetic_intensity;    # number of operations per byte of memory transfer
 param IPC;                     # instructions per cycle
 param capacitance_per_core;    # for the core only, per core
-param l3_hit_rate;
-param l3_count_weight;
-param mc_count_weight;
+param l3_capacity;             # per L3
+param l3_hit_rate_nominal;
+param l3_bw;                   # per L3
+param mc_bw;                   # per MC
+param workset_size;
 param core_freq_min;
 param core_freq_max;
 param core_freq_nominal;
@@ -64,8 +66,6 @@ param die_voltage_max := (core_freq_max / core_freq_nominal) * die_voltage_nomin
 param power_phys := energy_per_wire * mem_freq * wires_per_mc;
 param mc_power := power_phys + power_ctrl;
 
-# Compute the ratio (number of l3) : (number of mc).
-param l3_to_mc_ratio := 1/(1 - l3_hit_rate);
 
 # ****************************** DECISION VARIABLES ******************************
 
@@ -81,24 +81,43 @@ var die_voltage >= 0;
 var core_power >= 0;
 var power_bump_count >= 0;
 var max_wire >= 0;
+
 var core_freq >= 0;
+var core_freq_area_multiplier >= 0;
+# core_freq auxiliary variables
 var f1;
 var f2;
 var f3;
 var b1 binary;
 var b2 binary;
 var b3 binary;
-var compute_throughput >= 0;         # also known as compute throughput
+
+var l3_to_workset_ratio >= 0;
+var l3_hit_rate >= 0;
+# l3_to_workset_ratio auxiliary variables
+var r1;
+var r2;
+var r3;
+var bb1 binary;
+var bb2 binary;
+var bb3 binary;
+
+var compute_throughput >= 0;        
 var peak_bw >= 0;
-var core_freq_area_multiplier >= 0;
 var perf >= 0;
-var l3_count_dictated >= 0;
-var mc_count_dictated >= 0;
-var l3_count_effective >= 0;
-var mc_count_effective >= 0;
 
 
 s.t. def_core_freq: core_freq == 0*f1 + core_freq_nominal*f2 + core_freq_max*f3;
+
+# 5% increase in core_freq -> 10% increase in component_areas['core']
+s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == 1*f1 + 1*f2 + (2*core_freq_max/core_freq_nominal - 1)*f3;
+
+s.t. def_l3_to_workset_ratio_1: (0*r1 + 1*r2 + 100*r3) == (l3_capacity * component_counts['l3']) / workset_size;
+
+s.t. def_l3_to_workset_ratio_2: l3_to_workset_ratio == 0*r1 + 1*r2 + 100*r3;
+
+s.t. def_l3_hit_rate: l3_hit_rate == 0*r1 + l3_hit_rate_nominal*r2 + l3_hit_rate_nominal*r3;
+
 
 s.t. def_A_die: A_die == component_counts['core'] * component_areas['core'] * core_freq_area_multiplier + 
                          component_counts['io']   * component_areas['io']   +
@@ -119,34 +138,31 @@ s.t. def_max_wire: max_wire == sqrt((component_counts['core'] * component_areas[
                                      component_counts['l3']   * component_areas['l3']   +
                                      component_counts['mc']   * component_areas['mc']) / 6) * 6 * package_layer / link_pitch;
 
-s.t. SOS2_constraint_1: 0 <= f1 <= 1;
-s.t. SOS2_constraint_2: 0 <= f2 <= 1;
-s.t. SOS2_constraint_3: 0 <= f3 <= 1;
-s.t. SOS2_constraint_4: f1 + f2 + f3 == 1;
-s.t. SOS2_constraint_5: f1 <= b1;
-s.t. SOS2_constraint_6: f2 <= b2;
-s.t. SOS2_constraint_7: f3 <= b3;
-s.t. SOS2_constraint_8: b1 + b2 + b3 <= 2;
-s.t. SOS2_constraint_9: b1 + b3 <= 1;
+s.t. core_freq_SOS2_1: 0 <= f1 <= 1;
+s.t. core_freq_SOS2_2: 0 <= f2 <= 1;
+s.t. core_freq_SOS2_3: 0 <= f3 <= 1;
+s.t. core_freq_SOS2_4: f1 + f2 + f3 == 1;
+s.t. core_freq_SOS2_5: f1 <= b1;
+s.t. core_freq_SOS2_6: f2 <= b2;
+s.t. core_freq_SOS2_7: f3 <= b3;
+s.t. core_freq_SOS2_8: b1 + b2 + b3 <= 2;
+s.t. core_freq_SOS2_9: b1 + b3 <= 1;
 
-# s.t. def_core_freq: core_freq == 0*f1 + core_freq_nominal*f2 + core_freq_max*f3;
+s.t. l3_to_workset_ratio_SOS2_1: 0 <= r1 <= 1;
+s.t. l3_to_workset_ratio_SOS2_2: 0 <= r2 <= 1;
+s.t. l3_to_workset_ratio_SOS2_3: 0 <= r3 <= 1;
+s.t. l3_to_workset_ratio_SOS2_4: r1 + r2 + r3 == 1;
+s.t. l3_to_workset_ratio_SOS2_5: r1 <= bb1;
+s.t. l3_to_workset_ratio_SOS2_6: r2 <= bb2;
+s.t. l3_to_workset_ratio_SOS2_7: r3 <= bb3;
+s.t. l3_to_workset_ratio_SOS2_8: bb1 + bb2 + bb3 <= 2;
+s.t. l3_to_workset_ratio_SOS2_9: bb1 + bb3 <= 1;
 
-s.t. def_compute_throughput: compute_throughput == core_freq * IPC * component_counts['core'];
 
-s.t. def_l3_count_dictated: l3_count_dictated == component_counts['mc'] * l3_to_mc_ratio;
+s.t. def_compute_throughput: compute_throughput == (0*f1 + core_freq_nominal*f2 + core_freq_max*f3) * IPC * component_counts['core'];
 
-s.t. def_mc_count_dictated: mc_count_dictated == component_counts['l3'] / l3_to_mc_ratio;
-
-s.t. def_l3_count_effective_1: l3_count_effective <= component_counts['l3'];
-s.t. def_l3_count_effective_2: l3_count_effective <= l3_count_dictated;
-
-s.t. def_mc_count_effective_1: mc_count_effective <= component_counts['mc'];
-s.t. def_mc_count_effective_2: mc_count_effective <= mc_count_dictated;
-
-s.t. def_peak_bw: peak_bw == l3_count_weight * l3_count_effective + mc_count_weight * mc_count_effective;
-
-# 5% increase in core_freq -> 10% increase in component_areas['core']
-s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == 1*f1 + 1*f2 + (2*core_freq_max/core_freq_nominal - 1)*f3;
+s.t. def_peak_bw_1: peak_bw <= l3_bw * component_counts['l3'] / l3_hit_rate;
+s.t. def_peak_bw_2: peak_bw <= mc_bw * component_counts['mc'] / (1 - l3_hit_rate);
 
 # perf = min (compute_throughput, arithmetic_intensity * peak_bw) (min not supported by solver)
 # The condition above guarantees below, but not the other way around.
