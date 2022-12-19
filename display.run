@@ -4,7 +4,7 @@ display component_counts;
 display A_die * 1E6;
 display P_die;
 display core_freq * 1E-9;
-display perf;
+display perf * 1E-9 ;
 
 print("==============================");
 
@@ -50,7 +50,7 @@ display component_counts >> min_area_arithmetic_intensity.txt;
 display A_die * 1E6 >> min_area_arithmetic_intensity.txt;
 display P_die >> min_area_arithmetic_intensity.txt;
 display core_freq * 1E-9 >> min_area_arithmetic_intensity.txt;
-display perf >> min_area_arithmetic_intensity.txt;
+display perf * 1E-9 >> min_area_arithmetic_intensity.txt;
 
 print("==============================") >> min_area_arithmetic_intensity.txt;
 
