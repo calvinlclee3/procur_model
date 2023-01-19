@@ -57,12 +57,9 @@ param PowerUB;
 # Compute max power allowed by thermal constraint.
 param theta_ja := (theta_jc + theta_ca)*(theta_jb + theta_ba)/(theta_jc + theta_ca + theta_jb + theta_ba);
 param delta_T := T_j_max - T_ambient;
-param P_max := delta_T / theta_ja;
+param P_max := delta_T / theta_ja; 
 
-# Compute max die voltage.
-param die_voltage_max := (core_freq_max / core_freq_nominal) * die_voltage_nominal; 
-
-# Compute power of memory controller.
+# Compute power of a memory controller.
 param mc_power_phys := energy_per_wire * mem_freq * wires_per_mc;
 param mc_power := mc_power_phys + mc_power_ctrl;
 
@@ -131,7 +128,7 @@ s.t. def_die_voltage: die_voltage == ((0*f1 + core_freq_nominal*f2 + core_freq_m
 
 s.t. def_core_power: core_power == (0*f1 + core_freq_nominal*f2 + core_freq_max*f3) * capacitance_per_core * (die_voltage**2) ;
 
-s.t. def_power_bump_count: power_bump_count == (P_die) / (die_voltage_max * current_per_bump) * 2;
+s.t. def_power_bump_count: power_bump_count == (P_die) / (die_voltage * current_per_bump) * 2;
 
 s.t. def_max_wire: max_wire == sqrt((component_counts['core'] * component_areas['core'] * core_freq_area_multiplier + 
                                      component_counts['io']   * component_areas['io']   +
