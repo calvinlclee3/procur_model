@@ -11,12 +11,12 @@ param T_j_max := 100;
 # area of each component
 param component_areas :=
                 core      10E-6 
-                l3        10E-6
+                l3         1E-6
                 mc        10E-6
                 io        20E-6;
 
 # power of each component
-param l3_power := 2;
+param l3_power := 0.2;
 param io_power := 10;
 
 # bump parameters
@@ -34,16 +34,16 @@ param link_pitch := 25E-6;
 param wires_per_mc := 288;
 param energy_per_wire := 6.697674419E-12;
 param mem_freq := 4300E6;
-param power_ctrl := 3;
+param mc_power_ctrl := 3;
 
 # performance parameters
-param arithmetic_intensity := 10;
+param arithmetic_intensity := 4;
 param IPC := 3.175;
 param capacitance_per_core := 2.96080965E-9;
-param l3_capacity := 20E6;
+param l3_capacity := 2E6;
 param l3_hit_rate_nominal := 0.9;
 param l3_bw := 1E9;
-param mc_bw := 10E9;
+param mc_bw := 5E9;
 param workset_size := 50E6;
 param core_freq_min := 0.8E9;
 param core_freq_max := 5E9;

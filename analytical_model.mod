@@ -31,7 +31,7 @@ param link_pitch;
 param wires_per_mc;
 param energy_per_wire;
 param mem_freq;
-param power_ctrl;              # per memory controller
+param mc_power_ctrl;              # per memory controller
 
 # performance parameters
 param arithmetic_intensity;    # number of operations per byte of memory transfer
@@ -63,8 +63,8 @@ param P_max := delta_T / theta_ja;
 param die_voltage_max := (core_freq_max / core_freq_nominal) * die_voltage_nominal; 
 
 # Compute power of memory controller.
-param power_phys := energy_per_wire * mem_freq * wires_per_mc;
-param mc_power := power_phys + power_ctrl;
+param mc_power_phys := energy_per_wire * mem_freq * wires_per_mc;
+param mc_power := mc_power_phys + mc_power_ctrl;
 
 
 # ****************************** DECISION VARIABLES ******************************
