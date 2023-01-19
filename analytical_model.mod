@@ -158,7 +158,8 @@ s.t. l3_to_workset_ratio_SOS2_9: bb1 + bb3 <= 1;
 
 s.t. def_compute_throughput: compute_throughput == (0*f1 + core_freq_nominal*f2 + core_freq_max*f3) * IPC * component_counts['core'];
 
-s.t. def_peak_bw_1: peak_bw <= l3_bw * component_counts['l3'] / l3_hit_rate;
+# All LD/ST go through L3. L3 misses go through main memory.
+s.t. def_peak_bw_1: peak_bw <= l3_bw * component_counts['l3'] / 1;
 s.t. def_peak_bw_2: peak_bw <= mc_bw * component_counts['mc'] / (1 - l3_hit_rate);
 
 # perf = min (compute_throughput, arithmetic_intensity * peak_bw) (min not supported by solver)
