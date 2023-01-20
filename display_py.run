@@ -1,3 +1,17 @@
+print("****************************** RUN START ******************************");
+
+
+display AreaUB * 1E6;
+display component_counts['core'];
+display component_counts['io'];
+display component_counts['l3'];
+display component_counts['mc'];
+display A_die * 1E6;
+display P_die;
+display core_freq * 1E-9;
+display perf * 1E-9;
+
+
 # ****************************** SAVE TO FILE ******************************
 
 print("****************************** RUN START ******************************") >> max_perf_area.txt;
