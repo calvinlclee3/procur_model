@@ -16,7 +16,7 @@ display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bu
 
 display max_wire, component_counts['mc'] * wires_per_mc;
 
-display compute_throughput * 1E-9, arithmetic_intensity, peak_bw * 1E-9;
+display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9;
 
 display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_min * 1E-9, core_freq_area_multiplier;
 
@@ -36,9 +36,9 @@ display l3_hit_rate_nominal, l3_hit_rate;
 
 display l3_bw * 1E-9, mc_bw * 1E-9;
 
-display peak_bw * 1E-9;
+display system_bw * 1E-9;
 
-display compute_throughput * 1E-9, arithmetic_intensity, peak_bw * 1E-9;
+display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9;
 
 print("****************************** RUN   END ******************************");
 
@@ -62,7 +62,7 @@ display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bu
 
 display max_wire, component_counts['mc'] * wires_per_mc >> min_area_arithmetic_intensity.txt;
 
-display compute_throughput * 1E-9, arithmetic_intensity, peak_bw * 1E-9 >> min_area_arithmetic_intensity.txt;
+display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9 >> min_area_arithmetic_intensity.txt;
 
 display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_min * 1E-9, core_freq_area_multiplier >> min_area_arithmetic_intensity.txt;
 
@@ -82,8 +82,8 @@ display l3_hit_rate_nominal, l3_hit_rate >> min_area_arithmetic_intensity.txt;
 
 display l3_bw * 1E-9, mc_bw * 1E-9 >> min_area_arithmetic_intensity.txt;
 
-display peak_bw * 1E-9 >> min_area_arithmetic_intensity.txt;
+display system_bw * 1E-9 >> min_area_arithmetic_intensity.txt;
 
-display compute_throughput * 1E-9, arithmetic_intensity, peak_bw * 1E-9 >> min_area_arithmetic_intensity.txt;
+display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9 >> min_area_arithmetic_intensity.txt;
 
 print("****************************** RUN   END ******************************") >> min_area_arithmetic_intensity.txt;

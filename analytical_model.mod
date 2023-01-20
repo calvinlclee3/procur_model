@@ -18,7 +18,7 @@ param io_power;
 
 # bump parameters
 param bump_pitch;
-param die_voltage_nominal;              # for the entire die
+param die_voltage_nominal;
 param current_per_bump;
 param mc_bump_count;
 param io_bump_count;
@@ -31,17 +31,17 @@ param link_pitch;
 param wires_per_mc;
 param energy_per_wire;
 param mem_freq;
-param mc_power_ctrl;              # per memory controller
+param mc_power_ctrl;                    # per MC
 
 # performance parameters
-param arithmetic_intensity;    # number of operations per byte of memory transfer
-param IPC;                     # instructions per cycle
-param capacitance_per_core;    # for the core only, per core
-param l3_capacity;             # per L3
+param arithmetic_intensity;             # operations / byte
+param IPC;                              # instructions / cycle
+param capacitance_per_core;             # for the core only, per core
+param l3_capacity;                      # per L3
 param l3_hit_rate_nominal;
-param l3_bw;                   # per L3
-param mc_bw;                   # per MC
-param workset_size;
+param l3_bw;                            # per L3
+param mc_bw;                            # per MC
+param workset_size;                     # size of the working set
 param core_freq_min;
 param core_freq_max;
 param core_freq_nominal;
@@ -74,7 +74,7 @@ var component_counts {i in Components} integer;
 
 var A_die >= 0;
 var P_die >= 0;
-var die_voltage >= 0;
+var die_voltage >= 0;                   # scales linearly with core_freq
 var core_power >= 0;
 var power_bump_count >= 0;
 var max_wire >= 0;
@@ -100,7 +100,7 @@ var bb2 binary;
 var bb3 binary;
 
 var compute_throughput >= 0;        
-var peak_bw >= 0;
+var system_bw >= 0;
 var perf >= 0;
 
 
@@ -126,7 +126,7 @@ s.t. def_P_die: P_die == component_counts['core'] * core_power + component_count
 
 s.t. def_die_voltage: die_voltage == ((0*f1 + core_freq_nominal*f2 + core_freq_max*f3) / core_freq_nominal) * die_voltage_nominal;
 
-s.t. def_core_power: core_power == (0*f1 + core_freq_nominal*f2 + core_freq_max*f3) * capacitance_per_core * (die_voltage**2) ;
+s.t. def_core_power: core_power == (0*f1 + core_freq_nominal*f2 + core_freq_max*f3) * capacitance_per_core * (die_voltage**2);
 
 s.t. def_power_bump_count: power_bump_count == (P_die) / (die_voltage * current_per_bump) * 2;
 
@@ -159,14 +159,14 @@ s.t. l3_to_workset_ratio_SOS2_9: bb1 + bb3 <= 1;
 s.t. def_compute_throughput: compute_throughput == (0*f1 + core_freq_nominal*f2 + core_freq_max*f3) * IPC * component_counts['core'];
 
 # All LD/ST go through L3. L3 misses go through main memory.
-s.t. def_peak_bw_1: peak_bw <= l3_bw * component_counts['l3'] / 1;
-s.t. def_peak_bw_2: peak_bw <= mc_bw * component_counts['mc'] / (1 - l3_hit_rate);
+s.t. def_peak_bw_1: system_bw <= l3_bw * component_counts['l3'] / 1;
+s.t. def_peak_bw_2: system_bw <= mc_bw * component_counts['mc'] / (1 - l3_hit_rate);
 
-# perf = min (compute_throughput, arithmetic_intensity * peak_bw) (min not supported by solver)
+# perf = min (compute_throughput, arithmetic_intensity * system_bw) (min not supported by solver)
 # The condition above guarantees below, but not the other way around.
 # For max performance, it is equivalent, but might not be for min area (i.e. when PerfLB is very small).
 s.t. def_perf_1: perf <= compute_throughput;
-s.t. def_perf_2: perf <= arithmetic_intensity * peak_bw;
+s.t. def_perf_2: perf <= arithmetic_intensity * system_bw;
 
 # Implementation using AMPL built-in piece-wise linear function syntax (not supported by solver).
 # s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == << core_freq_nominal; 0, (1 / core_freq_nominal) * 2 >> core_freq + 1;
@@ -175,7 +175,7 @@ s.t. def_perf_2: perf <= arithmetic_intensity * peak_bw;
 # ****************************** OBJECTIVE ******************************
 
 # [Minimize Area]
-#minimize min_area: A_die - (perf * 1E-35) - (peak_bw * 1E-35);
+#minimize min_area: A_die - (perf * 1E-35) - (system_bw * 1E-35);
 
 # [Minimize Power]
 #minimize min_power: P_die;
