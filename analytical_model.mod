@@ -123,8 +123,8 @@ s.t. def_max_wire: max_wire == sqrt((component_counts['core'] * component_areas[
                                      component_counts['l3']   * component_areas['l3']   +
                                      component_counts['mc']   * component_areas['mc']) / 6) * 6 * package_layer / link_pitch;
 
-s.t. def_core_freq: core_freq == 0*f1 + core_freq_nominal*f2 + core_freq_max*f3;
 # 5% increase in core_freq -> 10% increase in component_areas['core']
+s.t. def_core_freq: core_freq == 0*f1 + core_freq_nominal*f2 + core_freq_max*f3;
 s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == 1*f1 + 1*f2 + (2*core_freq_max/core_freq_nominal - 1)*f3;
 s.t. core_freq_SOS2_1: 0 <= f1 <= 1;
 s.t. core_freq_SOS2_2: 0 <= f2 <= 1;
@@ -136,6 +136,7 @@ s.t. core_freq_SOS2_7: f3 <= b3;
 s.t. core_freq_SOS2_8: b1 + b2 + b3 <= 2;
 s.t. core_freq_SOS2_9: b1 + b3 <= 1;
 
+# relative size of the working set and the L3 cache determines L3 hit rate
 s.t. def_l3_to_workset_ratio_1: (l3_capacity * component_counts['l3']) / workset_size == 0*r1 + 1*r2 + 100*r3;
 s.t. def_l3_to_workset_ratio_2: l3_to_workset_ratio == 0*r1 + 1*r2 + 100*r3;
 s.t. def_l3_hit_rate: l3_hit_rate == 0*r1 + l3_hit_rate_nominal*r2 + l3_hit_rate_nominal*r3;
@@ -149,12 +150,11 @@ s.t. l3_to_workset_ratio_SOS2_7: r3 <= bb3;
 s.t. l3_to_workset_ratio_SOS2_8: bb1 + bb2 + bb3 <= 2;
 s.t. l3_to_workset_ratio_SOS2_9: bb1 + bb3 <= 1;
 
-
 s.t. def_compute_throughput: compute_throughput == (0*f1 + core_freq_nominal*f2 + core_freq_max*f3) * IPC * component_counts['core'];
 
 # All LD/ST go through L3. L3 misses go through main memory.
-s.t. def_peak_bw_1: system_bw <= l3_bw * component_counts['l3'] / 1;
-s.t. def_peak_bw_2: system_bw <= mc_bw * component_counts['mc'] / (1 - l3_hit_rate);
+s.t. def_system_bw_1: system_bw <= l3_bw * component_counts['l3'] / 1;
+s.t. def_system_bw_2: system_bw <= mc_bw * component_counts['mc'] / (1 - l3_hit_rate);
 
 # perf = min (compute_throughput, arithmetic_intensity * system_bw) (min not supported by solver)
 # The condition above guarantees below, but not the other way around.
@@ -195,10 +195,10 @@ s.t. wire_constraint: max_wire >= component_counts['mc'] * wires_per_mc;
 
 # [Minimize Area]:
 #s.t. performance_constraint: perf >= PerfLB;
-#s.t. power_constraint: P_die <= PowerUB;
+#s.t. power_constraint: PowerUB >= P_die;
 
 # [Minimize Power]
-#s.t. area_constraint: A_die <= AreaUB;
+#s.t. area_constraint: AreaUB >= A_die;
 #s.t. performance_constraint: perf >= PerfLB;
 
 # [Maximize Performance]
