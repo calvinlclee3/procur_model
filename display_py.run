@@ -14,15 +14,15 @@ display perf * 1E-9;
 
 # ****************************** SAVE TO FILE ******************************
 
-print("****************************** RUN START ******************************") >> max_perf_area.txt;
+print("****************************** RUN START ******************************") >> out.txt;
 
-print("X-AXIS") >> max_perf_area.txt;
-display AreaUB * 1E6 >> max_perf_area.txt;
-display component_counts['core'] >> max_perf_area.txt;
-display component_counts['io'] >> max_perf_area.txt;
-display component_counts['l3'] >> max_perf_area.txt;
-display component_counts['mc'] >> max_perf_area.txt;
-display A_die * 1E6 >> max_perf_area.txt;
-display P_die >> max_perf_area.txt;
-display core_freq * 1E-9 >> max_perf_area.txt;
-display perf * 1E-9 >> max_perf_area.txt;
+print("X-AXIS") >> out.txt;
+display AreaUB * 1E6 >> out.txt;
+display component_counts['core'] >> out.txt;
+display component_counts['io'] >> out.txt;
+display component_counts['l3'] >> out.txt;
+display component_counts['mc'] >> out.txt;
+display A_die * 1E6 >> out.txt;
+display P_die >> out.txt;
+display core_freq * 1E-9 >> out.txt;
+display perf * 1E-9 >> out.txt;

@@ -44,46 +44,46 @@ print("****************************** RUN   END ******************************")
 
 # ****************************** SAVE TO FILE ******************************
 
-print("****************************** RUN START ******************************") >> min_area_arithmetic_intensity.txt;
-display component_counts >> min_area_arithmetic_intensity.txt;
+print("****************************** RUN START ******************************") >> out.txt;
+display component_counts >> out.txt;
 
-display A_die * 1E6 >> min_area_arithmetic_intensity.txt;
-display P_die >> min_area_arithmetic_intensity.txt;
-display core_freq * 1E-9 >> min_area_arithmetic_intensity.txt;
-display perf * 1E-9 >> min_area_arithmetic_intensity.txt;
+display A_die * 1E6 >> out.txt;
+display P_die >> out.txt;
+display core_freq * 1E-9 >> out.txt;
+display perf * 1E-9 >> out.txt;
 
-print("==============================") >> min_area_arithmetic_intensity.txt;
+print("==============================") >> out.txt;
 
-display core_freq_max * 1E-9, core_freq * 1E-9, core_freq_min * 1E-9 >> min_area_arithmetic_intensity.txt;
+display core_freq_max * 1E-9, core_freq * 1E-9, core_freq_min * 1E-9 >> out.txt;
 
-display P_max, P_die >> min_area_arithmetic_intensity.txt;
+display P_max, P_die >> out.txt;
 
-display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count) * 1E6 >> min_area_arithmetic_intensity.txt;
+display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count) * 1E6 >> out.txt;
 
-display max_wire, component_counts['mc'] * wires_per_mc >> min_area_arithmetic_intensity.txt;
+display max_wire, component_counts['mc'] * wires_per_mc >> out.txt;
 
-display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9 >> min_area_arithmetic_intensity.txt;
+display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9 >> out.txt;
 
-display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_min * 1E-9, core_freq_area_multiplier >> min_area_arithmetic_intensity.txt;
+display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_min * 1E-9, core_freq_area_multiplier >> out.txt;
 
-display die_voltage, core_freq * 1E-9, core_freq_nominal * 1E-9, die_voltage_nominal >> min_area_arithmetic_intensity.txt;
+display die_voltage, core_freq * 1E-9, core_freq_nominal * 1E-9, die_voltage_nominal >> out.txt;
 
-print("==============================") >> min_area_arithmetic_intensity.txt;
+print("==============================") >> out.txt;
 
-display l3_capacity * 1E-6, component_counts['l3'], workset_size * 1E-6, l3_to_workset_ratio >> min_area_arithmetic_intensity.txt;
+display l3_capacity * 1E-6, component_counts['l3'], workset_size * 1E-6, l3_to_workset_ratio >> out.txt;
 
-display component_counts['l3'], component_counts['mc'] >> min_area_arithmetic_intensity.txt;
+display component_counts['l3'], component_counts['mc'] >> out.txt;
 
-display r1, r2, r3 >> min_area_arithmetic_intensity.txt;
+display r1, r2, r3 >> out.txt;
 
-display bb1, bb2, bb3 >> min_area_arithmetic_intensity.txt;
+display bb1, bb2, bb3 >> out.txt;
 
-display l3_hit_rate_nominal, l3_hit_rate >> min_area_arithmetic_intensity.txt;
+display l3_hit_rate_nominal, l3_hit_rate >> out.txt;
 
-display l3_bw * 1E-9, mc_bw * 1E-9 >> min_area_arithmetic_intensity.txt;
+display l3_bw * 1E-9, mc_bw * 1E-9 >> out.txt;
 
-display system_bw * 1E-9 >> min_area_arithmetic_intensity.txt;
+display system_bw * 1E-9 >> out.txt;
 
-display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9 >> min_area_arithmetic_intensity.txt;
+display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9 >> out.txt;
 
-print("****************************** RUN   END ******************************") >> min_area_arithmetic_intensity.txt;
+print("****************************** RUN   END ******************************") >> out.txt;

@@ -1,15 +1,11 @@
 import sys
 import numpy as np
-import pandas as pd
-from pandas import Series, DataFrame
 import matplotlib.pyplot as plt
 from sklearn import preprocessing
 
-def parse_data(filename):
+def parse_data(filename, type):
 
     # ****************************** COMPONENT COUNTS ******************************
-    name = filename.split(".")[0]
-
     xaxis = []
     with open(filename, 'r') as fp:
         for line in fp:
@@ -59,13 +55,13 @@ def parse_data(filename):
     plt.bar(br4, mc_normalized, color ='tab:red', width = barWidth, label ='MC Count')
     
     # Adding Xticks
-    plt.title(name, fontweight ='bold', fontsize = 15)
+    plt.title(type, fontweight ='bold', fontsize = 15)
     plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
     plt.ylabel('Number of Components', fontweight ='bold', fontsize = 15)
     plt.xticks([r + barWidth*1.5 for r in range(len(core))], xaxis)
     plt.legend()
 
-    plt.savefig(name + '_COMPONENT_COUNTS' + '.pdf')
+    plt.savefig(type + '_COMPONENT_COUNTS' + '.pdf')
     plt.close()
 
 
@@ -74,11 +70,11 @@ def parse_data(filename):
     fig = plt.subplots(figsize =(12, 8))
 
     plt.bar(br1, area, color ='tab:orange', width = barWidth)
-    plt.title(name, fontweight ='bold', fontsize = 15)
+    plt.title(type, fontweight ='bold', fontsize = 15)
     plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
     plt.ylabel('Area (mm\u00b2)', fontweight ='bold', fontsize = 15)
     plt.xticks([r for r in range(len(core))], xaxis)
-    plt.savefig(name + '_AREA' + '.pdf')
+    plt.savefig(type + '_AREA' + '.pdf')
     plt.close()
 
 
@@ -87,11 +83,11 @@ def parse_data(filename):
     fig = plt.subplots(figsize =(12, 8))
 
     plt.bar(br1, power, color ='tab:red', width = barWidth)
-    plt.title(name, fontweight ='bold', fontsize = 15)
+    plt.title(type, fontweight ='bold', fontsize = 15)
     plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
     plt.ylabel('Power (W)', fontweight ='bold', fontsize = 15)
     plt.xticks([r for r in range(len(core))], xaxis)
-    plt.savefig(name + '_POWER' + '.pdf')
+    plt.savefig(type + '_POWER' + '.pdf')
     plt.close()
 
 
@@ -100,11 +96,11 @@ def parse_data(filename):
     fig = plt.subplots(figsize =(12, 8))
 
     plt.bar(br1, core_freq, color ='tab:green', width = barWidth)
-    plt.title(name, fontweight ='bold', fontsize = 15)
+    plt.title(type, fontweight ='bold', fontsize = 15)
     plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
     plt.ylabel('Frequency (GHz)', fontweight ='bold', fontsize = 15)
     plt.xticks([r for r in range(len(core))], xaxis)
-    plt.savefig(name + '_CORE_FREQ' + '.pdf')
+    plt.savefig(type + '_CORE_FREQ' + '.pdf')
     plt.close()
 
 
@@ -114,15 +110,15 @@ def parse_data(filename):
 
     print(perf)
     plt.bar(br1, perf, color ='tab:blue', width = barWidth)
-    plt.title(name, fontweight ='bold', fontsize = 15)
+    plt.title(type, fontweight ='bold', fontsize = 15)
     plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
     plt.ylabel('Performance (Gflop/s)', fontweight ='bold', fontsize = 15)
     plt.xticks([r for r in range(len(core))], xaxis)
-    plt.savefig(name + '_PERF' + '.pdf')
+    plt.savefig(type + '_PERF' + '.pdf')
     plt.close()
 
 
 
 
 if __name__ == "__main__":
-    parse_data(sys.argv[1])
+    parse_data(sys.argv[1], sys.argv[2])
