@@ -79,6 +79,7 @@ var core_power >= 0;
 var power_bump_count >= 0;
 var max_wire >= 0;
 
+##DONE
 var core_freq >= 0;
 var core_freq_area_multiplier >= 0;
 # core_freq auxiliary variables
@@ -88,6 +89,7 @@ var f3;
 var b1 binary;
 var b2 binary;
 var b3 binary;
+##DONE
 
 var l3_to_workset_ratio >= 0;
 var l3_hit_rate >= 0;
