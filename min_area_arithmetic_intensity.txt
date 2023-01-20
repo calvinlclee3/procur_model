@@ -4339,3 +4339,595 @@ arithmetic_intensity = 4
 peak_bw*1e-09 = 99.9968
 
 ****************************** RUN   END ******************************
+****************************** RUN START ******************************
+component_counts [*] :=
+core   44
+  io    1
+  l3  308
+  mc    3
+;
+
+A_die*1e+06 = 799.941
+
+P_die = 785.31
+
+core_freq*1e-09 = 3.60794
+
+perf*1e-09 = 504.029
+
+==============================
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 3.60794
+core_freq_min*1e-09 = 0.8
+
+P_max = 287.5
+P_die = 785.31
+
+A_die*1e+06 = 799.941
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 4.65514
+
+max_wire = 16621.1
+component_counts['mc']*wires_per_mc = 864
+
+compute_throughput*1e-09 = 504.029
+arithmetic_intensity = 4
+peak_bw*1e-09 = 150
+
+core_freq*1e-09 = 3.60794
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_min*1e-09 = 0.8
+core_freq_area_multiplier = 1.00441
+
+die_voltage = 1.20265
+die_voltage_nominal = 1.2
+core_power = 15.4506
+
+==============================
+l3_capacity*1e-06 = 2
+component_counts['l3'] = 308
+workset_size*1e-06 = 50
+l3_to_workset_ratio = 12.32
+
+component_counts['l3'] = 308
+component_counts['mc'] = 3
+
+r1 = 0
+r2 = 0.885657
+r3 = 0.114343
+
+bb1 = 0
+bb2 = 1
+bb3 = 1
+
+l3_hit_rate_nominal = 0.9
+l3_hit_rate = 0.9
+
+l3_bw*1e-09 = 1
+mc_bw*1e-09 = 5
+
+peak_bw*1e-09 = 150
+
+compute_throughput*1e-09 = 504.029
+arithmetic_intensity = 4
+peak_bw*1e-09 = 150
+
+****************************** RUN   END ******************************
+****************************** RUN START ******************************
+component_counts [*] :=
+core   44
+  io    1
+  l3  310
+  mc    2
+;
+
+A_die*1e+06 = 790
+
+P_die = 284.53
+
+core_freq*1e-09 = 2.35866
+
+perf*1e-09 = 329.505
+
+==============================
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 2.35866
+core_freq_min*1e-09 = 0.8
+
+P_max = 287.5
+P_die = 284.53
+
+A_die*1e+06 = 790
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 2.86668
+
+max_wire = 16523.4
+component_counts['mc']*wires_per_mc = 576
+
+compute_throughput*1e-09 = 329.505
+arithmetic_intensity = 4
+system_bw*1e-09 = 99.9968
+
+core_freq*1e-09 = 2.35866
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_min*1e-09 = 0.8
+core_freq_area_multiplier = 1
+
+die_voltage = 0.786221
+die_voltage_nominal = 1.2
+core_power = 4.31684
+
+==============================
+l3_capacity*1e-06 = 2
+component_counts['l3'] = 310
+workset_size*1e-06 = 50
+l3_to_workset_ratio = 12.4
+
+component_counts['l3'] = 310
+component_counts['mc'] = 2
+
+r1 = -2.77556e-17
+r2 = 0.884848
+r3 = 0.115152
+
+bb1 = 0
+bb2 = 1
+bb3 = 1
+
+l3_hit_rate_nominal = 0.9
+l3_hit_rate = 0.9
+
+l3_bw*1e-09 = 1
+mc_bw*1e-09 = 5
+
+system_bw*1e-09 = 99.9968
+
+compute_throughput*1e-09 = 329.505
+arithmetic_intensity = 4
+system_bw*1e-09 = 99.9968
+
+****************************** RUN   END ******************************
+****************************** RUN START ******************************
+component_counts [*] :=
+core   44
+  io    1
+  l3  310
+  mc    2
+;
+
+A_die*1e+06 = 790
+
+P_die = 284.53
+
+core_freq*1e-09 = 2.35866
+
+perf*1e-09 = 329.505
+
+==============================
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 2.35866
+core_freq_min*1e-09 = 0.8
+
+P_max = 287.5
+P_die = 284.53
+
+A_die*1e+06 = 790
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 2.86668
+
+max_wire = 16523.4
+component_counts['mc']*wires_per_mc = 576
+
+compute_throughput*1e-09 = 329.505
+arithmetic_intensity = 4
+system_bw*1e-09 = 99.9968
+
+core_freq*1e-09 = 2.35866
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_min*1e-09 = 0.8
+core_freq_area_multiplier = 1
+
+die_voltage = 0.786221
+die_voltage_nominal = 1.2
+core_power = 4.31684
+
+==============================
+l3_capacity*1e-06 = 2
+component_counts['l3'] = 310
+workset_size*1e-06 = 50
+l3_to_workset_ratio = 12.4
+
+component_counts['l3'] = 310
+component_counts['mc'] = 2
+
+r1 = -2.77556e-17
+r2 = 0.884848
+r3 = 0.115152
+
+bb1 = 0
+bb2 = 1
+bb3 = 1
+
+l3_hit_rate_nominal = 0.9
+l3_hit_rate = 0.9
+
+l3_bw*1e-09 = 1
+mc_bw*1e-09 = 5
+
+system_bw*1e-09 = 99.9968
+
+compute_throughput*1e-09 = 329.505
+arithmetic_intensity = 4
+system_bw*1e-09 = 99.9968
+
+****************************** RUN   END ******************************
+****************************** RUN START ******************************
+component_counts [*] :=
+core   44
+  io    1
+  l3  310
+  mc    2
+;
+
+A_die*1e+06 = 790
+
+P_die = 284.53
+
+core_freq*1e-09 = 2.35866
+
+perf*1e-09 = 329.505
+
+==============================
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 2.35866
+core_freq_min*1e-09 = 0.8
+
+P_max = 287.5
+P_die = 284.53
+
+A_die*1e+06 = 790
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 2.86668
+
+max_wire = 16523.4
+component_counts['mc']*wires_per_mc = 576
+
+compute_throughput*1e-09 = 329.505
+arithmetic_intensity = 4
+system_bw*1e-09 = 99.9968
+
+core_freq*1e-09 = 2.35866
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_min*1e-09 = 0.8
+core_freq_area_multiplier = 1
+
+die_voltage = 0.786221
+die_voltage_nominal = 1.2
+core_power = 4.31684
+
+==============================
+l3_capacity*1e-06 = 2
+component_counts['l3'] = 310
+workset_size*1e-06 = 50
+l3_to_workset_ratio = 12.4
+
+component_counts['l3'] = 310
+component_counts['mc'] = 2
+
+r1 = -2.77556e-17
+r2 = 0.884848
+r3 = 0.115152
+
+bb1 = 0
+bb2 = 1
+bb3 = 1
+
+l3_hit_rate_nominal = 0.9
+l3_hit_rate = 0.9
+
+l3_bw*1e-09 = 1
+mc_bw*1e-09 = 5
+
+system_bw*1e-09 = 99.9968
+
+compute_throughput*1e-09 = 329.505
+arithmetic_intensity = 4
+system_bw*1e-09 = 99.9968
+
+****************************** RUN   END ******************************
+****************************** RUN START ******************************
+component_counts [*] :=
+core    6
+  io    1
+  l3  615
+  mc    1
+;
+
+A_die*1e+06 = 718.679
+
+P_die = 271.607
+
+core_freq*1e-09 = 4.01036
+
+perf*1e-09 = 76.3974
+
+==============================
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 4.01036
+core_freq_min*1e-09 = 0.8
+
+P_max = 287.5
+P_die = 271.607
+
+A_die*1e+06 = 718.679
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.89153
+
+max_wire = 15759.9
+component_counts['mc']*wires_per_mc = 288
+
+compute_throughput*1e-09 = 76.3974
+arithmetic_intensity = 4
+system_bw*1e-09 = 19.0994
+
+core_freq*1e-09 = 4.01036
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_min*1e-09 = 0.8
+core_freq_area_multiplier = 1.22798
+
+die_voltage = 1.33679
+die_voltage_nominal = 1.2
+core_power = 21.2187
+
+==============================
+l3_capacity*1e-06 = 2
+component_counts['l3'] = 615
+workset_size*1e-06 = 50
+l3_to_workset_ratio = 24.6
+
+component_counts['l3'] = 615
+component_counts['mc'] = 1
+
+r1 = -5.55112e-17
+r2 = 0.761616
+r3 = 0.238384
+
+bb1 = 0
+bb2 = 1
+bb3 = 1
+
+l3_hit_rate_nominal = 0.9
+l3_hit_rate = 0.9
+
+l3_bw*1e-09 = 1
+mc_bw*1e-09 = 5
+
+system_bw*1e-09 = 19.0994
+
+compute_throughput*1e-09 = 76.3974
+arithmetic_intensity = 4
+system_bw*1e-09 = 19.0994
+
+****************************** RUN   END ******************************
+****************************** RUN START ******************************
+component_counts [*] :=
+core   44
+  io    1
+  l3  310
+  mc    2
+;
+
+A_die*1e+06 = 790
+
+P_die = 284.53
+
+core_freq*1e-09 = 2.35866
+
+perf*1e-09 = 329.505
+
+==============================
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 2.35866
+core_freq_min*1e-09 = 0.8
+
+P_max = 287.5
+P_die = 284.53
+
+A_die*1e+06 = 790
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 2.86668
+
+max_wire = 16523.4
+component_counts['mc']*wires_per_mc = 576
+
+compute_throughput*1e-09 = 329.505
+arithmetic_intensity = 4
+system_bw*1e-09 = 99.9968
+
+core_freq*1e-09 = 2.35866
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_min*1e-09 = 0.8
+core_freq_area_multiplier = 1
+
+die_voltage = 0.786221
+die_voltage_nominal = 1.2
+core_power = 4.31684
+
+==============================
+l3_capacity*1e-06 = 2
+component_counts['l3'] = 310
+workset_size*1e-06 = 50
+l3_to_workset_ratio = 12.4
+
+component_counts['l3'] = 310
+component_counts['mc'] = 2
+
+r1 = -2.77556e-17
+r2 = 0.884848
+r3 = 0.115152
+
+bb1 = 0
+bb2 = 1
+bb3 = 1
+
+l3_hit_rate_nominal = 0.9
+l3_hit_rate = 0.9
+
+l3_bw*1e-09 = 1
+mc_bw*1e-09 = 5
+
+system_bw*1e-09 = 99.9968
+
+compute_throughput*1e-09 = 329.505
+arithmetic_intensity = 4
+system_bw*1e-09 = 99.9968
+
+****************************** RUN   END ******************************
+****************************** RUN START ******************************
+component_counts [*] :=
+core   39
+  io    0.999999
+  l3  146
+  mc    2
+;
+
+A_die*1e+06 = 576
+
+P_die = 286.429
+
+core_freq*1e-09 = 2.59668
+
+perf*1e-09 = 321.534
+
+==============================
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 2.59668
+core_freq_min*1e-09 = 0.8
+
+P_max = 287.5
+P_die = 286.429
+
+A_die*1e+06 = 576
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 2.67636
+
+max_wire = 14109.1
+component_counts['mc']*wires_per_mc = 576
+
+compute_throughput*1e-09 = 321.534
+arithmetic_intensity = 4
+system_bw*1e-09 = 100
+
+core_freq*1e-09 = 2.59668
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_min*1e-09 = 0.8
+core_freq_area_multiplier = 1
+
+die_voltage = 0.86556
+die_voltage_nominal = 1.2
+core_power = 5.76001
+
+==============================
+l3_capacity*1e-06 = 2
+component_counts['l3'] = 146
+workset_size*1e-06 = 50
+l3_to_workset_ratio = 5.84
+
+component_counts['l3'] = 146
+component_counts['mc'] = 2
+
+r1 = -2.35922e-16
+r2 = 0.951111
+r3 = 0.0488889
+
+bb1 = 0
+bb2 = 1
+bb3 = 1
+
+l3_hit_rate_nominal = 0.9
+l3_hit_rate = 0.9
+
+l3_bw*1e-09 = 1
+mc_bw*1e-09 = 5
+
+system_bw*1e-09 = 100
+
+compute_throughput*1e-09 = 321.534
+arithmetic_intensity = 4
+system_bw*1e-09 = 100
+
+****************************** RUN   END ******************************
+****************************** RUN START ******************************
+component_counts [*] :=
+core   44
+  io    1
+  l3  310
+  mc    2
+;
+
+A_die*1e+06 = 790
+
+P_die = 284.53
+
+core_freq*1e-09 = 2.35866
+
+perf*1e-09 = 329.505
+
+==============================
+core_freq_max*1e-09 = 5
+core_freq*1e-09 = 2.35866
+core_freq_min*1e-09 = 0.8
+
+P_max = 287.5
+P_die = 284.53
+
+A_die*1e+06 = 790
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 2.86668
+
+max_wire = 16523.4
+component_counts['mc']*wires_per_mc = 576
+
+compute_throughput*1e-09 = 329.505
+arithmetic_intensity = 4
+system_bw*1e-09 = 99.9968
+
+core_freq*1e-09 = 2.35866
+core_freq_max*1e-09 = 5
+core_freq_nominal*1e-09 = 3.6
+core_freq_min*1e-09 = 0.8
+core_freq_area_multiplier = 1
+
+die_voltage = 0.786221
+die_voltage_nominal = 1.2
+core_power = 4.31684
+
+==============================
+l3_capacity*1e-06 = 2
+component_counts['l3'] = 310
+workset_size*1e-06 = 50
+l3_to_workset_ratio = 12.4
+
+component_counts['l3'] = 310
+component_counts['mc'] = 2
+
+r1 = -2.77556e-17
+r2 = 0.884848
+r3 = 0.115152
+
+bb1 = 0
+bb2 = 1
+bb3 = 1
+
+l3_hit_rate_nominal = 0.9
+l3_hit_rate = 0.9
+
+l3_bw*1e-09 = 1
+mc_bw*1e-09 = 5
+
+system_bw*1e-09 = 99.9968
+
+compute_throughput*1e-09 = 329.505
+arithmetic_intensity = 4
+system_bw*1e-09 = 99.9968
+
+****************************** RUN   END ******************************

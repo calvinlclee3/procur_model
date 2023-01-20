@@ -104,18 +104,6 @@ var system_bw >= 0;
 var perf >= 0;
 
 
-s.t. def_core_freq: core_freq == 0*f1 + core_freq_nominal*f2 + core_freq_max*f3;
-
-# 5% increase in core_freq -> 10% increase in component_areas['core']
-s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == 1*f1 + 1*f2 + (2*core_freq_max/core_freq_nominal - 1)*f3;
-
-s.t. def_l3_to_workset_ratio_1: (0*r1 + 1*r2 + 100*r3) == (l3_capacity * component_counts['l3']) / workset_size;
-
-s.t. def_l3_to_workset_ratio_2: l3_to_workset_ratio == 0*r1 + 1*r2 + 100*r3;
-
-s.t. def_l3_hit_rate: l3_hit_rate == 0*r1 + l3_hit_rate_nominal*r2 + l3_hit_rate_nominal*r3;
-
-
 s.t. def_A_die: A_die == component_counts['core'] * component_areas['core'] * core_freq_area_multiplier + 
                          component_counts['io']   * component_areas['io']   +
                          component_counts['l3']   * component_areas['l3']   +
@@ -135,6 +123,9 @@ s.t. def_max_wire: max_wire == sqrt((component_counts['core'] * component_areas[
                                      component_counts['l3']   * component_areas['l3']   +
                                      component_counts['mc']   * component_areas['mc']) / 6) * 6 * package_layer / link_pitch;
 
+s.t. def_core_freq: core_freq == 0*f1 + core_freq_nominal*f2 + core_freq_max*f3;
+# 5% increase in core_freq -> 10% increase in component_areas['core']
+s.t. def_core_freq_area_multiplier: core_freq_area_multiplier == 1*f1 + 1*f2 + (2*core_freq_max/core_freq_nominal - 1)*f3;
 s.t. core_freq_SOS2_1: 0 <= f1 <= 1;
 s.t. core_freq_SOS2_2: 0 <= f2 <= 1;
 s.t. core_freq_SOS2_3: 0 <= f3 <= 1;
@@ -145,6 +136,9 @@ s.t. core_freq_SOS2_7: f3 <= b3;
 s.t. core_freq_SOS2_8: b1 + b2 + b3 <= 2;
 s.t. core_freq_SOS2_9: b1 + b3 <= 1;
 
+s.t. def_l3_to_workset_ratio_1: (0*r1 + 1*r2 + 100*r3) == (l3_capacity * component_counts['l3']) / workset_size;
+s.t. def_l3_to_workset_ratio_2: l3_to_workset_ratio == 0*r1 + 1*r2 + 100*r3;
+s.t. def_l3_hit_rate: l3_hit_rate == 0*r1 + l3_hit_rate_nominal*r2 + l3_hit_rate_nominal*r3;
 s.t. l3_to_workset_ratio_SOS2_1: 0 <= r1 <= 1;
 s.t. l3_to_workset_ratio_SOS2_2: 0 <= r2 <= 1;
 s.t. l3_to_workset_ratio_SOS2_3: 0 <= r3 <= 1;
