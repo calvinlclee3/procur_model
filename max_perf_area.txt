@@ -1,4 +1,5 @@
 ****************************** RUN START ******************************
+X-AXIS
 AreaUB*1e+06 = 200
 
 component_counts['core'] = 4
@@ -18,6 +19,7 @@ core_freq*1e-09 = 3.645
 perf*1e-09 = 46.2915
 
 ****************************** RUN START ******************************
+X-AXIS
 AreaUB*1e+06 = 300
 
 component_counts['core'] = 12
@@ -37,6 +39,7 @@ core_freq*1e-09 = 3.9849
 perf*1e-09 = 151.825
 
 ****************************** RUN START ******************************
+X-AXIS
 AreaUB*1e+06 = 400
 
 component_counts['core'] = 17
@@ -56,6 +59,7 @@ core_freq*1e-09 = 3.51462
 perf*1e-09 = 189.701
 
 ****************************** RUN START ******************************
+X-AXIS
 AreaUB*1e+06 = 500
 
 component_counts['core'] = 22
@@ -75,6 +79,7 @@ core_freq*1e-09 = 3.143
 perf*1e-09 = 219.539
 
 ****************************** RUN START ******************************
+X-AXIS
 AreaUB*1e+06 = 600
 
 component_counts['core'] = 26
@@ -94,6 +99,7 @@ core_freq*1e-09 = 2.94876
 perf*1e-09 = 243.42
 
 ****************************** RUN START ******************************
+X-AXIS
 AreaUB*1e+06 = 700
 
 component_counts['core'] = 31
@@ -113,6 +119,7 @@ core_freq*1e-09 = 2.74331
 perf*1e-09 = 270.011
 
 ****************************** RUN START ******************************
+X-AXIS
 AreaUB*1e+06 = 800
 
 component_counts['core'] = 36
@@ -132,6 +139,7 @@ core_freq*1e-09 = 2.48151
 perf*1e-09 = 283.637
 
 ****************************** RUN START ******************************
+X-AXIS
 AreaUB*1e+06 = 900
 
 component_counts['core'] = 40
@@ -151,6 +159,7 @@ core_freq*1e-09 = 2.41073
 perf*1e-09 = 306.162
 
 ****************************** RUN START ******************************
+X-AXIS
 AreaUB*1e+06 = 1000
 
 component_counts['core'] = 44
@@ -170,6 +179,7 @@ core_freq*1e-09 = 2.35866
 perf*1e-09 = 329.505
 
 ****************************** RUN START ******************************
+X-AXIS
 AreaUB*1e+06 = 1100
 
 component_counts['core'] = 50
@@ -189,6 +199,7 @@ core_freq*1e-09 = 2.24658
 perf*1e-09 = 356.645
 
 ****************************** RUN START ******************************
+X-AXIS
 AreaUB*1e+06 = 1200
 
 component_counts['core'] = 54
@@ -208,6 +219,7 @@ core_freq*1e-09 = 2.16834
 perf*1e-09 = 371.762
 
 ****************************** RUN START ******************************
+X-AXIS
 AreaUB*1e+06 = 1300
 
 component_counts['core'] = 59
@@ -227,6 +239,7 @@ core_freq*1e-09 = 2.07859
 perf*1e-09 = 389.372
 
 ****************************** RUN START ******************************
+X-AXIS
 AreaUB*1e+06 = 1400
 
 component_counts['core'] = 0
@@ -246,6 +259,7 @@ core_freq*1e-09 = 0
 perf*1e-09 = 0
 
 ****************************** RUN START ******************************
+X-AXIS
 AreaUB*1e+06 = 1500
 
 component_counts['core'] = 0

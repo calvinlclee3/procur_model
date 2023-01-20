@@ -7,11 +7,20 @@ from sklearn import preprocessing
 
 def parse_data(filename):
 
+    # ****************************** COMPONENT COUNTS ******************************
     name = filename.split(".")[0]
+
+    xaxis = []
+    with open(filename, 'r') as fp:
+        for line in fp:
+            if line.startswith("X-AXIS"):
+                xaxis.append(next(fp, ''))
     with open(filename, 'r') as fp:
         lines = fp.readlines()
-   
-    AreaUB = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("AreaUB")]
+
+    xlabel = xaxis[0][:xaxis[0].rfind("*")]
+
+    xaxis = [float(line.strip()[line.rfind("=")+2:]) for line in xaxis]
 
     # set height of bar
     core = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("component_counts['core']")]
@@ -24,16 +33,14 @@ def parse_data(filename):
     l3_normalized = preprocessing.minmax_scale(l3)
     mc_normalized = preprocessing.minmax_scale(mc)
 
-    print(AreaUB)
-    print(core)
+    # print(xaxis)
+    # print(core)
     # print(core_normalized)
-    print(io)
+    # print(io)
     # print(io_normalized)
-    print(l3)
+    # print(l3)
     # print(l3_normalized)
-    print(mc)
-    # print(mc_normalized)
-
+    # print(mc)
 
     # set width of bar
     barWidth = 0.2
@@ -53,12 +60,33 @@ def parse_data(filename):
     
     # Adding Xticks
     plt.title(name, fontweight ='bold', fontsize = 15)
-    plt.xlabel('Area (mm\u00b2)', fontweight ='bold', fontsize = 15)
+    plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
     plt.ylabel('Number of Components', fontweight ='bold', fontsize = 15)
-    plt.xticks([r + barWidth*1.5 for r in range(len(core))], AreaUB)
-    
+    plt.xticks([r + barWidth*1.5 for r in range(len(core))], xaxis)
     plt.legend()
+
     plt.savefig(name + '_component_counts' + '.pdf')
+    plt.close()
+
+
+    # ****************************** AREA ******************************
+    area = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("A_die")]
+    fig = plt.subplots(figsize =(12, 8))
+
+    print(area)
+    plt.bar(br1, area, color ='tab:orange', width = barWidth)
+    plt.title(name, fontweight ='bold', fontsize = 15)
+    plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
+    plt.ylabel('Area (mm\u00b2)', fontweight ='bold', fontsize = 15)
+    plt.xticks([r for r in range(len(core))], xaxis)
+    plt.savefig(name + '_area' + '.pdf')
+    plt.close()
+
+
+
+    # ****************************** POWER ******************************
+    # ****************************** FREQUENCY ******************************
+    # ****************************** PERFORMANCE ******************************
 
 
 

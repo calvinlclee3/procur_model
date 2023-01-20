@@ -1,6 +1,6 @@
 print("****************************** RUN START ******************************");
 
-
+print("X-AXIS");
 display AreaUB * 1E6;
 display component_counts['core'];
 display component_counts['io'];
@@ -16,7 +16,7 @@ display perf * 1E-9;
 
 print("****************************** RUN START ******************************") >> max_perf_area.txt;
 
-
+print("X-AXIS") >> max_perf_area.txt;
 display AreaUB * 1E6 >> max_perf_area.txt;
 display component_counts['core'] >> max_perf_area.txt;
 display component_counts['io'] >> max_perf_area.txt;
