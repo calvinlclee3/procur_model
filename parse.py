@@ -65,7 +65,7 @@ def parse_data(filename):
     plt.xticks([r + barWidth*1.5 for r in range(len(core))], xaxis)
     plt.legend()
 
-    plt.savefig(name + '_component_counts' + '.pdf')
+    plt.savefig(name + '_COMPONENT_COUNTS' + '.pdf')
     plt.close()
 
 
@@ -73,21 +73,53 @@ def parse_data(filename):
     area = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("A_die")]
     fig = plt.subplots(figsize =(12, 8))
 
-    print(area)
     plt.bar(br1, area, color ='tab:orange', width = barWidth)
     plt.title(name, fontweight ='bold', fontsize = 15)
     plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
     plt.ylabel('Area (mm\u00b2)', fontweight ='bold', fontsize = 15)
     plt.xticks([r for r in range(len(core))], xaxis)
-    plt.savefig(name + '_area' + '.pdf')
+    plt.savefig(name + '_AREA' + '.pdf')
     plt.close()
 
 
-
     # ****************************** POWER ******************************
-    # ****************************** FREQUENCY ******************************
-    # ****************************** PERFORMANCE ******************************
+    power = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("P_die")]
+    fig = plt.subplots(figsize =(12, 8))
 
+    plt.bar(br1, power, color ='tab:red', width = barWidth)
+    plt.title(name, fontweight ='bold', fontsize = 15)
+    plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
+    plt.ylabel('Power (W)', fontweight ='bold', fontsize = 15)
+    plt.xticks([r for r in range(len(core))], xaxis)
+    plt.savefig(name + '_POWER' + '.pdf')
+    plt.close()
+
+
+    # ****************************** FREQUENCY ******************************
+    core_freq = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("core_freq")]
+    fig = plt.subplots(figsize =(12, 8))
+
+    plt.bar(br1, core_freq, color ='tab:green', width = barWidth)
+    plt.title(name, fontweight ='bold', fontsize = 15)
+    plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
+    plt.ylabel('Frequency (GHz)', fontweight ='bold', fontsize = 15)
+    plt.xticks([r for r in range(len(core))], xaxis)
+    plt.savefig(name + '_CORE_FREQ' + '.pdf')
+    plt.close()
+
+
+    # ****************************** PERFORMANCE ******************************
+    perf = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("perf")]
+    fig = plt.subplots(figsize =(12, 8))
+
+    print(perf)
+    plt.bar(br1, perf, color ='tab:blue', width = barWidth)
+    plt.title(name, fontweight ='bold', fontsize = 15)
+    plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
+    plt.ylabel('Performance (Gflop/s)', fontweight ='bold', fontsize = 15)
+    plt.xticks([r for r in range(len(core))], xaxis)
+    plt.savefig(name + '_PERF' + '.pdf')
+    plt.close()
 
 
 
