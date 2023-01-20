@@ -79,7 +79,6 @@ var core_power >= 0;
 var power_bump_count >= 0;
 var max_wire >= 0;
 
-##DONE
 var core_freq >= 0;
 var core_freq_area_multiplier >= 0;
 # core_freq auxiliary variables
@@ -89,7 +88,6 @@ var f3;
 var b1 binary;
 var b2 binary;
 var b3 binary;
-##DONE
 
 var l3_to_workset_ratio >= 0;
 var l3_hit_rate >= 0;
@@ -138,7 +136,7 @@ s.t. core_freq_SOS2_7: f3 <= b3;
 s.t. core_freq_SOS2_8: b1 + b2 + b3 <= 2;
 s.t. core_freq_SOS2_9: b1 + b3 <= 1;
 
-s.t. def_l3_to_workset_ratio_1: (0*r1 + 1*r2 + 100*r3) == (l3_capacity * component_counts['l3']) / workset_size;
+s.t. def_l3_to_workset_ratio_1: (l3_capacity * component_counts['l3']) / workset_size == (0*r1 + 1*r2 + 100*r3);
 s.t. def_l3_to_workset_ratio_2: l3_to_workset_ratio == 0*r1 + 1*r2 + 100*r3;
 s.t. def_l3_hit_rate: l3_hit_rate == 0*r1 + l3_hit_rate_nominal*r2 + l3_hit_rate_nominal*r3;
 s.t. l3_to_workset_ratio_SOS2_1: 0 <= r1 <= 1;
