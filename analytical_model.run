@@ -11,7 +11,7 @@ option solver couenne;
 model analytical_model.mod;
 data analytical_model.dat;
 solve;
-commands display.run;
+commands display_py.run;
 
 
 # reset;
@@ -19,88 +19,88 @@ commands display.run;
 # data analytical_model.dat;
 # let arithmetic_intensity := 2.5;
 # solve;
-# commands display.run;
+# commands display_py.run;
 
 # reset;
 # model analytical_model.mod;
 # data analytical_model.dat;
 # let arithmetic_intensity := 3;
 # solve;
-# commands display.run;
+# commands display_py.run;
 
 # reset;
 # model analytical_model.mod;
 # data analytical_model.dat;
 # let arithmetic_intensity := 3.5;
 # solve;
-# commands display.run;
+# commands display_py.run;
 
 # reset;
 # model analytical_model.mod;
 # data analytical_model.dat;
 # let arithmetic_intensity := 4;
 # solve;
-# commands display.run;
+# commands display_py.run;
 
 # reset;
 # model analytical_model.mod;
 # data analytical_model.dat;
 # let arithmetic_intensity := 4.5;
 # solve;
-# commands display.run;
+# commands display_py.run;
 
 # reset;
 # model analytical_model.mod;
 # data analytical_model.dat;
 # let arithmetic_intensity := 5;
 # solve;
-# commands display.run;
+# commands display_py.run;
 
 # reset;
 # model analytical_model.mod;
 # data analytical_model.dat;
 # let arithmetic_intensity := 5.5;
 # solve;
-# commands display.run;
+# commands display_py.run;
 
 # reset;
 # model analytical_model.mod;
 # data analytical_model.dat;
 # let arithmetic_intensity := 6;
 # solve;
-# commands display.run;
+# commands display_py.run;
 
 # reset;
 # model analytical_model.mod;
 # data analytical_model.dat;
 # let arithmetic_intensity := 7;
 # solve;
-# commands display.run;
+# commands display_py.run;
 
 # reset;
 # model analytical_model.mod;
 # data analytical_model.dat;
 # let arithmetic_intensity := 8;
 # solve;
-# commands display.run;
+# commands display_py.run;
 
 # reset;
 # model analytical_model.mod;
 # data analytical_model.dat;
 # let arithmetic_intensity := 9;
 # solve;
-# commands display.run;
+# commands display_py.run;
 
 # reset;
 # model analytical_model.mod;
 # data analytical_model.dat;
 # let arithmetic_intensity := 10;
 # solve;
-# commands display.run;
+# commands display_py.run;
 
 # reset;
 # model analytical_model.mod;
 # data analytical_model.dat;
 # let arithmetic_intensity := 12;
 # solve;
-# commands display.run;
+# commands display_py.run;
