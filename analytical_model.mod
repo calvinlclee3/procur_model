@@ -175,7 +175,7 @@ s.t. def_perf_2: perf <= arithmetic_intensity * peak_bw;
 # ****************************** OBJECTIVE ******************************
 
 # [Minimize Area]
-#minimize min_area: A_die - (perf * 1E-20);
+#minimize min_area: A_die - (perf * 1E-35) - (peak_bw * 1E-35);
 
 # [Minimize Power]
 #minimize min_power: P_die;
