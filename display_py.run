@@ -1,7 +1,7 @@
 print("****************************** RUN START ******************************");
 
 print("X-AXIS");
-display arithmetic_intensity;
+display PowerUB;
 display component_counts['core'];
 display component_counts['io'];
 display component_counts['l3'];
@@ -17,7 +17,7 @@ display perf * 1E-9;
 print("****************************** RUN START ******************************") >> out.txt;
 
 print("X-AXIS") >> out.txt;
-display arithmetic_intensity >> out.txt;
+display PowerUB >> out.txt;
 display component_counts['core'] >> out.txt;
 display component_counts['io'] >> out.txt;
 display component_counts['l3'] >> out.txt;

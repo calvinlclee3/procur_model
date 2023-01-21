@@ -11,7 +11,7 @@ reset;
 option solver couenne;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 0.5;
+let PowerUB := 500;
 solve;
 commands display_py.run;
 
@@ -19,90 +19,90 @@ commands display_py.run;
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 1;
+let PowerUB := 450;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 4;
+let PowerUB := 400;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 8;
+let PowerUB := 350;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 12;
+let PowerUB := 300;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 16;
+let PowerUB := 280;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 20;
+let PowerUB := 260;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 24;
+let PowerUB := 240;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 28;
+let PowerUB := 220;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 32;
+let PowerUB := 210;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 36;
+let PowerUB := 180;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 40;
+let PowerUB := 170;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 44;
+let PowerUB := 140;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let arithmetic_intensity := 48;
+let PowerUB := 120;
 solve;
 commands display_py.run;

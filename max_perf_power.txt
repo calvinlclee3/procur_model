@@ -1,0 +1,200 @@
+****************************** RUN START ******************************
+X-AXIS
+PowerUB = 500
+
+component_counts['core'] = 43
+
+component_counts['io'] = 2
+
+component_counts['l3'] = 405
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 895
+
+P_die = 496.437
+
+core_freq*1e-09 = 2.97599
+
+perf*1e-09 = 400
+
+****************************** RUN START ******************************
+X-AXIS
+PowerUB = 450
+
+component_counts['core'] = 45
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 323
+
+component_counts['mc'] = 3
+
+A_die*1e+06 = 823
+
+P_die = 449.824
+
+core_freq*1e-09 = 2.84622
+
+perf*1e-09 = 406.654
+
+****************************** RUN START ******************************
+X-AXIS
+PowerUB = 400
+
+component_counts['core'] = 44
+
+component_counts['io'] = 0.999999
+
+component_counts['l3'] = 311
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 791
+
+P_die = 399.075
+
+core_freq*1e-09 = 2.75986
+
+perf*1e-09 = 385.553
+
+****************************** RUN START ******************************
+X-AXIS
+PowerUB = 350
+
+component_counts['core'] = 43
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 388
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 858
+
+P_die = 341.957
+
+core_freq*1e-09 = 2.53984
+
+perf*1e-09 = 346.751
+
+****************************** RUN START ******************************
+X-AXIS
+PowerUB = 300
+
+component_counts['core'] = 45
+
+component_counts['io'] = 2
+
+component_counts['l3'] = 308
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 818
+
+P_die = 296.342
+
+core_freq*1e-09 = 2.35011
+
+perf*1e-09 = 335.773
+
+****************************** RUN START ******************************
+X-AXIS
+PowerUB = 280
+
+component_counts['core'] = 45
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 345
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 835
+
+P_die = 279.231
+
+core_freq*1e-09 = 2.2894
+
+perf*1e-09 = 327.098
+
+****************************** RUN START ******************************
+X-AXIS
+PowerUB = 260
+
+component_counts['core'] = 38
+
+component_counts['io'] = 0.999998
+
+component_counts['l3'] = 309
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 729
+
+P_die = 258.622
+
+core_freq*1e-09 = 2.35959
+
+perf*1e-09 = 284.684
+
+****************************** RUN START ******************************
+X-AXIS
+PowerUB = 220
+
+component_counts['core'] = 44
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 308
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 788
+
+P_die = 220
+
+core_freq*1e-09 = 2.05605
+
+perf*1e-09 = 287.23
+
+****************************** RUN START ******************************
+X-AXIS
+PowerUB = 180
+
+component_counts['core'] = 43
+
+component_counts['io'] = 0.999999
+
+component_counts['l3'] = 338
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 808
+
+P_die = 180
+
+core_freq*1e-09 = 1.78023
+
+perf*1e-09 = 243.046
+
+****************************** RUN START ******************************
+X-AXIS
+PowerUB = 140
+
+component_counts['core'] = 45
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 309
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 799
+
+P_die = 138.412
+
+core_freq*1e-09 = 1.43803
+
+perf*1e-09 = 205.458
+
