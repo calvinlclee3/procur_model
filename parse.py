@@ -61,14 +61,14 @@ def parse_data(filename, type, normalization_sel):
 
 
     print("X-AXIS:", xaxis)
-    print("Core Count: ", core)
-    print("Core Count NORM: ", core_normalized)
-    print("IO Count: ", io)
-    print("IO Count NORM: ", io_normalized)
-    print("L3 Count: ", l3)
-    print("L3 Count NORM: ", l3_normalized)
-    print("MC Count: ", mc)
-    print("MC Count NORM: ", mc_normalized)
+    print("Core Count:", core)
+    print("Core Count NORM:", core_normalized)
+    print("IO Count:", io)
+    print("IO Count NORM:", io_normalized)
+    print("L3 Count:", l3)
+    print("L3 Count NORM:", l3_normalized)
+    print("MC Count:", mc)
+    print("MC Count NORM:", mc_normalized)
 
     # set width of bar
     barWidth = 0.2
@@ -101,7 +101,7 @@ def parse_data(filename, type, normalization_sel):
     area = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("A_die")]
     fig = plt.subplots(figsize =(12, 8))
 
-    print("Area: ", area)
+    print("Area:", area)
     plt.bar(br1, area, color ='tab:orange', width = barWidth)
     plt.title(type, fontweight ='bold', fontsize = 15)
     plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
@@ -115,7 +115,7 @@ def parse_data(filename, type, normalization_sel):
     power = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("P_die")]
     fig = plt.subplots(figsize =(12, 8))
 
-    print("Power: ", power)
+    print("Power:", power)
     plt.bar(br1, power, color ='tab:red', width = barWidth)
     plt.title(type, fontweight ='bold', fontsize = 15)
     plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
@@ -129,7 +129,7 @@ def parse_data(filename, type, normalization_sel):
     core_freq = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("core_freq")]
     fig = plt.subplots(figsize =(12, 8))
 
-    print("Core Frequency: ", core_freq)
+    print("Core Frequency:", core_freq)
     plt.bar(br1, core_freq, color ='tab:green', width = barWidth)
     plt.title(type, fontweight ='bold', fontsize = 15)
     plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
@@ -143,7 +143,7 @@ def parse_data(filename, type, normalization_sel):
     perf = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("perf")]
     fig = plt.subplots(figsize =(12, 8))
 
-    print("Performance: ", perf)
+    print("Performance:", perf)
     plt.bar(br1, perf, color ='tab:blue', width = barWidth)
     plt.title(type, fontweight ='bold', fontsize = 15)
     plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
@@ -157,7 +157,7 @@ def parse_data(filename, type, normalization_sel):
         l3_hit_rate = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("l3_hit_rate")]
         fig = plt.subplots(figsize =(12, 8))
 
-        print("L3 Hit Rate: ", l3_hit_rate)
+        print("L3 Hit Rate:", l3_hit_rate)
         plt.bar(br1, l3_hit_rate, color ='tab:purple', width = barWidth)
         plt.title(type, fontweight ='bold', fontsize = 15)
         plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)

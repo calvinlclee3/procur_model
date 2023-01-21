@@ -1,0 +1,336 @@
+****************************** RUN START ******************************
+X-AXIS
+IPC = 3.175
+
+component_areas['core']*1e+06 = 12.152
+
+component_counts['core'] = 33
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 253
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 694.017
+
+P_die = 263.013
+
+core_freq*1e-09 = 2.54911
+
+perf*1e-09 = 267.083
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+IPC = 3.5
+
+component_areas['core']*1e+06 = 15.872
+
+component_counts['core'] = 32
+
+component_counts['io'] = 0.999994
+
+component_counts['l3'] = 452
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 999.905
+
+P_die = 287.5
+
+core_freq*1e-09 = 2.50011
+
+perf*1e-09 = 280.012
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+IPC = 4
+
+component_areas['core']*1e+06 = 15.872
+
+component_counts['core'] = 29
+
+component_counts['io'] = 0.999998
+
+component_counts['l3'] = 250
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 750.289
+
+P_die = 287.5
+
+core_freq*1e-09 = 2.77971
+
+perf*1e-09 = 322.447
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+IPC = 4.5
+
+component_areas['core']*1e+06 = 20.088
+
+component_counts['core'] = 23
+
+component_counts['io'] = 1.00001
+
+component_counts['l3'] = 223
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 725.025
+
+P_die = 287.498
+
+core_freq*1e-09 = 3.02915
+
+perf*1e-09 = 313.517
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+IPC = 5
+
+component_areas['core']*1e+06 = 24.8
+
+component_counts['core'] = 18
+
+component_counts['io'] = 1.00001
+
+component_counts['l3'] = 194
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 680.401
+
+P_die = 287.464
+
+core_freq*1e-09 = 3.31682
+
+perf*1e-09 = 298.514
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+IPC = 6
+
+component_areas['core']*1e+06 = 35.7121
+
+component_counts['core'] = 17
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 336
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 983.105
+
+P_die = 287.5
+
+core_freq*1e-09 = 3.2257
+
+perf*1e-09 = 329.022
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+IPC = 6.5
+
+component_areas['core']*1e+06 = 41.9121
+
+component_counts['core'] = 15
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 322
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 990.681
+
+P_die = 266.565
+
+core_freq*1e-09 = 3.25114
+
+perf*1e-09 = 316.986
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+IPC = 7
+
+component_areas['core']*1e+06 = 48.6081
+
+component_counts['core'] = 13
+
+component_counts['io'] = 0.999997
+
+component_counts['l3'] = 286
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 957.905
+
+P_die = 287.5
+
+core_freq*1e-09 = 3.589
+
+perf*1e-09 = 326.599
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+IPC = 7.5
+
+component_areas['core']*1e+06 = 55.8001
+
+component_counts['core'] = 10
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 275
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 975.761
+
+P_die = 287.5
+
+core_freq*1e-09 = 3.93148
+
+perf*1e-09 = 294.861
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+IPC = 8
+
+component_areas['core']*1e+06 = 63.4881
+
+component_counts['core'] = 10
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 258
+
+component_counts['mc'] = 3
+
+A_die*1e+06 = 1000
+
+P_die = 270.631
+
+core_freq*1e-09 = 3.76194
+
+perf*1e-09 = 300.955
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+IPC = 8.5
+
+component_areas['core']*1e+06 = 71.6721
+
+component_counts['core'] = 10
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 238
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 1000
+
+P_die = 235.379
+
+core_freq*1e-09 = 3.61326
+
+perf*1e-09 = 307.127
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+IPC = 9
+
+component_areas['core']*1e+06 = 80.3522
+
+component_counts['core'] = 10
+
+component_counts['io'] = 0.999999
+
+component_counts['l3'] = 85
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 1000
+
+P_die = 224.482
+
+core_freq*1e-09 = 3.76012
+
+perf*1e-09 = 338.411
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+IPC = 9.5
+
+component_areas['core']*1e+06 = 89.5282
+
+component_counts['core'] = 8
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 205
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 1000
+
+P_die = 206.623
+
+core_freq*1e-09 = 3.69745
+
+perf*1e-09 = 281.006
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+IPC = 10
+
+component_areas['core']*1e+06 = 99.2002
+
+component_counts['core'] = 7
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 194
+
+component_counts['mc'] = 2
+
+A_die*1e+06 = 1000
+
+P_die = 196.319
+
+core_freq*1e-09 = 3.7856
+
+perf*1e-09 = 264.992
+
+l3_hit_rate = 0.9
+
