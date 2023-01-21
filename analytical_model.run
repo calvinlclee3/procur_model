@@ -11,98 +11,97 @@ reset;
 option solver couenne;
 model analytical_model.mod;
 data analytical_model.dat;
-let PowerUB := 500;
-solve;
-commands display_py.run;
-
-
-reset;
-model analytical_model.mod;
-data analytical_model.dat;
-let PowerUB := 450;
+let workset_size := 25E6;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let PowerUB := 400;
+let workset_size := 50E6;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let PowerUB := 350;
+let workset_size := 100E6;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let PowerUB := 300;
+let workset_size := 200E6;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let PowerUB := 280;
+let workset_size := 500E6;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let PowerUB := 260;
+let workset_size := 800E6;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let PowerUB := 240;
+let workset_size := 1600E6;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let PowerUB := 220;
+let workset_size := 3200E6;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let PowerUB := 210;
+let workset_size := 6400E6;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let PowerUB := 180;
+let workset_size := 10000E6;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let PowerUB := 170;
+let workset_size := 750E6;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let PowerUB := 140;
+let workset_size := 1000E6;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let PowerUB := 120;
+let workset_size := 1500E6;
+solve;
+commands display_py.run;
+
+reset;
+model analytical_model.mod;
+data analytical_model.dat;
+let workset_size := 2000E6;
 solve;
 commands display_py.run;

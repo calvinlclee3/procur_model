@@ -1,7 +1,7 @@
 print("****************************** RUN START ******************************");
 
 print("X-AXIS");
-display PowerUB;
+display workset_size * 1E-6;
 display component_counts['core'];
 display component_counts['io'];
 display component_counts['l3'];
@@ -10,6 +10,7 @@ display A_die * 1E6;
 display P_die;
 display core_freq * 1E-9;
 display perf * 1E-9;
+display l3_hit_rate;
 
 
 # ****************************** SAVE TO FILE ******************************
@@ -17,7 +18,7 @@ display perf * 1E-9;
 print("****************************** RUN START ******************************") >> out.txt;
 
 print("X-AXIS") >> out.txt;
-display PowerUB >> out.txt;
+display workset_size * 1E-6 >> out.txt;
 display component_counts['core'] >> out.txt;
 display component_counts['io'] >> out.txt;
 display component_counts['l3'] >> out.txt;
@@ -26,3 +27,4 @@ display A_die * 1E6 >> out.txt;
 display P_die >> out.txt;
 display core_freq * 1E-9 >> out.txt;
 display perf * 1E-9 >> out.txt;
+display l3_hit_rate >> out.txt;

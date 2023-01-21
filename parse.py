@@ -29,10 +29,10 @@ def parse_data(filename, type):
     mc = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("component_counts['mc']")]
 
     # Normalization Method 1
-    core_normalized = preprocessing.minmax_scale(core).tolist()
-    io_normalized = preprocessing.minmax_scale(io).tolist()
-    l3_normalized = preprocessing.minmax_scale(l3).tolist()
-    mc_normalized = preprocessing.minmax_scale(mc).tolist()
+    # core_normalized = preprocessing.minmax_scale(core).tolist()
+    # io_normalized = preprocessing.minmax_scale(io).tolist()
+    # l3_normalized = preprocessing.minmax_scale(l3).tolist()
+    # mc_normalized = preprocessing.minmax_scale(mc).tolist()
 
     # Normalization Method 2
     # core_normalized = [(i - min(core))/(max(core) - min(core)) for i in core]
@@ -41,10 +41,10 @@ def parse_data(filename, type):
     # mc_normalized = [(i - min(mc))/(max(mc) - min(mc)) for i in mc]
 
     # Normalization Method 3
-    # core_normalized = [i/40 for i in core]
-    # io_normalized = [i for i in io]
-    # l3_normalized = [i/100 for i in l3]
-    # mc_normalized = [i for i in mc]
+    core_normalized = [i/40 for i in core]
+    io_normalized = [i for i in io]
+    l3_normalized = [i/100 for i in l3]
+    mc_normalized = [i for i in mc]
 
 
     print("X-AXIS:", xaxis)
@@ -139,7 +139,19 @@ def parse_data(filename, type):
     plt.savefig(type + '_PERF' + '.pdf')
     plt.close()
 
+    # ****************************** FOR SOME EXPERIMENT ONLY ******************************
+    if 'workset_size' in type:
+        l3_hit_rate = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("l3_hit_rate")]
+        fig = plt.subplots(figsize =(12, 8))
 
+        print("L3 Hit Rate: ", l3_hit_rate)
+        plt.bar(br1, l3_hit_rate, color ='tab:purple', width = barWidth)
+        plt.title(type, fontweight ='bold', fontsize = 15)
+        plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
+        plt.ylabel('L3 Hit Rate', fontweight ='bold', fontsize = 15)
+        plt.xticks([r for r in range(len(core))], xaxis)
+        plt.savefig(type + '_L3_HIT_RATE' + '.pdf')
+        plt.close()
 
 
 if __name__ == "__main__":
