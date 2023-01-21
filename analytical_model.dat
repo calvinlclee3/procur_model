@@ -50,7 +50,7 @@ param core_freq_max := 5E9;
 param core_freq_nominal := 3.6E9;
 
 # objective-dependent constraints
-param PerfLB := 2.54E9;
+param PerfLB := 5E9;
 param PerfUB := -1;
 param AreaLB := -1;
 # 1000E-6
