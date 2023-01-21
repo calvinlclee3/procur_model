@@ -11,97 +11,97 @@ reset;
 option solver couenne;
 model analytical_model.mod;
 data analytical_model.dat;
-let workset_size := 25E6;
+let arithmetic_intensity := 0.5;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let workset_size := 50E6;
+let arithmetic_intensity := 1;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let workset_size := 100E6;
+let arithmetic_intensity := 4;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let workset_size := 200E6;
+let arithmetic_intensity := 8;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let workset_size := 500E6;
+let arithmetic_intensity := 12;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let workset_size := 800E6;
+let arithmetic_intensity := 16;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let workset_size := 1600E6;
+let arithmetic_intensity := 20;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let workset_size := 3200E6;
+let arithmetic_intensity := 24;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let workset_size := 6400E6;
+let arithmetic_intensity := 28;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let workset_size := 10000E6;
+let arithmetic_intensity := 32;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let workset_size := 750E6;
+let arithmetic_intensity := 36;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let workset_size := 1000E6;
+let arithmetic_intensity := 40;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let workset_size := 1500E6;
+let arithmetic_intensity := 44;
 solve;
 commands display_py.run;
 
 reset;
 model analytical_model.mod;
 data analytical_model.dat;
-let workset_size := 2000E6;
+let arithmetic_intensity := 48;
 solve;
 commands display_py.run;

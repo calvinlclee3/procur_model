@@ -1,0 +1,264 @@
+****************************** RUN START ******************************
+X-AXIS
+arithmetic_intensity = 1
+
+component_counts['core'] = 1
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 5
+
+component_counts['mc'] = 1
+
+A_die*1e+06 = 45
+
+P_die = 23.5792
+
+core_freq*1e-09 = 1.5748
+
+perf*1e-09 = 5
+
+l3_hit_rate = 0.18
+
+****************************** RUN START ******************************
+X-AXIS
+arithmetic_intensity = 4
+
+component_counts['core'] = 1
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 2
+
+component_counts['mc'] = 1
+
+A_die*1e+06 = 42
+
+P_die = 22.9811
+
+core_freq*1e-09 = 1.57555
+
+perf*1e-09 = 5.00237
+
+l3_hit_rate = 0.072
+
+****************************** RUN START ******************************
+X-AXIS
+arithmetic_intensity = 8
+
+component_counts['core'] = 1
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 5
+
+component_counts['mc'] = 1
+
+A_die*1e+06 = 45
+
+P_die = 23.5794
+
+core_freq*1e-09 = 1.57487
+
+perf*1e-09 = 5.00017
+
+l3_hit_rate = 0.18
+
+****************************** RUN START ******************************
+X-AXIS
+arithmetic_intensity = 12
+
+component_counts['core'] = 1
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 5
+
+component_counts['mc'] = 1
+
+A_die*1e+06 = 45
+
+P_die = 23.5794
+
+core_freq*1e-09 = 1.57488
+
+perf*1e-09 = 5.00021
+
+l3_hit_rate = 0.18
+
+****************************** RUN START ******************************
+X-AXIS
+arithmetic_intensity = 16
+
+component_counts['core'] = 1
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 31
+
+component_counts['mc'] = 1
+
+A_die*1e+06 = 71
+
+P_die = 42.8256
+
+core_freq*1e-09 = 3.59862
+
+perf*1e-09 = 11.4255
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+arithmetic_intensity = 20
+
+component_counts['core'] = 1
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 5
+
+component_counts['mc'] = 1
+
+A_die*1e+06 = 45
+
+P_die = 23.5794
+
+core_freq*1e-09 = 1.57487
+
+perf*1e-09 = 5.00016
+
+l3_hit_rate = 0.18
+
+****************************** RUN START ******************************
+X-AXIS
+arithmetic_intensity = 24
+
+component_counts['core'] = 1
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 31
+
+component_counts['mc'] = 1
+
+A_die*1e+06 = 71
+
+P_die = 42.8186
+
+core_freq*1e-09 = 3.59807
+
+perf*1e-09 = 11.4238
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+arithmetic_intensity = 32
+
+component_counts['core'] = 4
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 31
+
+component_counts['mc'] = 1
+
+A_die*1e+06 = 101
+
+P_die = 28.1681
+
+core_freq*1e-09 = 0.8
+
+perf*1e-09 = 10.16
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+arithmetic_intensity = 36
+
+component_counts['core'] = 1
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 31
+
+component_counts['mc'] = 1
+
+A_die*1e+06 = 71
+
+P_die = 42.7999
+
+core_freq*1e-09 = 3.59661
+
+perf*1e-09 = 11.4191
+
+l3_hit_rate = 0.9
+
+****************************** RUN START ******************************
+X-AXIS
+arithmetic_intensity = 40
+
+component_counts['core'] = 1
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 5
+
+component_counts['mc'] = 1
+
+A_die*1e+06 = 45
+
+P_die = 23.5794
+
+core_freq*1e-09 = 1.57487
+
+perf*1e-09 = 5.00015
+
+l3_hit_rate = 0.18
+
+****************************** RUN START ******************************
+X-AXIS
+arithmetic_intensity = 44
+
+component_counts['core'] = 1
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 6
+
+component_counts['mc'] = 1
+
+A_die*1e+06 = 53.7778
+
+P_die = 63.6168
+
+core_freq*1e-09 = 5
+
+perf*1e-09 = 15.875
+
+l3_hit_rate = 0.215991
+
+****************************** RUN START ******************************
+X-AXIS
+arithmetic_intensity = 48
+
+component_counts['core'] = 1
+
+component_counts['io'] = 1
+
+component_counts['l3'] = 31
+
+component_counts['mc'] = 1
+
+A_die*1e+06 = 71
+
+P_die = 42.7827
+
+core_freq*1e-09 = 3.59526
+
+perf*1e-09 = 11.4149
+
+l3_hit_rate = 0.9
+

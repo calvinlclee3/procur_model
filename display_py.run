@@ -1,7 +1,7 @@
 print("****************************** RUN START ******************************");
 
 print("X-AXIS");
-display workset_size * 1E-6;
+display arithmetic_intensity;
 display component_counts['core'];
 display component_counts['io'];
 display component_counts['l3'];
@@ -18,7 +18,7 @@ display l3_hit_rate;
 print("****************************** RUN START ******************************") >> out.txt;
 
 print("X-AXIS") >> out.txt;
-display workset_size * 1E-6 >> out.txt;
+display arithmetic_intensity >> out.txt;
 display component_counts['core'] >> out.txt;
 display component_counts['io'] >> out.txt;
 display component_counts['l3'] >> out.txt;
