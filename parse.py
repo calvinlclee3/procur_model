@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import preprocessing
 
-def parse_data(filename, type):
+def parse_data(filename, type, normalization_sel):
 
     # ****************************** COMPONENT COUNTS ******************************
     xaxis = []
@@ -28,23 +28,36 @@ def parse_data(filename, type):
     l3 = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("component_counts['l3']")]
     mc = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("component_counts['mc']")]
 
-    # Normalization Method 1
-    # core_normalized = preprocessing.minmax_scale(core).tolist()
-    # io_normalized = preprocessing.minmax_scale(io).tolist()
-    # l3_normalized = preprocessing.minmax_scale(l3).tolist()
-    # mc_normalized = preprocessing.minmax_scale(mc).tolist()
 
-    # Normalization Method 2
-    # core_normalized = [(i - min(core))/(max(core) - min(core)) for i in core]
-    # io_normalized = [(i - min(io))/(max(io) - min(io)) for i in io]
-    # l3_normalized = [(i - min(l3))/(max(l3) - min(l3)) for i in l3]
-    # mc_normalized = [(i - min(mc))/(max(mc) - min(mc)) for i in mc]
+    if(normalization_sel == 1):
+        # Normalization Method 1
+        core_normalized = preprocessing.minmax_scale(core).tolist()
+        io_normalized = preprocessing.minmax_scale(io).tolist()
+        l3_normalized = preprocessing.minmax_scale(l3).tolist()
+        mc_normalized = preprocessing.minmax_scale(mc).tolist()
 
-    # Normalization Method 3
-    core_normalized = [i/40 for i in core]
-    io_normalized = [i for i in io]
-    l3_normalized = [i/100 for i in l3]
-    mc_normalized = [i for i in mc]
+    elif (normalization_sel == 2):
+        # Normalization Method 2
+        core_normalized = [(i - min(core))/(max(core) - min(core)) for i in core]
+        io_normalized = [(i - min(io))/(max(io) - min(io)) for i in io]
+        l3_normalized = [(i - min(l3))/(max(l3) - min(l3)) for i in l3]
+        mc_normalized = [(i - min(mc))/(max(mc) - min(mc)) for i in mc]
+
+    elif (normalization_sel == 3):
+        # Normalization Method 3
+        core_normalized = [i/40 for i in core]
+        io_normalized = [i for i in io]
+        l3_normalized = [i/100 for i in l3]
+        mc_normalized = [i for i in mc]
+    
+    else:
+        # No Normalization
+        print("No Normalization Applied")
+        core_normalized = [i for i in core]
+        io_normalized = [i for i in io]
+        l3_normalized = [i for i in l3]
+        mc_normalized = [i for i in mc]
+
 
 
     print("X-AXIS:", xaxis)
@@ -139,7 +152,7 @@ def parse_data(filename, type):
     plt.savefig(type + '_PERF' + '.pdf')
     plt.close()
 
-    # ****************************** FOR SOME EXPERIMENT ONLY ******************************
+    # ****************************** FOR SOME EXPERIMENTS ONLY ******************************
     if 'workset_size' in type:
         l3_hit_rate = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("l3_hit_rate")]
         fig = plt.subplots(figsize =(12, 8))
@@ -155,4 +168,4 @@ def parse_data(filename, type):
 
 
 if __name__ == "__main__":
-    parse_data(sys.argv[1], sys.argv[2])
+    parse_data(sys.argv[1], sys.argv[2], float(sys.argv[3]))
