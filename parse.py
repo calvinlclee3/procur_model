@@ -1,4 +1,5 @@
 import sys
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import preprocessing
@@ -14,7 +15,10 @@ def parse_data(filename, type):
     with open(filename, 'r') as fp:
         lines = fp.readlines()
 
-    xlabel = xaxis[0][:xaxis[0].rfind("*")]
+    if(xaxis[0].rfind("*") == -1):
+        xlabel = xaxis[0][:xaxis[0].rfind("=") - 1]
+    else:
+        xlabel = xaxis[0][:xaxis[0].rfind("*")]
 
     xaxis = [float(line.strip()[line.rfind("=")+2:]) for line in xaxis]
 
@@ -24,19 +28,20 @@ def parse_data(filename, type):
     l3 = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("component_counts['l3']")]
     mc = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("component_counts['mc']")]
 
-    core_normalized = preprocessing.minmax_scale(core)
-    io_normalized = preprocessing.minmax_scale(io)
-    l3_normalized = preprocessing.minmax_scale(l3)
-    mc_normalized = preprocessing.minmax_scale(mc)
+    core_normalized = preprocessing.minmax_scale(core).tolist()
+    io_normalized = preprocessing.minmax_scale(io).tolist()
+    l3_normalized = preprocessing.minmax_scale(l3).tolist()
+    mc_normalized = preprocessing.minmax_scale(mc).tolist()
 
-    # print(xaxis)
-    # print(core)
-    # print(core_normalized)
-    # print(io)
-    # print(io_normalized)
-    # print(l3)
-    # print(l3_normalized)
-    # print(mc)
+    print("X-AXIS:", xaxis)
+    print("Core Count: ", core)
+    print("Core Count NORM: ", core_normalized)
+    print("IO Count: ", io)
+    print("IO Count NORM: ", io_normalized)
+    print("L3 Count: ", l3)
+    print("L3 Count NORM: ", l3_normalized)
+    print("MC Count: ", mc)
+    print("MC Count NORM: ", mc_normalized)
 
     # set width of bar
     barWidth = 0.2
@@ -69,6 +74,7 @@ def parse_data(filename, type):
     area = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("A_die")]
     fig = plt.subplots(figsize =(12, 8))
 
+    print("Area: ", area)
     plt.bar(br1, area, color ='tab:orange', width = barWidth)
     plt.title(type, fontweight ='bold', fontsize = 15)
     plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
@@ -82,6 +88,7 @@ def parse_data(filename, type):
     power = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("P_die")]
     fig = plt.subplots(figsize =(12, 8))
 
+    print("Power: ", power)
     plt.bar(br1, power, color ='tab:red', width = barWidth)
     plt.title(type, fontweight ='bold', fontsize = 15)
     plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
@@ -95,6 +102,7 @@ def parse_data(filename, type):
     core_freq = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("core_freq")]
     fig = plt.subplots(figsize =(12, 8))
 
+    print("Core Frequency: ", core_freq)
     plt.bar(br1, core_freq, color ='tab:green', width = barWidth)
     plt.title(type, fontweight ='bold', fontsize = 15)
     plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
@@ -108,7 +116,7 @@ def parse_data(filename, type):
     perf = [float(line.strip()[line.rfind("=")+2:]) for line in lines if line.startswith("perf")]
     fig = plt.subplots(figsize =(12, 8))
 
-    print(perf)
+    print("Performance: ", perf)
     plt.bar(br1, perf, color ='tab:blue', width = barWidth)
     plt.title(type, fontweight ='bold', fontsize = 15)
     plt.xlabel(xlabel, fontweight ='bold', fontsize = 15)
