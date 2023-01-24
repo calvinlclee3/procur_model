@@ -37,7 +37,7 @@ param mem_freq := 4300E6;
 param mc_power_ctrl := 3;
 
 # performance parameters
-param ai_app := 150.3759398496240601504;
+param ai_app := 150;
 param IPC := 3.175;
 param capacitance_per_core := 2.96080965E-9;
 param l1_capacity := 80E3;
