@@ -34,10 +34,12 @@ param mem_freq;
 param mc_power_ctrl;                    # per MC
 
 # performance parameters
-param arithmetic_intensity;             # operations / byte
+param ai_app;                       # operations / byte
 param IPC;                              # instructions / cycle
 param capacitance_per_core;             # for the core only, per core
-param l3_capacity;                      # per L3
+param l1_capacity;                      # per L1 (L1 is part of the core)
+param l2_capacity;                      # per L2 (L2 is part of the core)
+param l3_capacity;                      # per "slice" of L3
 param l3_hit_rate_nominal;
 param l3_bw;                            # per L3
 param mc_bw;                            # per MC
@@ -63,6 +65,8 @@ param P_max := delta_T / theta_ja;
 param mc_power_phys := energy_per_wire * mem_freq * wires_per_mc;
 param mc_power := mc_power_phys + mc_power_ctrl;
 
+# Compute arithmetic intensity.
+param arithmetic_intensity := (l1_capacity + l2_capacity) / workset_size * ai_app;
 
 # ****************************** DECISION VARIABLES ******************************
 
