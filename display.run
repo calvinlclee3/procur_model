@@ -4,7 +4,7 @@ display component_counts;
 display A_die * 1E6;
 display P_die;
 display core_freq * 1E-9;
-display perf * 1E-9 ;
+display perf * 1E-9;
 
 print("==============================");
 
@@ -20,7 +20,7 @@ display arithmetic_intensity, workset_size * 1E-6, ai_app;
 
 display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9;
 
-display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_min * 1E-9, core_area_multiplier;
+display core_freq_max * 1E-9, core_freq_base_max * 1E-9, core_freq_absolute_max * 1E-9, core_area_multiplier;
 
 display die_voltage, core_freq * 1E-9, core_freq_nominal * 1E-9, die_voltage_nominal;
 
@@ -68,7 +68,7 @@ display arithmetic_intensity, workset_size * 1E-6, ai_app >> out.txt;
 
 display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9 >> out.txt;
 
-display core_freq * 1E-9, core_freq_max * 1E-9, core_freq_nominal * 1E-9, core_freq_min * 1E-9, core_area_multiplier >> out.txt;
+display core_freq_max * 1E-9, core_freq_base_max * 1E-9, core_freq_absolute_max * 1E-9, core_area_multiplier >> out.txt;
 
 display die_voltage, core_freq * 1E-9, core_freq_nominal * 1E-9, die_voltage_nominal >> out.txt;
 
