@@ -26,21 +26,11 @@ display die_voltage, core_freq * 1E-9, core_freq_nominal * 1E-9, die_voltage_nom
 
 print("==============================");
 
-display l3_capacity * 1E-6, component_counts['l3'], workset_size * 1E-6, l3_to_workset_ratio;
+display core_freq_max * 1E-9, core_freq_base_max * 1E-9, core_freq_absolute_max * 1E-9, core_area_multiplier;
 
-display component_counts['l3'], component_counts['mc'];
+display 0*f1 + core_freq_base_max*f2 + core_freq_absolute_max*f3 * 1E-9;
 
-display r1, r2, r3;
-
-display bb1, bb2, bb3;
-
-display l3_hit_rate_nominal, l3_hit_rate;
-
-display l3_bw * 1E-9, mc_bw * 1E-9;
-
-display system_bw * 1E-9;
-
-display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9;
+display core_freq * 1E-9;
 
 print("****************************** RUN   END ******************************");
 
@@ -74,20 +64,10 @@ display die_voltage, core_freq * 1E-9, core_freq_nominal * 1E-9, die_voltage_nom
 
 print("==============================") >> out.txt;
 
-display l3_capacity * 1E-6, component_counts['l3'], workset_size * 1E-6, l3_to_workset_ratio >> out.txt;
+display core_freq_max * 1E-9, core_freq_base_max * 1E-9, core_freq_absolute_max * 1E-9, core_area_multiplier >> out.txt;
 
-display component_counts['l3'], component_counts['mc'] >> out.txt;
+display 0*f1 + core_freq_base_max*f2 + core_freq_absolute_max*f3 * 1E-9 >> out.txt;
 
-display r1, r2, r3 >> out.txt;
-
-display bb1, bb2, bb3 >> out.txt;
-
-display l3_hit_rate_nominal, l3_hit_rate >> out.txt;
-
-display l3_bw * 1E-9, mc_bw * 1E-9 >> out.txt;
-
-display system_bw * 1E-9 >> out.txt;
-
-display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9 >> out.txt;
+display core_freq * 1E-9 >> out.txt;
 
 print("****************************** RUN   END ******************************") >> out.txt;
