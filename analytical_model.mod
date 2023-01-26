@@ -168,6 +168,8 @@ s.t. def_system_bw_2: system_bw <= mc_bw * component_counts['mc'] / (1 - l3_hit_
 s.t. def_perf_1: perf <= compute_throughput;
 s.t. def_perf_2: perf <= arithmetic_intensity * system_bw;
 
+# Implementation using AMPL built-in piece-wise linear function syntax (not supported by solver).
+# s.t. def_core_area_multiplier: core_area_multiplier == << core_freq_nominal; 0, (1 / core_freq_nominal) * 2 >> core_freq + 1;
 
 # ****************************** OBJECTIVE ******************************
 
