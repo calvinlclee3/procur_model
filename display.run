@@ -28,7 +28,7 @@ print("==============================");
 
 display core_freq_max * 1E-9, core_freq_base_max * 1E-9, core_freq_absolute_max * 1E-9, core_area_multiplier;
 
-display 0*f1 + core_freq_base_max*f2 + core_freq_absolute_max*f3 * 1E-9;
+display (0*f1 + core_freq_base_max*f2 + core_freq_absolute_max*f3) * 1E-9;
 
 display core_freq * 1E-9;
 
@@ -66,7 +66,7 @@ print("==============================") >> out.txt;
 
 display core_freq_max * 1E-9, core_freq_base_max * 1E-9, core_freq_absolute_max * 1E-9, core_area_multiplier >> out.txt;
 
-display 0*f1 + core_freq_base_max*f2 + core_freq_absolute_max*f3 * 1E-9 >> out.txt;
+display (0*f1 + core_freq_base_max*f2 + core_freq_absolute_max*f3) * 1E-9 >> out.txt;
 
 display core_freq * 1E-9 >> out.txt;
 
