@@ -1,0 +1,5 @@
+1. New model, max_perf, none of the solver says it's feasible.
+2. New model, min_area, BARON works for small PerfLB.
+3. Old model, max_perf, only couenne claims to provide "optimal" solution. 
+   BARON will run until CPU time limit reached, then it will provide an intermediate
+   soln that is actually better than what couenne claimed to be optimal (weird).
