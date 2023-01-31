@@ -48,7 +48,7 @@ param l3_bw := 1E9;
 param mc_bw := 5E9;
 param workset_size := 50E6;
 param core_freq_min := 0.8E9;
-param core_freq_base_max := 5E9;
+param core_freq_base_max := 3E9;
 param core_freq_absolute_max := 10E9;
 param core_freq_nominal := 3.6E9;
 
