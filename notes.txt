@@ -14,5 +14,5 @@
    Power for l1, l2, and core maybe can just be divided from the current number for core?
 5. For BARON, find out a way to modify CPU time limit.
 6. It is possible that as the model asks for more performance
-   (whether through maximizing performance or through a higher PerfLB), 
+   (whether through max_perf objective or through a higher PerfLB in min_area), 
    the search space becomes intractable for the solver.
