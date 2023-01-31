@@ -9,7 +9,7 @@
 
 reset;
 option solver baron;
-# option baron_options 'maxtime=-1';
+option baron_options 'maxtime=-1';
 model analytical_model.mod;
 data analytical_model.dat;
 # let ai_app := 0.5;
