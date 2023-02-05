@@ -1,0 +1,78 @@
+****************************** RUN START ******************************
+
+-m min_area BARON PerfLB=20E9 CPU_time=3000s
+COMMENTS: compute_throughput do not need to be that high, unoptimal.
+
+component_counts [*] :=
+core   2
+  io   1
+  l3  10
+  mc   1
+;
+
+A_die*1e+06 = 61.874
+
+P_die = 112.335
+
+core_freq*1e-09 = 5.13409
+
+perf*1e-09 = 20
+
+==============================
+core_freq_max*1e-09 = 5.23424
+core_freq*1e-09 = 5.13409
+core_freq_min*1e-09 = 0.8
+
+P_max = 287.5
+P_die = 112.335
+
+A_die*1e+06 = 61.874
+bump_pitch^2*(power_bump_count + mc_bump_count + io_bump_count)*1e+06 = 1.0465
+
+max_wire = 4624.24
+component_counts['mc']*wires_per_mc = 288
+
+l1_capacity*0.001 = 80
+l2_capacity*1e-06 = 1.25
+workset_size*1e-06 = 50
+ai_app = 100
+arithmetic_intensity = 2.66
+
+core_freq*1e-09 = 5.13409
+core_freq_nominal*1e-09 = 3.6
+die_voltage_nominal = 1.2
+die_voltage = 1.71136
+
+core_freq_base_max*1e-09 = 5
+core_freq_absolute_max*1e-09 = 10
+core_freq_max*1e-09 = 5.23424
+core_area_multiplier = 1.0937
+
+l3_capacity*1e-06 = 2
+component_counts['l3'] = 10
+workset_size*1e-06 = 50
+l3_hit_rate_nominal = 0.9
+l3_hit_rate = 0.36
+
+core_freq*1e-09 = 5.13409
+IPC = 3.175
+component_counts['core'] = 2
+compute_throughput*1e-09 = 32.6015
+
+l3_bw*1e-09 = 1
+component_counts['l3'] = 10
+mc_bw*1e-09 = 5
+component_counts['mc'] = 1
+l3_hit_rate = 0.36
+( min(l3_bw*component_counts['l3']/1,mc_bw*component_counts['mc']/(1 - 
+  l3_hit_rate)))*1e-09 = 7.8125
+system_bw*1e-09 = 7.8125
+
+compute_throughput*1e-09 = 32.6015
+arithmetic_intensity = 2.66
+system_bw*1e-09 = 7.8125
+( min(compute_throughput,arithmetic_intensity*system_bw))*1e-09 = 20.7812
+perf*1e-09 = 20
+
+==============================
+****************************** RUN   END ******************************

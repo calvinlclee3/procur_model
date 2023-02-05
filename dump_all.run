@@ -27,9 +27,11 @@ display l3_capacity * 1E-6, component_counts['l3'], workset_size * 1E-6, l3_hit_
 display core_freq * 1E-9, IPC, component_counts['core'], compute_throughput * 1E-9;
 
 display l3_bw * 1E-9, component_counts['l3'], mc_bw * 1E-9, component_counts['mc'], l3_hit_rate, 
+l3_bw * component_counts['l3'] / 1 * 1E-9, mc_bw * component_counts['mc'] / (1 - l3_hit_rate) * 1E-9,
 min(l3_bw * component_counts['l3'] / 1, mc_bw * component_counts['mc'] / (1 - l3_hit_rate)) * 1E-9, system_bw * 1E-9;
 
 display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9,
+compute_throughput * 1E-9, arithmetic_intensity * system_bw * 1E-9,
 min(compute_throughput, arithmetic_intensity * system_bw) * 1E-9, perf * 1E-9;
 
 print("==============================");
@@ -67,9 +69,11 @@ display l3_capacity * 1E-6, component_counts['l3'], workset_size * 1E-6, l3_hit_
 display core_freq * 1E-9, IPC, component_counts['core'], compute_throughput * 1E-9 >> out.txt;
 
 display l3_bw * 1E-9, component_counts['l3'], mc_bw * 1E-9, component_counts['mc'], l3_hit_rate, 
+l3_bw * component_counts['l3'] / 1 * 1E-9, mc_bw * component_counts['mc'] / (1 - l3_hit_rate) * 1E-9,
 min(l3_bw * component_counts['l3'] / 1, mc_bw * component_counts['mc'] / (1 - l3_hit_rate)) * 1E-9, system_bw * 1E-9 >> out.txt;
 
 display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9,
+compute_throughput * 1E-9, arithmetic_intensity * system_bw * 1E-9,
 min(compute_throughput, arithmetic_intensity * system_bw) * 1E-9, perf * 1E-9 >> out.txt;
 
 print("==============================") >> out.txt;
