@@ -174,13 +174,13 @@ s.t. def_perf_2: perf <= arithmetic_intensity * system_bw;
 # ****************************** OBJECTIVE ******************************
 
 # [Minimize Area]
-#minimize min_area: A_die - (perf * 1E-35) - (system_bw * 1E-35);
+minimize min_area: A_die;
 
 # [Minimize Power]
 #minimize min_power: P_die;
 
 # [Maximize Performance]
-maximize max_performance: perf;
+#maximize max_performance: perf;
 
 # [Custom Metric]
 #maximize custom_metric: ((1/P_die)) * ((1/A_die))* perf;
@@ -199,7 +199,7 @@ s.t. wire_constraint: max_wire >= component_counts['mc'] * wires_per_mc;
 # ****************************** OBJECTIVE-DEPENDENT CONSTRAINTS ******************************
 
 # [Minimize Area]:
-#s.t. performance_constraint: perf >= PerfLB;
+s.t. performance_constraint: perf >= PerfLB;
 #s.t. power_constraint: PowerUB >= P_die;
 
 # [Minimize Power]
@@ -207,7 +207,7 @@ s.t. wire_constraint: max_wire >= component_counts['mc'] * wires_per_mc;
 #s.t. performance_constraint: perf >= PerfLB;
 
 # [Maximize Performance]
-s.t. area_constraint: AreaUB >= A_die;
+#s.t. area_constraint: AreaUB >= A_die;
 #s.t. power_constraint: PowerUB >= P_die;
 
 # [Custom Metric]
