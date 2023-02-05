@@ -16,19 +16,17 @@ display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bu
 
 display max_wire, component_counts['mc'] * wires_per_mc;
 
-display arithmetic_intensity, workset_size * 1E-6, ai_app;
-
-display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9;
-
-display core_freq_max * 1E-9, core_freq_base_max * 1E-9, core_freq_absolute_max * 1E-9, core_area_multiplier;
+display arithmetic_intensity, l1_capacity * 1E-3, l2_capacity * 1E-6, workset_size * 1E-6, ai_app;
 
 display die_voltage, core_freq * 1E-9, core_freq_nominal * 1E-9, die_voltage_nominal;
 
+display core_freq_base_max * 1E-9, core_freq_absolute_max * 1E-9, core_freq_max * 1E-9, core_area_multiplier;
+
+display l3_capacity * 1E-6, component_counts['l3'], workset_size * 1E-6, l3_hit_rate_nominal, l3_hit_rate;
+
+display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9;
+
 print("==============================");
-
-display core_freq_max * 1E-9, core_freq_base_max * 1E-9, core_freq_absolute_max * 1E-9, core_area_multiplier;
-
-display core_freq * 1E-9;
 
 print("****************************** RUN   END ******************************");
 
@@ -52,18 +50,16 @@ display A_die * 1E6, (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bu
 
 display max_wire, component_counts['mc'] * wires_per_mc >> out.txt;
 
-display arithmetic_intensity, workset_size * 1E-6, ai_app >> out.txt;
-
-display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9 >> out.txt;
-
-display core_freq_max * 1E-9, core_freq_base_max * 1E-9, core_freq_absolute_max * 1E-9, core_area_multiplier >> out.txt;
+display arithmetic_intensity, l1_capacity * 1E-3, l2_capacity * 1E-6, workset_size * 1E-6, ai_app >> out.txt;
 
 display die_voltage, core_freq * 1E-9, core_freq_nominal * 1E-9, die_voltage_nominal >> out.txt;
 
+display core_freq_base_max * 1E-9, core_freq_absolute_max * 1E-9, core_freq_max * 1E-9, core_area_multiplier >> out.txt;
+
+display l3_capacity * 1E-6, component_counts['l3'], workset_size * 1E-6, l3_hit_rate_nominal, l3_hit_rate >> out.txt;
+
+display compute_throughput * 1E-9, arithmetic_intensity, system_bw * 1E-9 >> out.txt;
+
 print("==============================") >> out.txt;
-
-display core_freq_max * 1E-9, core_freq_base_max * 1E-9, core_freq_absolute_max * 1E-9, core_area_multiplier >> out.txt;
-
-display core_freq * 1E-9 >> out.txt;
 
 print("****************************** RUN   END ******************************") >> out.txt;
