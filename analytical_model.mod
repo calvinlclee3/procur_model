@@ -87,23 +87,9 @@ var max_wire >= 0;
 
 var core_freq_max >= 0;
 var core_area_multiplier >= 0;
-# core_freq_max auxiliary variables
-var f1;
-var f2;
-var f3;
-var b1 binary;
-var b2 binary;
-var b3 binary;
 
 var l3_to_workset_ratio >= 0;
 var l3_hit_rate >= 0;
-# l3_to_workset_ratio auxiliary variables
-var r1;
-var r2;
-var r3;
-var bb1 binary;
-var bb2 binary;
-var bb3 binary;
 
 var compute_throughput >= 0;        
 var system_bw >= 0;
@@ -130,31 +116,11 @@ s.t. def_max_wire: max_wire == sqrt((component_counts['core'] * component_areas[
                                      component_counts['mc']   * component_areas['mc']) / 6) * 6 * package_layer / link_pitch;
 
 # 5% increase in core_freq_max -> 10% increase in component_areas['core']
-s.t. def_core_freq_max: core_freq_max == 0*f1 + core_freq_base_max*f2 + core_freq_absolute_max*f3;
-s.t. def_core_area_multiplier: core_area_multiplier == 1*f1 + 1*f2 + (2*core_freq_absolute_max/core_freq_base_max - 1)*f3;
-s.t. core_freq_max_SOS2_1: 0 <= f1 <= 1;
-s.t. core_freq_max_SOS2_2: 0 <= f2 <= 1;
-s.t. core_freq_max_SOS2_3: 0 <= f3 <= 1;
-s.t. core_freq_max_SOS2_4: f1 + f2 + f3 == 1;
-s.t. core_freq_max_SOS2_5: f1 <= b1;
-s.t. core_freq_max_SOS2_6: f2 <= b2;
-s.t. core_freq_max_SOS2_7: f3 <= b3;
-s.t. core_freq_max_SOS2_8: b1 + b2 + b3 <= 2;
-s.t. core_freq_max_SOS2_9: b1 + b3 <= 1;
+s.t. def_core_area_multiplier: core_area_multiplier == << core_freq_base_max; 0, 1/core_freq_base_max * 2>> core_freq_max + 1;
 
 # relative size of the working set and the L3 cache determines L3 hit rate
-s.t. def_l3_to_workset_ratio_1: (l3_capacity * component_counts['l3']) / workset_size == 0*r1 + 1*r2 + 100*r3;
-s.t. def_l3_to_workset_ratio_2: l3_to_workset_ratio == 0*r1 + 1*r2 + 100*r3;
-s.t. def_l3_hit_rate: l3_hit_rate == 0*r1 + l3_hit_rate_nominal*r2 + l3_hit_rate_nominal*r3;
-s.t. l3_to_workset_ratio_SOS2_1: 0 <= r1 <= 1;
-s.t. l3_to_workset_ratio_SOS2_2: 0 <= r2 <= 1;
-s.t. l3_to_workset_ratio_SOS2_3: 0 <= r3 <= 1;
-s.t. l3_to_workset_ratio_SOS2_4: r1 + r2 + r3 == 1;
-s.t. l3_to_workset_ratio_SOS2_5: r1 <= bb1;
-s.t. l3_to_workset_ratio_SOS2_6: r2 <= bb2;
-s.t. l3_to_workset_ratio_SOS2_7: r3 <= bb3;
-s.t. l3_to_workset_ratio_SOS2_8: bb1 + bb2 + bb3 <= 2;
-s.t. l3_to_workset_ratio_SOS2_9: bb1 + bb3 <= 1;
+s.t. def_l3_to_workset_ratio: l3_to_workset_ratio == (l3_capacity * component_counts['l3']) / workset_size;
+s.t. def_l3_hit_rate: l3_hit_rate == << 1; l3_hit_rate_nominal, 0 >> l3_to_workset_ratio;
 
 s.t. def_compute_throughput: compute_throughput == core_freq * IPC * component_counts['core'];
 
@@ -190,7 +156,7 @@ minimize min_area: A_die;
 
 s.t. range {i in Components}: component_counts[i] >= 1;
 s.t. freq_lower_bound: core_freq >= core_freq_min;
-s.t. freq_upper_bound: (0*f1 + core_freq_base_max*f2 + core_freq_absolute_max*f3) >= core_freq;
+s.t. freq_upper_bound: core_freq_max >= core_freq;
 s.t. thermal_constraint: P_max >= P_die;                                                             # usual direction
 s.t. bump_constraint: A_die >= (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count); # unusual direction
 s.t. wire_constraint: max_wire >= component_counts['mc'] * wires_per_mc;
