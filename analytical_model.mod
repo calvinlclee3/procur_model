@@ -154,7 +154,8 @@ minimize min_area: A_die;
 
 s.t. range {i in Components}: component_counts[i] >= 1;
 s.t. freq_lower_bound: core_freq >= core_freq_min;
-s.t. freq_upper_bound: core_freq_max >= core_freq;
+s.t. freq_upper_bound_1: core_freq_max >= core_freq;
+s.t. freq_upper_bound_2: core_freq_absolute_max >= core_freq_max;
 s.t. thermal_constraint: P_max >= P_die;                                                             # usual direction
 s.t. bump_constraint: A_die >= (bump_pitch**2) * (power_bump_count + mc_bump_count + io_bump_count); # unusual direction
 s.t. wire_constraint: max_wire >= component_counts['mc'] * wires_per_mc;
