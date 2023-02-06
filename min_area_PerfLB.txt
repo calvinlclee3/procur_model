@@ -2,6 +2,7 @@
 
 -m min_area BARON PerfLB=20E9 CPU_time=3000s
 COMMENTS: compute_throughput do not need to be that high, unoptimal.
+          core_freq_max do not need to be that high, unoptimal.
 
 component_counts [*] :=
 core   2
@@ -76,3 +77,5 @@ perf*1e-09 = 20
 
 ==============================
 ****************************** RUN   END ******************************
+
+-m min_area BARON PerfLB=20E9 CPU_time=6000s
