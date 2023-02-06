@@ -8,11 +8,6 @@
 1. Write a paper documenting the model. Identify equations or variables that might be redundant.
 2. https://en.wikipedia.org/wiki/Quadratically_constrained_quadratic_program
 3. https://en.wikipedia.org/wiki/Linear_programming_relaxation
-4. 5% increase in freq -> 10% increase in core area but only 1% increase in L1/L2 area.
-   component_areas[''] will have l1, l2, and core parameters but 
-   component_count[''] will be the same for all three
-   Power for l1, l2, and core maybe can just be divided from the current number for core?
-5. For BARON, find out a way to modify CPU time limit.
 6. It is possible that as the model asks for more performance
    (whether through max_perf objective or through a higher PerfLB in min_area), 
    the search space becomes intractable for the solver.
