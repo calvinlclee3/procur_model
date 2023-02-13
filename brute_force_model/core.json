@@ -1,0 +1,1 @@
+[{"name": "Intel Core i7-12700K", "core_freq": 3600000000.0, "core_count": 6, "core_area": 1e-05, "die_voltage_nominal": 1.2}, {"name": "Intel Core i9-13900K", "core_freq": 3000000000.0, "core_count": 12, "core_area": 7e-06, "die_voltage_nominal": 1.0}, {"name": "Intel Core i3-12100F", "core_freq": 3300000000.0, "core_count": 2, "core_area": 1.2e-05, "die_voltage_nominal": 1.4}]

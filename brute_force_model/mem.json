@@ -1,0 +1,1 @@
+[{"name": "Dual Channel DDR4", "mc_bw": 28800000000.0, "mc_count": 2, "mc_area": 5e-06, "mem_freq": 3200000000.0}, {"name": "Dual Channel DDR5", "mc_bw": 38400000000.0, "mc_count": 2, "mc_area": 7e-06, "mem_freq": 4800000000.0}, {"name": "HBM3", "mc_bw": 768000000000.0, "mc_count": 4, "mc_area": 3e-06, "mem_freq": 6000000000.0}]
