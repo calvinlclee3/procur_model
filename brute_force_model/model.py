@@ -321,24 +321,31 @@ def display_entry(result, dump):
 def findBest(results, obj, dump):
     print('______________________________________________________')
     print('Best design point:')
+
+    # Only consider feasible design points
+    filtered = [result for result in results if result["feasible"] == True]
+
     obj_vals = []
-    for result in results:
+    for result in filtered:
         for key, value in result.items():
             if(key == "obj value"):
                 obj_vals.append(value)
 
     for i in obj_vals:
-        print(f'{"{:.4e}".format(i)}')
+        if(i < 0.001 or i > 1000):
+            print(f'{"{:.4e}".format(i)}')
+        else:
+            print(f'{i}')
 
-    if(obj == "max_perf"):
+    if "max" in obj:
         max_value = max(obj_vals)
         max_index = obj_vals.index(max_value)
-        display_entry(results[max_index], dump)
+        display_entry(filtered[max_index], dump)
 
-    elif(obj == "min_area" or obj == "min_power"):
+    elif "min" in obj:
         min_value = min(obj_vals)
         min_index = obj_vals.index(min_value)
-        display_entry(results[min_index], dump)
+        display_entry(filtered[min_index], dump)
 
 
 
