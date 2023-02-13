@@ -225,10 +225,14 @@ def solve(obj, perfLB, areaUB, powerUB):
             p.compute_throughput = p.core_freq * p.IPC * p.core_count
 
             # All LD/ST go through L3. L3 misses go through main memory.
-            p.system_bw = min(p.l3_bw * p.l3_count / 1, p.mc_bw * p.mc_count / (1 - p.l3_hit_rate))
+            p.l3_bound = p.l3_bw * p.l3_count / 1
+            p.mc_bound = p.mc_bw * p.mc_count / (1 - p.l3_hit_rate)
+            p.system_bw = min(p.l3_bound, p.mc_bound)
             
             # Roofline Model
-            p.perf = min(p.compute_throughput, p.arithmetic_intensity * p.system_bw)
+            p.compute_bound = p.compute_throughput
+            p.io_bound = p.arithmetic_intensity * p.system_bw
+            p.perf = min(p.compute_bound, p.io_bound)
 
             # ****************************** ENFORCE OBJ-INDEPENDENT CONSTRAINTS ******************************
             if(p.core_count < 1 or p.l3_count < 1 or p.mc_count < 1 or p.io_count < 1):
