@@ -4,8 +4,8 @@ obj = max_perf
 core = {'name': 'Intel Core i7-12700K', 'core_freq': 3600000000.0, 'core_count': 6, 'core_area': 1e-05, 'die_voltage_nominal': 1.2}
 mem = {'name': 'Dual Channel DDR4', 'mc_bw': 28800000000.0, 'mc_count': 2, 'mc_area': 5e-06, 'mem_freq': 3200000000.0}
 feasible = True
-obj value = 3.3250e+10
-perf = 33.250
+obj value = 6.8580e+10
+perf = 6.8580e+10
 A_die = 1.2650e-04
 P_die = 122.93817684270081
 core_freq = 3.6000e+09
@@ -21,6 +21,7 @@ core_freq = 3.6000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 68580000000.0,
     "compute_throughput": 68580000000.0,
     "core_area": 1e-05,
     "core_area_multiplier": 1.4,
@@ -37,13 +38,15 @@ core_freq = 3.6000e+09
     "die_voltage_nominal": 1.2,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 278574545454.5454,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 1000000000.0,
+    "l3_bound": 250000000000.0,
+    "l3_bw": 20000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -53,6 +56,7 @@ core_freq = 3.6000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 6611.989110698838,
     "mc_area": 5e-06,
+    "mc_bound": 104727272727.27272,
     "mc_bump_count": 288,
     "mc_bw": 28800000000.0,
     "mc_count": 2,
@@ -61,11 +65,11 @@ core_freq = 3.6000e+09
     "mc_power_phys": 6.1725767445504,
     "mem_freq": 3200000000.0,
     "package_layer": 6,
-    "perf": 33249999999.999996,
+    "perf": 68580000000.0,
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 393.4021659218203,
-    "system_bw": 12500000000.0,
+    "system_bw": 104727272727.27272,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -80,8 +84,8 @@ obj = max_perf
 core = {'name': 'Intel Core i7-12700K', 'core_freq': 3600000000.0, 'core_count': 6, 'core_area': 1e-05, 'die_voltage_nominal': 1.2}
 mem = {'name': 'Dual Channel DDR5', 'mc_bw': 38400000000.0, 'mc_count': 2, 'mc_area': 7e-06, 'mem_freq': 4800000000.0}
 feasible = True
-obj value = 3.3250e+10
-perf = 3.3250e+10
+obj value = 6.8580e+10
+perf = 6.8580e+10
 A_die = 1.3050e-04
 P_die = 129.1107535872512
 core_freq = 3.6000e+09
@@ -97,6 +101,7 @@ core_freq = 3.6000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 68580000000.0,
     "compute_throughput": 68580000000.0,
     "core_area": 1e-05,
     "core_area_multiplier": 1.4,
@@ -113,13 +118,15 @@ core_freq = 3.6000e+09
     "die_voltage_nominal": 1.2,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 371432727272.7272,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 1000000000.0,
+    "l3_bound": 250000000000.0,
+    "l3_bw": 20000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -129,6 +136,7 @@ core_freq = 3.6000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 6715.712918223946,
     "mc_area": 7e-06,
+    "mc_bound": 139636363636.36362,
     "mc_bump_count": 288,
     "mc_bw": 38400000000.0,
     "mc_count": 2,
@@ -137,11 +145,11 @@ core_freq = 3.6000e+09
     "mc_power_phys": 9.2588651168256,
     "mem_freq": 4800000000.0,
     "package_layer": 6,
-    "perf": 33249999999.999996,
+    "perf": 68580000000.0,
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 413.1544115056457,
-    "system_bw": 12500000000.0,
+    "system_bw": 139636363636.36362,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -156,8 +164,8 @@ obj = max_perf
 core = {'name': 'Intel Core i7-12700K', 'core_freq': 3600000000.0, 'core_count': 6, 'core_area': 1e-05, 'die_voltage_nominal': 1.2}
 mem = {'name': 'HBM3', 'mc_bw': 768000000000.0, 'mc_count': 4, 'mc_area': 3e-06, 'mem_freq': 6000000000.0}
 feasible = True
-obj value = 3.3250e+10
-perf = 3.3250e+10
+obj value = 6.8580e+10
+perf = 6.8580e+10
 A_die = 1.2850e-04
 P_die = 162.887348937728
 core_freq = 3.6000e+09
@@ -173,6 +181,7 @@ core_freq = 3.6000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 68580000000.0,
     "compute_throughput": 68580000000.0,
     "core_area": 1e-05,
     "core_area_multiplier": 1.4,
@@ -189,13 +198,15 @@ core_freq = 3.6000e+09
     "die_voltage_nominal": 1.2,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 664999999999.9999,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 1000000000.0,
+    "l3_bound": 250000000000.0,
+    "l3_bw": 20000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -205,6 +216,7 @@ core_freq = 3.6000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 6664.052820919113,
     "mc_area": 3e-06,
+    "mc_bound": 5585454545454.545,
     "mc_bump_count": 288,
     "mc_bw": 768000000000.0,
     "mc_count": 4,
@@ -213,11 +225,11 @@ core_freq = 3.6000e+09
     "mc_power_phys": 11.573581396032,
     "mem_freq": 6000000000.0,
     "package_layer": 6,
-    "perf": 33249999999.999996,
+    "perf": 68580000000.0,
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 521.239516634089,
-    "system_bw": 12500000000.0,
+    "system_bw": 250000000000.0,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -232,8 +244,8 @@ obj = max_perf
 core = {'name': 'Intel Core i9-13900K', 'core_freq': 3000000000.0, 'core_count': 12, 'core_area': 7e-06, 'die_voltage_nominal': 1.0}
 mem = {'name': 'Dual Channel DDR4', 'mc_bw': 28800000000.0, 'mc_count': 2, 'mc_area': 5e-06, 'mem_freq': 3200000000.0}
 feasible = True
-obj value = 3.3250e+10
-perf = 3.3250e+10
+obj value = 1.1430e+11
+perf = 1.1430e+11
 A_die = 1.2650e-04
 P_die = 104.8653947391008
 core_freq = 3.0000e+09
@@ -249,6 +261,7 @@ core_freq = 3.0000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 114300000000.0,
     "compute_throughput": 114300000000.0,
     "core_area": 7e-06,
     "core_area_multiplier": 1.0,
@@ -265,13 +278,15 @@ core_freq = 3.0000e+09
     "die_voltage_nominal": 1.0,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 278574545454.5454,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 1000000000.0,
+    "l3_bound": 250000000000.0,
+    "l3_bw": 20000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -281,6 +296,7 @@ core_freq = 3.0000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 6611.989110698837,
     "mc_area": 5e-06,
+    "mc_bound": 104727272727.27272,
     "mc_bump_count": 288,
     "mc_bw": 28800000000.0,
     "mc_count": 2,
@@ -289,11 +305,11 @@ core_freq = 3.0000e+09
     "mc_power_phys": 6.1725767445504,
     "mem_freq": 3200000000.0,
     "package_layer": 6,
-    "perf": 33249999999.999996,
+    "perf": 114300000000.0,
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 483.21973898870243,
-    "system_bw": 12500000000.0,
+    "system_bw": 104727272727.27272,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -308,8 +324,8 @@ obj = max_perf
 core = {'name': 'Intel Core i9-13900K', 'core_freq': 3000000000.0, 'core_count': 12, 'core_area': 7e-06, 'die_voltage_nominal': 1.0}
 mem = {'name': 'Dual Channel DDR5', 'mc_bw': 38400000000.0, 'mc_count': 2, 'mc_area': 7e-06, 'mem_freq': 4800000000.0}
 feasible = True
-obj value = 3.3250e+10
-perf = 3.3250e+10
+obj value = 1.1430e+11
+perf = 1.1430e+11
 A_die = 1.3050e-04
 P_die = 111.0379714836512
 core_freq = 3.0000e+09
@@ -325,6 +341,7 @@ core_freq = 3.0000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 114300000000.0,
     "compute_throughput": 114300000000.0,
     "core_area": 7e-06,
     "core_area_multiplier": 1.0,
@@ -341,13 +358,15 @@ core_freq = 3.0000e+09
     "die_voltage_nominal": 1.0,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 371432727272.7272,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 1000000000.0,
+    "l3_bound": 250000000000.0,
+    "l3_bw": 20000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -357,6 +376,7 @@ core_freq = 3.0000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 6715.712918223946,
     "mc_area": 7e-06,
+    "mc_bound": 139636363636.36362,
     "mc_bump_count": 288,
     "mc_bw": 38400000000.0,
     "mc_count": 2,
@@ -365,11 +385,11 @@ core_freq = 3.0000e+09
     "mc_power_phys": 9.2588651168256,
     "mem_freq": 4800000000.0,
     "package_layer": 6,
-    "perf": 33249999999.999996,
+    "perf": 114300000000.0,
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 511.6629726294111,
-    "system_bw": 12500000000.0,
+    "system_bw": 139636363636.36362,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -384,8 +404,8 @@ obj = max_perf
 core = {'name': 'Intel Core i9-13900K', 'core_freq': 3000000000.0, 'core_count': 12, 'core_area': 7e-06, 'die_voltage_nominal': 1.0}
 mem = {'name': 'HBM3', 'mc_bw': 768000000000.0, 'mc_count': 4, 'mc_area': 3e-06, 'mem_freq': 6000000000.0}
 feasible = True
-obj value = 3.3250e+10
-perf = 3.3250e+10
+obj value = 1.1430e+11
+perf = 1.1430e+11
 A_die = 1.2850e-04
 P_die = 144.81456683412802
 core_freq = 3.0000e+09
@@ -401,6 +421,7 @@ core_freq = 3.0000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 114300000000.0,
     "compute_throughput": 114300000000.0,
     "core_area": 7e-06,
     "core_area_multiplier": 1.0,
@@ -417,13 +438,15 @@ core_freq = 3.0000e+09
     "die_voltage_nominal": 1.0,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 664999999999.9999,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 1000000000.0,
+    "l3_bound": 250000000000.0,
+    "l3_bw": 20000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -433,6 +456,7 @@ core_freq = 3.0000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 6664.0528209191125,
     "mc_area": 3e-06,
+    "mc_bound": 5585454545454.545,
     "mc_bump_count": 288,
     "mc_bw": 768000000000.0,
     "mc_count": 4,
@@ -441,11 +465,11 @@ core_freq = 3.0000e+09
     "mc_power_phys": 11.573581396032,
     "mem_freq": 6000000000.0,
     "package_layer": 6,
-    "perf": 33249999999.999996,
+    "perf": 114300000000.0,
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 667.3055240143693,
-    "system_bw": 12500000000.0,
+    "system_bw": 250000000000.0,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -477,6 +501,7 @@ core_freq = 3.3000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 20955000000.0,
     "compute_throughput": 20955000000.0,
     "core_area": 1.2e-05,
     "core_area_multiplier": 1.2000000000000002,
@@ -493,13 +518,15 @@ core_freq = 3.3000e+09
     "die_voltage_nominal": 1.4,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 278574545454.5454,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 1000000000.0,
+    "l3_bound": 250000000000.0,
+    "l3_bw": 20000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -509,6 +536,7 @@ core_freq = 3.3000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 4963.998388396192,
     "mc_area": 5e-06,
+    "mc_bound": 104727272727.27272,
     "mc_bump_count": 288,
     "mc_bw": 28800000000.0,
     "mc_count": 2,
@@ -521,7 +549,7 @@ core_freq = 3.3000e+09
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 188.59485033832286,
-    "system_bw": 12500000000.0,
+    "system_bw": 104727272727.27272,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -553,6 +581,7 @@ core_freq = 3.3000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 20955000000.0,
     "compute_throughput": 20955000000.0,
     "core_area": 1.2e-05,
     "core_area_multiplier": 1.2000000000000002,
@@ -569,13 +598,15 @@ core_freq = 3.3000e+09
     "die_voltage_nominal": 1.4,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 371432727272.7272,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 1000000000.0,
+    "l3_bound": 250000000000.0,
+    "l3_bw": 20000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -585,6 +616,7 @@ core_freq = 3.3000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 5101.341000168484,
     "mc_area": 7e-06,
+    "mc_bound": 139636363636.36362,
     "mc_bump_count": 288,
     "mc_bw": 38400000000.0,
     "mc_count": 2,
@@ -597,7 +629,7 @@ core_freq = 3.3000e+09
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 207.0644825725492,
-    "system_bw": 12500000000.0,
+    "system_bw": 139636363636.36362,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -629,6 +661,7 @@ core_freq = 3.3000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 20955000000.0,
     "compute_throughput": 20955000000.0,
     "core_area": 1.2e-05,
     "core_area_multiplier": 1.2000000000000002,
@@ -645,13 +678,15 @@ core_freq = 3.3000e+09
     "die_voltage_nominal": 1.4,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 664999999999.9999,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 1000000000.0,
+    "l3_bound": 250000000000.0,
+    "l3_bw": 20000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -661,6 +696,7 @@ core_freq = 3.3000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 5033.138186062449,
     "mc_area": 3e-06,
+    "mc_bound": 5585454545454.545,
     "mc_bump_count": 288,
     "mc_bw": 768000000000.0,
     "mc_count": 4,
@@ -673,7 +709,7 @@ core_freq = 3.3000e+09
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 308.13107438096364,
-    "system_bw": 12500000000.0,
+    "system_bw": 250000000000.0,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -683,12 +719,12 @@ core_freq = 3.3000e+09
     "workset_size": 50000000.0
 }
 ______________________________________________________
-3.3250e+10
-3.3250e+10
-3.3250e+10
-3.3250e+10
-3.3250e+10
-3.3250e+10
+6.8580e+10
+6.8580e+10
+6.8580e+10
+1.1430e+11
+1.1430e+11
+1.1430e+11
 2.0955e+10
 2.0955e+10
 2.0955e+10
@@ -698,8 +734,8 @@ obj = max_perf
 core = {'name': 'Intel Core i7-12700K', 'core_freq': 3600000000.0, 'core_count': 6, 'core_area': 1e-05, 'die_voltage_nominal': 1.2}
 mem = {'name': 'Dual Channel DDR4', 'mc_bw': 28800000000.0, 'mc_count': 2, 'mc_area': 5e-06, 'mem_freq': 3200000000.0}
 feasible = True
-obj value = 6.8580e+10
-perf = 6.8580e+10
+obj value = 3.3250e+10
+perf = 3.3250e+10
 A_die = 1.2650e-04
 P_die = 122.93817684270081
 core_freq = 3.6000e+09
@@ -715,6 +751,7 @@ core_freq = 3.6000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 68580000000.0,
     "compute_throughput": 68580000000.0,
     "core_area": 1e-05,
     "core_area_multiplier": 1.4,
@@ -731,13 +768,15 @@ core_freq = 3.6000e+09
     "die_voltage_nominal": 1.2,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 33249999999.999996,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 20000000000.0,
+    "l3_bound": 12500000000.0,
+    "l3_bw": 1000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -747,6 +786,7 @@ core_freq = 3.6000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 6611.989110698838,
     "mc_area": 5e-06,
+    "mc_bound": 104727272727.27272,
     "mc_bump_count": 288,
     "mc_bw": 28800000000.0,
     "mc_count": 2,
@@ -755,11 +795,11 @@ core_freq = 3.6000e+09
     "mc_power_phys": 6.1725767445504,
     "mem_freq": 3200000000.0,
     "package_layer": 6,
-    "perf": 68580000000.0,
+    "perf": 33249999999.999996,
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 393.4021659218203,
-    "system_bw": 104727272727.27272,
+    "system_bw": 12500000000.0,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -774,8 +814,8 @@ obj = max_perf
 core = {'name': 'Intel Core i7-12700K', 'core_freq': 3600000000.0, 'core_count': 6, 'core_area': 1e-05, 'die_voltage_nominal': 1.2}
 mem = {'name': 'Dual Channel DDR5', 'mc_bw': 38400000000.0, 'mc_count': 2, 'mc_area': 7e-06, 'mem_freq': 4800000000.0}
 feasible = True
-obj value = 6.8580e+10
-perf = 6.8580e+10
+obj value = 3.3250e+10
+perf = 3.3250e+10
 A_die = 1.3050e-04
 P_die = 129.1107535872512
 core_freq = 3.6000e+09
@@ -791,6 +831,7 @@ core_freq = 3.6000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 68580000000.0,
     "compute_throughput": 68580000000.0,
     "core_area": 1e-05,
     "core_area_multiplier": 1.4,
@@ -807,13 +848,15 @@ core_freq = 3.6000e+09
     "die_voltage_nominal": 1.2,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 33249999999.999996,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 20000000000.0,
+    "l3_bound": 12500000000.0,
+    "l3_bw": 1000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -823,6 +866,7 @@ core_freq = 3.6000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 6715.712918223946,
     "mc_area": 7e-06,
+    "mc_bound": 139636363636.36362,
     "mc_bump_count": 288,
     "mc_bw": 38400000000.0,
     "mc_count": 2,
@@ -831,11 +875,11 @@ core_freq = 3.6000e+09
     "mc_power_phys": 9.2588651168256,
     "mem_freq": 4800000000.0,
     "package_layer": 6,
-    "perf": 68580000000.0,
+    "perf": 33249999999.999996,
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 413.1544115056457,
-    "system_bw": 139636363636.36362,
+    "system_bw": 12500000000.0,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -850,8 +894,8 @@ obj = max_perf
 core = {'name': 'Intel Core i7-12700K', 'core_freq': 3600000000.0, 'core_count': 6, 'core_area': 1e-05, 'die_voltage_nominal': 1.2}
 mem = {'name': 'HBM3', 'mc_bw': 768000000000.0, 'mc_count': 4, 'mc_area': 3e-06, 'mem_freq': 6000000000.0}
 feasible = True
-obj value = 6.8580e+10
-perf = 6.8580e+10
+obj value = 3.3250e+10
+perf = 3.3250e+10
 A_die = 1.2850e-04
 P_die = 162.887348937728
 core_freq = 3.6000e+09
@@ -867,6 +911,7 @@ core_freq = 3.6000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 68580000000.0,
     "compute_throughput": 68580000000.0,
     "core_area": 1e-05,
     "core_area_multiplier": 1.4,
@@ -883,13 +928,15 @@ core_freq = 3.6000e+09
     "die_voltage_nominal": 1.2,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 33249999999.999996,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 20000000000.0,
+    "l3_bound": 12500000000.0,
+    "l3_bw": 1000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -899,6 +946,7 @@ core_freq = 3.6000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 6664.052820919113,
     "mc_area": 3e-06,
+    "mc_bound": 5585454545454.545,
     "mc_bump_count": 288,
     "mc_bw": 768000000000.0,
     "mc_count": 4,
@@ -907,11 +955,11 @@ core_freq = 3.6000e+09
     "mc_power_phys": 11.573581396032,
     "mem_freq": 6000000000.0,
     "package_layer": 6,
-    "perf": 68580000000.0,
+    "perf": 33249999999.999996,
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 521.239516634089,
-    "system_bw": 250000000000.0,
+    "system_bw": 12500000000.0,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -926,8 +974,8 @@ obj = max_perf
 core = {'name': 'Intel Core i9-13900K', 'core_freq': 3000000000.0, 'core_count': 12, 'core_area': 7e-06, 'die_voltage_nominal': 1.0}
 mem = {'name': 'Dual Channel DDR4', 'mc_bw': 28800000000.0, 'mc_count': 2, 'mc_area': 5e-06, 'mem_freq': 3200000000.0}
 feasible = True
-obj value = 1.1430e+11
-perf = 1.1430e+11
+obj value = 3.3250e+10
+perf = 3.3250e+10
 A_die = 1.2650e-04
 P_die = 104.8653947391008
 core_freq = 3.0000e+09
@@ -943,6 +991,7 @@ core_freq = 3.0000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 114300000000.0,
     "compute_throughput": 114300000000.0,
     "core_area": 7e-06,
     "core_area_multiplier": 1.0,
@@ -959,13 +1008,15 @@ core_freq = 3.0000e+09
     "die_voltage_nominal": 1.0,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 33249999999.999996,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 20000000000.0,
+    "l3_bound": 12500000000.0,
+    "l3_bw": 1000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -975,6 +1026,7 @@ core_freq = 3.0000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 6611.989110698837,
     "mc_area": 5e-06,
+    "mc_bound": 104727272727.27272,
     "mc_bump_count": 288,
     "mc_bw": 28800000000.0,
     "mc_count": 2,
@@ -983,11 +1035,11 @@ core_freq = 3.0000e+09
     "mc_power_phys": 6.1725767445504,
     "mem_freq": 3200000000.0,
     "package_layer": 6,
-    "perf": 114300000000.0,
+    "perf": 33249999999.999996,
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 483.21973898870243,
-    "system_bw": 104727272727.27272,
+    "system_bw": 12500000000.0,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -1002,8 +1054,8 @@ obj = max_perf
 core = {'name': 'Intel Core i9-13900K', 'core_freq': 3000000000.0, 'core_count': 12, 'core_area': 7e-06, 'die_voltage_nominal': 1.0}
 mem = {'name': 'Dual Channel DDR5', 'mc_bw': 38400000000.0, 'mc_count': 2, 'mc_area': 7e-06, 'mem_freq': 4800000000.0}
 feasible = True
-obj value = 1.1430e+11
-perf = 1.1430e+11
+obj value = 3.3250e+10
+perf = 3.3250e+10
 A_die = 1.3050e-04
 P_die = 111.0379714836512
 core_freq = 3.0000e+09
@@ -1019,6 +1071,7 @@ core_freq = 3.0000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 114300000000.0,
     "compute_throughput": 114300000000.0,
     "core_area": 7e-06,
     "core_area_multiplier": 1.0,
@@ -1035,13 +1088,15 @@ core_freq = 3.0000e+09
     "die_voltage_nominal": 1.0,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 33249999999.999996,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 20000000000.0,
+    "l3_bound": 12500000000.0,
+    "l3_bw": 1000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -1051,6 +1106,7 @@ core_freq = 3.0000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 6715.712918223946,
     "mc_area": 7e-06,
+    "mc_bound": 139636363636.36362,
     "mc_bump_count": 288,
     "mc_bw": 38400000000.0,
     "mc_count": 2,
@@ -1059,11 +1115,11 @@ core_freq = 3.0000e+09
     "mc_power_phys": 9.2588651168256,
     "mem_freq": 4800000000.0,
     "package_layer": 6,
-    "perf": 114300000000.0,
+    "perf": 33249999999.999996,
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 511.6629726294111,
-    "system_bw": 139636363636.36362,
+    "system_bw": 12500000000.0,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -1078,8 +1134,8 @@ obj = max_perf
 core = {'name': 'Intel Core i9-13900K', 'core_freq': 3000000000.0, 'core_count': 12, 'core_area': 7e-06, 'die_voltage_nominal': 1.0}
 mem = {'name': 'HBM3', 'mc_bw': 768000000000.0, 'mc_count': 4, 'mc_area': 3e-06, 'mem_freq': 6000000000.0}
 feasible = True
-obj value = 1.1430e+11
-perf = 1.1430e+11
+obj value = 3.3250e+10
+perf = 3.3250e+10
 A_die = 1.2850e-04
 P_die = 144.81456683412802
 core_freq = 3.0000e+09
@@ -1095,6 +1151,7 @@ core_freq = 3.0000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 114300000000.0,
     "compute_throughput": 114300000000.0,
     "core_area": 7e-06,
     "core_area_multiplier": 1.0,
@@ -1111,13 +1168,15 @@ core_freq = 3.0000e+09
     "die_voltage_nominal": 1.0,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 33249999999.999996,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 20000000000.0,
+    "l3_bound": 12500000000.0,
+    "l3_bw": 1000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -1127,6 +1186,7 @@ core_freq = 3.0000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 6664.0528209191125,
     "mc_area": 3e-06,
+    "mc_bound": 5585454545454.545,
     "mc_bump_count": 288,
     "mc_bw": 768000000000.0,
     "mc_count": 4,
@@ -1135,11 +1195,11 @@ core_freq = 3.0000e+09
     "mc_power_phys": 11.573581396032,
     "mem_freq": 6000000000.0,
     "package_layer": 6,
-    "perf": 114300000000.0,
+    "perf": 33249999999.999996,
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 667.3055240143693,
-    "system_bw": 250000000000.0,
+    "system_bw": 12500000000.0,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -1171,6 +1231,7 @@ core_freq = 3.3000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 20955000000.0,
     "compute_throughput": 20955000000.0,
     "core_area": 1.2e-05,
     "core_area_multiplier": 1.2000000000000002,
@@ -1187,13 +1248,15 @@ core_freq = 3.3000e+09
     "die_voltage_nominal": 1.4,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 33249999999.999996,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 20000000000.0,
+    "l3_bound": 12500000000.0,
+    "l3_bw": 1000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -1203,6 +1266,7 @@ core_freq = 3.3000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 4963.998388396192,
     "mc_area": 5e-06,
+    "mc_bound": 104727272727.27272,
     "mc_bump_count": 288,
     "mc_bw": 28800000000.0,
     "mc_count": 2,
@@ -1215,7 +1279,7 @@ core_freq = 3.3000e+09
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 188.59485033832286,
-    "system_bw": 104727272727.27272,
+    "system_bw": 12500000000.0,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -1247,6 +1311,7 @@ core_freq = 3.3000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 20955000000.0,
     "compute_throughput": 20955000000.0,
     "core_area": 1.2e-05,
     "core_area_multiplier": 1.2000000000000002,
@@ -1263,13 +1328,15 @@ core_freq = 3.3000e+09
     "die_voltage_nominal": 1.4,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 33249999999.999996,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 20000000000.0,
+    "l3_bound": 12500000000.0,
+    "l3_bw": 1000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -1279,6 +1346,7 @@ core_freq = 3.3000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 5101.341000168484,
     "mc_area": 7e-06,
+    "mc_bound": 139636363636.36362,
     "mc_bump_count": 288,
     "mc_bw": 38400000000.0,
     "mc_count": 2,
@@ -1291,7 +1359,7 @@ core_freq = 3.3000e+09
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 207.0644825725492,
-    "system_bw": 139636363636.36362,
+    "system_bw": 12500000000.0,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -1323,6 +1391,7 @@ core_freq = 3.3000e+09
     "arithmetic_intensity": 2.6599999999999997,
     "bump_pitch": 4e-05,
     "capacitance_per_core": 2.96080965e-09,
+    "compute_bound": 20955000000.0,
     "compute_throughput": 20955000000.0,
     "core_area": 1.2e-05,
     "core_area_multiplier": 1.2000000000000002,
@@ -1339,13 +1408,15 @@ core_freq = 3.3000e+09
     "die_voltage_nominal": 1.4,
     "energy_per_wire": 6.697674419e-12,
     "io_area": 2e-05,
+    "io_bound": 33249999999.999996,
     "io_bump_count": 114,
     "io_count": 1,
     "io_power": 10,
     "l1_capacity": 80000.0,
     "l2_capacity": 1250000.0,
     "l3_area": 1e-06,
-    "l3_bw": 20000000000.0,
+    "l3_bound": 12500000000.0,
+    "l3_bw": 1000000000.0,
     "l3_capacity": 2000000.0,
     "l3_count": 12.5,
     "l3_hit_rate": 0.45,
@@ -1355,6 +1426,7 @@ core_freq = 3.3000e+09
     "link_pitch": 2.5e-05,
     "max_wire": 5033.138186062449,
     "mc_area": 3e-06,
+    "mc_bound": 5585454545454.545,
     "mc_bump_count": 288,
     "mc_bw": 768000000000.0,
     "mc_count": 4,
@@ -1367,7 +1439,7 @@ core_freq = 3.3000e+09
     "perfLB": 10000000000.0,
     "powerUB": 287.5,
     "power_bump_count": 308.13107438096364,
-    "system_bw": 250000000000.0,
+    "system_bw": 12500000000.0,
     "theta_ba": 1.5,
     "theta_ca": 0.2,
     "theta_ja": 0.26086956521739135,
@@ -1377,12 +1449,12 @@ core_freq = 3.3000e+09
     "workset_size": 50000000.0
 }
 ______________________________________________________
-6.8580e+10
-6.8580e+10
-6.8580e+10
-1.1430e+11
-1.1430e+11
-1.1430e+11
+3.3250e+10
+3.3250e+10
+3.3250e+10
+3.3250e+10
+3.3250e+10
+3.3250e+10
 2.0955e+10
 2.0955e+10
 2.0955e+10

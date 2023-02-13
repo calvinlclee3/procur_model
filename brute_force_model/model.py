@@ -146,7 +146,7 @@ def solve(obj, perfLB, areaUB, powerUB):
 
     results = []
 
-    print(f'Solving for objective {obj} with perfLB={perfLB}, areaUB={areaUB}, powerUB={powerUB}')
+    print(f'Solving for objective {obj} with perfLB={perfLB}, areaUB={areaUB}, powerUB={powerUB}\n')
     
     with open("default.json", 'r') as fp:
         default = json.load(fp)
@@ -298,31 +298,48 @@ def infs_handler(result, err):
 
 def display(results, dump):
     for result in results:
-        for key, value in result.items():
-            if(dump == False and key == "data dump"):
-                continue
-            if(dump == True and key == "data dump"):
-                print(json.dumps(value, sort_keys=True, indent=4))
-                continue
-            if type(value) == int or type(value) == float:
-                if(value < 0.001 or value > 1000):
-                    print(f'{key} = {"{:.4e}".format(value)}')
-                else:
-                    print(f'{key} = {value}')
+        display_entry(result, dump)
+
+def display_entry(result, dump):
+    print('______________________________________________________')
+    for key, value in result.items():
+        if(dump == False and key == "data dump"):
+            continue
+        if(dump == True and key == "data dump"):
+            print(json.dumps(value, sort_keys=True, indent=4))
+            continue
+        if type(value) == int or type(value) == float:
+            if(value < 0.001 or value > 1000):
+                print(f'{key} = {"{:.4e}".format(value)}')
             else:
                 print(f'{key} = {value}')
+        else:
+            print(f'{key} = {value}')
 
-        print('______________________________________________________')
+    
 
-def findBest(results):
-    obj_val = []
+def findBest(results, obj, dump):
+    print('______________________________________________________')
+    print('Best design point:')
+    obj_vals = []
     for result in results:
         for key, value in result.items():
             if(key == "obj value"):
-                obj_val.append(value)
+                obj_vals.append(value)
 
-    for i in obj_val:
+    for i in obj_vals:
         print(f'{"{:.4e}".format(i)}')
+
+    if(obj == "max_perf"):
+        max_value = max(obj_vals)
+        max_index = obj_vals.index(max_value)
+        display_entry(results[max_index], dump)
+
+    elif(obj == "min_area" or obj == "min_power"):
+        min_value = min(obj_vals)
+        min_index = obj_vals.index(min_value)
+        display_entry(results[min_index], dump)
+
 
 
 if __name__ == "__main__":
@@ -338,4 +355,5 @@ if __name__ == "__main__":
     write_json()
     results = solve(args.obj, args.perfLB, args.areaUB, args.powerUB)
     display(results, args.dump)
-    findBest(results)
+    findBest(results, args.obj, args.dump)
+
