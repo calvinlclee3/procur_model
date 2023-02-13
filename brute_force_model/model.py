@@ -302,7 +302,7 @@ def display(results, dump):
                 continue
             if type(value) == int or type(value) == float:
                 if(value < 0.001 or value > 1000):
-                    print(f'{key} = {"{:.2e}".format(value)}')
+                    print(f'{key} = {"{:.4e}".format(value)}')
                 else:
                     print(f'{key} = {value}')
             else:
@@ -318,7 +318,7 @@ def findBest(results):
                 obj_val.append(value)
 
     for i in obj_val:
-        print(f'{"{:.2e}".format(i)}')
+        print(f'{"{:.4e}".format(i)}')
 
 
 if __name__ == "__main__":
