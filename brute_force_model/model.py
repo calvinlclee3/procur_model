@@ -89,7 +89,7 @@ def write_json():
     with open("default.json", "w") as outfile:
         json.dump(default, outfile)
 
-    # This part will need to be automated
+    # THIS PART CANNOT BE HAND-CODED
     # This is just an example
     core = []
     core.append({})
@@ -167,19 +167,19 @@ def solve(obj, perfLB, areaUB, powerUB):
             result["mem"] = copy.deepcopy(mem)
             result["feasible"] = True
 
-            # Overwrite default values, but only for overlapping keys
+            # Overwrite default values, but only for keys that are already in default.json
             default.update((k, mem[k]) for k in default.keys() & mem.keys())
             default.update((k, core[k]) for k in default.keys() & core.keys())
 
-            # One loop for each of cooling, packaging, and mem itf
-            # Overwrite default values here.
-
+            # Convert dict to namespace for readability
             p = SimpleNamespace(**default)
 
             # Set objective-dependent constraints from CLI
             p.perfLB = perfLB * 1E9 
             p.areaUB = areaUB * 1E-6 
             p.powerUB = powerUB 
+
+            # ****************************** MODEL EQUATIONS ******************************
 
             # Compute max power allowed by thermal constraint.
             p.theta_ja = (p.theta_jc + p.theta_ca)*(p.theta_jb + p.theta_ba)/(p.theta_jc + p.theta_ca + p.theta_jb + p.theta_ba);
@@ -199,7 +199,7 @@ def solve(obj, perfLB, areaUB, powerUB):
             else:
                 p.core_area_multiplier = (p.core_freq/p.core_freq_base_max - 1)*2 + 1
 
-            # scales linearly with core_freq
+            # die_voltage scales linearly with core_freq
             p.die_voltage = (p.core_freq / p.core_freq_nominal) * p.die_voltage_nominal
             
             p.core_power = p.core_freq * p.capacitance_per_core * (p.die_voltage**2)
@@ -244,7 +244,7 @@ def solve(obj, perfLB, areaUB, powerUB):
             if(p.P_max < p.P_die):
                 infs_handler(result, "P_max < P_die")
             
-            if(p.A_die < (p.bump_pitch**2) * (p.power_bump_count + p.mc_bump_count + p.io_bump_count)):
+            if(p.A_die < (p.bump_pitch**2) * (p.power_bump_count + p.mc_bump_count * p.mc_count + p.io_bump_count * p.io_count)):
                 infs_handler(result, "bump constraint not met")
             
             if(p.max_wire < p.mc_count * p.wires_per_mc):
@@ -277,15 +277,15 @@ def solve(obj, perfLB, areaUB, powerUB):
                     infs_handler(result, f'perf < perfLB')
                 result["obj value"] = p.P_die
 
+            # ***********************************************************************************************
+            
             result["perf"] = p.perf
             result["A_die"] = p.A_die
             result["P_die"] = p.P_die
             result["core_freq"] = p.core_freq
-            # ***********************************************************************************************
-
 
             # Dump the entire namespace with all model param/variables
-            result["data dump"] = copy.deepcopy(p.__dict__)
+            result["dump"] = copy.deepcopy(p.__dict__)
             results.append(result)
     
     return results
@@ -294,7 +294,7 @@ def infs_handler(result, err):
     result["feasible"] = False
     result["err"] = err
 
-    print(f'Infeasible: {result["obj"]}, {result["design point"]} since {err}')
+    print(f'Infeasible: obj = {result["obj"]} | design point = {result["design point"]} | err = {result["err"]}')
 
 def display(results, dump):
     for result in results:
@@ -303,40 +303,51 @@ def display(results, dump):
 def display_entry(result, dump):
     print('______________________________________________________')
     for key, value in result.items():
-        if(dump == False and key == "data dump"):
+        if(key == "dump" and dump == False):
             continue
-        if(dump == True and key == "data dump"):
-            print(json.dumps(value, sort_keys=True, indent=4))
-            continue
-        if type(value) == int or type(value) == float:
-            if(value < 0.001 or value > 1000):
-                print(f'{key} = {"{:.4e}".format(value)}')
+        elif(key == "dump" and dump == True):
+            #print(json.dumps(value, sort_keys=True, indent=4))
+            display_dump(value)
+        else:
+            if type(value) == int or type(value) == float:
+                if(value < 0.001 or value > 1000):
+                    print(f'{key} = {"{:.4e}".format(value)}')
+                else:
+                    print(f'{key} = {value}')
             else:
                 print(f'{key} = {value}')
-        else:
-            print(f'{key} = {value}')
 
-    
+def display_dump(dump_dict):
+    print(f'{{')
+    for key, value in dump_dict.items():
+        if(value < 0.001 or value > 1000):
+            print(f'\t{key} = {"{:.4e}".format(value)}')
+        else:
+            print(f'\t{key} = {value}')
+
+    print(f'}}')
+
 
 def findBest(results, obj, dump):
-    print('______________________________________________________')
-    print('Best design point:')
+    print('######################################################')
 
     # Only consider feasible design points
     filtered = [result for result in results if result["feasible"] == True]
 
+    print('List of objective values:')
     obj_vals = []
+    design_points = []
     for result in filtered:
-        for key, value in result.items():
-            if(key == "obj value"):
-                obj_vals.append(value)
+        obj_vals.append(result["obj value"])
+        design_points.append(result["design point"])
 
-    for i in obj_vals:
-        if(i < 0.001 or i > 1000):
-            print(f'{"{:.4e}".format(i)}')
+    for i in range(len(obj_vals)):
+        if(obj_vals[i] < 0.001 or obj_vals[i] > 1000):
+            print(f'{i + 1}. {design_points[i]}: {"{:.4e}".format(obj_vals[i])}')
         else:
-            print(f'{i}')
+            print(f'{i + 1}. {design_points[i]}: {obj_vals[i]}')
 
+    print('\nBest design point:')
     if "max" in obj:
         max_value = max(obj_vals)
         max_index = obj_vals.index(max_value)
@@ -352,10 +363,16 @@ def findBest(results, obj, dump):
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
+
+    # use -o flag to specify max_perf, min_area, or min_power objective
     parser.add_argument("-o", "--objective", dest = "obj")
+
+    # use -perf -area -power flags to override default values for perf, area, and power limit
     parser.add_argument("-perf", dest = "perfLB", type=float, default="10")
     parser.add_argument("-area", dest = "areaUB", type=float, default="1000")
     parser.add_argument("-power", dest = "powerUB", type=float, default="287.5")
+
+    # use -dump flag to view the dump of all parameters
     parser.add_argument("-dump", action='store_true')
     args = parser.parse_args()
     
