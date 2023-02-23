@@ -1,21 +1,36 @@
-def someFunc(input):
-    input['b'] = 4
-    input['a'] = "modified"
+# def someFunc(input):
+#     input['b'] = 4
+#     input['a'] = "modified"
 
-if __name__ == "__main__":
-    dictA = {'a' : 3}
-    someFunc(dictA)
-    print(f'{dictA}')
+# if __name__ == "__main__":
+#     dictA = {'a' : 3}
+#     someFunc(dictA)
+#     print(f'{dictA}')
+import sys
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import preprocessing
+import json
+from types import SimpleNamespace
+import copy
+import math
+import argparse
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+x = np.array([1, 2, 3, 4, 5])
+y1 = 2*x + 1
+x2 = np.array([6,7,8,9,10])
+y2 = 2**x2 + 1
 
-print(f"{bcolors.OKGREEN}Warning: No active frommets remain. Continue?{bcolors.ENDC}")
+print(x)
+
+plt.figure(num = 3, figsize=(8, 5))
+plt.plot(x, y2,**{'color': 'green', 'marker': 'o'})
+plt.plot(x2, y1, 
+         color='red',   
+         linewidth=1.0,  
+         linestyle='--' 
+        )
+
+plt.savefig('hello.pdf')
+plt.close()
