@@ -24,7 +24,9 @@ def set_default():
     default["T_j_max"] = 100
 
     # area of each component
-    default["core_area"] = 10E-6 
+    default["core_area"] = 7E-6 
+    default["l1_area"] = 1E-6
+    default["l2_area"] = 2E-6
     default["l3_area"] = 1E-6
     default["mc_area"] = 10E-6
     default["io_area"] = 20E-6
@@ -96,19 +98,19 @@ def set_default():
     core[0]['name'] = "Intel Core i7-12700K"
     core[0]['core_freq'] = 3.6E9
     core[0]['core_count'] = 6
-    core[0]['core_area'] = 10E-6
+    core[0]['core_area'] = 7E-6
     core[0]['die_voltage_nominal'] = 1.2
     core.append({})
     core[1]['name'] = "Intel Core i9-13900K"
     core[1]['core_freq'] = 3E9
     core[1]['core_count'] = 12
-    core[1]['core_area'] = 7E-6
+    core[1]['core_area'] = 4E-6
     core[1]['die_voltage_nominal'] = 1.0
     core.append({})
     core[2]['name'] = "Intel Core i3-12100F"
     core[2]['core_freq'] = 3.3E9
     core[2]['core_count'] = 2
-    core[2]['core_area'] = 12E-6
+    core[2]['core_area'] = 9E-6
     core[2]['die_voltage_nominal'] = 1.4
 
     with open("core.json", "w") as outfile:
@@ -193,11 +195,14 @@ def solve(obj, perfLB, areaUB, powerUB):
             # Compute arithmetic intensity.
             p.arithmetic_intensity = (p.l1_capacity + p.l2_capacity) / p.workset_size * p.ai_app
 
-            # 5% increase in core_freq_max -> 10% increase in core_area
+            # 5% increase in core_freq -> 10% increase in core_area
+            #                          -> 2% increase in l1_area and l2_area
             if(p.core_freq < p.core_freq_base_max):
                 p.core_area_multiplier = 1
+                p.l1l2_area_multiplier = 1
             else:
                 p.core_area_multiplier = (p.core_freq/p.core_freq_base_max - 1)*2 + 1
+                p.l1l2_area_multiplier = (p.core_freq/p.core_freq_base_max - 1)*0.4 + 1
 
             # die_voltage scales linearly with core_freq
             p.die_voltage = (p.core_freq / p.core_freq_nominal) * p.die_voltage_nominal
@@ -207,7 +212,10 @@ def solve(obj, perfLB, areaUB, powerUB):
             p.P_die  = p.core_count * p.core_power + p.io_count * p.io_power
             p.P_die += p.l3_count   * p.l3_power   + p.mc_count * p.mc_power
 
+            # number of cores = number of L1 = number of L2
             p.A_die  = p.core_count * p.core_area * p.core_area_multiplier
+            p.A_die += p.core_count * p.l1_area * p.l1l2_area_multiplier
+            p.A_die += p.core_count * p.l2_area * p.l1l2_area_multiplier
             p.A_die += p.io_count   * p.io_area 
             p.A_die += p.l3_count   * p.l3_area 
             p.A_die += p.mc_count   * p.mc_area
