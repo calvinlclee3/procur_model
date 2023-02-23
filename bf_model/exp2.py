@@ -484,27 +484,27 @@ def plot(results):
     double_line_plot(x1=ddr_x, x2=hbm_x, y1=ddr_perf, y2=hbm_perf, 
                      y1_label='DDR4-3200', y2_label='HBM2',
                      x_axis_label='Number of L3 Slices', y_axis_label='Performance (Gflop/s)',
-                     title=f'DDR vs HBM Performance @ {ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size')
+                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size] DDR vs HBM Performance')
     
     double_line_plot(x1=ddr_x, x2=ddr_x, y1=ddr_compute_bound, y2=ddr_io_bound, 
                      y1_label='Compute Throughput', y2_label='Memory Bandwidth',
                      x_axis_label='Number of L3 Slices', y_axis_label='',
-                     title=f'DDR Compute vs IO Bound @ {ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size')
+                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size] DDR Compute vs IO Bound')
 
     double_line_plot(x1=ddr_x, x2=ddr_x, y1=ddr_l3_bound, y2=ddr_mc_bound, 
                      y1_label='L3 Effective BW', y2_label='MC Effective BW',
                      x_axis_label='Number of L3 Slices', y_axis_label='',
-                     title=f'DDR L3 vs MC @ {ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size')
+                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size] DDR L3 vs MC')
 
     double_line_plot(x1=hbm_x, x2=hbm_x, y1=hbm_compute_bound, y2=hbm_io_bound, 
                      y1_label='Compute Throughput', y2_label='Memory Bandwidth',
                      x_axis_label='Number of L3 Slices', y_axis_label='',
-                     title=f'HBM Compute vs IO Bound @ {ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size')
+                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size] HBM Compute vs IO Bound')
 
     double_line_plot(x1=hbm_x, x2=hbm_x, y1=hbm_l3_bound, y2=hbm_mc_bound, 
                      y1_label='L3 Effective BW', y2_label='MC Effective BW',
                      x_axis_label='Number of L3 Slices', y_axis_label='',
-                     title=f'HBM L3 vs MC @ {ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size')
+                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size] HBM L3 vs MC')
 
 if __name__ == "__main__":
 
