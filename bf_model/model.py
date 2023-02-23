@@ -10,7 +10,7 @@ import math
 import argparse
 
 
-def write_json():
+def set_default():
 
     # ****************************** WRITING DEFAULT VALUES ******************************
     default = {}
@@ -76,7 +76,7 @@ def write_json():
     # # P_max: 287.5
     # default["PowerUB"] = 287.5
 
-    # IMPORTANT: What used to be variables in AMPL
+    # IMPORTANT: What used to be variables in the optimization model
 
     # number of each component (integer)
     default["core_count"] = 12
@@ -327,17 +327,20 @@ def display_dump(dump_dict):
 
     print(f'}}')
 
-
-def findBest(results, obj, dump):
-    print('######################################################')
+def infs_filter(results):
 
     # Only consider feasible design points
-    filtered = [result for result in results if result["feasible"] == True]
+    filtered = copy.deepcopy(results)
+    filtered = [result for result in filtered if result["feasible"] == True]
+    return filtered
+
+def find_best(results, obj, dump):
+    print('######################################################')
 
     print('List of objective values:')
     obj_vals = []
     design_points = []
-    for result in filtered:
+    for result in results:
         obj_vals.append(result["obj value"])
         design_points.append(result["design point"])
 
@@ -351,12 +354,12 @@ def findBest(results, obj, dump):
     if "max" in obj:
         max_value = max(obj_vals)
         max_index = obj_vals.index(max_value)
-        display_entry(filtered[max_index], dump)
+        display_entry(results[max_index], dump)
 
     elif "min" in obj:
         min_value = min(obj_vals)
         min_index = obj_vals.index(min_value)
-        display_entry(filtered[min_index], dump)
+        display_entry(results[min_index], dump)
 
 
 
@@ -376,8 +379,10 @@ if __name__ == "__main__":
     parser.add_argument("-dump", action='store_true')
     args = parser.parse_args()
     
-    write_json()
+    set_default()
     results = solve(args.obj, args.perfLB, args.areaUB, args.powerUB)
+    filtered = infs_filter(results)
+
     display(results, args.dump)
-    findBest(results, args.obj, args.dump)
+    find_best(filtered, args.obj, args.dump)
 
