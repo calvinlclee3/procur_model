@@ -103,60 +103,60 @@ def load_data():
 
     # THIS PART CANNOT BE HAND-CODED
     # This is just an example
-    core = []
-    core.append({})
-    core[0]['name'] = "Intel Core i9-13900K"
-    core[0]['core_freq'] = 3E9
-    core[0]['core_count'] = 24
-    core[0]['core_area'] = 7E-6
-    core[0]['die_voltage_nominal'] = 1.2
-    core[0]['l1_capacity'] = 80E3
-    core[0]['l2_capacity'] = 2E6
-    # core.append({})
-    # core[1]['name'] = "Intel Core i9-13900K"
-    # core[1]['core_freq'] = 3E9
-    # core[1]['core_count'] = 12
-    # core[1]['core_area'] = 4E-6
-    # core[1]['die_voltage_nominal'] = 1.0
-    # core.append({})
-    # core[2]['name'] = "Intel Core i3-12100F"
-    # core[2]['core_freq'] = 3.3E9
-    # core[2]['core_count'] = 2
-    # core[2]['core_area'] = 9E-6
-    # core[2]['die_voltage_nominal'] = 1.4
+    cores = []
+    cores.append({})
+    cores[0]['name'] = "Intel Core i9-13900K"
+    cores[0]['core_freq'] = 3E9
+    cores[0]['core_count'] = 24
+    cores[0]['core_area'] = 7E-6
+    cores[0]['die_voltage_nominal'] = 1.2
+    cores[0]['l1_capacity'] = 80E3
+    cores[0]['l2_capacity'] = 2E6
+    # cores.append({})
+    # cores[1]['name'] = "Intel Core i9-13900K"
+    # cores[1]['core_freq'] = 3E9
+    # cores[1]['core_count'] = 12
+    # cores[1]['core_area'] = 4E-6
+    # cores[1]['die_voltage_nominal'] = 1.0
+    # cores.append({})
+    # cores[2]['name'] = "Intel Core i3-12100F"
+    # cores[2]['core_freq'] = 3.3E9
+    # cores[2]['core_count'] = 2
+    # cores[2]['core_area'] = 9E-6
+    # cores[2]['die_voltage_nominal'] = 1.4
 
-    with open("core.json", "w") as outfile:
-        json.dump(core, outfile)
+    with open("cores.json", "w") as outfile:
+        json.dump(cores, outfile)
 
-    mem = []
-    mem.append({})
-    mem[0]['name'] = "DDR4-3200"
-    mem[0]['mc_bw'] = 25.6E9
-    mem[0]['mc_count'] = 2
-    mem[0]['mc_area'] = 10E-6
-    mem[0]['mem_freq'] = 1600E6
-    mem[0]['energy_per_wire'] = 15E-12
-    mem[0]['bump_pitch'] = 100E-6
-    mem[0]['current_per_bump'] = 520.8333333E-3
-    mem[0]['l3_bw'] = 20E9
-    mem[0]['T_j_max'] = 110
-    mem[0]['ai_app'] = 50
-    mem[0]["workset_size"] = 25E6
+    mems = []
+    mems.append({})
+    mems[0]['name'] = "DDR4-3200"
+    mems[0]['mc_bw'] = 25.6E9
+    mems[0]['mc_count'] = 2
+    mems[0]['mc_area'] = 10E-6
+    mems[0]['mem_freq'] = 1600E6
+    mems[0]['energy_per_wire'] = 15E-12
+    mems[0]['bump_pitch'] = 100E-6
+    mems[0]['current_per_bump'] = 520.8333333E-3
+    mems[0]['l3_bw'] = 20E9
+    mems[0]['T_j_max'] = 110
+    mems[0]['ai_app'] = 25
+    mems[0]["workset_size"] = 50E6
     
 
-    mem.append({})
-    mem[1]['name'] = "HBM2"
-    mem[1]['mc_bw'] = 16E9
-    mem[1]['mc_count'] = 16
-    mem[1]['mc_area'] = 10E-6
-    mem[1]['mem_freq'] = 2000E6
-    mem[1]['energy_per_wire'] = 3E-12
-    mem[1]['bump_pitch'] = 40E-6
-    mem[1]['current_per_bump'] = 83.3333333E-3
-    mem[1]['l3_bw'] = 20E9
-    mem[1]['T_j_max'] = 110
-    mem[1]['ai_app'] = 50
-    mem[1]["workset_size"] = 25E6
+    mems.append({})
+    mems[1]['name'] = "HBM2"
+    mems[1]['mc_bw'] = 16E9
+    mems[1]['mc_count'] = 16
+    mems[1]['mc_area'] = 10E-6
+    mems[1]['mem_freq'] = 2000E6
+    mems[1]['energy_per_wire'] = 3E-12
+    mems[1]['bump_pitch'] = 40E-6
+    mems[1]['current_per_bump'] = 83.3333333E-3
+    mems[1]['l3_bw'] = 20E9
+    mems[1]['T_j_max'] = 110
+    mems[1]['ai_app'] = 25
+    mems[1]["workset_size"] = 50E6
 
     # mem.append({})
     # mem[2]['name'] = "HBM3"
@@ -165,15 +165,15 @@ def load_data():
     # mem[2]['mc_area'] = 3E-6
     # mem[2]['mem_freq'] = 6000E6
 
-    with open("mem.json", "w") as outfile:
-        json.dump(mem, outfile)
+    with open("mems.json", "w") as outfile:
+        json.dump(mems, outfile)
 
-    l3_config = []
+    l3_configs = []
     for i in range(1, 51):
-        l3_config.append({"name": f"{i}x L3s", "l3_count":i})
+        l3_configs.append({"name": f"{i}x L3s", "l3_count":i})
     
-    with open("l3_config.json", "w") as outfile:
-        json.dump(l3_config, outfile)
+    with open("l3_configs.json", "w") as outfile:
+        json.dump(l3_configs, outfile)
     
 
 def solve(obj, perfLB, areaUB, powerUB):
@@ -185,13 +185,13 @@ def solve(obj, perfLB, areaUB, powerUB):
     with open("default.json", 'r') as fp:
         default = json.load(fp)
 
-    with open("core.json", 'r') as fp:
+    with open("cores.json", 'r') as fp:
         cores = json.load(fp)
 
-    with open("mem.json", 'r') as fp:
+    with open("mems.json", 'r') as fp:
         mems = json.load(fp)
 
-    with open("l3_config.json", 'r') as fp:
+    with open("l3_configs.json", 'r') as fp:
         l3_configs = json.load(fp)
 
     for l3_config in l3_configs:
@@ -533,6 +533,7 @@ if __name__ == "__main__":
     plot(filtered)
 
     print('######################################################')
+    print(f'{len(results)} design points evaluated.')
     if(infs_count == 0):
         print(f'{bcolors.OKGREEN}{infs_count} infeasible design points removed.{bcolors.ENDC}')
     else:
