@@ -140,8 +140,6 @@ def load_data():
     mems[0]['current_per_bump'] = 520.8333333E-3
     mems[0]['l3_bw'] = 20E9
     mems[0]['T_j_max'] = 110
-    mems[0]['ai_app'] = 25
-    mems[0]["workset_size"] = 50E6
     
 
     mems.append({})
@@ -155,8 +153,6 @@ def load_data():
     mems[1]['current_per_bump'] = 83.3333333E-3
     mems[1]['l3_bw'] = 20E9
     mems[1]['T_j_max'] = 110
-    mems[1]['ai_app'] = 25
-    mems[1]["workset_size"] = 50E6
 
     # mem.append({})
     # mem[2]['name'] = "HBM3"
@@ -174,6 +170,19 @@ def load_data():
     
     with open("l3_configs.json", "w") as outfile:
         json.dump(l3_configs, outfile)
+
+
+    ai_apps = [12.5, 25, 50]
+    workset_sizes = [100E6, 50E6, 25E6]
+    app_props = []
+    for ai_app in ai_apps:
+        for workset_size in workset_sizes:
+            app_props.append({"name": f'{ai_app} App. AI, {workset_size/1E6} MB Workset',
+                              "ai_app": ai_app,
+                              "workset_size": workset_size})
+    
+    with open("app_props.json", "w") as outfile:
+        json.dump(app_props, outfile)
     
 
 def solve(obj, perfLB, areaUB, powerUB):
@@ -194,144 +203,150 @@ def solve(obj, perfLB, areaUB, powerUB):
     with open("l3_configs.json", 'r') as fp:
         l3_configs = json.load(fp)
 
-    for l3_config in l3_configs:
-        for mem in mems:
-            for core in cores:
-                result = {}
-                result["design point"] = [core["name"], mem["name"], l3_config["name"]]
-                result["obj"] = obj
-                result["core"] = copy.deepcopy(core)
-                result["mem"] = copy.deepcopy(mem)
-                result["l3_config"] = copy.deepcopy(l3_config)
-                result["feasible"] = True
+    with open("app_props.json", 'r') as fp:
+        app_props = json.load(fp)
 
-                # Overwrite default values, but only for keys that are already in default.json
-                default.update((k, mem[k]) for k in default.keys() & mem.keys())
-                default.update((k, core[k]) for k in default.keys() & core.keys())
-                default.update((k, l3_config[k]) for k in default.keys() & l3_config.keys())
+    for app_prop in app_props:
+        for l3_config in l3_configs:
+            for mem in mems:
+                for core in cores:
+                    result = {}
+                    result["design point"] = [core["name"], mem["name"], l3_config["name"], app_prop["name"]]
+                    result["obj"] = obj
+                    result["core"] = copy.deepcopy(core)
+                    result["mem"] = copy.deepcopy(mem)
+                    result["l3_config"] = copy.deepcopy(l3_config)
+                    result["app_prop"] = copy.deepcopy(app_prop)
+                    result["feasible"] = True
 
-                # Convert dict to namespace for readability
-                p = SimpleNamespace(**default)
+                    # Overwrite default values, but only for keys that are already in default.json
+                    default.update((k, mem[k]) for k in default.keys() & mem.keys())
+                    default.update((k, core[k]) for k in default.keys() & core.keys())
+                    default.update((k, l3_config[k]) for k in default.keys() & l3_config.keys())
+                    default.update((k, app_prop[k]) for k in default.keys() & app_prop.keys())
 
-                # Set objective-dependent constraints from CLI
-                p.perfLB = perfLB * 1E9 
-                p.areaUB = areaUB * 1E-6 
-                p.powerUB = powerUB 
+                    # Convert dict to namespace for readability
+                    p = SimpleNamespace(**default)
 
-                # ****************************** MODEL EQUATIONS ******************************
+                    # Set objective-dependent constraints from CLI
+                    p.perfLB = perfLB * 1E9 
+                    p.areaUB = areaUB * 1E-6 
+                    p.powerUB = powerUB 
 
-                # Compute max power allowed by thermal constraint.
-                p.theta_ja = (p.theta_jc + p.theta_ca)*(p.theta_jb + p.theta_ba)/(p.theta_jc + p.theta_ca + p.theta_jb + p.theta_ba);
-                p.delta_T = p.T_j_max - p.T_ambient
-                p.P_max = p.delta_T / p.theta_ja
+                    # ****************************** MODEL EQUATIONS ******************************
 
-                # Compute power of a memory controller.
-                p.mc_power_phys = p.energy_per_wire * p.mem_freq * p.wires_per_mc
-                p.mc_power = p.mc_power_phys + p.mc_power_ctrl
+                    # Compute max power allowed by thermal constraint.
+                    p.theta_ja = (p.theta_jc + p.theta_ca)*(p.theta_jb + p.theta_ba)/(p.theta_jc + p.theta_ca + p.theta_jb + p.theta_ba);
+                    p.delta_T = p.T_j_max - p.T_ambient
+                    p.P_max = p.delta_T / p.theta_ja
 
-                # Compute arithmetic intensity.
-                p.arithmetic_intensity = (p.l1_capacity + p.l2_capacity) / p.workset_size * p.ai_app
+                    # Compute power of a memory controller.
+                    p.mc_power_phys = p.energy_per_wire * p.mem_freq * p.wires_per_mc
+                    p.mc_power = p.mc_power_phys + p.mc_power_ctrl
 
-                # 5% increase in core_freq -> 10% increase in core_area
-                #                          -> 2% increase in l1_area and l2_area
-                if(p.core_freq < p.core_freq_base_max):
-                    p.core_area_multiplier = 1
-                    p.l1l2_area_multiplier = 1
-                else:
-                    p.core_area_multiplier = (p.core_freq/p.core_freq_base_max - 1)*2 + 1
-                    p.l1l2_area_multiplier = (p.core_freq/p.core_freq_base_max - 1)*0.4 + 1
+                    # Compute arithmetic intensity.
+                    p.arithmetic_intensity = (p.l1_capacity + p.l2_capacity) / p.workset_size * p.ai_app
 
-                # die_voltage scales linearly with core_freq
-                p.die_voltage = (p.core_freq / p.core_freq_nominal) * p.die_voltage_nominal
-                
-                p.core_power = p.core_freq * p.capacitance_per_core * (p.die_voltage**2)
+                    # 5% increase in core_freq -> 10% increase in core_area
+                    #                          -> 2% increase in l1_area and l2_area
+                    if(p.core_freq < p.core_freq_base_max):
+                        p.core_area_multiplier = 1
+                        p.l1l2_area_multiplier = 1
+                    else:
+                        p.core_area_multiplier = (p.core_freq/p.core_freq_base_max - 1)*2 + 1
+                        p.l1l2_area_multiplier = (p.core_freq/p.core_freq_base_max - 1)*0.4 + 1
 
-                p.P_die  = p.core_count * p.core_power + p.io_count * p.io_power
-                p.P_die += p.l3_count   * p.l3_power   + p.mc_count * p.mc_power
+                    # die_voltage scales linearly with core_freq
+                    p.die_voltage = (p.core_freq / p.core_freq_nominal) * p.die_voltage_nominal
+                    
+                    p.core_power = p.core_freq * p.capacitance_per_core * (p.die_voltage**2)
 
-                # number of cores = number of L1 = number of L2
-                p.A_die  = p.core_count * p.core_area * p.core_area_multiplier
-                p.A_die += p.core_count * p.l1_area * p.l1l2_area_multiplier
-                p.A_die += p.core_count * p.l2_area * p.l1l2_area_multiplier
-                p.A_die += p.io_count   * p.io_area 
-                p.A_die += p.l3_count   * p.l3_area 
-                p.A_die += p.mc_count   * p.mc_area
+                    p.P_die  = p.core_count * p.core_power + p.io_count * p.io_power
+                    p.P_die += p.l3_count   * p.l3_power   + p.mc_count * p.mc_power
 
-                p.power_bump_count = (p.P_die) / (p.die_voltage * p.current_per_bump) * 2
-                p.max_wire = 6 * math.sqrt(p.A_die / 6) * p.package_layer / p.link_pitch
+                    # number of cores = number of L1 = number of L2
+                    p.A_die  = p.core_count * p.core_area * p.core_area_multiplier
+                    p.A_die += p.core_count * p.l1_area * p.l1l2_area_multiplier
+                    p.A_die += p.core_count * p.l2_area * p.l1l2_area_multiplier
+                    p.A_die += p.io_count   * p.io_area 
+                    p.A_die += p.l3_count   * p.l3_area 
+                    p.A_die += p.mc_count   * p.mc_area
 
-                # relative size of the working set and the L3 cache determines L3 hit rate
-                p.l3_to_workset_ratio = (p.l3_capacity * p.l3_count) / p.workset_size
-                if(p.l3_to_workset_ratio < 1):
-                    p.l3_hit_rate = p.l3_hit_rate_nominal * p.l3_to_workset_ratio
-                else:
-                    p.l3_hit_rate = p.l3_hit_rate_nominal
+                    p.power_bump_count = (p.P_die) / (p.die_voltage * p.current_per_bump) * 2
+                    p.max_wire = 6 * math.sqrt(p.A_die / 6) * p.package_layer / p.link_pitch
 
-                p.compute_throughput = p.core_freq * p.IPC * p.core_count
+                    # relative size of the working set and the L3 cache determines L3 hit rate
+                    p.l3_to_workset_ratio = (p.l3_capacity * p.l3_count) / p.workset_size
+                    if(p.l3_to_workset_ratio < 1):
+                        p.l3_hit_rate = p.l3_hit_rate_nominal * p.l3_to_workset_ratio
+                    else:
+                        p.l3_hit_rate = p.l3_hit_rate_nominal
 
-                # All LD/ST go through L3. L3 misses go through main memory.
-                p.l3_bound = p.l3_bw * p.l3_count / 1
-                p.mc_bound = p.mc_bw * p.mc_count / (1 - p.l3_hit_rate)
-                p.system_bw = min(p.l3_bound, p.mc_bound)
-                
-                # Roofline Model
-                p.compute_bound = p.compute_throughput
-                p.io_bound = p.arithmetic_intensity * p.system_bw
-                p.perf = min(p.compute_bound, p.io_bound)
+                    p.compute_throughput = p.core_freq * p.IPC * p.core_count
 
-                # ****************************** ENFORCE OBJ-INDEPENDENT CONSTRAINTS ******************************
-                if(p.core_count < 1 or p.l3_count < 1 or p.mc_count < 1 or p.io_count < 1):
-                    infs_handler(result, "must have at least one of each component")
-                
-                if(p.core_freq < p.core_freq_min or p.core_freq > p.core_freq_absolute_max):
-                    infs_handler(result, "core_freq out of range")
-                
-                if(p.P_max < p.P_die):
-                    infs_handler(result, "P_max < P_die")
-                
-                if(p.A_die < (p.bump_pitch**2) * (p.power_bump_count + p.mc_bump_count * p.mc_count + p.io_bump_count * p.io_count)):
-                    infs_handler(result, "bump constraint not met")
-                
-                if(p.max_wire < p.mc_count * p.wires_per_mc):
-                    infs_handler(result, "wire constraint not met")
-                
-                # Sanity Check: no param/var in the model should be negative
-                for key, value in p.__dict__.items():
-                    if(value < 0):
-                        infs_handler(result, f'{key} has negative value of {value}')
-                
-                # ****************************** ENFORCE OBJ-DEPENDENT CONSTRAINTS ******************************
-                if(obj == "max_perf"):
-                    if(p.areaUB < p.A_die):
-                        infs_handler(result, f'areaUB < A_die')
-                    if(p.powerUB < p.P_die):
-                        infs_handler(result, f'powerUB < P_die')
-                    result["obj value"] = p.perf
+                    # All LD/ST go through L3. L3 misses go through main memory.
+                    p.l3_bound = p.l3_bw * p.l3_count / 1
+                    p.mc_bound = p.mc_bw * p.mc_count / (1 - p.l3_hit_rate)
+                    p.system_bw = min(p.l3_bound, p.mc_bound)
+                    
+                    # Roofline Model
+                    p.compute_bound = p.compute_throughput
+                    p.io_bound = p.arithmetic_intensity * p.system_bw
+                    p.perf = min(p.compute_bound, p.io_bound)
 
-                elif(obj == "min_area"):
-                    if(p.perf < p.perfLB):
-                        infs_handler(result, f'perf < perfLB')
-                    if(p.powerUB < p.P_die):
-                        infs_handler(result, f'powerUB < P_die')
-                    result["obj value"] = p.A_die
+                    # ****************************** ENFORCE OBJ-INDEPENDENT CONSTRAINTS ******************************
+                    if(p.core_count < 1 or p.l3_count < 1 or p.mc_count < 1 or p.io_count < 1):
+                        infs_handler(result, "must have at least one of each component")
+                    
+                    if(p.core_freq < p.core_freq_min or p.core_freq > p.core_freq_absolute_max):
+                        infs_handler(result, "core_freq out of range")
+                    
+                    if(p.P_max < p.P_die):
+                        infs_handler(result, "P_max < P_die")
+                    
+                    if(p.A_die < (p.bump_pitch**2) * (p.power_bump_count + p.mc_bump_count * p.mc_count + p.io_bump_count * p.io_count)):
+                        infs_handler(result, "bump constraint not met")
+                    
+                    if(p.max_wire < p.mc_count * p.wires_per_mc):
+                        infs_handler(result, "wire constraint not met")
+                    
+                    # Sanity Check: no param/var in the model should be negative
+                    for key, value in p.__dict__.items():
+                        if(value < 0):
+                            infs_handler(result, f'{key} has negative value of {value}')
+                    
+                    # ****************************** ENFORCE OBJ-DEPENDENT CONSTRAINTS ******************************
+                    if(obj == "max_perf"):
+                        if(p.areaUB < p.A_die):
+                            infs_handler(result, f'areaUB < A_die')
+                        if(p.powerUB < p.P_die):
+                            infs_handler(result, f'powerUB < P_die')
+                        result["obj value"] = p.perf
 
-                elif(obj == "min_power"):
-                    if(p.areaUB < p.A_die):
-                        infs_handler(result, f'areaUB < A_die')
-                    if(p.perf < p.perfLB):
-                        infs_handler(result, f'perf < perfLB')
-                    result["obj value"] = p.P_die
+                    elif(obj == "min_area"):
+                        if(p.perf < p.perfLB):
+                            infs_handler(result, f'perf < perfLB')
+                        if(p.powerUB < p.P_die):
+                            infs_handler(result, f'powerUB < P_die')
+                        result["obj value"] = p.A_die
 
-                # ***********************************************************************************************
-                
-                result["perf"] = p.perf
-                result["A_die"] = p.A_die
-                result["P_die"] = p.P_die
-                result["core_freq"] = p.core_freq
+                    elif(obj == "min_power"):
+                        if(p.areaUB < p.A_die):
+                            infs_handler(result, f'areaUB < A_die')
+                        if(p.perf < p.perfLB):
+                            infs_handler(result, f'perf < perfLB')
+                        result["obj value"] = p.P_die
 
-                # Dump the entire namespace with all model param/variables
-                result["dump"] = copy.deepcopy(p.__dict__)
-                results.append(result)
+                    # ***********************************************************************************************
+                    
+                    result["perf"] = p.perf
+                    result["A_die"] = p.A_die
+                    result["P_die"] = p.P_die
+                    result["core_freq"] = p.core_freq
+
+                    # Dump the entire namespace with all model param/variables
+                    result["dump"] = copy.deepcopy(p.__dict__)
+                    results.append(result)
 
     return results
 
@@ -361,7 +376,7 @@ def display_entry(result, dump):
         else:
             if type(value) == int or type(value) == float:
                 if(value < 0.001 or value > 1000):
-                    print(f'{key} = {"{:.4e}".format(value)}')
+                    print(f'{key} = {sn_format(value)}')
                 else:
                     print(f'{key} = {value}')
             else:
@@ -371,7 +386,7 @@ def display_dump(dump_dict):
     print(f'{{')
     for key, value in dump_dict.items():
         if(value < 0.001 or value > 1000):
-            print(f'\t{key} = {"{:.4e}".format(value)}')
+            print(f'\t{key} = {sn_format(value)}')
         else:
             print(f'\t{key} = {value}')
 
@@ -396,7 +411,7 @@ def find_best(results, obj, dump):
 
     for i in range(len(obj_vals)):
         if(obj_vals[i] < 0.001 or obj_vals[i] > 1000):
-            print(f'{i + 1}. {design_points[i]}: {"{:.4e}".format(obj_vals[i])}')
+            print(f'{i + 1}. {design_points[i]}: {sn_format(obj_vals[i])}')
         else:
             print(f'{i + 1}. {design_points[i]}: {obj_vals[i]}')
 
@@ -426,6 +441,11 @@ def double_line_plot(x1, x2, y1, y2, y1_label, y2_label, x_axis_label, y_axis_la
     plt.close()
 
 def plot(results):
+
+    with open("app_props.json", 'r') as fp:
+        app_props = json.load(fp)
+    
+    
 
     ddr_x = []
     ddr_perf = []
@@ -480,17 +500,17 @@ def plot(results):
     double_line_plot(x1=ddr_x, x2=hbm_x, y1=ddr_perf, y2=hbm_perf, 
                      y1_label='DDR4-3200', y2_label='HBM2',
                      x_axis_label='Number of L3 Slices', y_axis_label='Performance (Gflop/s)',
-                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size] DDR vs HBM Performance')
+                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] DDR vs HBM Performance')
     
     double_line_plot(x1=ddr_x, x2=ddr_x, y1=ddr_compute_bound, y2=ddr_io_bound, 
                      y1_label='Compute Throughput', y2_label='Memory Bandwidth',
                      x_axis_label='Number of L3 Slices', y_axis_label='',
-                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size] DDR Compute vs IO Bound')
+                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] DDR Compute vs IO Bound')
 
     double_line_plot(x1=ddr_x, x2=ddr_x, y1=ddr_l3_bound, y2=ddr_mc_bound, 
                      y1_label='L3 Effective BW', y2_label='MC Effective BW',
                      x_axis_label='Number of L3 Slices', y_axis_label='',
-                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size] DDR L3 vs MC Bound')
+                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] DDR L3 vs MC Bound')
 
     double_line_plot(x1=hbm_x, x2=hbm_x, y1=hbm_compute_bound, y2=hbm_io_bound, 
                      y1_label='Compute Throughput', y2_label='Memory Bandwidth',
@@ -501,6 +521,9 @@ def plot(results):
                      y1_label='L3 Effective BW', y2_label='MC Effective BW',
                      x_axis_label='Number of L3 Slices', y_axis_label='',
                      title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size] HBM L3 vs MC Bound')
+
+def sn_format(value):
+    return "{:.4e}".format(value)
 
 if __name__ == "__main__":
 
