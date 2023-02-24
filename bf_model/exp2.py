@@ -20,7 +20,7 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-def set_default():
+def load_data():
 
     # ****************************** WRITING DEFAULT VALUES ******************************
     default = {}
@@ -140,8 +140,8 @@ def set_default():
     mem[0]['current_per_bump'] = 520.8333333E-3
     mem[0]['l3_bw'] = 20E9
     mem[0]['T_j_max'] = 110
-    mem[0]['ai_app'] = 25
-    mem[0]["workset_size"] = 50E6
+    mem[0]['ai_app'] = 50
+    mem[0]["workset_size"] = 25E6
     
 
     mem.append({})
@@ -155,8 +155,8 @@ def set_default():
     mem[1]['current_per_bump'] = 83.3333333E-3
     mem[1]['l3_bw'] = 20E9
     mem[1]['T_j_max'] = 110
-    mem[1]['ai_app'] = 25
-    mem[1]["workset_size"] = 50E6
+    mem[1]['ai_app'] = 50
+    mem[1]["workset_size"] = 25E6
 
     # mem.append({})
     # mem[2]['name'] = "HBM3"
@@ -175,10 +175,6 @@ def set_default():
     with open("l3_config.json", "w") as outfile:
         json.dump(l3_config, outfile)
     
-
-
-    
-
 
 def solve(obj, perfLB, areaUB, powerUB):
 
@@ -494,7 +490,7 @@ def plot(results):
     double_line_plot(x1=ddr_x, x2=ddr_x, y1=ddr_l3_bound, y2=ddr_mc_bound, 
                      y1_label='L3 Effective BW', y2_label='MC Effective BW',
                      x_axis_label='Number of L3 Slices', y_axis_label='',
-                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size] DDR L3 vs MC')
+                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size] DDR L3 vs MC Bound')
 
     double_line_plot(x1=hbm_x, x2=hbm_x, y1=hbm_compute_bound, y2=hbm_io_bound, 
                      y1_label='Compute Throughput', y2_label='Memory Bandwidth',
@@ -504,7 +500,7 @@ def plot(results):
     double_line_plot(x1=hbm_x, x2=hbm_x, y1=hbm_l3_bound, y2=hbm_mc_bound, 
                      y1_label='L3 Effective BW', y2_label='MC Effective BW',
                      x_axis_label='Number of L3 Slices', y_axis_label='',
-                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size] HBM L3 vs MC')
+                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size] HBM L3 vs MC Bound')
 
 if __name__ == "__main__":
 
@@ -518,15 +514,21 @@ if __name__ == "__main__":
     parser.add_argument("-area", dest = "areaUB", type=float, default="1000")
     parser.add_argument("-power", dest = "powerUB", type=float, default="287.5")
 
-    # use -dump flag to view the dump of all parameters
+    # use -display flag to view key information about each design point
+    # o.w. only print best design point
+    parser.add_argument("-display", action='store_true')
+
+    # use -dump flag to view complete information about any design point displayed
     parser.add_argument("-dump", action='store_true')
     args = parser.parse_args()
     
-    set_default()
+    load_data()
     results = solve(args.obj, args.perfLB, args.areaUB, args.powerUB)
     filtered, infs_count = infs_filter(results)
 
-    display(results, args.dump)
+    if(args.display == True):
+        display(results, args.dump)
+    
     find_best(filtered, args.obj, args.dump)
     plot(filtered)
 
