@@ -444,83 +444,85 @@ def plot(results):
 
     with open("app_props.json", 'r') as fp:
         app_props = json.load(fp)
-    
-    
 
-    ddr_x = []
-    ddr_perf = []
-    ddr_l3_bound = []
-    ddr_mc_bound = []
-    ddr_compute_bound = []
-    ddr_io_bound = []
+    for app_prop in app_props:
+        # filter all results into the set of result with specific app profile
+        curr = [result for result in results if result["app_prop"]["ai_app"] == app_prop["ai_app"]]
+        curr = [result for result in curr if result["app_prop"]["workset_size"] == app_prop["workset_size"]]
 
-    hbm_x = []
-    hbm_perf = []
-    hbm_l3_bound = []
-    hbm_mc_bound = []
-    hbm_compute_bound = []
-    hbm_io_bound = []
+        ddr_x = []
+        ddr_perf = []
+        ddr_l3_bound = []
+        ddr_mc_bound = []
+        ddr_compute_bound = []
+        ddr_io_bound = []
+
+        hbm_x = []
+        hbm_perf = []
+        hbm_l3_bound = []
+        hbm_mc_bound = []
+        hbm_compute_bound = []
+        hbm_io_bound = []
+
+        ddr = [result for result in curr if result["mem"]["name"] == "DDR4-3200"]
+        hbm = [result for result in curr if result["mem"]["name"] == "HBM2"]
+        ai_app = app_prop["ai_app"]
+        workset_size = app_prop["workset_size"] / 1E6
+        arithmetic_intensity = curr[0]['dump']['arithmetic_intensity']
+
+        for result in ddr:
+            ddr_x.append(result['l3_config']['l3_count'])
+            ddr_perf.append(result['perf'])
+            ddr_l3_bound.append(result['dump']['l3_bound'])
+            ddr_mc_bound.append(result['dump']['mc_bound'])
+            ddr_compute_bound.append(result['dump']['compute_bound'])
+            ddr_io_bound.append(result['dump']['io_bound'])
+
+        for result in hbm:
+            hbm_x.append(result['l3_config']['l3_count'])
+            hbm_perf.append(result['perf'])
+            hbm_l3_bound.append(result['dump']['l3_bound'])
+            hbm_mc_bound.append(result['dump']['mc_bound'])
+            hbm_compute_bound.append(result['dump']['compute_bound'])
+            hbm_io_bound.append(result['dump']['io_bound'])
+
+        ddr_perf = np.array(ddr_perf) / 1E9
+        ddr_l3_bound = np.array(ddr_l3_bound) / 1E9
+        ddr_mc_bound = np.array(ddr_mc_bound) / 1E9
+        ddr_compute_bound = np.array(ddr_compute_bound) / 1E9
+        ddr_io_bound = np.array(ddr_io_bound) / 1E9
+
+        hbm_perf = np.array(hbm_perf) / 1E9
+        hbm_l3_bound = np.array(hbm_l3_bound) / 1E9
+        hbm_mc_bound = np.array(hbm_mc_bound) / 1E9
+        hbm_compute_bound = np.array(hbm_compute_bound) / 1E9
+        hbm_io_bound = np.array(hbm_io_bound) / 1E9
 
 
-    ddr = [result for result in results if result["mem"]["name"] == "DDR4-3200"]
-    hbm = [result for result in results if result["mem"]["name"] == "HBM2"]
-    ai_app = results[0]['dump']['ai_app']
-    arithmetic_intensity = results[0]['dump']['arithmetic_intensity']
-    workset_size = results[0]['dump']['workset_size'] / 1E6 
+        double_line_plot(x1=ddr_x, x2=hbm_x, y1=ddr_perf, y2=hbm_perf, 
+                        y1_label='DDR4-3200', y2_label='HBM2',
+                        x_axis_label='Number of L3 Slices', y_axis_label='Performance (Gflop/s)',
+                        title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] DDR vs HBM Performance')
+        
+        double_line_plot(x1=ddr_x, x2=ddr_x, y1=ddr_compute_bound, y2=ddr_io_bound, 
+                        y1_label='Compute Throughput', y2_label='Memory Bandwidth',
+                        x_axis_label='Number of L3 Slices', y_axis_label='',
+                        title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] DDR Compute vs IO Bound')
 
-    for result in ddr:
-        ddr_x.append(result['l3_config']['l3_count'])
-        ddr_perf.append(result['perf'])
-        ddr_l3_bound.append(result['dump']['l3_bound'])
-        ddr_mc_bound.append(result['dump']['mc_bound'])
-        ddr_compute_bound.append(result['dump']['compute_bound'])
-        ddr_io_bound.append(result['dump']['io_bound'])
+        double_line_plot(x1=ddr_x, x2=ddr_x, y1=ddr_l3_bound, y2=ddr_mc_bound, 
+                        y1_label='L3 Effective BW', y2_label='MC Effective BW',
+                        x_axis_label='Number of L3 Slices', y_axis_label='',
+                        title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] DDR L3 vs MC Bound')
 
-    for result in hbm:
-        hbm_x.append(result['l3_config']['l3_count'])
-        hbm_perf.append(result['perf'])
-        hbm_l3_bound.append(result['dump']['l3_bound'])
-        hbm_mc_bound.append(result['dump']['mc_bound'])
-        hbm_compute_bound.append(result['dump']['compute_bound'])
-        hbm_io_bound.append(result['dump']['io_bound'])
+        double_line_plot(x1=hbm_x, x2=hbm_x, y1=hbm_compute_bound, y2=hbm_io_bound, 
+                        y1_label='Compute Throughput', y2_label='Memory Bandwidth',
+                        x_axis_label='Number of L3 Slices', y_axis_label='',
+                        title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] HBM Compute vs IO Bound')
 
-    ddr_perf = np.array(ddr_perf) / 1E9
-    ddr_l3_bound = np.array(ddr_l3_bound) / 1E9
-    ddr_mc_bound = np.array(ddr_mc_bound) / 1E9
-    ddr_compute_bound = np.array(ddr_compute_bound) / 1E9
-    ddr_io_bound = np.array(ddr_io_bound) / 1E9
-
-    hbm_perf = np.array(hbm_perf) / 1E9
-    hbm_l3_bound = np.array(hbm_l3_bound) / 1E9
-    hbm_mc_bound = np.array(hbm_mc_bound) / 1E9
-    hbm_compute_bound = np.array(hbm_compute_bound) / 1E9
-    hbm_io_bound = np.array(hbm_io_bound) / 1E9
-
-
-    double_line_plot(x1=ddr_x, x2=hbm_x, y1=ddr_perf, y2=hbm_perf, 
-                     y1_label='DDR4-3200', y2_label='HBM2',
-                     x_axis_label='Number of L3 Slices', y_axis_label='Performance (Gflop/s)',
-                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] DDR vs HBM Performance')
-    
-    double_line_plot(x1=ddr_x, x2=ddr_x, y1=ddr_compute_bound, y2=ddr_io_bound, 
-                     y1_label='Compute Throughput', y2_label='Memory Bandwidth',
-                     x_axis_label='Number of L3 Slices', y_axis_label='',
-                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] DDR Compute vs IO Bound')
-
-    double_line_plot(x1=ddr_x, x2=ddr_x, y1=ddr_l3_bound, y2=ddr_mc_bound, 
-                     y1_label='L3 Effective BW', y2_label='MC Effective BW',
-                     x_axis_label='Number of L3 Slices', y_axis_label='',
-                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] DDR L3 vs MC Bound')
-
-    double_line_plot(x1=hbm_x, x2=hbm_x, y1=hbm_compute_bound, y2=hbm_io_bound, 
-                     y1_label='Compute Throughput', y2_label='Memory Bandwidth',
-                     x_axis_label='Number of L3 Slices', y_axis_label='',
-                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size] HBM Compute vs IO Bound')
-
-    double_line_plot(x1=hbm_x, x2=hbm_x, y1=hbm_l3_bound, y2=hbm_mc_bound, 
-                     y1_label='L3 Effective BW', y2_label='MC Effective BW',
-                     x_axis_label='Number of L3 Slices', y_axis_label='',
-                     title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset Size] HBM L3 vs MC Bound')
+        double_line_plot(x1=hbm_x, x2=hbm_x, y1=hbm_l3_bound, y2=hbm_mc_bound, 
+                        y1_label='L3 Effective BW', y2_label='MC Effective BW',
+                        x_axis_label='Number of L3 Slices', y_axis_label='',
+                        title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] HBM L3 vs MC Bound')
 
 def sn_format(value):
     return "{:.4e}".format(value)

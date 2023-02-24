@@ -17,12 +17,22 @@ import copy
 import math
 import argparse
 
-test = [{"a":3, "b":3}, {"c":4, "d":4}]
+test = [{"a":3, "b":3}, {"a":4, "b":4}]
 
-def fnc(input):
-	del input[0]["a"]
-	return input
+# def fnc(input):
+# 	del input[0]["a"]
+# 	return input
 
-returned = fnc(copy.deepcopy(test))
-print(returned)
+# returned = fnc(copy.deepcopy(test))
+# print(returned)
+# print(test)
+
+curr = copy.deepcopy([result for result in test if result["a"] == 3])
+
+print(curr)
+print(test)
+
+curr[0]["a"] = "MODIFIED"
+
+print(curr)
 print(test)
