@@ -132,7 +132,7 @@ def load_data():
     mems.append({})
     mems[0]['name'] = "DDR4-3200"
     mems[0]['mc_bw'] = 25.6E9
-    mems[0]['mc_count'] = 6
+    mems[0]['mc_count'] = 4
     mems[0]['mc_area'] = 10E-6
     mems[0]['mem_freq'] = 1600E6
     mems[0]['energy_per_wire'] = 15E-12
@@ -172,7 +172,7 @@ def load_data():
         json.dump(l3_configs, outfile)
 
 
-    ai_apps = [12.5, 25, 50]
+    ai_apps = [0.25, 0.5, 1]
     workset_sizes = [100E6, 50E6, 25E6]
     app_props = []
     for ai_app in ai_apps:
@@ -502,27 +502,27 @@ def plot(results):
         double_line_plot(x1=ddr_x, x2=hbm_x, y1=ddr_perf, y2=hbm_perf, 
                         y1_label='DDR4-3200', y2_label='HBM2',
                         x_axis_label='Number of L3 Slices', y_axis_label='Performance (Gflop/s)',
-                        title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] DDR vs HBM Performance')
+                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Performance')
         
         double_line_plot(x1=ddr_x, x2=ddr_x, y1=ddr_compute_bound, y2=ddr_io_bound, 
                         y1_label='Compute Throughput', y2_label='Memory Bandwidth',
                         x_axis_label='Number of L3 Slices', y_axis_label='',
-                        title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] DDR Compute vs IO Bound')
+                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR Compute vs IO Bound')
 
         double_line_plot(x1=ddr_x, x2=ddr_x, y1=ddr_l3_bound, y2=ddr_mc_bound, 
                         y1_label='L3 Effective BW', y2_label='MC Effective BW',
                         x_axis_label='Number of L3 Slices', y_axis_label='',
-                        title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] DDR L3 vs MC Bound')
+                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR L3 vs MC Bound')
 
         double_line_plot(x1=hbm_x, x2=hbm_x, y1=hbm_compute_bound, y2=hbm_io_bound, 
                         y1_label='Compute Throughput', y2_label='Memory Bandwidth',
                         x_axis_label='Number of L3 Slices', y_axis_label='',
-                        title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] HBM Compute vs IO Bound')
+                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] HBM Compute vs IO Bound')
 
         double_line_plot(x1=hbm_x, x2=hbm_x, y1=hbm_l3_bound, y2=hbm_mc_bound, 
                         y1_label='L3 Effective BW', y2_label='MC Effective BW',
                         x_axis_label='Number of L3 Slices', y_axis_label='',
-                        title=f'[{ai_app} App. AI, {arithmetic_intensity} Eff. AI, {workset_size} MB Workset] HBM L3 vs MC Bound')
+                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] HBM L3 vs MC Bound')
 
 def sn_format(value):
     return "{:.4e}".format(value)
