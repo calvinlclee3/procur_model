@@ -132,7 +132,7 @@ def load_data():
     mems.append({})
     mems[0]['name'] = "DDR4-3200"
     mems[0]['mc_bw'] = 25.6E9
-    mems[0]['mc_count'] = 2
+    mems[0]['mc_count'] = 6
     mems[0]['mc_area'] = 10E-6
     mems[0]['mem_freq'] = 1600E6
     mems[0]['energy_per_wire'] = 15E-12
@@ -144,11 +144,11 @@ def load_data():
 
     mems.append({})
     mems[1]['name'] = "HBM2"
-    mems[1]['mc_bw'] = 16E9
-    mems[1]['mc_count'] = 16
-    mems[1]['mc_area'] = 10E-6
-    mems[1]['mem_freq'] = 2000E6
-    mems[1]['energy_per_wire'] = 3E-12
+    mems[1]['mc_bw'] = 256E9
+    mems[1]['mc_count'] = 4
+    mems[1]['mc_area'] = 6.6831E-6
+    mems[1]['mem_freq'] = 1000E6
+    mems[1]['energy_per_wire'] = 3.5E-12
     mems[1]['bump_pitch'] = 40E-6
     mems[1]['current_per_bump'] = 83.3333333E-3
     mems[1]['l3_bw'] = 20E9
@@ -245,7 +245,7 @@ def solve(obj, perfLB, areaUB, powerUB):
                     p.mc_power = p.mc_power_phys + p.mc_power_ctrl
 
                     # Compute arithmetic intensity.
-                    p.arithmetic_intensity = (p.l1_capacity + p.l2_capacity) / p.workset_size * p.ai_app
+                    p.arithmetic_intensity = (p.workset_size / (p.workset_size - (p.l1_capacity + p.l2_capacity))) * p.ai_app
 
                     # 5% increase in core_freq -> 10% increase in core_area
                     #                          -> 2% increase in l1_area and l2_area
