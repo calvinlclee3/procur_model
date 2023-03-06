@@ -168,7 +168,7 @@ def load_data():
     mems[2]['current_per_bump'] = 520.8333333E-3
     mems[2]['l3_bw'] = 30E9
     mems[2]['T_j_max'] = 110
-    mems[2]['theta_ca'] = 0.15
+    mems[2]['theta_ca'] = 0.15      # 0.185 MIDLINE
 
     mems.append({})
     mems[3]['name'] = "DDR5-6400"
@@ -181,7 +181,7 @@ def load_data():
     mems[3]['current_per_bump'] = 520.8333333E-3
     mems[3]['l3_bw'] = 30E9
     mems[3]['T_j_max'] = 110
-    mems[3]['theta_ca'] = 0.09
+    mems[3]['theta_ca'] = 0.09      # 0.0975 MIDLINE
 
     mems.append({})
     mems[4]['name'] = "HBM2"
