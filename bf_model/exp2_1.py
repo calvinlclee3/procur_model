@@ -59,8 +59,10 @@ def load_data():
     # memory controller parameters
     default["wires_per_mc"] = 288
     default["energy_per_wire"] = 6.697674419E-12
-    default["mem_freq"] = 4300E6
-    default["mc_power_ctrl"] = 3                             # per MC
+    default["mc_freq"] = 1600E6
+    default["mc_freq_nominal"] = 1600E6
+    default["mc_voltage_nominal"] = 1.2
+    default["mc_power_ctrl_nominal"] = 3                             # per MC
 
     # performance parameters
     default["ai_app"] = 100                                  # operations / byte
@@ -134,7 +136,7 @@ def load_data():
     mems[0]['mc_bw'] = 25.6E9
     mems[0]['mc_count'] = 4
     mems[0]['mc_area'] = 10E-6
-    mems[0]['mem_freq'] = 1600E6
+    mems[0]['mc_freq'] = 1600E6
     mems[0]['energy_per_wire'] = 15E-12
     mems[0]['bump_pitch'] = 100E-6
     mems[0]['current_per_bump'] = 520.8333333E-3
@@ -147,7 +149,7 @@ def load_data():
     mems[1]['mc_bw'] = 256E9
     mems[1]['mc_count'] = 4
     mems[1]['mc_area'] = 6.6831E-6
-    mems[1]['mem_freq'] = 1000E6
+    mems[1]['mc_freq'] = 1000E6
     mems[1]['energy_per_wire'] = 3.5E-12
     mems[1]['bump_pitch'] = 40E-6
     mems[1]['current_per_bump'] = 83.3333333E-3
@@ -159,7 +161,7 @@ def load_data():
     # mem[2]['mc_bw'] = 1024*6000E6/8
     # mem[2]['mc_count'] = 4
     # mem[2]['mc_area'] = 3E-6
-    # mem[2]['mem_freq'] = 6000E6
+    # mem[2]['mc_freq'] = 6000E6
 
     with open("mems.json", "w") as outfile:
         json.dump(mems, outfile)
@@ -236,12 +238,14 @@ def solve(obj, perfLB, areaUB, powerUB):
                     # ****************************** MODEL EQUATIONS ******************************
 
                     # Compute max power allowed by thermal constraint.
-                    p.theta_ja = (p.theta_jc + p.theta_ca)*(p.theta_jb + p.theta_ba)/(p.theta_jc + p.theta_ca + p.theta_jb + p.theta_ba);
+                    p.theta_ja = (p.theta_jc + p.theta_ca)*(p.theta_jb + p.theta_ba)/(p.theta_jc + p.theta_ca + p.theta_jb + p.theta_ba)
                     p.delta_T = p.T_j_max - p.T_ambient
                     p.P_max = p.delta_T / p.theta_ja
 
                     # Compute power of a memory controller.
-                    p.mc_power_phys = p.energy_per_wire * p.mem_freq * p.wires_per_mc
+                    p.mc_voltage = (p.mc_freq / p.mc_freq_nominal) * p.mc_voltage_nominal
+                    p.mc_power_phys = p.energy_per_wire * p.mc_freq * p.wires_per_mc * (p.mc_voltage / p.mc_voltage_nominal)**2
+                    p.mc_power_ctrl = (p.mc_freq / p.mc_freq_nominal) * p.mc_power_ctrl_nominal
                     p.mc_power = p.mc_power_phys + p.mc_power_ctrl
 
                     # Compute arithmetic intensity.
