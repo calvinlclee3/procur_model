@@ -133,7 +133,7 @@ def load_data():
     mems = []
     mems.append({})
     mems[0]['name'] = "DDR4-3200"
-    mems[0]['mc_bw'] = 25.6E9
+    mems[0]['mc_bw'] = 1600E6 * 2 * 8
     mems[0]['mc_count'] = 4
     mems[0]['mc_area'] = 10E-6
     mems[0]['mc_freq'] = 1600E6
@@ -145,30 +145,56 @@ def load_data():
     mems[0]['theta_ca'] = 0.2
     
     mems.append({})
-    mems[1]['name'] = "DDR5-4800"
-    mems[1]['mc_bw'] = 38.4E9
+    mems[1]['name'] = "DDR5-4000"
+    mems[1]['mc_bw'] = 2000E6 * 2 * 8
     mems[1]['mc_count'] = 4
     mems[1]['mc_area'] = 10E-6
-    mems[1]['mc_freq'] = 2400E6
+    mems[1]['mc_freq'] = 2000E6
     mems[1]['energy_per_wire'] = 15E-12
     mems[1]['bump_pitch'] = 100E-6
     mems[1]['current_per_bump'] = 520.8333333E-3
     mems[1]['l3_bw'] = 30E9
     mems[1]['T_j_max'] = 110
-    mems[1]['theta_ca'] = 0.15
+    mems[1]['theta_ca'] = 0.18
 
     mems.append({})
-    mems[2]['name'] = "HBM2"
-    mems[2]['mc_bw'] = 256E9
+    mems[2]['name'] = "DDR5-4800"
+    mems[2]['mc_bw'] = 2400E6 * 2 * 8
     mems[2]['mc_count'] = 4
-    mems[2]['mc_area'] = 6.6831E-6
-    mems[2]['mc_freq'] = 1000E6
-    mems[2]['energy_per_wire'] = 3.5E-12
-    mems[2]['bump_pitch'] = 40E-6
-    mems[2]['current_per_bump'] = 83.3333333E-3
+    mems[2]['mc_area'] = 10E-6
+    mems[2]['mc_freq'] = 2400E6
+    mems[2]['energy_per_wire'] = 15E-12
+    mems[2]['bump_pitch'] = 100E-6
+    mems[2]['current_per_bump'] = 520.8333333E-3
     mems[2]['l3_bw'] = 30E9
     mems[2]['T_j_max'] = 110
-    mems[2]['theta_ca'] = 0.2
+    mems[2]['theta_ca'] = 0.15
+
+    mems.append({})
+    mems[3]['name'] = "DDR5-6400"
+    mems[3]['mc_bw'] = 3200E6 * 2 * 8
+    mems[3]['mc_count'] = 4
+    mems[3]['mc_area'] = 10E-6
+    mems[3]['mc_freq'] = 3200E6
+    mems[3]['energy_per_wire'] = 15E-12
+    mems[3]['bump_pitch'] = 100E-6
+    mems[3]['current_per_bump'] = 520.8333333E-3
+    mems[3]['l3_bw'] = 30E9
+    mems[3]['T_j_max'] = 110
+    mems[3]['theta_ca'] = 0.09
+
+    mems.append({})
+    mems[4]['name'] = "HBM2"
+    mems[4]['mc_bw'] = 256E9
+    mems[4]['mc_count'] = 4
+    mems[4]['mc_area'] = 6.6831E-6
+    mems[4]['mc_freq'] = 1000E6
+    mems[4]['energy_per_wire'] = 3.5E-12
+    mems[4]['bump_pitch'] = 40E-6
+    mems[4]['current_per_bump'] = 83.3333333E-3
+    mems[4]['l3_bw'] = 30E9
+    mems[4]['T_j_max'] = 110
+    mems[4]['theta_ca'] = 0.2
 
     # mem.append({})
     # mem[2]['name'] = "HBM3"
