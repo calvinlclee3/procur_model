@@ -240,7 +240,7 @@ def solve(obj, perfLB, areaUB, powerUB):
     print(f'Solving for objective {obj} with perfLB={perfLB} Gflop/s, areaUB={areaUB} mm2, powerUB={powerUB} W\n')
     
     with open("default.json", 'r') as fp:
-        default = json.load(fp)
+        master_default = json.load(fp)
 
     with open("cores.json", 'r') as fp:
         cores = json.load(fp)
@@ -258,6 +258,11 @@ def solve(obj, perfLB, areaUB, powerUB):
         for l3_config in l3_configs:
             for mem in mems:
                 for core in cores:
+
+                    # Get a new, clean copy of default
+                    default = []
+                    default = copy.deepcopy(master_default)
+
                     result = {}
                     result["design point"] = [core["name"], mem["name"], l3_config["name"], app_prop["name"]]
                     result["obj"] = obj
