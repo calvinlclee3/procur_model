@@ -140,7 +140,7 @@ def load_data():
     mems[0]['energy_per_wire'] = 15E-12
     mems[0]['bump_pitch'] = 100E-6
     mems[0]['current_per_bump'] = 520.8333333E-3
-    mems[0]['theta_ca'] = 0.2
+    mems[0]['theta_ca'] = 0.26904
     mems[0]['l3_bw'] = 30E9
     mems[0]['T_j_max'] = 110
     
@@ -153,7 +153,7 @@ def load_data():
     mems[1]['energy_per_wire'] = 15E-12
     mems[1]['bump_pitch'] = 100E-6
     mems[1]['current_per_bump'] = 520.8333333E-3
-    mems[1]['theta_ca'] = 0.195
+    mems[1]['theta_ca'] = 0.22732
     mems[1]['l3_bw'] = 30E9
     mems[1]['T_j_max'] = 110
 
@@ -166,7 +166,7 @@ def load_data():
     mems[2]['energy_per_wire'] = 15E-12
     mems[2]['bump_pitch'] = 100E-6
     mems[2]['current_per_bump'] = 520.8333333E-3
-    mems[2]['theta_ca'] = 0.15      # 0.185 MIDLINE
+    mems[2]['theta_ca'] = 0.18146      # 0.185 MIDLINE
     mems[2]['l3_bw'] = 30E9
     mems[2]['T_j_max'] = 110
 
@@ -179,7 +179,7 @@ def load_data():
     mems[3]['energy_per_wire'] = 15E-12
     mems[3]['bump_pitch'] = 100E-6
     mems[3]['current_per_bump'] = 520.8333333E-3
-    mems[3]['theta_ca'] = 0.0975      # 0.0975 MIDLINE
+    mems[3]['theta_ca'] = 0.09501      # 0.0975 MIDLINE
     mems[3]['l3_bw'] = 30E9
     mems[3]['T_j_max'] = 110
 
@@ -192,7 +192,7 @@ def load_data():
     mems[4]['energy_per_wire'] = 15E-12
     mems[4]['bump_pitch'] = 100E-6
     mems[4]['current_per_bump'] = 520.8333333E-3
-    mems[4]['theta_ca'] = 0.09      # 0.0975 MIDLINE
+    mems[4]['theta_ca'] = 0.09501      # 0.0975 MIDLINE
     mems[4]['l3_bw'] = 30E9
     mems[4]['T_j_max'] = 110
 
@@ -205,7 +205,7 @@ def load_data():
     mems[5]['energy_per_wire'] = 3.5E-12
     mems[5]['bump_pitch'] = 40E-6
     mems[5]['current_per_bump'] = 83.3333333E-3
-    mems[5]['theta_ca'] = 0.2
+    mems[5]['theta_ca'] = 0.32552
     mems[5]['l3_bw'] = 30E9
     mems[5]['T_j_max'] = 110
 
