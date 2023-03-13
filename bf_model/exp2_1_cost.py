@@ -611,7 +611,7 @@ def plot(results):
 
         ddrs = []
         for i in range(5): # MANUAL
-            ddrs.append({"x": [], "perf": [], "l3_bound": [], "mc_bound": [], "compute_bound": [], "io_bound": [], })
+            ddrs.append({"x": [], "perf": [], "l3_bound": [], "mc_bound": [], "compute_bound": [], "io_bound": [], "cost": []})
 
         # filter all results into the set of result with specific app profile
         curr = [result for result in results if result["app_prop"]["ai_app"] == app_prop["ai_app"]]
@@ -623,6 +623,7 @@ def plot(results):
         hbm_mc_bound = []
         hbm_compute_bound = []
         hbm_io_bound = []
+        hbm_cost = []
 
         ddr0 = [result for result in curr if result["mem"]["name"] == "DDR4-2400 theta_ca=0.30219"]
         ddr1 = [result for result in curr if result["mem"]["name"] == "DDR4-3200 theta_ca=0.26904"]
@@ -641,6 +642,7 @@ def plot(results):
             ddrs[0]["mc_bound"].append(result['dump']['mc_bound'])
             ddrs[0]["compute_bound"].append(result['dump']['compute_bound'])
             ddrs[0]["io_bound"].append(result['dump']['io_bound'])
+            ddrs[0]["cost"].append(result['dump']['cost'])    
 
         for result in ddr1:
             ddrs[1]["x"].append(result['dump']['l3_count'])
@@ -649,6 +651,7 @@ def plot(results):
             ddrs[1]["mc_bound"].append(result['dump']['mc_bound'])
             ddrs[1]["compute_bound"].append(result['dump']['compute_bound'])
             ddrs[1]["io_bound"].append(result['dump']['io_bound'])
+            ddrs[1]["cost"].append(result['dump']['cost'])  
 
         for result in ddr2:
             ddrs[2]["x"].append(result['dump']['l3_count'])
@@ -657,6 +660,7 @@ def plot(results):
             ddrs[2]["mc_bound"].append(result['dump']['mc_bound'])
             ddrs[2]["compute_bound"].append(result['dump']['compute_bound'])
             ddrs[2]["io_bound"].append(result['dump']['io_bound'])
+            ddrs[2]["cost"].append(result['dump']['cost'])  
 
         for result in ddr3:
             ddrs[3]["x"].append(result['dump']['l3_count'])
@@ -665,6 +669,7 @@ def plot(results):
             ddrs[3]["mc_bound"].append(result['dump']['mc_bound'])
             ddrs[3]["compute_bound"].append(result['dump']['compute_bound'])
             ddrs[3]["io_bound"].append(result['dump']['io_bound'])
+            ddrs[3]["cost"].append(result['dump']['cost'])  
 
         for result in ddr4:
             ddrs[4]["x"].append(result['dump']['l3_count'])
@@ -673,6 +678,7 @@ def plot(results):
             ddrs[4]["mc_bound"].append(result['dump']['mc_bound'])
             ddrs[4]["compute_bound"].append(result['dump']['compute_bound'])
             ddrs[4]["io_bound"].append(result['dump']['io_bound'])
+            ddrs[4]["cost"].append(result['dump']['cost'])  
 
         for result in hbm:
             hbm_x.append(result['dump']['l3_count'])
@@ -681,6 +687,7 @@ def plot(results):
             hbm_mc_bound.append(result['dump']['mc_bound'])
             hbm_compute_bound.append(result['dump']['compute_bound'])
             hbm_io_bound.append(result['dump']['io_bound'])
+            hbm_cost.append(result['dump']['cost'])  
 
         for i in range(len(ddrs)):
             ddrs[i]["perf"] = np.array(ddrs[i]["perf"]) / 1E9
@@ -701,6 +708,12 @@ def plot(results):
                         y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.32552',
                         x_axis_label='Number of L3 Slices', y_axis_label='Performance (Gflop/s)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Performance')
+        
+        multi_line_plot(x1=ddrs[0]["x"], x2=ddrs[1]["x"], x3=ddrs[2]["x"], x4=ddrs[3]["x"], x5=ddrs[4]["x"], x6=hbm_x, 
+                        y1=ddrs[0]["cost"], y2=ddrs[1]["cost"], y3=ddrs[2]["cost"], y4=ddrs[3]["cost"], y5=ddrs[4]["cost"], y6=hbm_cost, 
+                        y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.32552',
+                        x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
+                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Cost')
         
         double_line_plot(x1=ddrs[0]["x"], x2=ddrs[0]["x"], y1=ddrs[0]["compute_bound"], y2=ddrs[0]["io_bound"], 
                         y1_label='Compute Throughput', y2_label='Memory Bandwidth',
