@@ -187,7 +187,7 @@ def load_data():
     mems[2]['T_j_max'] = 110
 
     mems.append({})
-    mems[3]['name'] = "DDR5-5600 theta_ca=0.13620"
+    mems[3]['name'] = "DDR5-5600 theta_ca=0.14007"
     mems[3]['mc_bw'] = 2800E6 * 2 * 8
     mems[3]['mc_count'] = 4
     mems[3]['mc_area'] = 10E-6
@@ -195,7 +195,7 @@ def load_data():
     mems[3]['energy_per_wire'] = 15E-12
     mems[3]['bump_pitch_die'] = 100E-6
     mems[3]['current_per_bump_die'] = 520.8333333E-3
-    mems[3]['theta_ca'] = 0.13620      
+    mems[3]['theta_ca'] = 0.14007     # MIDLINE 0.14007
     mems[3]["use_intp"] = 0
     mems[3]['mem_cost_per_mc'] = 77
     mems[3]['l3_bw'] = 30E9
@@ -627,7 +627,7 @@ def plot(results):
         ddr0 = [result for result in curr if result["mem"]["name"] == "DDR4-2400 theta_ca=0.30219"]
         ddr1 = [result for result in curr if result["mem"]["name"] == "DDR4-3200 theta_ca=0.26904"]
         ddr2 = [result for result in curr if result["mem"]["name"] == "DDR5-4800 theta_ca=0.18146"]
-        ddr3 = [result for result in curr if result["mem"]["name"] == "DDR5-5600 theta_ca=0.13620"]
+        ddr3 = [result for result in curr if result["mem"]["name"] == "DDR5-5600 theta_ca=0.14007"]
         ddr4 = [result for result in curr if result["mem"]["name"] == "DDR5-5600 theta_ca=0.13620"]
         hbm = [result for result in curr if result["mem"]["name"] == "HBM2 theta_ca=0.32552"]
         ai_app = app_prop["ai_app"]
@@ -698,7 +698,7 @@ def plot(results):
 
         multi_line_plot(x1=ddrs[0]["x"], x2=ddrs[1]["x"], x3=ddrs[2]["x"], x4=ddrs[3]["x"], x5=ddrs[4]["x"], x6=hbm_x, 
                         y1=ddrs[0]["perf"], y2=ddrs[1]["perf"], y3=ddrs[2]["perf"], y4=ddrs[3]["perf"], y5=ddrs[4]["perf"], y6=hbm_perf, 
-                        y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.13620', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.32552',
+                        y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.32552',
                         x_axis_label='Number of L3 Slices', y_axis_label='Performance (Gflop/s)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Performance')
         
