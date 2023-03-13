@@ -37,3 +37,9 @@ test = [{"a":3, "b":3}, {"a":4, "b":4}]
 # print(curr)
 # print(test)
 
+def lol(input):
+    input[0]["b"] = "CHANGED"
+
+print(test)
+lol(test)
+print(test)

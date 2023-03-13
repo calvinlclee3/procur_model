@@ -46,9 +46,9 @@ def load_data():
     default["io_power"] = 10
 
     # bump parameters
-    default["bump_pitch"] = 40E-6
+    default["bump_pitch_die"] = 40E-6
     default["die_voltage_nominal"] = 1.2
-    default["current_per_bump"] = 520.8333333E-3
+    default["current_per_bump_die"] = 520.8333333E-3
     default["mc_bump_count"] = 288
     default["io_bump_count"] = 114
 
@@ -81,7 +81,22 @@ def load_data():
     default["core_freq_nominal"] = 3.6E9
 
     # Cost Model Parameters
-
+    default["wafer_cost_die"] = 16000
+    default["wafer_cost_intp"] = 2500
+    default["wafer_dia_die"] = 300E-3
+    default["wafer_dia_intp"] = 300E-3
+    default["defect_density_die"] = 0.001E6
+    default["defect_density_intp"] = 0.001E6
+    default["clustering_factor_die"] = 2
+    default["clustering_factor_intp"] = 2
+    default["mem_cost_per_mc"] = 100                         # Default always overwritten.
+    default["use_intp"] = 0                                  # 0 for False, 1 for True. Default always overwritten.
+    default["HBM_area_per_mc"] = 100E-6             
+    default["intp_asm_cost"] = 10
+    default["pkg_cost_per_sqmm"] = 0.02E6
+    default["bump_pitch_pkg"] = 900E-6
+    default["pkg_non_io_area"] = 0E-6
+    default["current_per_bump_pkg"] = 250E-3
 
     # IMPORTANT: What used to be variables in the optimization model
 
@@ -95,6 +110,8 @@ def load_data():
 
     with open("default.json", "w") as outfile:
         json.dump(default, outfile)
+
+    # ******************************************************************************************
 
     # THIS PART CANNOT BE HAND-CODED
     # This is just an example
@@ -131,9 +148,11 @@ def load_data():
     mems[0]['mc_area'] = 10E-6
     mems[0]['mc_freq'] = 1600E6
     mems[0]['energy_per_wire'] = 15E-12
-    mems[0]['bump_pitch'] = 100E-6
-    mems[0]['current_per_bump'] = 520.8333333E-3
+    mems[0]['bump_pitch_die'] = 100E-6
+    mems[0]['current_per_bump_die'] = 520.8333333E-3
     mems[0]['theta_ca'] = 0.26904
+    mems[0]["use_intp"] = 0
+    mems[0]['mem_cost_per_mc'] = 77
     mems[0]['l3_bw'] = 30E9
     mems[0]['T_j_max'] = 110
     
@@ -144,9 +163,11 @@ def load_data():
     mems[1]['mc_area'] = 10E-6
     mems[1]['mc_freq'] = 2000E6
     mems[1]['energy_per_wire'] = 15E-12
-    mems[1]['bump_pitch'] = 100E-6
-    mems[1]['current_per_bump'] = 520.8333333E-3
+    mems[1]['bump_pitch_die'] = 100E-6
+    mems[1]['current_per_bump_die'] = 520.8333333E-3
     mems[1]['theta_ca'] = 0.22732
+    mems[1]["use_intp"] = 0
+    mems[1]['mem_cost_per_mc'] = 77
     mems[1]['l3_bw'] = 30E9
     mems[1]['T_j_max'] = 110
 
@@ -157,9 +178,11 @@ def load_data():
     mems[2]['mc_area'] = 10E-6
     mems[2]['mc_freq'] = 2400E6
     mems[2]['energy_per_wire'] = 15E-12
-    mems[2]['bump_pitch'] = 100E-6
-    mems[2]['current_per_bump'] = 520.8333333E-3
+    mems[2]['bump_pitch_die'] = 100E-6
+    mems[2]['current_per_bump_die'] = 520.8333333E-3
     mems[2]['theta_ca'] = 0.18146      # 0.185 MIDLINE
+    mems[2]["use_intp"] = 0
+    mems[2]['mem_cost_per_mc'] = 77
     mems[2]['l3_bw'] = 30E9
     mems[2]['T_j_max'] = 110
 
@@ -170,9 +193,11 @@ def load_data():
     mems[3]['mc_area'] = 10E-6
     mems[3]['mc_freq'] = 3200E6
     mems[3]['energy_per_wire'] = 15E-12
-    mems[3]['bump_pitch'] = 100E-6
-    mems[3]['current_per_bump'] = 520.8333333E-3
-    mems[3]['theta_ca'] = 0.0975      # 0.0975 MIDLINE
+    mems[3]['bump_pitch_die'] = 100E-6
+    mems[3]['current_per_bump_die'] = 520.8333333E-3
+    mems[3]['theta_ca'] = 0.09501      # 0.0975 MIDLINE #@@
+    mems[3]["use_intp"] = 0
+    mems[3]['mem_cost_per_mc'] = 77
     mems[3]['l3_bw'] = 30E9
     mems[3]['T_j_max'] = 110
 
@@ -183,9 +208,11 @@ def load_data():
     mems[4]['mc_area'] = 10E-6
     mems[4]['mc_freq'] = 3200E6
     mems[4]['energy_per_wire'] = 15E-12
-    mems[4]['bump_pitch'] = 100E-6
-    mems[4]['current_per_bump'] = 520.8333333E-3
+    mems[4]['bump_pitch_die'] = 100E-6
+    mems[4]['current_per_bump_die'] = 520.8333333E-3
     mems[4]['theta_ca'] = 0.09501      # 0.0975 MIDLINE
+    mems[4]["use_intp"] = 0
+    mems[4]['mem_cost_per_mc'] = 77
     mems[4]['l3_bw'] = 30E9
     mems[4]['T_j_max'] = 110
 
@@ -196,9 +223,11 @@ def load_data():
     mems[5]['mc_area'] = 6.6831E-6
     mems[5]['mc_freq'] = 1000E6
     mems[5]['energy_per_wire'] = 3.5E-12
-    mems[5]['bump_pitch'] = 40E-6
-    mems[5]['current_per_bump'] = 83.3333333E-3
+    mems[5]['bump_pitch_die'] = 40E-6
+    mems[5]['current_per_bump_die'] = 83.3333333E-3
     mems[5]['theta_ca'] = 0.32552
+    mems[5]["use_intp"] = 1
+    mems[5]['mem_cost_per_mc'] = 120
     mems[5]['l3_bw'] = 30E9
     mems[5]['T_j_max'] = 110
 
@@ -226,11 +255,11 @@ def load_data():
         json.dump(app_props, outfile)
     
 
-def solve(obj, perfLB, areaUB, powerUB):
+def solve(obj, perfLB, areaUB, powerUB, costUB):
 
     results = []
 
-    print(f'Solving for objective {obj} with perfLB={perfLB} Gflop/s, areaUB={areaUB} mm2, powerUB={powerUB} W\n')
+    print(f'Solving for objective {obj} with perfLB={perfLB} Gflop/s, areaUB={areaUB} mm2, powerUB={powerUB} W, costUB=${costUB}\n')
     
     with open("default.json", 'r') as fp:
         master_default = json.load(fp)
@@ -253,7 +282,7 @@ def solve(obj, perfLB, areaUB, powerUB):
                 for core in cores:
 
                     # Get a new, clean copy of default
-                    default = []
+                    default = {}
                     default = copy.deepcopy(master_default)
 
                     result = {}
@@ -278,6 +307,7 @@ def solve(obj, perfLB, areaUB, powerUB):
                     p.perfLB = perfLB * 1E9 
                     p.areaUB = areaUB * 1E-6 
                     p.powerUB = powerUB 
+                    p.costUB = costUB
 
                     # ****************************** MODEL EQUATIONS ******************************
 
@@ -316,11 +346,11 @@ def solve(obj, perfLB, areaUB, powerUB):
                     p.A_die  = p.core_count * p.core_area * p.core_area_multiplier
                     p.A_die += p.core_count * p.l1_area * p.l1l2_area_multiplier
                     p.A_die += p.core_count * p.l2_area * p.l1l2_area_multiplier
-                    p.A_die += p.io_count   * p.io_area 
                     p.A_die += p.l3_count   * p.l3_area 
                     p.A_die += p.mc_count   * p.mc_area
+                    p.A_die += p.io_count   * p.io_area 
 
-                    p.power_bump_count = (p.P_die) / (p.die_voltage * p.current_per_bump) * 2
+                    p.power_bump_count_die = (p.P_die) / (p.die_voltage * p.current_per_bump_die) * 2
                     p.max_wire = 6 * math.sqrt(p.A_die / 6) * p.package_layer / p.link_pitch
 
                     # relative size of the working set and the L3 cache determines L3 hit rate
@@ -342,6 +372,66 @@ def solve(obj, perfLB, areaUB, powerUB):
                     p.io_bound = p.arithmetic_intensity * p.system_bw
                     p.perf = min(p.compute_bound, p.io_bound)
 
+                    # Cost Model
+
+                    # area of die for yield calculation purposes
+                    p.A_die_yield  = p.core_count * p.core_area * p.core_area_multiplier
+                    p.A_die_yield += p.core_count * p.l1_area * p.l1l2_area_multiplier * 0.1
+                    p.A_die_yield += p.core_count * p.l2_area * p.l1l2_area_multiplier * 0.05
+                    p.A_die_yield += p.l3_count   * p.l3_area * 0.05
+                    p.A_die_yield += p.mc_count   * p.mc_area
+                    p.A_die_yield += p.io_count   * p.io_area
+
+                    # yield of the die
+                    p.die_yield = math.pow((1 + (p.A_die_yield * p.defect_density_die / p.clustering_factor_die)), -1.0 * p.clustering_factor_die)
+                    
+                    # number of dies that can be cut from a wafer (not considering scribe line and edge exclusion)
+                    # note that normal die area, not yield die area, is used for this calculation
+                    p.die_per_wafer = p.wafer_dia_die * math.pi * ((p.wafer_dia_die / (4 * p.A_die)) - (1 / math.sqrt(2 * p.A_die)))
+                    
+                    # cost of each die, considering yield
+                    p.die_cost = p.wafer_cost_die / (p.die_per_wafer * p.die_yield)
+
+                    # cost of interposer
+                    if(p.use_intp == 0):
+                        p.A_intp = 0 
+                        p.A_intp_yield = 0
+                        p.intp_yield = 0
+                        p.intp_per_wafer = 0
+                        p.intp_cost = 0
+                    else:
+                        # area of interposer
+                        p.A_intp = p.A_die + (p.mc_count * p.HBM_area_per_mc)
+
+                        # area of interposer for yield calculation purposes
+                        p.A_intp_yield = p.A_die_yield + (p.mc_count * p.HBM_area_per_mc)
+
+                        # yield of interposer
+                        p.intp_yield = math.pow((1 + (p.A_intp_yield * p.defect_density_intp / p.clustering_factor_intp)), -1.0 * p.clustering_factor_intp)
+
+                        # number of interposers that can be cut from a wafer (not considering scribe line and edge exclusion)
+                        p.intp_per_wafer = p.wafer_dia_intp * math.pi * ((p.wafer_dia_intp / (4 * p.A_intp)) - (1 / math.sqrt(2 * p.A_intp)))
+
+                        p.intp_cost = (p.wafer_cost_intp / (p.intp_per_wafer * p.intp_yield)) + p.intp_asm_cost
+
+                    # number of power bumps on the package
+                    p.power_bump_count_pkg = (p.P_die) / (p.die_voltage * p.current_per_bump_pkg) * 2
+
+                    # area of package
+                    if(p.use_intp == 0):
+                        p.A_pkg = (pow(p.bump_pitch_pkg, 2) * (p.power_bump_count_pkg + p.mc_bump_count * p.mc_count + p.io_bump_count * p.io_count)) + p.pkg_non_io_area
+                    else:
+                        p.A_pkg = (pow(p.bump_pitch_pkg, 2) * (p.power_bump_count_pkg + p.io_bump_count * p.io_count)) + p.pkg_non_io_area
+                    
+                    # cost of package
+                    p.pkg_cost = p.A_pkg * p.pkg_cost_per_sqmm
+
+                    # cost of memory
+                    p.mem_cost = p.mc_count * p.mem_cost_per_mc
+
+                    # total cost 
+                    p.cost = p.die_cost + p.intp_cost + p.mem_cost + p.pkg_cost 
+
                     # ****************************** ENFORCE OBJ-INDEPENDENT CONSTRAINTS ******************************
                     if(p.core_count < 1 or p.l3_count < 1 or p.mc_count < 1 or p.io_count < 1):
                         infs_handler(result, "must have at least one of each component")
@@ -352,7 +442,7 @@ def solve(obj, perfLB, areaUB, powerUB):
                     if(p.P_max < p.P_die):
                         infs_handler(result, "P_max < P_die")
                     
-                    if(p.A_die < (p.bump_pitch**2) * (p.power_bump_count + p.mc_bump_count * p.mc_count + p.io_bump_count * p.io_count)):
+                    if(p.A_die < (p.bump_pitch_die**2) * (p.power_bump_count_die + p.mc_bump_count * p.mc_count + p.io_bump_count * p.io_count)):
                         infs_handler(result, "bump constraint not met")
                     
                     if(p.max_wire < p.mc_count * p.wires_per_mc):
@@ -369,6 +459,8 @@ def solve(obj, perfLB, areaUB, powerUB):
                             infs_handler(result, f'areaUB < A_die')
                         if(p.powerUB < p.P_die):
                             infs_handler(result, f'powerUB < P_die')
+                        if(p.costUB < p.cost):
+                            infs_handler(result, f'costUB < cost')
                         result["obj value"] = p.perf
 
                     elif(obj == "min_area"):
@@ -376,6 +468,8 @@ def solve(obj, perfLB, areaUB, powerUB):
                             infs_handler(result, f'perf < perfLB')
                         if(p.powerUB < p.P_die):
                             infs_handler(result, f'powerUB < P_die')
+                        if(p.costUB < p.cost):
+                            infs_handler(result, f'costUB < cost')
                         result["obj value"] = p.A_die
 
                     elif(obj == "min_power"):
@@ -383,14 +477,17 @@ def solve(obj, perfLB, areaUB, powerUB):
                             infs_handler(result, f'areaUB < A_die')
                         if(p.perf < p.perfLB):
                             infs_handler(result, f'perf < perfLB')
+                        if(p.costUB < p.cost):
+                            infs_handler(result, f'costUB < cost')
                         result["obj value"] = p.P_die
 
-                    # ***********************************************************************************************
+                    # ******************************************************************************************
                     
                     result["perf"] = p.perf
                     result["A_die"] = p.A_die
                     result["P_die"] = p.P_die
                     result["core_freq"] = p.core_freq
+                    result["cost"] = p.cost
 
                     # Dump the entire namespace with all model param/variables
                     result["dump"] = copy.deepcopy(p.__dict__)
@@ -645,28 +742,35 @@ if __name__ == "__main__":
     # use -o flag to specify max_perf, min_area, or min_power objective
     parser.add_argument("-o", "--objective", dest = "obj")
 
-    # use -perf -area -power flags to override default values for perf, area, and power limit
+    # use -perf -area -power -cost flags to override default values for perf, area, power, and cost limit
     parser.add_argument("-perf", dest = "perfLB", type=float, default="10")
     parser.add_argument("-area", dest = "areaUB", type=float, default="1000")
-    parser.add_argument("-power", dest = "powerUB", type=float, default="287.5")
+    parser.add_argument("-power", dest = "powerUB", type=float, default="1E10")
+    parser.add_argument("-cost", dest = "costUB", type=float, default="1E10")
 
-    # use -display flag to view key information about each design point
+    # use -display flag to view key information about every single design point
     # o.w. only print best design point
     parser.add_argument("-display", action='store_true')
 
-    # use -dump flag to view complete information about any design point displayed
+    # use -dump flag to view complete information about any design points which are displayed
     parser.add_argument("-dump", action='store_true')
+
+    # use -noplot flag to not generate plots
+    parser.add_argument("-noplot", action='store_true')
+
     args = parser.parse_args()
     
     load_data()
-    results = solve(args.obj, args.perfLB, args.areaUB, args.powerUB)
+    results = solve(args.obj, args.perfLB, args.areaUB, args.powerUB, args.costUB)
     filtered, infs_count = infs_filter(results)
 
     if(args.display == True):
         display(results, args.dump)
     
     find_best(filtered, args.obj, args.dump)
-    plot(filtered)
+    
+    if(args.noplot == False):
+        plot(filtered)
 
     print('######################################################')
     print(f'{len(results)} design points evaluated.')
