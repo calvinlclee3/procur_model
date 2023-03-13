@@ -152,7 +152,7 @@ def load_data():
     mems[0]['current_per_bump_die'] = 520.8333333E-3
     mems[0]['theta_ca'] = 0.30219
     mems[0]["use_intp"] = 0
-    mems[0]['mem_cost_per_mc'] = 77
+    mems[0]['mem_cost_per_mc'] = 41.99
     mems[0]['l3_bw'] = 30E9
     mems[0]['T_j_max'] = 110
     
@@ -167,7 +167,7 @@ def load_data():
     mems[1]['current_per_bump_die'] = 520.8333333E-3
     mems[1]['theta_ca'] = 0.26904
     mems[1]["use_intp"] = 0
-    mems[1]['mem_cost_per_mc'] = 77
+    mems[1]['mem_cost_per_mc'] = 41.99
     mems[1]['l3_bw'] = 30E9
     mems[1]['T_j_max'] = 110
 
@@ -182,7 +182,7 @@ def load_data():
     mems[2]['current_per_bump_die'] = 520.8333333E-3
     mems[2]['theta_ca'] = 0.18146     
     mems[2]["use_intp"] = 0
-    mems[2]['mem_cost_per_mc'] = 77
+    mems[2]['mem_cost_per_mc'] = 52.99
     mems[2]['l3_bw'] = 30E9
     mems[2]['T_j_max'] = 110
 
@@ -197,7 +197,7 @@ def load_data():
     mems[3]['current_per_bump_die'] = 520.8333333E-3
     mems[3]['theta_ca'] = 0.14007     # MIDLINE 0.14007
     mems[3]["use_intp"] = 0
-    mems[3]['mem_cost_per_mc'] = 77
+    mems[3]['mem_cost_per_mc'] = 73.99
     mems[3]['l3_bw'] = 30E9
     mems[3]['T_j_max'] = 110
 
@@ -212,7 +212,7 @@ def load_data():
     mems[4]['current_per_bump_die'] = 520.8333333E-3
     mems[4]['theta_ca'] = 0.13620     
     mems[4]["use_intp"] = 0
-    mems[4]['mem_cost_per_mc'] = 77
+    mems[4]['mem_cost_per_mc'] = 73.99
     mems[4]['l3_bw'] = 30E9
     mems[4]['T_j_max'] = 110
 
