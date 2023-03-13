@@ -142,30 +142,30 @@ def load_data():
 
     mems = []
     mems.append({})
-    mems[0]['name'] = "DDR4-3200 theta_ca=0.26904"
-    mems[0]['mc_bw'] = 1600E6 * 2 * 8
+    mems[0]['name'] = "DDR4-2400 theta_ca=0.30219"
+    mems[0]['mc_bw'] = 1200E6 * 2 * 8
     mems[0]['mc_count'] = 4
     mems[0]['mc_area'] = 10E-6
-    mems[0]['mc_freq'] = 1600E6
+    mems[0]['mc_freq'] = 1200E6
     mems[0]['energy_per_wire'] = 15E-12
     mems[0]['bump_pitch_die'] = 100E-6
     mems[0]['current_per_bump_die'] = 520.8333333E-3
-    mems[0]['theta_ca'] = 0.26904
+    mems[0]['theta_ca'] = 0.30219
     mems[0]["use_intp"] = 0
     mems[0]['mem_cost_per_mc'] = 77
     mems[0]['l3_bw'] = 30E9
     mems[0]['T_j_max'] = 110
     
     mems.append({})
-    mems[1]['name'] = "DDR5-4000 theta_ca=0.22732"
-    mems[1]['mc_bw'] = 2000E6 * 2 * 8
+    mems[1]['name'] = "DDR4-3200 theta_ca=0.26904"
+    mems[1]['mc_bw'] = 1600E6 * 2 * 8
     mems[1]['mc_count'] = 4
     mems[1]['mc_area'] = 10E-6
-    mems[1]['mc_freq'] = 2000E6
+    mems[1]['mc_freq'] = 1600E6
     mems[1]['energy_per_wire'] = 15E-12
     mems[1]['bump_pitch_die'] = 100E-6
     mems[1]['current_per_bump_die'] = 520.8333333E-3
-    mems[1]['theta_ca'] = 0.22732
+    mems[1]['theta_ca'] = 0.26904
     mems[1]["use_intp"] = 0
     mems[1]['mem_cost_per_mc'] = 77
     mems[1]['l3_bw'] = 30E9
@@ -180,37 +180,37 @@ def load_data():
     mems[2]['energy_per_wire'] = 15E-12
     mems[2]['bump_pitch_die'] = 100E-6
     mems[2]['current_per_bump_die'] = 520.8333333E-3
-    mems[2]['theta_ca'] = 0.18146      # 0.185 MIDLINE
+    mems[2]['theta_ca'] = 0.18146     
     mems[2]["use_intp"] = 0
     mems[2]['mem_cost_per_mc'] = 77
     mems[2]['l3_bw'] = 30E9
     mems[2]['T_j_max'] = 110
 
     mems.append({})
-    mems[3]['name'] = "DDR5-6400 theta_ca=0.0975"
-    mems[3]['mc_bw'] = 3200E6 * 2 * 8
+    mems[3]['name'] = "DDR5-5600 theta_ca=0.13620"
+    mems[3]['mc_bw'] = 2800E6 * 2 * 8
     mems[3]['mc_count'] = 4
     mems[3]['mc_area'] = 10E-6
-    mems[3]['mc_freq'] = 3200E6
+    mems[3]['mc_freq'] = 2800E6
     mems[3]['energy_per_wire'] = 15E-12
     mems[3]['bump_pitch_die'] = 100E-6
     mems[3]['current_per_bump_die'] = 520.8333333E-3
-    mems[3]['theta_ca'] = 0.09501      # 0.0975 MIDLINE #@@
+    mems[3]['theta_ca'] = 0.13620      
     mems[3]["use_intp"] = 0
     mems[3]['mem_cost_per_mc'] = 77
     mems[3]['l3_bw'] = 30E9
     mems[3]['T_j_max'] = 110
 
     mems.append({})
-    mems[4]['name'] = "DDR5-6400 theta_ca=0.09501"
-    mems[4]['mc_bw'] = 3200E6 * 2 * 8
+    mems[4]['name'] = "DDR5-5600 theta_ca=0.13620"
+    mems[4]['mc_bw'] = 2800E6 * 2 * 8
     mems[4]['mc_count'] = 4
     mems[4]['mc_area'] = 10E-6
-    mems[4]['mc_freq'] = 3200E6
+    mems[4]['mc_freq'] = 2800E6
     mems[4]['energy_per_wire'] = 15E-12
     mems[4]['bump_pitch_die'] = 100E-6
     mems[4]['current_per_bump_die'] = 520.8333333E-3
-    mems[4]['theta_ca'] = 0.09501      # 0.0975 MIDLINE
+    mems[4]['theta_ca'] = 0.13620     
     mems[4]["use_intp"] = 0
     mems[4]['mem_cost_per_mc'] = 77
     mems[4]['l3_bw'] = 30E9
@@ -624,11 +624,11 @@ def plot(results):
         hbm_compute_bound = []
         hbm_io_bound = []
 
-        ddr0 = [result for result in curr if result["mem"]["name"] == "DDR4-3200 theta_ca=0.26904"]
-        ddr1 = [result for result in curr if result["mem"]["name"] == "DDR5-4000 theta_ca=0.22732"]
+        ddr0 = [result for result in curr if result["mem"]["name"] == "DDR4-2400 theta_ca=0.30219"]
+        ddr1 = [result for result in curr if result["mem"]["name"] == "DDR4-3200 theta_ca=0.26904"]
         ddr2 = [result for result in curr if result["mem"]["name"] == "DDR5-4800 theta_ca=0.18146"]
-        ddr3 = [result for result in curr if result["mem"]["name"] == "DDR5-6400 theta_ca=0.0975"]
-        ddr4 = [result for result in curr if result["mem"]["name"] == "DDR5-6400 theta_ca=0.09501"]
+        ddr3 = [result for result in curr if result["mem"]["name"] == "DDR5-5600 theta_ca=0.13620"]
+        ddr4 = [result for result in curr if result["mem"]["name"] == "DDR5-5600 theta_ca=0.13620"]
         hbm = [result for result in curr if result["mem"]["name"] == "HBM2 theta_ca=0.32552"]
         ai_app = app_prop["ai_app"]
         workset_size = app_prop["workset_size"] / 1E6
@@ -698,19 +698,19 @@ def plot(results):
 
         multi_line_plot(x1=ddrs[0]["x"], x2=ddrs[1]["x"], x3=ddrs[2]["x"], x4=ddrs[3]["x"], x5=ddrs[4]["x"], x6=hbm_x, 
                         y1=ddrs[0]["perf"], y2=ddrs[1]["perf"], y3=ddrs[2]["perf"], y4=ddrs[3]["perf"], y5=ddrs[4]["perf"], y6=hbm_perf, 
-                        y1_label='DDR4-3200 theta_ca=0.26904', y2_label='DDR5-4000 theta_ca=0.22732', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-6400 theta_ca=0.0975', y5_label='DDR5-6400 theta_ca=0.09501', y6_label='HBM2 theta_ca=0.32552',
+                        y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.13620', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.32552',
                         x_axis_label='Number of L3 Slices', y_axis_label='Performance (Gflop/s)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Performance')
         
         double_line_plot(x1=ddrs[0]["x"], x2=ddrs[0]["x"], y1=ddrs[0]["compute_bound"], y2=ddrs[0]["io_bound"], 
                         y1_label='Compute Throughput', y2_label='Memory Bandwidth',
                         x_axis_label='Number of L3 Slices', y_axis_label='',
-                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR4-3200 Compute vs IO Bound')
+                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR4-2400 Compute vs IO Bound')
 
         double_line_plot(x1=ddrs[0]["x"], x2=ddrs[0]["x"], y1=ddrs[0]["l3_bound"], y2=ddrs[0]["mc_bound"], 
                         y1_label='L3 Effective BW', y2_label='MC Effective BW',
                         x_axis_label='Number of L3 Slices', y_axis_label='',
-                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR4-3200 L3 vs MC Bound')
+                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR4-2400 L3 vs MC Bound')
 
         double_line_plot(x1=ddrs[2]["x"], x2=ddrs[2]["x"], y1=ddrs[2]["compute_bound"], y2=ddrs[2]["io_bound"], 
                         y1_label='Compute Throughput', y2_label='Memory Bandwidth',
