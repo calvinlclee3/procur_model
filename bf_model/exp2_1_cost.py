@@ -62,7 +62,7 @@ def load_data():
     default["mc_freq"] = 1600E6
     default["mc_freq_nominal"] = 1600E6
     default["mc_voltage_nominal"] = 1.2
-    default["mc_power_ctrl_nominal"] = 3                             # per MC
+    default["mc_power_ctrl_nominal"] = 3                     # per MC
 
     # performance parameters
     default["ai_app"] = 100                                  # operations / byte
@@ -80,15 +80,8 @@ def load_data():
     default["core_freq_absolute_max"] = 10E9
     default["core_freq_nominal"] = 3.6E9
 
-    # # objective-dependent constraints
-    # default["PerfLB"] = 10E9
-    # default["PerfUB"] = 0
-    # default["AreaLB"] = 0
-    # # 1000E-6
-    # default["AreaUB"] = 1000E-6
-    # default["PowerLB"] = 0
-    # # P_max: 287.5
-    # default["PowerUB"] = 287.5
+    # Cost Model Parameters
+
 
     # IMPORTANT: What used to be variables in the optimization model
 
