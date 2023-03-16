@@ -607,183 +607,118 @@ def plot(results):
     with open("app_props.json", 'r') as fp:
         app_props = json.load(fp)
 
+    with open("mems.json", 'r') as fp:
+        mems = json.load(fp)
+
+    print(mems[0]["name"])
+    print(mems[1]["name"])
+    print(mems[2]["name"])
+    print(mems[3]["name"])
+    print(mems[4]["name"])
+    print(mems[5]["name"])
+
     for app_prop in app_props:
 
-        ddrs = []
-        for i in range(5): # MANUAL
-            ddrs.append({"x": [], "perf": [], "l3_bound": [], "mc_bound": [], "compute_bound": [], "io_bound": [], "die_cost": [], "intp_cost": [], "pkg_cost": [], "cost": []})
+        mem_raw_data = [] # a list of (mem type #) of lists, each of which has the same organizational hierarchy as "results", just shorter
+        mem_plot_data = [] # a list of (mem type #) of dicts, each of which has (key, value) pair = (plot axis, list of values for that axis)
 
-        # filter all results into the set of result with specific app profile
+        # structure mem_plot_data before filling it with data
+        for i in range(len(mems)):
+            mem_plot_data.append({"x": [], "perf": [], "l3_bound": [], "mc_bound": [], "compute_bound": [], "io_bound": [], "die_cost": [], "intp_cost": [], "pkg_cost": [], "cost": []})
+
+        # filter all results into a subset which has a specific app profile
         curr = [result for result in results if result["app_prop"]["ai_app"] == app_prop["ai_app"]]
         curr = [result for result in curr if result["app_prop"]["workset_size"] == app_prop["workset_size"]]
 
-        hbm_x = []
-        hbm_perf = []
-        hbm_l3_bound = []
-        hbm_mc_bound = []
-        hbm_compute_bound = []
-        hbm_io_bound = []
-        hbm_die_cost = []
-        hbm_intp_cost = []
-        hbm_pkg_cost = []
-        hbm_cost = []
+        # sort the subset with a specific app profile into a seperate list for each memory type
+        for i in range(len(mems)):
+            mem_raw_data.append([result for result in curr if result["mem"]["name"] == mems[i]["name"]])
 
-        ddr0 = [result for result in curr if result["mem"]["name"] == "DDR4-2400 theta_ca=0.30219"]
-        ddr1 = [result for result in curr if result["mem"]["name"] == "DDR4-3200 theta_ca=0.26904"]
-        ddr2 = [result for result in curr if result["mem"]["name"] == "DDR5-4800 theta_ca=0.18146"]
-        ddr3 = [result for result in curr if result["mem"]["name"] == "DDR5-5600 theta_ca=0.14007"]
-        ddr4 = [result for result in curr if result["mem"]["name"] == "DDR5-5600 theta_ca=0.13620"]
-        hbm = [result for result in curr if result["mem"]["name"] == "HBM2 theta_ca=0.32552"]
+        # grab ai_app, workset_size, and arithmetic_intensity for plot titles
         ai_app = app_prop["ai_app"]
         workset_size = app_prop["workset_size"] / 1E6
-        arithmetic_intensity = curr[0]['dump']['arithmetic_intensity']
+        arithmetic_intensity = curr[0]['dump']['arithmetic_intensity'] # only works because l1/l2_capacity are constants in the whole experiment
 
-        for result in ddr0:
-            ddrs[0]["x"].append(result['dump']['l3_count'])
-            ddrs[0]["perf"].append(result['dump']['perf'])
-            ddrs[0]["l3_bound"].append(result['dump']['l3_bound'])
-            ddrs[0]["mc_bound"].append(result['dump']['mc_bound'])
-            ddrs[0]["compute_bound"].append(result['dump']['compute_bound'])
-            ddrs[0]["io_bound"].append(result['dump']['io_bound'])
-            ddrs[0]["die_cost"].append(result['dump']['die_cost']) 
-            ddrs[0]["intp_cost"].append(result['dump']['intp_cost']) 
-            ddrs[0]["pkg_cost"].append(result['dump']['pkg_cost'])   
-            ddrs[0]["cost"].append(result['dump']['cost'])    
+        # convert mem_raw_data to mem_plot_data
+        for i in range(len(mems)): 
+            for result in mem_raw_data[i]:
+                mem_plot_data[i]["x"].append(result['dump']['l3_count'])
+                mem_plot_data[i]["perf"].append(result['dump']['perf'])
+                mem_plot_data[i]["l3_bound"].append(result['dump']['l3_bound'])
+                mem_plot_data[i]["mc_bound"].append(result['dump']['mc_bound'])
+                mem_plot_data[i]["compute_bound"].append(result['dump']['compute_bound'])
+                mem_plot_data[i]["io_bound"].append(result['dump']['io_bound'])
+                mem_plot_data[i]["die_cost"].append(result['dump']['die_cost']) 
+                mem_plot_data[i]["intp_cost"].append(result['dump']['intp_cost']) 
+                mem_plot_data[i]["pkg_cost"].append(result['dump']['pkg_cost'])   
+                mem_plot_data[i]["cost"].append(result['dump']['cost'])   
 
-        for result in ddr1:
-            ddrs[1]["x"].append(result['dump']['l3_count'])
-            ddrs[1]["perf"].append(result['dump']['perf'])
-            ddrs[1]["l3_bound"].append(result['dump']['l3_bound'])
-            ddrs[1]["mc_bound"].append(result['dump']['mc_bound'])
-            ddrs[1]["compute_bound"].append(result['dump']['compute_bound'])
-            ddrs[1]["io_bound"].append(result['dump']['io_bound']) 
-            ddrs[1]["die_cost"].append(result['dump']['die_cost'])
-            ddrs[1]["intp_cost"].append(result['dump']['intp_cost'])
-            ddrs[1]["pkg_cost"].append(result['dump']['pkg_cost']) 
-            ddrs[1]["cost"].append(result['dump']['cost']) 
-            
+        
+        # rescale mem_plot_data (adding the "Giga" prefix) 
+        for i in range(len(mems)):
+            mem_plot_data[i]["perf"] = np.array(mem_plot_data[i]["perf"]) / 1E9
+            mem_plot_data[i]["l3_bound"] = np.array(mem_plot_data[i]["l3_bound"]) / 1E9
+            mem_plot_data[i]["mc_bound"] = np.array(mem_plot_data[i]["mc_bound"]) / 1E9
+            mem_plot_data[i]["compute_bound"] = np.array(mem_plot_data[i]["compute_bound"]) / 1E9
+            mem_plot_data[i]["io_bound"] = np.array(mem_plot_data[i]["io_bound"]) / 1E9
 
-        for result in ddr2:
-            ddrs[2]["x"].append(result['dump']['l3_count'])
-            ddrs[2]["perf"].append(result['dump']['perf'])
-            ddrs[2]["l3_bound"].append(result['dump']['l3_bound'])
-            ddrs[2]["mc_bound"].append(result['dump']['mc_bound'])
-            ddrs[2]["compute_bound"].append(result['dump']['compute_bound'])
-            ddrs[2]["io_bound"].append(result['dump']['io_bound'])
-            ddrs[2]["die_cost"].append(result['dump']['die_cost'])
-            ddrs[2]["intp_cost"].append(result['dump']['intp_cost'])
-            ddrs[2]["pkg_cost"].append(result['dump']['pkg_cost']) 
-            ddrs[2]["cost"].append(result['dump']['cost'])  
-            
-
-        for result in ddr3:
-            ddrs[3]["x"].append(result['dump']['l3_count'])
-            ddrs[3]["perf"].append(result['dump']['perf'])
-            ddrs[3]["l3_bound"].append(result['dump']['l3_bound'])
-            ddrs[3]["mc_bound"].append(result['dump']['mc_bound'])
-            ddrs[3]["compute_bound"].append(result['dump']['compute_bound'])
-            ddrs[3]["io_bound"].append(result['dump']['io_bound'])
-            ddrs[3]["die_cost"].append(result['dump']['die_cost'])
-            ddrs[3]["intp_cost"].append(result['dump']['intp_cost'])
-            ddrs[3]["pkg_cost"].append(result['dump']['pkg_cost']) 
-            ddrs[3]["cost"].append(result['dump']['cost'])  
-            
-
-        for result in ddr4:
-            ddrs[4]["x"].append(result['dump']['l3_count'])
-            ddrs[4]["perf"].append(result['dump']['perf'])
-            ddrs[4]["l3_bound"].append(result['dump']['l3_bound'])
-            ddrs[4]["mc_bound"].append(result['dump']['mc_bound'])
-            ddrs[4]["compute_bound"].append(result['dump']['compute_bound'])
-            ddrs[4]["io_bound"].append(result['dump']['io_bound']) 
-            ddrs[4]["die_cost"].append(result['dump']['die_cost'])
-            ddrs[4]["intp_cost"].append(result['dump']['intp_cost'])
-            ddrs[4]["pkg_cost"].append(result['dump']['pkg_cost']) 
-            ddrs[4]["cost"].append(result['dump']['cost']) 
-            
-
-        for result in hbm:
-            hbm_x.append(result['dump']['l3_count'])
-            hbm_perf.append(result['dump']['perf'])
-            hbm_l3_bound.append(result['dump']['l3_bound'])
-            hbm_mc_bound.append(result['dump']['mc_bound'])
-            hbm_compute_bound.append(result['dump']['compute_bound'])
-            hbm_io_bound.append(result['dump']['io_bound'])
-            hbm_die_cost.append(result['dump']['die_cost'])
-            hbm_intp_cost.append(result['dump']['intp_cost'])
-            hbm_pkg_cost.append(result['dump']['pkg_cost']) 
-            hbm_cost.append(result['dump']['cost'])  
-
-        for i in range(len(ddrs)):
-            ddrs[i]["perf"] = np.array(ddrs[i]["perf"]) / 1E9
-            ddrs[i]["l3_bound"] = np.array(ddrs[i]["l3_bound"]) / 1E9
-            ddrs[i]["mc_bound"] = np.array(ddrs[i]["mc_bound"]) / 1E9
-            ddrs[i]["compute_bound"] = np.array(ddrs[i]["compute_bound"]) / 1E9
-            ddrs[i]["io_bound"] = np.array(ddrs[i]["io_bound"]) / 1E9
-
-        hbm_perf = np.array(hbm_perf) / 1E9
-        hbm_l3_bound = np.array(hbm_l3_bound) / 1E9
-        hbm_mc_bound = np.array(hbm_mc_bound) / 1E9
-        hbm_compute_bound = np.array(hbm_compute_bound) / 1E9
-        hbm_io_bound = np.array(hbm_io_bound) / 1E9
-
-
-        multi_line_plot(x1=ddrs[0]["x"], x2=ddrs[1]["x"], x3=ddrs[2]["x"], x4=ddrs[3]["x"], x5=ddrs[4]["x"], x6=hbm_x, 
-                        y1=ddrs[0]["perf"], y2=ddrs[1]["perf"], y3=ddrs[2]["perf"], y4=ddrs[3]["perf"], y5=ddrs[4]["perf"], y6=hbm_perf, 
+        # plot
+        multi_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[1]["x"], x3=mem_plot_data[2]["x"], x4=mem_plot_data[3]["x"], x5=mem_plot_data[4]["x"], x6=mem_plot_data[5]["x"], 
+                        y1=mem_plot_data[0]["perf"], y2=mem_plot_data[1]["perf"], y3=mem_plot_data[2]["perf"], y4=mem_plot_data[3]["perf"], y5=mem_plot_data[4]["perf"], y6=mem_plot_data[5]["perf"], 
                         y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.32552',
                         x_axis_label='Number of L3 Slices', y_axis_label='Performance (Gflop/s)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Performance')
 
-        multi_line_plot(x1=ddrs[0]["x"], x2=ddrs[1]["x"], x3=ddrs[2]["x"], x4=ddrs[3]["x"], x5=ddrs[4]["x"], x6=hbm_x, 
-                        y1=ddrs[0]["die_cost"], y2=ddrs[1]["die_cost"], y3=ddrs[2]["die_cost"], y4=ddrs[3]["die_cost"], y5=ddrs[4]["die_cost"], y6=hbm_die_cost, 
+        multi_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[1]["x"], x3=mem_plot_data[2]["x"], x4=mem_plot_data[3]["x"], x5=mem_plot_data[4]["x"], x6=mem_plot_data[5]["x"], 
+                        y1=mem_plot_data[0]["die_cost"], y2=mem_plot_data[1]["die_cost"], y3=mem_plot_data[2]["die_cost"], y4=mem_plot_data[3]["die_cost"], y5=mem_plot_data[4]["die_cost"], y6=mem_plot_data[5]["die_cost"], 
                         y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.32552',
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Die Cost')
 
-        multi_line_plot(x1=ddrs[0]["x"], x2=ddrs[1]["x"], x3=ddrs[2]["x"], x4=ddrs[3]["x"], x5=ddrs[4]["x"], x6=hbm_x, 
-                        y1=ddrs[0]["intp_cost"], y2=ddrs[1]["intp_cost"], y3=ddrs[2]["intp_cost"], y4=ddrs[3]["intp_cost"], y5=ddrs[4]["intp_cost"], y6=hbm_intp_cost, 
+        multi_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[1]["x"], x3=mem_plot_data[2]["x"], x4=mem_plot_data[3]["x"], x5=mem_plot_data[4]["x"], x6=mem_plot_data[5]["x"], 
+                        y1=mem_plot_data[0]["intp_cost"], y2=mem_plot_data[1]["intp_cost"], y3=mem_plot_data[2]["intp_cost"], y4=mem_plot_data[3]["intp_cost"], y5=mem_plot_data[4]["intp_cost"], y6=mem_plot_data[5]["intp_cost"], 
                         y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.32552',
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Interposer Cost')
 
-        multi_line_plot(x1=ddrs[0]["x"], x2=ddrs[1]["x"], x3=ddrs[2]["x"], x4=ddrs[3]["x"], x5=ddrs[4]["x"], x6=hbm_x, 
-                        y1=ddrs[0]["pkg_cost"], y2=ddrs[1]["pkg_cost"], y3=ddrs[2]["pkg_cost"], y4=ddrs[3]["pkg_cost"], y5=ddrs[4]["pkg_cost"], y6=hbm_pkg_cost, 
+        multi_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[1]["x"], x3=mem_plot_data[2]["x"], x4=mem_plot_data[3]["x"], x5=mem_plot_data[4]["x"], x6=mem_plot_data[5]["x"], 
+                        y1=mem_plot_data[0]["pkg_cost"], y2=mem_plot_data[1]["pkg_cost"], y3=mem_plot_data[2]["pkg_cost"], y4=mem_plot_data[3]["pkg_cost"], y5=mem_plot_data[4]["pkg_cost"], y6=mem_plot_data[5]["pkg_cost"], 
                         y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.32552',
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Package Cost')
 
-        multi_line_plot(x1=ddrs[0]["x"], x2=ddrs[1]["x"], x3=ddrs[2]["x"], x4=ddrs[3]["x"], x5=ddrs[4]["x"], x6=hbm_x, 
-                        y1=ddrs[0]["cost"], y2=ddrs[1]["cost"], y3=ddrs[2]["cost"], y4=ddrs[3]["cost"], y5=ddrs[4]["cost"], y6=hbm_cost, 
+        multi_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[1]["x"], x3=mem_plot_data[2]["x"], x4=mem_plot_data[3]["x"], x5=mem_plot_data[4]["x"], x6=mem_plot_data[5]["x"], 
+                        y1=mem_plot_data[0]["cost"], y2=mem_plot_data[1]["cost"], y3=mem_plot_data[2]["cost"], y4=mem_plot_data[3]["cost"], y5=mem_plot_data[4]["cost"], y6=mem_plot_data[5]["cost"], 
                         y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.32552',
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Cost')
 
-        double_line_plot(x1=ddrs[0]["x"], x2=ddrs[0]["x"], y1=ddrs[0]["compute_bound"], y2=ddrs[0]["io_bound"], 
+        double_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[0]["x"], y1=mem_plot_data[0]["compute_bound"], y2=mem_plot_data[0]["io_bound"], 
                         y1_label='Compute Throughput', y2_label='Memory Bandwidth',
                         x_axis_label='Number of L3 Slices', y_axis_label='',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR4-2400 Compute vs IO Bound')
 
-        double_line_plot(x1=ddrs[0]["x"], x2=ddrs[0]["x"], y1=ddrs[0]["l3_bound"], y2=ddrs[0]["mc_bound"], 
+        double_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[0]["x"], y1=mem_plot_data[0]["l3_bound"], y2=mem_plot_data[0]["mc_bound"], 
                         y1_label='L3 Effective BW', y2_label='MC Effective BW',
                         x_axis_label='Number of L3 Slices', y_axis_label='',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR4-2400 L3 vs MC Bound')
 
-        double_line_plot(x1=ddrs[2]["x"], x2=ddrs[2]["x"], y1=ddrs[2]["compute_bound"], y2=ddrs[2]["io_bound"], 
+        double_line_plot(x1=mem_plot_data[2]["x"], x2=mem_plot_data[2]["x"], y1=mem_plot_data[2]["compute_bound"], y2=mem_plot_data[2]["io_bound"], 
                         y1_label='Compute Throughput', y2_label='Memory Bandwidth',
                         x_axis_label='Number of L3 Slices', y_axis_label='',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR5-4800 Compute vs IO Bound')
 
-        double_line_plot(x1=ddrs[2]["x"], x2=ddrs[2]["x"], y1=ddrs[2]["l3_bound"], y2=ddrs[2]["mc_bound"], 
+        double_line_plot(x1=mem_plot_data[2]["x"], x2=mem_plot_data[2]["x"], y1=mem_plot_data[2]["l3_bound"], y2=mem_plot_data[2]["mc_bound"], 
                         y1_label='L3 Effective BW', y2_label='MC Effective BW',
                         x_axis_label='Number of L3 Slices', y_axis_label='',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR5-4800 L3 vs MC Bound')
 
-        double_line_plot(x1=hbm_x, x2=hbm_x, y1=hbm_compute_bound, y2=hbm_io_bound, 
+        double_line_plot(x1=mem_plot_data[5]["x"], x2=mem_plot_data[5]["x"], y1=mem_plot_data[5]["compute_bound"], y2=mem_plot_data[5]["io_bound"], 
                         y1_label='Compute Throughput', y2_label='Memory Bandwidth',
                         x_axis_label='Number of L3 Slices', y_axis_label='',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] HBM2 Compute vs IO Bound')
 
-        double_line_plot(x1=hbm_x, x2=hbm_x, y1=hbm_l3_bound, y2=hbm_mc_bound, 
+        double_line_plot(x1=mem_plot_data[5]["x"], x2=mem_plot_data[5]["x"], y1=mem_plot_data[5]["l3_bound"], y2=mem_plot_data[5]["mc_bound"], 
                         y1_label='L3 Effective BW', y2_label='MC Effective BW',
                         x_axis_label='Number of L3 Slices', y_axis_label='',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] HBM2 L3 vs MC Bound')
