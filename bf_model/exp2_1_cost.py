@@ -392,6 +392,9 @@ def solve(obj, perfLB, areaUB, powerUB, costUB):
                     # cost of each die, considering yield
                     p.die_cost = p.wafer_cost_die / (p.die_per_wafer * p.die_yield)
 
+                    # cost of memory
+                    p.mem_cost = p.mc_count * p.mem_cost_per_mc
+
                     # cost of interposer
                     if(p.use_intp == 0):
                         p.A_intp = 0 
@@ -425,9 +428,6 @@ def solve(obj, perfLB, areaUB, powerUB, costUB):
                     
                     # cost of package
                     p.pkg_cost = p.A_pkg * p.pkg_cost_per_sqmm
-
-                    # cost of memory
-                    p.mem_cost = p.mc_count * p.mem_cost_per_mc
 
                     # total cost 
                     p.cost = p.die_cost + p.intp_cost + p.mem_cost + p.pkg_cost 
