@@ -86,7 +86,7 @@ def load_data():
     default["wafer_dia_die"] = 300E-3
     default["wafer_dia_intp"] = 300E-3
     default["defect_density_die"] = 0.001E6
-    default["defect_density_intp"] = 0.001E6
+    default["defect_density_intp"] = 0.0003E6
     default["clustering_factor_die"] = 2
     default["clustering_factor_intp"] = 2
     default["mem_cost_per_mc"] = 100                         # Default always overwritten.
