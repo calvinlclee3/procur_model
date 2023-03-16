@@ -610,13 +610,6 @@ def plot(results):
     with open("mems.json", 'r') as fp:
         mems = json.load(fp)
 
-    print(mems[0]["name"])
-    print(mems[1]["name"])
-    print(mems[2]["name"])
-    print(mems[3]["name"])
-    print(mems[4]["name"])
-    print(mems[5]["name"])
-
     for app_prop in app_props:
 
         mem_raw_data = [] # a list of (mem type #) of lists, each of which has the same organizational hierarchy as "results", just shorter
@@ -624,7 +617,7 @@ def plot(results):
 
         # structure mem_plot_data before filling it with data
         for i in range(len(mems)):
-            mem_plot_data.append({"x": [], "perf": [], "l3_bound": [], "mc_bound": [], "compute_bound": [], "io_bound": [], "die_cost": [], "intp_cost": [], "pkg_cost": [], "cost": []})
+            mem_plot_data.append({"x": [], "perf": [], "l3_bound": [], "mc_bound": [], "compute_bound": [], "io_bound": [], "die_cost": [], "intp_cost": [], "pkg_cost": [], "mem_cost": [], "cost": []})
 
         # filter all results into a subset which has a specific app profile
         curr = [result for result in results if result["app_prop"]["ai_app"] == app_prop["ai_app"]]
@@ -648,10 +641,11 @@ def plot(results):
                 mem_plot_data[i]["mc_bound"].append(result['dump']['mc_bound'])
                 mem_plot_data[i]["compute_bound"].append(result['dump']['compute_bound'])
                 mem_plot_data[i]["io_bound"].append(result['dump']['io_bound'])
-                mem_plot_data[i]["die_cost"].append(result['dump']['die_cost']) 
-                mem_plot_data[i]["intp_cost"].append(result['dump']['intp_cost']) 
-                mem_plot_data[i]["pkg_cost"].append(result['dump']['pkg_cost'])   
-                mem_plot_data[i]["cost"].append(result['dump']['cost'])   
+                mem_plot_data[i]["die_cost"].append(result['dump']['die_cost'])
+                mem_plot_data[i]["intp_cost"].append(result['dump']['intp_cost'])
+                mem_plot_data[i]["pkg_cost"].append(result['dump']['pkg_cost'])
+                mem_plot_data[i]["mem_cost"].append(result['dump']['mem_cost'])
+                mem_plot_data[i]["cost"].append(result['dump']['cost'])
 
         
         # rescale mem_plot_data (adding the "Giga" prefix) 
@@ -686,6 +680,12 @@ def plot(results):
                         y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.32552',
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Package Cost')
+
+        multi_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[1]["x"], x3=mem_plot_data[2]["x"], x4=mem_plot_data[3]["x"], x5=mem_plot_data[4]["x"], x6=mem_plot_data[5]["x"], 
+                        y1=mem_plot_data[0]["mem_cost"], y2=mem_plot_data[1]["mem_cost"], y3=mem_plot_data[2]["mem_cost"], y4=mem_plot_data[3]["mem_cost"], y5=mem_plot_data[4]["mem_cost"], y6=mem_plot_data[5]["mem_cost"], 
+                        y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.32552',
+                        x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
+                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Memory Cost')
 
         multi_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[1]["x"], x3=mem_plot_data[2]["x"], x4=mem_plot_data[3]["x"], x5=mem_plot_data[4]["x"], x6=mem_plot_data[5]["x"], 
                         y1=mem_plot_data[0]["cost"], y2=mem_plot_data[1]["cost"], y3=mem_plot_data[2]["cost"], y4=mem_plot_data[3]["cost"], y5=mem_plot_data[4]["cost"], y6=mem_plot_data[5]["cost"], 
