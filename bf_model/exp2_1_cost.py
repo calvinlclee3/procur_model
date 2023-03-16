@@ -611,7 +611,7 @@ def plot(results):
 
         ddrs = []
         for i in range(5): # MANUAL
-            ddrs.append({"x": [], "perf": [], "l3_bound": [], "mc_bound": [], "compute_bound": [], "io_bound": [], "die_cost": [], "pkg_cost": [], "cost": []})
+            ddrs.append({"x": [], "perf": [], "l3_bound": [], "mc_bound": [], "compute_bound": [], "io_bound": [], "die_cost": [], "intp_cost": [], "pkg_cost": [], "cost": []})
 
         # filter all results into the set of result with specific app profile
         curr = [result for result in results if result["app_prop"]["ai_app"] == app_prop["ai_app"]]
@@ -624,6 +624,7 @@ def plot(results):
         hbm_compute_bound = []
         hbm_io_bound = []
         hbm_die_cost = []
+        hbm_intp_cost = []
         hbm_pkg_cost = []
         hbm_cost = []
 
@@ -645,6 +646,7 @@ def plot(results):
             ddrs[0]["compute_bound"].append(result['dump']['compute_bound'])
             ddrs[0]["io_bound"].append(result['dump']['io_bound'])
             ddrs[0]["die_cost"].append(result['dump']['die_cost']) 
+            ddrs[0]["intp_cost"].append(result['dump']['intp_cost']) 
             ddrs[0]["pkg_cost"].append(result['dump']['pkg_cost'])   
             ddrs[0]["cost"].append(result['dump']['cost'])    
 
@@ -656,6 +658,7 @@ def plot(results):
             ddrs[1]["compute_bound"].append(result['dump']['compute_bound'])
             ddrs[1]["io_bound"].append(result['dump']['io_bound']) 
             ddrs[1]["die_cost"].append(result['dump']['die_cost'])
+            ddrs[1]["intp_cost"].append(result['dump']['intp_cost'])
             ddrs[1]["pkg_cost"].append(result['dump']['pkg_cost']) 
             ddrs[1]["cost"].append(result['dump']['cost']) 
             
@@ -668,6 +671,7 @@ def plot(results):
             ddrs[2]["compute_bound"].append(result['dump']['compute_bound'])
             ddrs[2]["io_bound"].append(result['dump']['io_bound'])
             ddrs[2]["die_cost"].append(result['dump']['die_cost'])
+            ddrs[2]["intp_cost"].append(result['dump']['intp_cost'])
             ddrs[2]["pkg_cost"].append(result['dump']['pkg_cost']) 
             ddrs[2]["cost"].append(result['dump']['cost'])  
             
@@ -680,6 +684,7 @@ def plot(results):
             ddrs[3]["compute_bound"].append(result['dump']['compute_bound'])
             ddrs[3]["io_bound"].append(result['dump']['io_bound'])
             ddrs[3]["die_cost"].append(result['dump']['die_cost'])
+            ddrs[3]["intp_cost"].append(result['dump']['intp_cost'])
             ddrs[3]["pkg_cost"].append(result['dump']['pkg_cost']) 
             ddrs[3]["cost"].append(result['dump']['cost'])  
             
@@ -692,6 +697,7 @@ def plot(results):
             ddrs[4]["compute_bound"].append(result['dump']['compute_bound'])
             ddrs[4]["io_bound"].append(result['dump']['io_bound']) 
             ddrs[4]["die_cost"].append(result['dump']['die_cost'])
+            ddrs[4]["intp_cost"].append(result['dump']['intp_cost'])
             ddrs[4]["pkg_cost"].append(result['dump']['pkg_cost']) 
             ddrs[4]["cost"].append(result['dump']['cost']) 
             
@@ -704,6 +710,7 @@ def plot(results):
             hbm_compute_bound.append(result['dump']['compute_bound'])
             hbm_io_bound.append(result['dump']['io_bound'])
             hbm_die_cost.append(result['dump']['die_cost'])
+            hbm_intp_cost.append(result['dump']['intp_cost'])
             hbm_pkg_cost.append(result['dump']['pkg_cost']) 
             hbm_cost.append(result['dump']['cost'])  
 
@@ -732,6 +739,12 @@ def plot(results):
                         y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.32552',
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Die Cost')
+
+        multi_line_plot(x1=ddrs[0]["x"], x2=ddrs[1]["x"], x3=ddrs[2]["x"], x4=ddrs[3]["x"], x5=ddrs[4]["x"], x6=hbm_x, 
+                        y1=ddrs[0]["intp_cost"], y2=ddrs[1]["intp_cost"], y3=ddrs[2]["intp_cost"], y4=ddrs[3]["intp_cost"], y5=ddrs[4]["intp_cost"], y6=hbm_intp_cost, 
+                        y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.32552',
+                        x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
+                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Interposer Cost')
 
         multi_line_plot(x1=ddrs[0]["x"], x2=ddrs[1]["x"], x3=ddrs[2]["x"], x4=ddrs[3]["x"], x5=ddrs[4]["x"], x6=hbm_x, 
                         y1=ddrs[0]["pkg_cost"], y2=ddrs[1]["pkg_cost"], y3=ddrs[2]["pkg_cost"], y4=ddrs[3]["pkg_cost"], y5=ddrs[4]["pkg_cost"], y6=hbm_pkg_cost, 
@@ -768,12 +781,12 @@ def plot(results):
         double_line_plot(x1=hbm_x, x2=hbm_x, y1=hbm_compute_bound, y2=hbm_io_bound, 
                         y1_label='Compute Throughput', y2_label='Memory Bandwidth',
                         x_axis_label='Number of L3 Slices', y_axis_label='',
-                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] HBM Compute vs IO Bound')
+                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] HBM2 Compute vs IO Bound')
 
         double_line_plot(x1=hbm_x, x2=hbm_x, y1=hbm_l3_bound, y2=hbm_mc_bound, 
                         y1_label='L3 Effective BW', y2_label='MC Effective BW',
                         x_axis_label='Number of L3 Slices', y_axis_label='',
-                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] HBM L3 vs MC Bound')
+                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] HBM2 L3 vs MC Bound')
 
 def sn_format(value):
     return "{:.4e}".format(value)
