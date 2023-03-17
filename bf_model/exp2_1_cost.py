@@ -91,6 +91,7 @@ def load_data():
     default["clustering_factor_intp"] = 2
     default["mem_cost_per_mc"] = 41.99                       # Default always overwritten.
     default["use_intp"] = 0                                  # 0 for False, 1 for True. Default always overwritten.
+    default["bump_pitch_intp"] = 150E-6
     default["HBM_area_per_mc"] = 100E-6     
     default["HBM_power_per_mc"] = 4.06528
     default["intp_asm_cost"] = 10
@@ -355,15 +356,30 @@ def solve(obj, perfLB, areaUB, powerUB, costUB):
                     p.P_die  = p.core_count * p.core_power + p.io_count * p.io_power
                     p.P_die += p.l3_count   * p.l3_power   + p.mc_count * p.mc_power
 
-                    # number of cores = number of L1 = number of L2
-                    p.A_die  = p.core_count * p.core_area * p.core_area_multiplier
-                    p.A_die += p.core_count * p.l1_area * p.l1l2_area_multiplier
-                    p.A_die += p.core_count * p.l2_area * p.l1l2_area_multiplier
-                    p.A_die += p.l3_count   * p.l3_area 
-                    p.A_die += p.mc_count   * p.mc_area
-                    p.A_die += p.io_count   * p.io_area 
-
                     p.power_bump_count_die = (p.P_die) / (p.die_voltage * p.current_per_bump_die) * 2
+
+                    # number of cores = number of L1 = number of L2
+                    p.A_die_components  = p.core_count * p.core_area * p.core_area_multiplier
+                    p.A_die_components += p.core_count * p.l1_area * p.l1l2_area_multiplier
+                    p.A_die_components += p.core_count * p.l2_area * p.l1l2_area_multiplier
+                    p.A_die_components += p.l3_count   * p.l3_area 
+                    p.A_die_components += p.mc_count   * p.mc_area
+                    p.A_die_components += p.io_count   * p.io_area 
+
+                    if(p.use_intp == 0):
+                        ## DDR System
+                        p.A_die_bump = (p.bump_pitch_die**2) * (p.power_bump_count_die + p.mc_bump_count * p.mc_count + p.io_bump_count * p.io_count)
+                    else:
+                        ## HBM System
+                        p.A_die_bump = (p.bump_pitch_intp**2) * (p.power_bump_count_die + p.io_bump_count * p.io_count) + (p.bump_pitch_die**2) * (p.mc_bump_count * p.mc_count)
+                    
+                    p.A_die = max(p.A_die_components, p.A_die_bump)
+
+                    if(p.A_die_bump > p.A_die_components):
+                        p.dead_space_die = p.A_die_bump - p.A_die_components
+                    else:
+                        p.dead_space_die = 0.0
+
                     p.max_wire_die = 6 * math.sqrt(p.A_die / 6) * p.package_layer / p.link_pitch
 
                     # relative size of the working set and the L3 cache determines L3 hit rate
@@ -465,9 +481,6 @@ def solve(obj, perfLB, areaUB, powerUB, costUB):
                     if(p.P_max < p.P_die):
                         infs_handler(result, "P_max < P_die")
                     
-                    if(p.A_die < (p.bump_pitch_die**2) * (p.power_bump_count_die + p.mc_bump_count * p.mc_count + p.io_bump_count * p.io_count)):
-                        infs_handler(result, "bump constraint not met")
-                    
                     if(p.max_wire_die < p.mc_count * p.wires_per_mc):
                         infs_handler(result, "wire constraint not met")
                     
@@ -511,6 +524,7 @@ def solve(obj, perfLB, areaUB, powerUB, costUB):
                     result["P_die"] = p.P_die
                     result["core_freq"] = p.core_freq
                     result["cost"] = p.cost
+                    result["dead_space_die"] = p.dead_space_die
 
                     # Dump the entire namespace with all model param/variables
                     result["dump"] = copy.deepcopy(p.__dict__)
@@ -541,6 +555,11 @@ def display_entry(result, dump):
                 print(f'{bcolors.OKGREEN}{key} = {value}{bcolors.ENDC}')
             else:
                 print(f'{bcolors.FAIL}{key} = {value}{bcolors.ENDC}')
+        elif(key == 'dead_space_die'):
+            if(value < 0.001 or value > 1000):
+                print(f'{bcolors.OKCYAN}{key} = {sn_format(value)}{bcolors.ENDC}')
+            else:
+                print(f'{bcolors.OKCYAN}{key} = {value}{bcolors.ENDC}')
         else:
             if type(value) == int or type(value) == float:
                 if(value < 0.001 or value > 1000):
