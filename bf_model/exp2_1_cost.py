@@ -46,10 +46,10 @@ def load_data():
     default["io_power"] = 10
 
     # bump parameters
-    default["bump_pitch_die"] = 40E-6
+    default["bump_pitch_die"] = 150E-6
     default["die_voltage_nominal"] = 1.2
     default["current_per_bump_die"] = 520.8333333E-3
-    default["mc_bump_count"] = 288
+    default["mc_bump_count"] = 160
     default["io_bump_count"] = 114
 
     # wire parameters
@@ -57,8 +57,8 @@ def load_data():
     default["link_pitch"] = 25E-6
 
     # memory controller parameters
-    default["wires_per_mc"] = 288
-    default["energy_per_wire"] = 6.697674419E-12
+    default["wires_per_mc"] = 160
+    default["energy_per_wire"] = 15E-12
     default["mc_freq"] = 1600E6
     default["mc_freq_nominal"] = 1600E6
     default["mc_voltage_nominal"] = 1.2
@@ -89,9 +89,10 @@ def load_data():
     default["defect_density_intp"] = 0.0003E6
     default["clustering_factor_die"] = 2
     default["clustering_factor_intp"] = 2
-    default["mem_cost_per_mc"] = 100                         # Default always overwritten.
+    default["mem_cost_per_mc"] = 41.99                       # Default always overwritten.
     default["use_intp"] = 0                                  # 0 for False, 1 for True. Default always overwritten.
-    default["HBM_area_per_mc"] = 100E-6             
+    default["HBM_area_per_mc"] = 100E-6     
+    default["HBM_power_per_mc"] = 4.06528
     default["intp_asm_cost"] = 10
     default["pkg_cost_per_sqmm"] = 0.02E6
     default["bump_pitch_pkg"] = 900E-6
@@ -148,8 +149,10 @@ def load_data():
     mems[0]['mc_area'] = 10E-6
     mems[0]['mc_freq'] = 1200E6
     mems[0]['energy_per_wire'] = 15E-12
-    mems[0]['bump_pitch_die'] = 100E-6
+    mems[0]['bump_pitch_die'] = 150E-6
     mems[0]['current_per_bump_die'] = 520.8333333E-3
+    mems[0]['mc_bump_count'] = 160
+    mems[0]['wires_per_mc'] = 160
     mems[0]['theta_ca'] = 0.30219
     mems[0]["use_intp"] = 0
     mems[0]['mem_cost_per_mc'] = 41.99
@@ -163,8 +166,10 @@ def load_data():
     mems[1]['mc_area'] = 10E-6
     mems[1]['mc_freq'] = 1600E6
     mems[1]['energy_per_wire'] = 15E-12
-    mems[1]['bump_pitch_die'] = 100E-6
+    mems[1]['bump_pitch_die'] = 150E-6
     mems[1]['current_per_bump_die'] = 520.8333333E-3
+    mems[1]['mc_bump_count'] = 160
+    mems[1]['wires_per_mc'] = 160
     mems[1]['theta_ca'] = 0.26904
     mems[1]["use_intp"] = 0
     mems[1]['mem_cost_per_mc'] = 41.99
@@ -178,8 +183,10 @@ def load_data():
     mems[2]['mc_area'] = 10E-6
     mems[2]['mc_freq'] = 2400E6
     mems[2]['energy_per_wire'] = 15E-12
-    mems[2]['bump_pitch_die'] = 100E-6
+    mems[2]['bump_pitch_die'] = 150E-6
     mems[2]['current_per_bump_die'] = 520.8333333E-3
+    mems[2]['mc_bump_count'] = 160
+    mems[2]['wires_per_mc'] = 160
     mems[2]['theta_ca'] = 0.18146     
     mems[2]["use_intp"] = 0
     mems[2]['mem_cost_per_mc'] = 52.99
@@ -193,8 +200,10 @@ def load_data():
     mems[3]['mc_area'] = 10E-6
     mems[3]['mc_freq'] = 2800E6
     mems[3]['energy_per_wire'] = 15E-12
-    mems[3]['bump_pitch_die'] = 100E-6
+    mems[3]['bump_pitch_die'] = 150E-6
     mems[3]['current_per_bump_die'] = 520.8333333E-3
+    mems[3]['mc_bump_count'] = 160
+    mems[3]['wires_per_mc'] = 160
     mems[3]['theta_ca'] = 0.14007     # MIDLINE 0.14007
     mems[3]["use_intp"] = 0
     mems[3]['mem_cost_per_mc'] = 73.99
@@ -208,8 +217,10 @@ def load_data():
     mems[4]['mc_area'] = 10E-6
     mems[4]['mc_freq'] = 2800E6
     mems[4]['energy_per_wire'] = 15E-12
-    mems[4]['bump_pitch_die'] = 100E-6
+    mems[4]['bump_pitch_die'] = 150E-6
     mems[4]['current_per_bump_die'] = 520.8333333E-3
+    mems[4]['mc_bump_count'] = 160
+    mems[4]['wires_per_mc'] = 160
     mems[4]['theta_ca'] = 0.13620     
     mems[4]["use_intp"] = 0
     mems[4]['mem_cost_per_mc'] = 73.99
@@ -223,8 +234,10 @@ def load_data():
     mems[5]['mc_area'] = 6.6831E-6
     mems[5]['mc_freq'] = 1000E6
     mems[5]['energy_per_wire'] = 3.5E-12
-    mems[5]['bump_pitch_die'] = 40E-6
-    mems[5]['current_per_bump_die'] = 83.3333333E-3
+    mems[5]['bump_pitch_die'] = 50E-6
+    mems[5]['current_per_bump_die'] = 57.87037E-3
+    mems[5]['mc_bump_count'] = 1024
+    mems[5]['wires_per_mc'] = 1024
     mems[5]['theta_ca'] = 0.32552
     mems[5]["use_intp"] = 1
     mems[5]['mem_cost_per_mc'] = 120
@@ -351,7 +364,7 @@ def solve(obj, perfLB, areaUB, powerUB, costUB):
                     p.A_die += p.io_count   * p.io_area 
 
                     p.power_bump_count_die = (p.P_die) / (p.die_voltage * p.current_per_bump_die) * 2
-                    p.max_wire = 6 * math.sqrt(p.A_die / 6) * p.package_layer / p.link_pitch
+                    p.max_wire_die = 6 * math.sqrt(p.A_die / 6) * p.package_layer / p.link_pitch
 
                     # relative size of the working set and the L3 cache determines L3 hit rate
                     p.l3_to_workset_ratio = (p.l3_capacity * p.l3_count) / p.workset_size
@@ -397,12 +410,15 @@ def solve(obj, perfLB, areaUB, powerUB, costUB):
 
                     # cost of interposer
                     if(p.use_intp == 0):
+                        ## DDR System
                         p.A_intp = 0 
                         p.A_intp_yield = 0
                         p.intp_yield = 0
                         p.intp_per_wafer = 0
                         p.intp_cost = 0
                     else:
+                        ## HBM System
+
                         # area of interposer
                         p.A_intp = p.A_die + (p.mc_count * p.HBM_area_per_mc)
 
@@ -417,13 +433,20 @@ def solve(obj, perfLB, areaUB, powerUB, costUB):
 
                         p.intp_cost = (p.wafer_cost_intp / (p.intp_per_wafer * p.intp_yield)) + p.intp_asm_cost
 
-                    # number of power bumps on the package
-                    p.power_bump_count_pkg = (p.P_die) / (p.die_voltage * p.current_per_bump_pkg) * 2
-
                     # area of package
                     if(p.use_intp == 0):
+                        ## DDR System
+
+                        # number of power bumps on the package
+                        p.power_bump_count_pkg = (p.P_die) / (p.die_voltage * p.current_per_bump_pkg) * 2
+
                         p.A_pkg = (pow(p.bump_pitch_pkg, 2) * (p.power_bump_count_pkg + p.mc_bump_count * p.mc_count + p.io_bump_count * p.io_count)) + p.pkg_non_io_area
                     else:
+                        ## HBM System
+
+                        # number of power bumps on the package
+                        p.power_bump_count_pkg = (p.P_die + (p.HBM_power_per_mc * p.mc_count)) / (p.die_voltage * p.current_per_bump_pkg) * 2
+
                         p.A_pkg = (pow(p.bump_pitch_pkg, 2) * (p.power_bump_count_pkg + p.io_bump_count * p.io_count)) + p.pkg_non_io_area
                     
                     # cost of package
@@ -445,7 +468,7 @@ def solve(obj, perfLB, areaUB, powerUB, costUB):
                     if(p.A_die < (p.bump_pitch_die**2) * (p.power_bump_count_die + p.mc_bump_count * p.mc_count + p.io_bump_count * p.io_count)):
                         infs_handler(result, "bump constraint not met")
                     
-                    if(p.max_wire < p.mc_count * p.wires_per_mc):
+                    if(p.max_wire_die < p.mc_count * p.wires_per_mc):
                         infs_handler(result, "wire constraint not met")
                     
                     # Sanity Check: no param/var in the model should be negative

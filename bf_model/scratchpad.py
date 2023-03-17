@@ -37,9 +37,12 @@ test = [{"a":3, "b":3}, {"a":4, "b":4}]
 # print(curr)
 # print(test)
 
-def lol(input):
-    input[0]["b"] = "CHANGED"
+# def lol(input):
+#     input[0]["b"] = "CHANGED"
 
-print(test)
-lol(test)
-print(test)
+# print(test)
+# lol(test)
+# print(test)
+
+temp = (math.pow(50, 2) / math.pow(150, 2)) * 520.8333333E-3
+print("{:e}".format(temp))
