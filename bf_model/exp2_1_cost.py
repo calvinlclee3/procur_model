@@ -490,14 +490,20 @@ def solve(obj, perfLB, areaUB, powerUB, costUB):
                     if(p.max_wire_die < p.mc_count * p.wires_per_mc):
                         infs_handler(result, "wire constraint not met")
 
-                    if(p.A_intp < p.A_die):
-                        infs_handler(result, "A_intp < A_die")
+                    if(p.use_intp == 0):
+                        ## DDR System
+                        if(p.A_pkg < p.A_die):
+                            infs_handler(result, "A_pkg < A_die")
+                    else:
+                        ## HBM System
+                        if(p.A_intp < p.A_die):
+                            infs_handler(result, "A_intp < A_die")
 
-                    if(p.A_pkg < p.A_intp):
-                        infs_handler(result, "A_pkg < A_intp")
+                        if(p.A_pkg < p.A_intp):
+                            infs_handler(result, "A_pkg < A_intp")
 
-                    if(p.A_pkg < p.A_die):
-                        infs_handler(result, "A_pkg < A_die")
+                        if(p.A_pkg < p.A_die):
+                            infs_handler(result, "A_pkg < A_die")
                     
                     # Sanity Check: no param/var in the model should be negative
                     for key, value in p.__dict__.items():
