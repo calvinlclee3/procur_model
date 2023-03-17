@@ -668,6 +668,23 @@ def multi_line_plot(x1, x2, x3, x4, x5, x6, y1, y2, y3, y4, y5, y6, y1_label, y2
     plt.savefig(f'results/{title}.pdf')
     plt.close()
 
+def multi_scatter_plot(x1, x2, x3, x4, x5, x6, y1, y2, y3, y4, y5, y6, y1_label, y2_label, y3_label, y4_label, y5_label, y6_label, x_axis_label, y_axis_label, title):
+
+    plt.figure(figsize=(12, 8))
+    plt.scatter(x1, y1, c ="blue", linewidths = 0, marker ="o", edgecolor ="pink", s = 50, label=y1_label)
+    plt.scatter(x2, y2, c ="purple", linewidths = 0, marker ="o", edgecolor ="yellow", s = 50, label=y2_label)
+    plt.scatter(x3, y3, c ="yellow", linewidths = 0, marker ="o", edgecolor ="pink", s = 50, label=y3_label)
+    plt.scatter(x4, y4, c ="grey", linewidths = 0, marker ="o", edgecolor ="yellow", s = 50, label=y4_label)
+    plt.scatter(x5, y5, c ="orange", linewidths = 0, marker ="o", edgecolor ="pink", s = 50, label=y5_label)
+    plt.scatter(x6, y6, c ="red", linewidths = 0, marker ="o", edgecolor ="yellow", s = 50, label=y6_label)
+
+    plt.title(title, fontweight ='bold', fontsize = 15)
+    plt.xlabel(x_axis_label, fontweight ='bold', fontsize = 15)
+    plt.ylabel(y_axis_label, fontweight ='bold', fontsize = 15)
+    plt.legend()
+    plt.savefig(f'results/{title}.pdf')
+    plt.close()
+
 def plot(results):
 
     with open("app_props.json", 'r') as fp:
@@ -723,6 +740,12 @@ def plot(results):
             mem_plot_data[i]["io_bound"] = np.array(mem_plot_data[i]["io_bound"]) / 1E9
 
         # plot
+        multi_scatter_plot(x1=mem_plot_data[0]["perf"], x2=mem_plot_data[1]["perf"], x3=mem_plot_data[2]["perf"], x4=mem_plot_data[3]["perf"], x5=mem_plot_data[4]["perf"], x6=mem_plot_data[5]["perf"], 
+                        y1=mem_plot_data[0]["cost"], y2=mem_plot_data[1]["cost"], y3=mem_plot_data[2]["cost"], y4=mem_plot_data[3]["cost"], y5=mem_plot_data[4]["cost"], y6=mem_plot_data[5]["cost"], 
+                        y1_label='DDR4-2400 theta_ca=0.3123', y2_label='DDR4-3200 theta_ca=0.28983', y3_label='DDR5-4800 theta_ca=0.22627', y4_label='DDR5-5600 theta_ca=0.19493', y5_label='DDR5-5600 theta_ca=0.18911', y6_label='HBM2 theta_ca=0.28629',
+                        x_axis_label='Performance (Gflop/s)', y_axis_label='Cost (USD)',
+                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Design Space Exploration')
+
         multi_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[1]["x"], x3=mem_plot_data[2]["x"], x4=mem_plot_data[3]["x"], x5=mem_plot_data[4]["x"], x6=mem_plot_data[5]["x"], 
                         y1=mem_plot_data[0]["perf"], y2=mem_plot_data[1]["perf"], y3=mem_plot_data[2]["perf"], y4=mem_plot_data[3]["perf"], y5=mem_plot_data[4]["perf"], y6=mem_plot_data[5]["perf"], 
                         y1_label='DDR4-2400 theta_ca=0.3123', y2_label='DDR4-3200 theta_ca=0.28983', y3_label='DDR5-4800 theta_ca=0.22627', y4_label='DDR5-5600 theta_ca=0.19493', y5_label='DDR5-5600 theta_ca=0.18911', y6_label='HBM2 theta_ca=0.28629',
