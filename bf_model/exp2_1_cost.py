@@ -144,7 +144,7 @@ def load_data():
 
     mems = []
     mems.append({})
-    mems[0]['name'] = "DDR4-2400 theta_ca=0.30219"
+    mems[0]['name'] = "DDR4-2400 theta_ca=0.3123"
     mems[0]['mc_bw'] = 1200E6 * 2 * 8
     mems[0]['mc_count'] = 4
     mems[0]['mc_area'] = 10E-6
@@ -154,14 +154,14 @@ def load_data():
     mems[0]['current_per_bump_die'] = 520.8333333E-3
     mems[0]['mc_bump_count'] = 160
     mems[0]['wires_per_mc'] = 160
-    mems[0]['theta_ca'] = 0.30219
+    mems[0]['theta_ca'] = 0.3123
     mems[0]["use_intp"] = 0
     mems[0]['mem_cost_per_mc'] = 41.99
     mems[0]['l3_bw'] = 30E9
     mems[0]['T_j_max'] = 110
     
     mems.append({})
-    mems[1]['name'] = "DDR4-3200 theta_ca=0.26904"
+    mems[1]['name'] = "DDR4-3200 theta_ca=0.28983"
     mems[1]['mc_bw'] = 1600E6 * 2 * 8
     mems[1]['mc_count'] = 4
     mems[1]['mc_area'] = 10E-6
@@ -171,14 +171,14 @@ def load_data():
     mems[1]['current_per_bump_die'] = 520.8333333E-3
     mems[1]['mc_bump_count'] = 160
     mems[1]['wires_per_mc'] = 160
-    mems[1]['theta_ca'] = 0.26904
+    mems[1]['theta_ca'] = 0.28983
     mems[1]["use_intp"] = 0
     mems[1]['mem_cost_per_mc'] = 41.99
     mems[1]['l3_bw'] = 30E9
     mems[1]['T_j_max'] = 110
 
     mems.append({})
-    mems[2]['name'] = "DDR5-4800 theta_ca=0.18146"
+    mems[2]['name'] = "DDR5-4800 theta_ca=0.22627"
     mems[2]['mc_bw'] = 2400E6 * 2 * 8
     mems[2]['mc_count'] = 4
     mems[2]['mc_area'] = 10E-6
@@ -188,14 +188,14 @@ def load_data():
     mems[2]['current_per_bump_die'] = 520.8333333E-3
     mems[2]['mc_bump_count'] = 160
     mems[2]['wires_per_mc'] = 160
-    mems[2]['theta_ca'] = 0.18146     
+    mems[2]['theta_ca'] = 0.22627     
     mems[2]["use_intp"] = 0
     mems[2]['mem_cost_per_mc'] = 52.99
     mems[2]['l3_bw'] = 30E9
     mems[2]['T_j_max'] = 110
 
     mems.append({})
-    mems[3]['name'] = "DDR5-5600 theta_ca=0.14007"
+    mems[3]['name'] = "DDR5-5600 theta_ca=0.18911"
     mems[3]['mc_bw'] = 2800E6 * 2 * 8
     mems[3]['mc_count'] = 4
     mems[3]['mc_area'] = 10E-6
@@ -205,14 +205,14 @@ def load_data():
     mems[3]['current_per_bump_die'] = 520.8333333E-3
     mems[3]['mc_bump_count'] = 160
     mems[3]['wires_per_mc'] = 160
-    mems[3]['theta_ca'] = 0.14007     # MIDLINE 0.14007
+    mems[3]['theta_ca'] = 0.18911     # MIDLINE XXXX
     mems[3]["use_intp"] = 0
     mems[3]['mem_cost_per_mc'] = 73.99
     mems[3]['l3_bw'] = 30E9
     mems[3]['T_j_max'] = 110
 
     mems.append({})
-    mems[4]['name'] = "DDR5-5600 theta_ca=0.13620"
+    mems[4]['name'] = "DDR5-5600 theta_ca=0.18911"
     mems[4]['mc_bw'] = 2800E6 * 2 * 8
     mems[4]['mc_count'] = 4
     mems[4]['mc_area'] = 10E-6
@@ -222,14 +222,14 @@ def load_data():
     mems[4]['current_per_bump_die'] = 520.8333333E-3
     mems[4]['mc_bump_count'] = 160
     mems[4]['wires_per_mc'] = 160
-    mems[4]['theta_ca'] = 0.13620     
+    mems[4]['theta_ca'] = 0.18911     
     mems[4]["use_intp"] = 0
     mems[4]['mem_cost_per_mc'] = 73.99
     mems[4]['l3_bw'] = 30E9
     mems[4]['T_j_max'] = 110
 
     mems.append({})
-    mems[5]['name'] = "HBM2 theta_ca=0.31711"
+    mems[5]['name'] = "HBM2 theta_ca=0.28629"
     mems[5]['mc_bw'] = 256E9
     mems[5]['mc_count'] = 4
     mems[5]['mc_area'] = 6.6831E-6
@@ -239,7 +239,7 @@ def load_data():
     mems[5]['current_per_bump_die'] = 57.87037E-3
     mems[5]['mc_bump_count'] = 1024
     mems[5]['wires_per_mc'] = 1024
-    mems[5]['theta_ca'] = 0.31711
+    mems[5]['theta_ca'] = 0.28629
     mems[5]["use_intp"] = 1
     mems[5]['mem_cost_per_mc'] = 120
     mems[5]['l3_bw'] = 30E9
@@ -328,7 +328,7 @@ def solve(obj, perfLB, areaUB, powerUB, costUB):
                     # Compute max power allowed by thermal constraint.
                     p.theta_ja = (p.theta_jc + p.theta_ca)*(p.theta_jb + p.theta_ba)/(p.theta_jc + p.theta_ca + p.theta_jb + p.theta_ba)
                     p.delta_T = p.T_j_max - p.T_ambient
-                    p.P_max = p.delta_T / p.theta_ja
+                    p.P_max_pkg = p.delta_T / p.theta_ja
 
                     # Compute power of a memory controller.
                     p.mc_voltage = (p.mc_freq / p.mc_freq_nominal) * p.mc_voltage_nominal
@@ -449,20 +449,26 @@ def solve(obj, perfLB, areaUB, powerUB, costUB):
 
                         p.intp_cost = (p.wafer_cost_intp / (p.intp_per_wafer * p.intp_yield)) + p.intp_asm_cost
 
+                    # power consumed by memory that is part of the package
+                    if(p.use_intp == 0):
+                        ## DDR System
+                        p.in_pkg_mem_power = 0.0
+                    else:
+                        ## HBM System
+                        p.in_pkg_mem_power = p.HBM_power_per_mc * p.mc_count
+                    
+                    # power of the entire package
+                    p.P_pkg = p.P_die + p.in_pkg_mem_power
+
+                    # number of power bumps on the package
+                    p.power_bump_count_pkg = (p.P_pkg) / (p.die_voltage * p.current_per_bump_pkg) * 2
+
                     # area of package
                     if(p.use_intp == 0):
                         ## DDR System
-
-                        # number of power bumps on the package
-                        p.power_bump_count_pkg = (p.P_die) / (p.die_voltage * p.current_per_bump_pkg) * 2
-
                         p.A_pkg = (pow(p.bump_pitch_pkg, 2) * (p.power_bump_count_pkg + p.mc_bump_count * p.mc_count + p.io_bump_count * p.io_count)) + p.pkg_non_io_area
                     else:
                         ## HBM System
-
-                        # number of power bumps on the package
-                        p.power_bump_count_pkg = (p.P_die + (p.HBM_power_per_mc * p.mc_count)) / (p.die_voltage * p.current_per_bump_pkg) * 2
-
                         p.A_pkg = (pow(p.bump_pitch_pkg, 2) * (p.power_bump_count_pkg + p.io_bump_count * p.io_count)) + p.pkg_non_io_area
                     
                     # cost of package
@@ -478,8 +484,8 @@ def solve(obj, perfLB, areaUB, powerUB, costUB):
                     if(p.core_freq < p.core_freq_min or p.core_freq > p.core_freq_absolute_max):
                         infs_handler(result, "core_freq out of range")
                     
-                    if(p.P_max < p.P_die):
-                        infs_handler(result, "P_max < P_die")
+                    if(p.P_max_pkg < p.P_pkg):
+                        infs_handler(result, "P_max_pkg < P_pkg")
                     
                     if(p.max_wire_die < p.mc_count * p.wires_per_mc):
                         infs_handler(result, "wire constraint not met")
@@ -701,37 +707,37 @@ def plot(results):
         # plot
         multi_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[1]["x"], x3=mem_plot_data[2]["x"], x4=mem_plot_data[3]["x"], x5=mem_plot_data[4]["x"], x6=mem_plot_data[5]["x"], 
                         y1=mem_plot_data[0]["perf"], y2=mem_plot_data[1]["perf"], y3=mem_plot_data[2]["perf"], y4=mem_plot_data[3]["perf"], y5=mem_plot_data[4]["perf"], y6=mem_plot_data[5]["perf"], 
-                        y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.31711',
+                        y1_label='DDR4-2400 theta_ca=0.3123', y2_label='DDR4-3200 theta_ca=0.28983', y3_label='DDR5-4800 theta_ca=0.22627', y4_label='DDR5-5600 theta_ca=0.18911', y5_label='DDR5-5600 theta_ca=0.18911', y6_label='HBM2 theta_ca=0.28629',
                         x_axis_label='Number of L3 Slices', y_axis_label='Performance (Gflop/s)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Performance')
 
         multi_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[1]["x"], x3=mem_plot_data[2]["x"], x4=mem_plot_data[3]["x"], x5=mem_plot_data[4]["x"], x6=mem_plot_data[5]["x"], 
                         y1=mem_plot_data[0]["die_cost"], y2=mem_plot_data[1]["die_cost"], y3=mem_plot_data[2]["die_cost"], y4=mem_plot_data[3]["die_cost"], y5=mem_plot_data[4]["die_cost"], y6=mem_plot_data[5]["die_cost"], 
-                        y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.31711',
+                        y1_label='DDR4-2400 theta_ca=0.3123', y2_label='DDR4-3200 theta_ca=0.28983', y3_label='DDR5-4800 theta_ca=0.22627', y4_label='DDR5-5600 theta_ca=0.18911', y5_label='DDR5-5600 theta_ca=0.18911', y6_label='HBM2 theta_ca=0.28629',
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Die Cost')
 
         multi_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[1]["x"], x3=mem_plot_data[2]["x"], x4=mem_plot_data[3]["x"], x5=mem_plot_data[4]["x"], x6=mem_plot_data[5]["x"], 
                         y1=mem_plot_data[0]["mem_cost"], y2=mem_plot_data[1]["mem_cost"], y3=mem_plot_data[2]["mem_cost"], y4=mem_plot_data[3]["mem_cost"], y5=mem_plot_data[4]["mem_cost"], y6=mem_plot_data[5]["mem_cost"], 
-                        y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.31711',
+                        y1_label='DDR4-2400 theta_ca=0.3123', y2_label='DDR4-3200 theta_ca=0.28983', y3_label='DDR5-4800 theta_ca=0.22627', y4_label='DDR5-5600 theta_ca=0.18911', y5_label='DDR5-5600 theta_ca=0.18911', y6_label='HBM2 theta_ca=0.28629',
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Memory Cost')
 
         multi_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[1]["x"], x3=mem_plot_data[2]["x"], x4=mem_plot_data[3]["x"], x5=mem_plot_data[4]["x"], x6=mem_plot_data[5]["x"], 
                         y1=mem_plot_data[0]["intp_cost"], y2=mem_plot_data[1]["intp_cost"], y3=mem_plot_data[2]["intp_cost"], y4=mem_plot_data[3]["intp_cost"], y5=mem_plot_data[4]["intp_cost"], y6=mem_plot_data[5]["intp_cost"], 
-                        y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.31711',
+                        y1_label='DDR4-2400 theta_ca=0.3123', y2_label='DDR4-3200 theta_ca=0.28983', y3_label='DDR5-4800 theta_ca=0.22627', y4_label='DDR5-5600 theta_ca=0.18911', y5_label='DDR5-5600 theta_ca=0.18911', y6_label='HBM2 theta_ca=0.28629',
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Interposer Cost')
 
         multi_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[1]["x"], x3=mem_plot_data[2]["x"], x4=mem_plot_data[3]["x"], x5=mem_plot_data[4]["x"], x6=mem_plot_data[5]["x"], 
                         y1=mem_plot_data[0]["pkg_cost"], y2=mem_plot_data[1]["pkg_cost"], y3=mem_plot_data[2]["pkg_cost"], y4=mem_plot_data[3]["pkg_cost"], y5=mem_plot_data[4]["pkg_cost"], y6=mem_plot_data[5]["pkg_cost"], 
-                        y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.31711',
+                        y1_label='DDR4-2400 theta_ca=0.3123', y2_label='DDR4-3200 theta_ca=0.28983', y3_label='DDR5-4800 theta_ca=0.22627', y4_label='DDR5-5600 theta_ca=0.18911', y5_label='DDR5-5600 theta_ca=0.18911', y6_label='HBM2 theta_ca=0.28629',
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Package Cost')
 
         multi_line_plot(x1=mem_plot_data[0]["x"], x2=mem_plot_data[1]["x"], x3=mem_plot_data[2]["x"], x4=mem_plot_data[3]["x"], x5=mem_plot_data[4]["x"], x6=mem_plot_data[5]["x"], 
                         y1=mem_plot_data[0]["cost"], y2=mem_plot_data[1]["cost"], y3=mem_plot_data[2]["cost"], y4=mem_plot_data[3]["cost"], y5=mem_plot_data[4]["cost"], y6=mem_plot_data[5]["cost"], 
-                        y1_label='DDR4-2400 theta_ca=0.30219', y2_label='DDR4-3200 theta_ca=0.26904', y3_label='DDR5-4800 theta_ca=0.18146', y4_label='DDR5-5600 theta_ca=0.14007', y5_label='DDR5-5600 theta_ca=0.13620', y6_label='HBM2 theta_ca=0.31711',
+                        y1_label='DDR4-2400 theta_ca=0.3123', y2_label='DDR4-3200 theta_ca=0.28983', y3_label='DDR5-4800 theta_ca=0.22627', y4_label='DDR5-5600 theta_ca=0.18911', y5_label='DDR5-5600 theta_ca=0.18911', y6_label='HBM2 theta_ca=0.28629',
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Cost')
 
