@@ -9,7 +9,7 @@ get_theta_ca(272.8262948)
 get_theta_ca(344.4902948)
 get_theta_ca(402.35429480000005)
 get_theta_ca(402.35429480000005)
-get_theta_ca(242.2532948)
+get_theta_ca(246.2782948)
 
 
 
