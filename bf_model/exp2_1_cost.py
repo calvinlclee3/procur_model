@@ -504,6 +504,9 @@ def solve(obj, perfLB, areaUB, powerUB, costUB):
 
                         if(p.A_pkg < p.A_die):
                             infs_handler(result, "A_pkg < A_die")
+
+                    if(p.dead_space_die > 0):
+                        infs_handler(result, "dead_space_die > 0")
                     
                     # Sanity Check: no param/var in the model should be negative
                     for key, value in p.__dict__.items():
