@@ -744,14 +744,14 @@ def multi_scatter_plot(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, y1, y2, y3, y4, 
 
     plt.figure(figsize=(12, 8))
     plt.scatter(x1, y1, c ="blue", linewidths = 0, marker ="o", edgecolor ="black", s = 50, label=y1_label)
-    plt.scatter(x2, y2, c ="blue", linewidths = 2, marker ="D", edgecolor ="black", s = 100, label=y2_label)
+    plt.scatter(x2, y2, c ="blue", linewidths = 0, marker ="D", edgecolor ="black", s = 100, label=y2_label)
     plt.scatter(x3, y3, c ="purple", linewidths = 0, marker ="o", edgecolor ="black", s = 50, label=y3_label)
-    plt.scatter(x4, y4, c ="purple", linewidths = 2, marker ="D", edgecolor ="black", s = 100, label=y4_label)
+    plt.scatter(x4, y4, c ="purple", linewidths = 0, marker ="D", edgecolor ="black", s = 100, label=y4_label)
     plt.scatter(x5, y5, c ="yellow", linewidths = 0, marker ="o", edgecolor ="black", s = 50, label=y5_label)
-    plt.scatter(x6, y6, c ="yellow", linewidths = 2, marker ="D", edgecolor ="black", s = 100, label=y6_label)
+    plt.scatter(x6, y6, c ="yellow", linewidths = 0, marker ="D", edgecolor ="black", s = 100, label=y6_label)
     plt.scatter(x7, y7, c ="grey", linewidths = 0, marker ="o", edgecolor ="black", s = 50, label=y7_label)
     plt.scatter(x8, y8, c ="orange", linewidths = 0, marker ="o", edgecolor ="black", s = 50, label=y8_label)
-    plt.scatter(x9, y9, c ="orange", linewidths = 2, marker ="D", edgecolor ="black", s = 100, label=y9_label)
+    plt.scatter(x9, y9, c ="orange", linewidths = 0, marker ="D", edgecolor ="black", s = 100, label=y9_label)
     plt.scatter(x10, y10, c ="red", linewidths = 0, marker ="o", edgecolor ="black", s = 50, label=y10_label)
 
     plt.title(title, fontweight ='bold', fontsize = 15)
