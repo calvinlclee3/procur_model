@@ -35,8 +35,8 @@ def load_data():
 
     # area of each component
     default["core_area"] = 7E-6 
-    default["l1_area"] = 1E-6
-    default["l2_area"] = 2E-6
+    default["l1_area"] = 0.512E-6
+    default["l2_area"] = 3E-6
     default["l3_area"] = 4E-6
     default["mc_area"] = 10E-6
     default["io_area"] = 20E-6
@@ -115,16 +115,20 @@ def load_data():
 
     # ******************************************************************************************
 
-    # THIS PART CANNOT BE HAND-CODED
-    # This is just an example
+    # Specific technologies to explore in DSE
+
     cores = []
     cores.append({})
     cores[0]['name'] = "Intel Xeon Platinum 8380"
     cores[0]['core_count'] = 40
     cores[0]['core_freq'] = 2.85E9
     cores[0]['die_voltage_nominal'] = 1.2
-    cores[0]['l1_capacity'] = 64E3
-    cores[0]['l2_capacity'] = 1E6
+    cores[0]["l1_area"] = 0.512E-6
+    cores[0]["l2_area"] = 3E-6
+    cores[0]["l3_area"] = 4E-6
+    cores[0]["l1_capacity"] = 64E3                     
+    cores[0]["l2_capacity"] = 1E6                          
+    cores[0]["l3_capacity"] = 2E6                          
 
     with open("cores.json", "w") as outfile:
         json.dump(cores, outfile)
