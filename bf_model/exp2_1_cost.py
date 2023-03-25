@@ -37,7 +37,7 @@ def load_data():
     default["core_area"] = 7E-6 
     default["l1_area"] = 1E-6
     default["l2_area"] = 2E-6
-    default["l3_area"] = 1E-6
+    default["l3_area"] = 4E-6
     default["mc_area"] = 10E-6
     default["io_area"] = 20E-6
 
