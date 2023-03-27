@@ -247,7 +247,7 @@ def load_data():
     mems[6]['current_per_bump_die'] = 520.8333333E-3
     mems[6]['mc_bump_count'] = 160
     mems[6]['wires_per_mc'] = 160
-    mems[6]['theta_ca'] = 0.12389     # MIDLINE 0.12389
+    mems[6]['theta_ca'] = 0.12052     # MIDLINE 0.12389
     mems[6]["use_intp"] = 0
     mems[6]['mem_cost_per_mc'] = 73.99
     mems[6]['l3_bw'] = 30E9
