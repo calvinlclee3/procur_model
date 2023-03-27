@@ -93,7 +93,7 @@ def load_data():
     default["use_intp"] = 0                                  # 0 for False, 1 for True. Default always overwritten.
     default["bump_pitch_intp"] = 150E-6
     default["HBM_area_per_mc"] = 100E-6     
-    default["HBM_power_per_mc"] = 4.06528
+    default["HBM_power_per_mc"] = 8.13056
     default["intp_asm_cost"] = 10
     default["pkg_cost_per_sqmm"] = 0.02E6
     default["bump_pitch_pkg"] = 900E-6
@@ -247,7 +247,7 @@ def load_data():
     mems[6]['current_per_bump_die'] = 520.8333333E-3
     mems[6]['mc_bump_count'] = 160
     mems[6]['wires_per_mc'] = 160
-    mems[6]['theta_ca'] = 0.12052     # MIDLINE 0.12389
+    mems[6]['theta_ca'] = 0.12389     # MIDLINE 0.12389
     mems[6]["use_intp"] = 0
     mems[6]['mem_cost_per_mc'] = 73.99
     mems[6]['l3_bw'] = 30E9
