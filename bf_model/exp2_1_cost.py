@@ -465,9 +465,9 @@ def solve(obj, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
 
                     # area of die for yield calculation purposes
                     p.A_die_yield  = p.core_count * p.core_area * p.core_area_multiplier
-                    p.A_die_yield += p.core_count * p.l1_area * p.l1l2_area_multiplier * 0.1
-                    p.A_die_yield += p.core_count * p.l2_area * p.l1l2_area_multiplier * 0.05
-                    p.A_die_yield += p.l3_count   * p.l3_area * 0.05
+                    p.A_die_yield += p.core_count * p.l1_area * p.l1l2_area_multiplier * 0.75
+                    p.A_die_yield += p.core_count * p.l2_area * p.l1l2_area_multiplier * 0.4
+                    p.A_die_yield += p.l3_count   * p.l3_area * 0.2
                     p.A_die_yield += p.mc_count   * p.mc_area
                     p.A_die_yield += p.io_count   * p.io_area
 
