@@ -476,38 +476,38 @@ def solve(obj, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
                     
                     # number of dies that can be cut from a wafer (not considering scribe line and edge exclusion)
                     # note that normal die area, not yield die area, is used for this calculation
-                    p.die_per_wafer = p.wafer_dia_die * math.pi * ((p.wafer_dia_die / (4 * p.A_die)) - (1 / math.sqrt(2 * p.A_die)))
+                    # p.die_per_wafer = p.wafer_dia_die * math.pi * ((p.wafer_dia_die / (4 * p.A_die)) - (1 / math.sqrt(2 * p.A_die)))
                     
                     # cost of each die, considering yield
-                    p.die_cost = p.wafer_cost_die / (p.die_per_wafer * p.die_yield)
+                    # p.die_cost = p.wafer_cost_die / (p.die_per_wafer * p.die_yield)
 
                     # cost of memory
-                    p.mem_cost = p.mc_count * p.mem_cost_per_mc
+                    # p.mem_cost = p.mc_count * p.mem_cost_per_mc
 
                     # cost of interposer
-                    if(p.use_intp == 0):
-                        ## DDR System
-                        p.A_intp = 0 
-                        p.A_intp_yield = 0
-                        p.intp_yield = 0
-                        p.intp_per_wafer = 0
-                        p.intp_cost = 0
-                    else:
+                    # if(p.use_intp == 0):
+                    #     ## DDR System
+                    #     p.A_intp = 0 
+                    #     p.A_intp_yield = 0
+                    #     p.intp_yield = 0
+                    #     p.intp_per_wafer = 0
+                    #     p.intp_cost = 0
+                    # else:
                         ## HBM System
 
                         # area of interposer
-                        p.A_intp = p.A_die + (p.mc_count * p.HBM_area_per_mc)
+                        # p.A_intp = p.A_die + (p.mc_count * p.HBM_area_per_mc)
 
                         # area of interposer for yield calculation purposes
-                        p.A_intp_yield = p.A_die_yield + (p.mc_count * p.HBM_area_per_mc)
+                        # p.A_intp_yield = p.A_die_yield + (p.mc_count * p.HBM_area_per_mc)
 
                         # yield of interposer
-                        p.intp_yield = math.pow((1 + (p.A_intp_yield * p.defect_density_intp / p.clustering_factor_intp)), -1.0 * p.clustering_factor_intp)
+                        # p.intp_yield = math.pow((1 + (p.A_intp_yield * p.defect_density_intp / p.clustering_factor_intp)), -1.0 * p.clustering_factor_intp)
 
                         # number of interposers that can be cut from a wafer (not considering scribe line and edge exclusion)
-                        p.intp_per_wafer = p.wafer_dia_intp * math.pi * ((p.wafer_dia_intp / (4 * p.A_intp)) - (1 / math.sqrt(2 * p.A_intp)))
+                        # p.intp_per_wafer = p.wafer_dia_intp * math.pi * ((p.wafer_dia_intp / (4 * p.A_intp)) - (1 / math.sqrt(2 * p.A_intp)))
 
-                        p.intp_cost = (p.wafer_cost_intp / (p.intp_per_wafer * p.intp_yield)) + p.intp_asm_cost
+                        # p.intp_cost = (p.wafer_cost_intp / (p.intp_per_wafer * p.intp_yield)) + p.intp_asm_cost
 
                     # power consumed by memory that is part of the package
                     # if(p.use_intp == 0):
@@ -521,18 +521,18 @@ def solve(obj, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
                     # p.P_pkg = p.P_die + p.in_pkg_mem_power
 
                     # number of power bumps on the package
-                    p.power_bump_count_pkg = (p.P_pkg) / (p.die_voltage * p.current_per_bump_pkg) * 2
+                    # p.power_bump_count_pkg = (p.P_pkg) / (p.die_voltage * p.current_per_bump_pkg) * 2
 
                     # area of package
-                    if(p.use_intp == 0):
-                        ## DDR System
-                        p.A_pkg = (pow(p.bump_pitch_pkg, 2) * (p.power_bump_count_pkg + p.mc_bump_count * p.mc_count + p.io_bump_count * p.io_count)) + p.pkg_non_io_area
-                    else:
+                    # if(p.use_intp == 0):
+                    #     ## DDR System
+                        # p.A_pkg = (pow(p.bump_pitch_pkg, 2) * (p.power_bump_count_pkg + p.mc_bump_count * p.mc_count + p.io_bump_count * p.io_count)) + p.pkg_non_io_area
+                    # else:
                         ## HBM System
-                        p.A_pkg = (pow(p.bump_pitch_pkg, 2) * (p.power_bump_count_pkg + p.io_bump_count * p.io_count)) + p.pkg_non_io_area
+                        # p.A_pkg = (pow(p.bump_pitch_pkg, 2) * (p.power_bump_count_pkg + p.io_bump_count * p.io_count)) + p.pkg_non_io_area
                     
                     # cost of package
-                    p.pkg_cost = p.A_pkg * p.pkg_cost_per_sqmm
+                    # p.pkg_cost = p.A_pkg * p.pkg_cost_per_sqmm
 
                     # total cost 
                     # p.cost = p.die_cost + p.intp_cost + p.mem_cost + p.pkg_cost 
@@ -550,28 +550,28 @@ def solve(obj, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
                     # if(p.max_wire_die < p.mc_count * p.wires_per_mc):
                     #     infs_handler(result, "wire constraint not met")
 
-                    if(p.use_intp == 0):
-                        ## DDR System
-                        if(p.A_pkg < p.A_die):
-                            infs_handler(result, "A_pkg < A_die")
-                    else:
-                        ## HBM System
-                        if(p.A_intp < p.A_die):
-                            infs_handler(result, "A_intp < A_die")
+                    # if(p.use_intp == 0):
+                    #     ## DDR System
+                    #     if(p.A_pkg < p.A_die):
+                    #         infs_handler(result, "A_pkg < A_die")
+                    # else:
+                    #     ## HBM System
+                    #     if(p.A_intp < p.A_die):
+                    #         infs_handler(result, "A_intp < A_die")
 
-                        if(p.A_pkg < p.A_intp):
-                            infs_handler(result, "A_pkg < A_intp")
+                    #     if(p.A_pkg < p.A_intp):
+                    #         infs_handler(result, "A_pkg < A_intp")
 
-                        if(p.A_pkg < p.A_die):
-                            infs_handler(result, "A_pkg < A_die")
+                    #     if(p.A_pkg < p.A_die):
+                    #         infs_handler(result, "A_pkg < A_die")
 
-                    if(p.dead_space_die > 0):
-                        infs_handler(result, "dead_space_die > 0")
+                    # if(p.dead_space_die > 0):
+                    #     infs_handler(result, "dead_space_die > 0")
                     
                     # Sanity Check: no param/var in the model should be negative
-                    for key, value in p.__dict__.items():
-                        if(value < 0):
-                            infs_handler(result, f'{key} has negative value of {value}')
+                    # for key, value in p.__dict__.items():
+                    #     if(value < 0):
+                    #         infs_handler(result, f'{key} has negative value of {value}')
                     
                     # ****************************** ENFORCE OBJ-DEPENDENT CONSTRAINTS ******************************
                     if(obj == "max_perf"):
