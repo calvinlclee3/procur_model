@@ -81,7 +81,7 @@ def load_data():
     default["core_freq_nominal"] = 3.6E9
 
     # Cost Model Parameters
-    default["wafer_cost_die"] = 16000
+    default["wafer_cost_die"] = 6000
     default["wafer_cost_intp"] = 2500
     default["wafer_dia_die"] = 300E-3
     default["wafer_dia_intp"] = 300E-3
