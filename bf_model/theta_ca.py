@@ -5,5 +5,5 @@ def get_theta_ca (P_max):
     print(math.floor(temp * 100000.0)/100000.0)
 
 
-get_theta_ca()
+get_theta_ca(317.52000000000004)
 

@@ -456,7 +456,7 @@ def load_data():
     mems_gpu[5]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[6]['name'] = "DDR5-5600 4Ch theta_ca=0.20268"
+    mems_gpu[6]['name'] = "DDR5-5600 4Ch theta_ca=0.20906"
     mems_gpu[6]['mc_bw'] = 2800E6 * 2 * 8
     mems_gpu[6]['mc_count'] = 4
     mems_gpu[6]['mc_area'] = 10E-6
@@ -466,7 +466,7 @@ def load_data():
     mems_gpu[6]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[6]['mc_bump_count'] = 160
     mems_gpu[6]['wires_per_mc'] = 160
-    mems_gpu[6]['theta_ca'] = 0.20268     # MIDLINE 0.20268
+    mems_gpu[6]['theta_ca'] = 0.20906     # MIDLINE 0.20906
     mems_gpu[6]["use_intp"] = 0
     mems_gpu[6]['mem_cost_per_mc'] = 73.99
     mems_gpu[6]['l3_bw'] = 30E9
