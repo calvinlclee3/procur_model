@@ -35,8 +35,8 @@ def load_data():
 
     # area of each component
     default["core_area"] = 7E-6 
-    default["l1_area"] = 0.512E-6
-    default["l2_area"] = 3E-6
+    default["l1_area"] = 1.064614421E-6
+    default["l2_area"] = 4.282729752E-6
     default["l3_area"] = 4E-6
     default["mc_area"] = 10E-6
     default["io_area"] = 20E-6
@@ -121,8 +121,8 @@ def load_data():
     cores[0]['core_count'] = 40
     cores[0]['core_freq'] = 2.85E9
     cores[0]['die_voltage_nominal'] = 1.2
-    cores[0]["l1_area"] = 0.512E-6
-    cores[0]["l2_area"] = 3E-6
+    cores[0]["l1_area"] = 1.064614421E-6
+    cores[0]["l2_area"] = 4.282729752E-6
     cores[0]["l3_area"] = 4E-6
     cores[0]["l1_capacity"] = 64E3                     
     cores[0]["l2_capacity"] = 1E6                          
@@ -333,8 +333,8 @@ def load_data():
     cores_gpu[0]['core_count'] = 40
     cores_gpu[0]['core_freq'] = 2.85E9
     cores_gpu[0]['die_voltage_nominal'] = 1.2
-    cores_gpu[0]["l1_area"] = 0.512E-6
-    cores_gpu[0]["l2_area"] = 3E-6
+    cores_gpu[0]["l1_area"] = 1.064614421E-6
+    cores_gpu[0]["l2_area"] = 4.282729752E-6
     cores_gpu[0]["l3_area"] = 4E-6
     cores_gpu[0]["l1_capacity"] = 64E3                     
     cores_gpu[0]["l2_capacity"] = 1E6                          

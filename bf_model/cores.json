@@ -1,1 +1,1 @@
-[{"name": "Intel Xeon Platinum 8380", "core_count": 40, "core_freq": 2850000000.0, "die_voltage_nominal": 1.2, "l1_area": 5.12e-07, "l2_area": 3e-06, "l3_area": 4e-06, "l1_capacity": 64000.0, "l2_capacity": 1000000.0, "l3_capacity": 2000000.0}]
+[{"name": "Intel Xeon Platinum 8380", "core_count": 40, "core_freq": 2850000000.0, "die_voltage_nominal": 1.2, "l1_area": 1.064614421e-06, "l2_area": 4.282729752e-06, "l3_area": 4e-06, "l1_capacity": 64000.0, "l2_capacity": 1000000.0, "l3_capacity": 2000000.0}]
