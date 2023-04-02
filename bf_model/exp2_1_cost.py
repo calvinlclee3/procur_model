@@ -113,9 +113,7 @@ def load_data():
     with open("default.json", "w") as outfile:
         json.dump(default, outfile)
 
-    # ******************************************************************************************
-
-    # Specific technologies to explore in DSE
+    # ****************************** WRITING CPU ARCH VALUES ******************************
 
     cores = []
     cores.append({})
@@ -326,9 +324,220 @@ def load_data():
     
     with open("app_props.json", "w") as outfile:
         json.dump(app_props, outfile)
-    
 
-def solve(obj, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
+    # ****************************** WRITING GPU ARCH VALUES ******************************
+
+    cores_gpu = []
+    cores_gpu.append({})
+    cores_gpu[0]['name'] = "TITAN V"
+    cores_gpu[0]['core_count'] = 40
+    cores_gpu[0]['core_freq'] = 2.85E9
+    cores_gpu[0]['die_voltage_nominal'] = 1.2
+    cores_gpu[0]["l1_area"] = 0.512E-6
+    cores_gpu[0]["l2_area"] = 3E-6
+    cores_gpu[0]["l3_area"] = 4E-6
+    cores_gpu[0]["l1_capacity"] = 64E3                     
+    cores_gpu[0]["l2_capacity"] = 1E6                          
+    cores_gpu[0]["l3_capacity"] = 2E6                          
+
+    with open("cores_gpu.json", "w") as outfile:
+        json.dump(cores_gpu, outfile)
+
+    mems_gpu = []
+    mems_gpu.append({})
+    mems_gpu[0]['name'] = "DDR4-2400 4Ch theta_ca=0.18561"
+    mems_gpu[0]['mc_bw'] = 1200E6 * 2 * 8
+    mems_gpu[0]['mc_count'] = 4
+    mems_gpu[0]['mc_area'] = 10E-6
+    mems_gpu[0]['mc_freq'] = 1200E6
+    mems_gpu[0]['energy_per_wire'] = 15E-12
+    mems_gpu[0]['bump_pitch_die'] = 150E-6
+    mems_gpu[0]['current_per_bump_die'] = 520.8333333E-3
+    mems_gpu[0]['mc_bump_count'] = 160
+    mems_gpu[0]['wires_per_mc'] = 160
+    mems_gpu[0]['theta_ca'] = 0.18561
+    mems_gpu[0]["use_intp"] = 0
+    mems_gpu[0]['mem_cost_per_mc'] = 41.99
+    mems_gpu[0]['l3_bw'] = 30E9
+    mems_gpu[0]['T_j_max'] = 110
+
+    mems_gpu.append({})
+    mems_gpu[1]['name'] = "DDR4-2400 6Ch theta_ca=0.17837"
+    mems_gpu[1]['mc_bw'] = 1200E6 * 2 * 8
+    mems_gpu[1]['mc_count'] = 6
+    mems_gpu[1]['mc_area'] = 10E-6
+    mems_gpu[1]['mc_freq'] = 1200E6
+    mems_gpu[1]['energy_per_wire'] = 15E-12
+    mems_gpu[1]['bump_pitch_die'] = 150E-6
+    mems_gpu[1]['current_per_bump_die'] = 520.8333333E-3
+    mems_gpu[1]['mc_bump_count'] = 160
+    mems_gpu[1]['wires_per_mc'] = 160
+    mems_gpu[1]['theta_ca'] = 0.17837
+    mems_gpu[1]["use_intp"] = 0
+    mems_gpu[1]['mem_cost_per_mc'] = 41.99
+    mems_gpu[1]['l3_bw'] = 30E9
+    mems_gpu[1]['T_j_max'] = 110
+
+    mems_gpu.append({})
+    mems_gpu[2]['name'] = "DDR4-3200 4Ch theta_ca=0.17465"
+    mems_gpu[2]['mc_bw'] = 1600E6 * 2 * 8
+    mems_gpu[2]['mc_count'] = 4
+    mems_gpu[2]['mc_area'] = 10E-6
+    mems_gpu[2]['mc_freq'] = 1600E6
+    mems_gpu[2]['energy_per_wire'] = 15E-12
+    mems_gpu[2]['bump_pitch_die'] = 150E-6
+    mems_gpu[2]['current_per_bump_die'] = 520.8333333E-3
+    mems_gpu[2]['mc_bump_count'] = 160
+    mems_gpu[2]['wires_per_mc'] = 160
+    mems_gpu[2]['theta_ca'] = 0.17465
+    mems_gpu[2]["use_intp"] = 0
+    mems_gpu[2]['mem_cost_per_mc'] = 41.99
+    mems_gpu[2]['l3_bw'] = 30E9
+    mems_gpu[2]['T_j_max'] = 110
+
+    mems_gpu.append({})
+    mems_gpu[3]['name'] = "DDR4-3200 6Ch theta_ca=0.16302"
+    mems_gpu[3]['mc_bw'] = 1600E6 * 2 * 8
+    mems_gpu[3]['mc_count'] = 6
+    mems_gpu[3]['mc_area'] = 10E-6
+    mems_gpu[3]['mc_freq'] = 1600E6
+    mems_gpu[3]['energy_per_wire'] = 15E-12
+    mems_gpu[3]['bump_pitch_die'] = 150E-6
+    mems_gpu[3]['current_per_bump_die'] = 520.8333333E-3
+    mems_gpu[3]['mc_bump_count'] = 160
+    mems_gpu[3]['wires_per_mc'] = 160
+    mems_gpu[3]['theta_ca'] = 0.16302
+    mems_gpu[3]["use_intp"] = 0
+    mems_gpu[3]['mem_cost_per_mc'] = 41.99
+    mems_gpu[3]['l3_bw'] = 30E9
+    mems_gpu[3]['T_j_max'] = 110
+
+    mems_gpu.append({})
+    mems_gpu[4]['name'] = "DDR5-4800 4Ch theta_ca=0.1415"
+    mems_gpu[4]['mc_bw'] = 2400E6 * 2 * 8
+    mems_gpu[4]['mc_count'] = 4
+    mems_gpu[4]['mc_area'] = 10E-6
+    mems_gpu[4]['mc_freq'] = 2400E6
+    mems_gpu[4]['energy_per_wire'] = 15E-12
+    mems_gpu[4]['bump_pitch_die'] = 150E-6
+    mems_gpu[4]['current_per_bump_die'] = 520.8333333E-3
+    mems_gpu[4]['mc_bump_count'] = 160
+    mems_gpu[4]['wires_per_mc'] = 160
+    mems_gpu[4]['theta_ca'] = 0.1415     
+    mems_gpu[4]["use_intp"] = 0
+    mems_gpu[4]['mem_cost_per_mc'] = 52.99
+    mems_gpu[4]['l3_bw'] = 30E9
+    mems_gpu[4]['T_j_max'] = 110
+
+    mems_gpu.append({})
+    mems_gpu[5]['name'] = "DDR5-4800 6Ch theta_ca=0.1197"
+    mems_gpu[5]['mc_bw'] = 2400E6 * 2 * 8
+    mems_gpu[5]['mc_count'] = 6
+    mems_gpu[5]['mc_area'] = 10E-6
+    mems_gpu[5]['mc_freq'] = 2400E6
+    mems_gpu[5]['energy_per_wire'] = 15E-12
+    mems_gpu[5]['bump_pitch_die'] = 150E-6
+    mems_gpu[5]['current_per_bump_die'] = 520.8333333E-3
+    mems_gpu[5]['mc_bump_count'] = 160
+    mems_gpu[5]['wires_per_mc'] = 160
+    mems_gpu[5]['theta_ca'] = 0.1197
+    mems_gpu[5]["use_intp"] = 0
+    mems_gpu[5]['mem_cost_per_mc'] = 52.99
+    mems_gpu[5]['l3_bw'] = 30E9
+    mems_gpu[5]['T_j_max'] = 110
+
+    mems_gpu.append({})
+    mems_gpu[6]['name'] = "DDR5-5600 4Ch theta_ca=0.12389"
+    mems_gpu[6]['mc_bw'] = 2800E6 * 2 * 8
+    mems_gpu[6]['mc_count'] = 4
+    mems_gpu[6]['mc_area'] = 10E-6
+    mems_gpu[6]['mc_freq'] = 2800E6
+    mems_gpu[6]['energy_per_wire'] = 15E-12
+    mems_gpu[6]['bump_pitch_die'] = 150E-6
+    mems_gpu[6]['current_per_bump_die'] = 520.8333333E-3
+    mems_gpu[6]['mc_bump_count'] = 160
+    mems_gpu[6]['wires_per_mc'] = 160
+    mems_gpu[6]['theta_ca'] = 0.12389     # MIDLINE 0.12389
+    mems_gpu[6]["use_intp"] = 0
+    mems_gpu[6]['mem_cost_per_mc'] = 73.99
+    mems_gpu[6]['l3_bw'] = 30E9
+    mems_gpu[6]['T_j_max'] = 110
+
+    mems_gpu.append({})
+    mems_gpu[7]['name'] = "DDR5-5600 4Ch theta_ca=0.12052"
+    mems_gpu[7]['mc_bw'] = 2800E6 * 2 * 8
+    mems_gpu[7]['mc_count'] = 4
+    mems_gpu[7]['mc_area'] = 10E-6
+    mems_gpu[7]['mc_freq'] = 2800E6
+    mems_gpu[7]['energy_per_wire'] = 15E-12
+    mems_gpu[7]['bump_pitch_die'] = 150E-6
+    mems_gpu[7]['current_per_bump_die'] = 520.8333333E-3
+    mems_gpu[7]['mc_bump_count'] = 160
+    mems_gpu[7]['wires_per_mc'] = 160
+    mems_gpu[7]['theta_ca'] = 0.12052     
+    mems_gpu[7]["use_intp"] = 0
+    mems_gpu[7]['mem_cost_per_mc'] = 73.99
+    mems_gpu[7]['l3_bw'] = 30E9
+    mems_gpu[7]['T_j_max'] = 110
+
+    mems_gpu.append({})
+    mems_gpu[8]['name'] = "DDR5-5600 6Ch theta_ca=0.09446"
+    mems_gpu[8]['mc_bw'] = 2800E6 * 2 * 8
+    mems_gpu[8]['mc_count'] = 6
+    mems_gpu[8]['mc_area'] = 10E-6
+    mems_gpu[8]['mc_freq'] = 2800E6
+    mems_gpu[8]['energy_per_wire'] = 15E-12
+    mems_gpu[8]['bump_pitch_die'] = 150E-6
+    mems_gpu[8]['current_per_bump_die'] = 520.8333333E-3
+    mems_gpu[8]['mc_bump_count'] = 160
+    mems_gpu[8]['wires_per_mc'] = 160
+    mems_gpu[8]['theta_ca'] = 0.09446
+    mems_gpu[8]["use_intp"] = 0
+    mems_gpu[8]['mem_cost_per_mc'] = 73.99
+    mems_gpu[8]['l3_bw'] = 30E9
+    mems_gpu[8]['T_j_max'] = 110
+
+    mems_gpu.append({})
+    mems_gpu[9]['name'] = "HBM2 4Ch theta_ca=0.15934"
+    mems_gpu[9]['mc_bw'] = 256E9
+    mems_gpu[9]['mc_count'] = 4
+    mems_gpu[9]['mc_area'] = 6.6831E-6
+    mems_gpu[9]['mc_freq'] = 1000E6
+    mems_gpu[9]['energy_per_wire'] = 3.5E-12
+    mems_gpu[9]['bump_pitch_die'] = 50E-6
+    mems_gpu[9]['current_per_bump_die'] = 57.87037E-3
+    mems_gpu[9]['mc_bump_count'] = 1024
+    mems_gpu[9]['wires_per_mc'] = 1024
+    mems_gpu[9]['theta_ca'] = 0.15934
+    mems_gpu[9]["use_intp"] = 1
+    mems_gpu[9]['mem_cost_per_mc'] = 120
+    mems_gpu[9]['l3_bw'] = 30E9
+    mems_gpu[9]['T_j_max'] = 110
+
+    with open("mems_gpu.json", "w") as outfile:
+        json.dump(mems_gpu, outfile)
+
+    l3_configs_gpu = []
+    for i in range(1, 51):
+        l3_configs_gpu.append({"name": f"{i}x L3s", "l3_count":i})
+    
+    with open("l3_configs_gpu.json", "w") as outfile:
+        json.dump(l3_configs_gpu, outfile)
+
+
+    ai_apps_gpu = [0.25, 0.5, 1]
+    workset_sizes_gpu = [100E6, 50E6, 25E6]
+    app_props_gpu = []
+    for ai_app in ai_apps_gpu:
+        for workset_size in workset_sizes_gpu:
+            app_props_gpu.append({"name": f'{ai_app} App. AI, {workset_size/1E6} MB Workset',
+                              "ai_app": ai_app,
+                              "workset_size": workset_size})
+    
+    with open("app_props_gpu.json", "w") as outfile:
+        json.dump(app_props_gpu, outfile)
+
+def solve(obj, useGPU, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
 
     results = []
     calibrated_theta_ca = {}
@@ -338,17 +547,23 @@ def solve(obj, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
     with open("default.json", 'r') as fp:
         master_default = json.load(fp)
 
-    with open("cores.json", 'r') as fp:
+    if(useGPU == False):
+        concatFileName = ""
+    else:
+        concatFileName = "_gpu"
+
+    with open("cores" + concatFileName + ".json", 'r') as fp:
         cores = json.load(fp)
 
-    with open("mems.json", 'r') as fp:
+    with open("mems" + concatFileName + ".json", 'r') as fp:
         mems = json.load(fp)
 
-    with open("l3_configs.json", 'r') as fp:
+    with open("l3_configs" + concatFileName + ".json", 'r') as fp:
         l3_configs = json.load(fp)
 
-    with open("app_props.json", 'r') as fp:
+    with open("app_props" + concatFileName + ".json", 'r') as fp:
         app_props = json.load(fp)
+
 
     for app_prop in app_props:
         for l3_config in l3_configs:
@@ -764,12 +979,19 @@ def multi_scatter_plot(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, y1, y2, y3, y4, 
     plt.savefig(f'results/{title}.pdf')
     plt.close()
 
-def plot(results):
+def plot(results, useGPU):
 
-    with open("app_props.json", 'r') as fp:
+    if(useGPU == False):
+        concatFileName = ""
+        concatTitleName = ""
+    else:
+        concatFileName = "_gpu"
+        concatTitleName = "[GPU]"
+
+    with open("app_props" + concatFileName + ".json", 'r') as fp:
         app_props = json.load(fp)
 
-    with open("mems.json", 'r') as fp:
+    with open("mems" + concatFileName + ".json", 'r') as fp:
         mems = json.load(fp)
 
     for app_prop in app_props:
@@ -829,79 +1051,79 @@ def plot(results):
                            y1=mem_plot_data[0]["cost"], y2=mem_plot_data[1]["cost"], y3=mem_plot_data[2]["cost"], y4=mem_plot_data[3]["cost"], y5=mem_plot_data[4]["cost"], y6=mem_plot_data[5]["cost"], y7=mem_plot_data[6]["cost"], y8=mem_plot_data[7]["cost"], y9=mem_plot_data[8]["cost"], y10=mem_plot_data[9]["cost"], 
                            y1_label='DDR4-2400 4Ch theta_ca=0.18561', y2_label='DDR4-2400 6Ch theta_ca=0.17837', y3_label='DDR4-3200 4Ch theta_ca=0.17465', y4_label='DDR4-3200 6Ch theta_ca=0.16302', y5_label='DDR5-4800 4Ch theta_ca=0.1415', y6_label='DDR5-4800 6Ch theta_ca=0.1197', y7_label='DDR5-5600 4Ch theta_ca=0.12389', y8_label='DDR5-5600 4Ch theta_ca=0.12052', y9_label='DDR5-5600 6Ch theta_ca=0.09446', y10_label='HBM2 4Ch theta_ca=0.15934', 
                            x_axis_label='Performance (Gflop/s)', y_axis_label='Cost (USD)',
-                           title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Design Space Exploration')
+                           title=concatTitleName + f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Design Space Exploration')
 
         multi_line_plot(x1=mem_plot_data[0]["l3_count"], x2=mem_plot_data[1]["l3_count"], x3=mem_plot_data[2]["l3_count"], x4=mem_plot_data[3]["l3_count"], x5=mem_plot_data[4]["l3_count"], x6=mem_plot_data[5]["l3_count"], x7=mem_plot_data[6]["l3_count"], x8=mem_plot_data[7]["l3_count"], x9=mem_plot_data[8]["l3_count"], x10=mem_plot_data[9]["l3_count"], 
                         y1=mem_plot_data[0]["perf"], y2=mem_plot_data[1]["perf"], y3=mem_plot_data[2]["perf"], y4=mem_plot_data[3]["perf"], y5=mem_plot_data[4]["perf"], y6=mem_plot_data[5]["perf"], y7=mem_plot_data[6]["perf"], y8=mem_plot_data[7]["perf"], y9=mem_plot_data[8]["perf"], y10=mem_plot_data[9]["perf"], 
                         y1_label='DDR4-2400 4Ch theta_ca=0.18561', y2_label='DDR4-2400 6Ch theta_ca=0.17837', y3_label='DDR4-3200 4Ch theta_ca=0.17465', y4_label='DDR4-3200 6Ch theta_ca=0.16302', y5_label='DDR5-4800 4Ch theta_ca=0.1415', y6_label='DDR5-4800 6Ch theta_ca=0.1197', y7_label='DDR5-5600 4Ch theta_ca=0.12389', y8_label='DDR5-5600 4Ch theta_ca=0.12052', y9_label='DDR5-5600 6Ch theta_ca=0.09446', y10_label='HBM2 4Ch theta_ca=0.15934', 
                         x_axis_label='Number of L3 Slices', y_axis_label='Performance (Gflop/s)',
-                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Performance')
+                        title=concatTitleName + f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Performance')
 
         multi_line_plot(x1=mem_plot_data[0]["l3_count"], x2=mem_plot_data[1]["l3_count"], x3=mem_plot_data[2]["l3_count"], x4=mem_plot_data[3]["l3_count"], x5=mem_plot_data[4]["l3_count"], x6=mem_plot_data[5]["l3_count"], x7=mem_plot_data[6]["l3_count"], x8=mem_plot_data[7]["l3_count"], x9=mem_plot_data[8]["l3_count"], x10=mem_plot_data[9]["l3_count"], 
                         y1=mem_plot_data[0]["die_cost"], y2=mem_plot_data[1]["die_cost"], y3=mem_plot_data[2]["die_cost"], y4=mem_plot_data[3]["die_cost"], y5=mem_plot_data[4]["die_cost"], y6=mem_plot_data[5]["die_cost"], y7=mem_plot_data[6]["die_cost"], y8=mem_plot_data[7]["die_cost"], y9=mem_plot_data[8]["die_cost"], y10=mem_plot_data[9]["die_cost"], 
                         y1_label='DDR4-2400 4Ch theta_ca=0.18561', y2_label='DDR4-2400 6Ch theta_ca=0.17837', y3_label='DDR4-3200 4Ch theta_ca=0.17465', y4_label='DDR4-3200 6Ch theta_ca=0.16302', y5_label='DDR5-4800 4Ch theta_ca=0.1415', y6_label='DDR5-4800 6Ch theta_ca=0.1197', y7_label='DDR5-5600 4Ch theta_ca=0.12389', y8_label='DDR5-5600 4Ch theta_ca=0.12052', y9_label='DDR5-5600 6Ch theta_ca=0.09446', y10_label='HBM2 4Ch theta_ca=0.15934', 
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
-                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Die Cost')
+                        title=concatTitleName + f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Die Cost')
 
         multi_line_plot(x1=mem_plot_data[0]["l3_count"], x2=mem_plot_data[1]["l3_count"], x3=mem_plot_data[2]["l3_count"], x4=mem_plot_data[3]["l3_count"], x5=mem_plot_data[4]["l3_count"], x6=mem_plot_data[5]["l3_count"], x7=mem_plot_data[6]["l3_count"], x8=mem_plot_data[7]["l3_count"], x9=mem_plot_data[8]["l3_count"], x10=mem_plot_data[9]["l3_count"], 
                         y1=mem_plot_data[0]["mem_cost"], y2=mem_plot_data[1]["mem_cost"], y3=mem_plot_data[2]["mem_cost"], y4=mem_plot_data[3]["mem_cost"], y5=mem_plot_data[4]["mem_cost"], y6=mem_plot_data[5]["mem_cost"], y7=mem_plot_data[6]["mem_cost"], y8=mem_plot_data[7]["mem_cost"], y9=mem_plot_data[8]["mem_cost"], y10=mem_plot_data[9]["mem_cost"], 
                         y1_label='DDR4-2400 4Ch theta_ca=0.18561', y2_label='DDR4-2400 6Ch theta_ca=0.17837', y3_label='DDR4-3200 4Ch theta_ca=0.17465', y4_label='DDR4-3200 6Ch theta_ca=0.16302', y5_label='DDR5-4800 4Ch theta_ca=0.1415', y6_label='DDR5-4800 6Ch theta_ca=0.1197', y7_label='DDR5-5600 4Ch theta_ca=0.12389', y8_label='DDR5-5600 4Ch theta_ca=0.12052', y9_label='DDR5-5600 6Ch theta_ca=0.09446', y10_label='HBM2 4Ch theta_ca=0.15934', 
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
-                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Memory Cost')
+                        title=concatTitleName + f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Memory Cost')
 
         multi_line_plot(x1=mem_plot_data[0]["l3_count"], x2=mem_plot_data[1]["l3_count"], x3=mem_plot_data[2]["l3_count"], x4=mem_plot_data[3]["l3_count"], x5=mem_plot_data[4]["l3_count"], x6=mem_plot_data[5]["l3_count"], x7=mem_plot_data[6]["l3_count"], x8=mem_plot_data[7]["l3_count"], x9=mem_plot_data[8]["l3_count"], x10=mem_plot_data[9]["l3_count"], 
                         y1=mem_plot_data[0]["intp_cost"], y2=mem_plot_data[1]["intp_cost"], y3=mem_plot_data[2]["intp_cost"], y4=mem_plot_data[3]["intp_cost"], y5=mem_plot_data[4]["intp_cost"], y6=mem_plot_data[5]["intp_cost"], y7=mem_plot_data[6]["intp_cost"], y8=mem_plot_data[7]["intp_cost"], y9=mem_plot_data[8]["intp_cost"], y10=mem_plot_data[9]["intp_cost"], 
                         y1_label='DDR4-2400 4Ch theta_ca=0.18561', y2_label='DDR4-2400 6Ch theta_ca=0.17837', y3_label='DDR4-3200 4Ch theta_ca=0.17465', y4_label='DDR4-3200 6Ch theta_ca=0.16302', y5_label='DDR5-4800 4Ch theta_ca=0.1415', y6_label='DDR5-4800 6Ch theta_ca=0.1197', y7_label='DDR5-5600 4Ch theta_ca=0.12389', y8_label='DDR5-5600 4Ch theta_ca=0.12052', y9_label='DDR5-5600 6Ch theta_ca=0.09446', y10_label='HBM2 4Ch theta_ca=0.15934', 
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
-                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Interposer Cost')
+                        title=concatTitleName + f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Interposer Cost')
 
         multi_line_plot(x1=mem_plot_data[0]["l3_count"], x2=mem_plot_data[1]["l3_count"], x3=mem_plot_data[2]["l3_count"], x4=mem_plot_data[3]["l3_count"], x5=mem_plot_data[4]["l3_count"], x6=mem_plot_data[5]["l3_count"], x7=mem_plot_data[6]["l3_count"], x8=mem_plot_data[7]["l3_count"], x9=mem_plot_data[8]["l3_count"], x10=mem_plot_data[9]["l3_count"], 
                         y1=mem_plot_data[0]["pkg_cost"], y2=mem_plot_data[1]["pkg_cost"], y3=mem_plot_data[2]["pkg_cost"], y4=mem_plot_data[3]["pkg_cost"], y5=mem_plot_data[4]["pkg_cost"], y6=mem_plot_data[5]["pkg_cost"], y7=mem_plot_data[6]["pkg_cost"], y8=mem_plot_data[7]["pkg_cost"], y9=mem_plot_data[8]["pkg_cost"], y10=mem_plot_data[9]["pkg_cost"], 
                         y1_label='DDR4-2400 4Ch theta_ca=0.18561', y2_label='DDR4-2400 6Ch theta_ca=0.17837', y3_label='DDR4-3200 4Ch theta_ca=0.17465', y4_label='DDR4-3200 6Ch theta_ca=0.16302', y5_label='DDR5-4800 4Ch theta_ca=0.1415', y6_label='DDR5-4800 6Ch theta_ca=0.1197', y7_label='DDR5-5600 4Ch theta_ca=0.12389', y8_label='DDR5-5600 4Ch theta_ca=0.12052', y9_label='DDR5-5600 6Ch theta_ca=0.09446', y10_label='HBM2 4Ch theta_ca=0.15934', 
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
-                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Package Cost')
+                        title=concatTitleName + f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Package Cost')
 
         multi_line_plot(x1=mem_plot_data[0]["l3_count"], x2=mem_plot_data[1]["l3_count"], x3=mem_plot_data[2]["l3_count"], x4=mem_plot_data[3]["l3_count"], x5=mem_plot_data[4]["l3_count"], x6=mem_plot_data[5]["l3_count"], x7=mem_plot_data[6]["l3_count"], x8=mem_plot_data[7]["l3_count"], x9=mem_plot_data[8]["l3_count"], x10=mem_plot_data[9]["l3_count"], 
                         y1=mem_plot_data[0]["cost"], y2=mem_plot_data[1]["cost"], y3=mem_plot_data[2]["cost"], y4=mem_plot_data[3]["cost"], y5=mem_plot_data[4]["cost"], y6=mem_plot_data[5]["cost"], y7=mem_plot_data[6]["cost"], y8=mem_plot_data[7]["cost"], y9=mem_plot_data[8]["cost"], y10=mem_plot_data[9]["cost"], 
                         y1_label='DDR4-2400 4Ch theta_ca=0.18561', y2_label='DDR4-2400 6Ch theta_ca=0.17837', y3_label='DDR4-3200 4Ch theta_ca=0.17465', y4_label='DDR4-3200 6Ch theta_ca=0.16302', y5_label='DDR5-4800 4Ch theta_ca=0.1415', y6_label='DDR5-4800 6Ch theta_ca=0.1197', y7_label='DDR5-5600 4Ch theta_ca=0.12389', y8_label='DDR5-5600 4Ch theta_ca=0.12052', y9_label='DDR5-5600 6Ch theta_ca=0.09446', y10_label='HBM2 4Ch theta_ca=0.15934', 
                         x_axis_label='Number of L3 Slices', y_axis_label='Cost (USD)',
-                        title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Cost')
+                        title=concatTitleName + f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR vs HBM Cost')
 
         double_line_plot(x1=mem_plot_data[0]["l3_count"], x2=mem_plot_data[0]["l3_count"], 
                          y1=mem_plot_data[0]["compute_bound"], y2=mem_plot_data[0]["io_bound"], 
                          y1_label='Compute Throughput', y2_label='Memory Bandwidth',
                          x_axis_label='Number of L3 Slices', y_axis_label='',
-                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR4-2400 4Ch Compute vs IO Bound')
+                         title=concatTitleName + f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR4-2400 4Ch Compute vs IO Bound')
 
         double_line_plot(x1=mem_plot_data[0]["l3_count"], x2=mem_plot_data[0]["l3_count"], 
                          y1=mem_plot_data[0]["l3_bound"], y2=mem_plot_data[0]["mc_bound"], 
                          y1_label='L3 Effective BW', y2_label='MC Effective BW',
                          x_axis_label='Number of L3 Slices', y_axis_label='',
-                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR4-2400 4Ch L3 vs MC Bound')
+                         title=concatTitleName + f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR4-2400 4Ch L3 vs MC Bound')
 
         double_line_plot(x1=mem_plot_data[4]["l3_count"], x2=mem_plot_data[4]["l3_count"], 
                          y1=mem_plot_data[4]["compute_bound"], y2=mem_plot_data[4]["io_bound"], 
                          y1_label='Compute Throughput', y2_label='Memory Bandwidth',
                          x_axis_label='Number of L3 Slices', y_axis_label='',
-                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR5-4800 4Ch Compute vs IO Bound')
+                         title=concatTitleName + f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR5-4800 4Ch Compute vs IO Bound')
 
         double_line_plot(x1=mem_plot_data[4]["l3_count"], x2=mem_plot_data[4]["l3_count"], 
                          y1=mem_plot_data[4]["l3_bound"], y2=mem_plot_data[4]["mc_bound"], 
                          y1_label='L3 Effective BW', y2_label='MC Effective BW',
                          x_axis_label='Number of L3 Slices', y_axis_label='',
-                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR5-4800 4Ch L3 vs MC Bound')
+                         title=concatTitleName + f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] DDR5-4800 4Ch L3 vs MC Bound')
 
         double_line_plot(x1=mem_plot_data[9]["l3_count"], x2=mem_plot_data[9]["l3_count"], 
                          y1=mem_plot_data[9]["compute_bound"], y2=mem_plot_data[9]["io_bound"], 
                          y1_label='Compute Throughput', y2_label='Memory Bandwidth',
                          x_axis_label='Number of L3 Slices', y_axis_label='',
-                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] HBM2 4Ch Compute vs IO Bound')
+                         title=concatTitleName + f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] HBM2 4Ch Compute vs IO Bound')
 
         double_line_plot(x1=mem_plot_data[9]["l3_count"], x2=mem_plot_data[9]["l3_count"], 
                          y1=mem_plot_data[9]["l3_bound"], y2=mem_plot_data[9]["mc_bound"], 
                          y1_label='L3 Effective BW', y2_label='MC Effective BW',
                          x_axis_label='Number of L3 Slices', y_axis_label='',
-                         title=f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] HBM2 4Ch L3 vs MC Bound')
+                         title=concatTitleName + f'[{ai_app} App. AI, {"{:.4f}".format(arithmetic_intensity)} Eff. AI, {workset_size} MB Workset] HBM2 4Ch L3 vs MC Bound')
 
 def sn_format(value):
     return "{:.4e}".format(value)
@@ -932,19 +1154,25 @@ if __name__ == "__main__":
     # use -theta_ca flag to get calibrated theta_ca values based on P_pkg
     parser.add_argument("-theta_ca", action='store_true')
 
+    # use -gpu flag to apply the framework to GPU architecture
+    parser.add_argument("-gpu", action='store_true')
+
     args = parser.parse_args()
     
     load_data()
-    results, calibrated_theta_ca = solve(args.obj, args.perfLB, args.areaUB, args.powerUB, args.costUB, args.theta_ca)
+    results, calibrated_theta_ca = solve(obj=args.obj, useGPU=args.gpu, 
+                                         perfLB=args.perfLB, areaUB=args.areaUB, 
+                                         powerUB=args.powerUB, costUB=args.costUB, 
+                                         calibrate_theta_ca=args.theta_ca)
     filtered, infs_count = infs_filter(results)
 
     if(args.display == True):
-        display(results, args.dump)
-    
-    find_best(filtered, args.obj, args.dump)
+        display(results=results, dump=args.dump)
+
+    find_best(results=filtered, obj=args.obj, dump=args.dump)
     
     if(args.noplot == False):
-        plot(filtered)
+        plot(results=filtered, useGPU=args.gpu)
 
     if(args.theta_ca == True):
         print('######################################################')
