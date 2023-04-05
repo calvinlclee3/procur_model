@@ -81,7 +81,7 @@ def load_data():
     default["core_freq_nominal"] = 3.6E9
 
     # Cost Model Parameters
-    default["wafer_cost_die"] = 6000
+    default["wafer_cost_die"] = 5992
     default["wafer_cost_intp"] = 2500
     default["wafer_dia_die"] = 300E-3
     default["wafer_dia_intp"] = 300E-3
@@ -127,6 +127,7 @@ def load_data():
     cores[0]["l1_capacity"] = 64E3                     
     cores[0]["l2_capacity"] = 1E6                          
     cores[0]["l3_capacity"] = 2E6                          
+    cores[0]["wafer_cost_die"] = 5992
 
     with open("cores.json", "w") as outfile:
         json.dump(cores, outfile)
