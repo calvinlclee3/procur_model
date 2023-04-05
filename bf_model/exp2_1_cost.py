@@ -553,7 +553,7 @@ def solve(obj, useGPU, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
     results = []
     calibrated_theta_ca = {}
 
-    print(f'Solving for objective {obj} with perfLB={perfLB} Gflop/s, areaUB={areaUB} mm2, powerUB={powerUB} W, costUB=${costUB}\n')
+    print(f'Solving for objective {obj} with perfLB={perfLB} GFLOPS, areaUB={areaUB} mm2, powerUB={powerUB} W, costUB=${costUB}\n')
     
     with open("default.json", 'r') as fp:
         master_default = json.load(fp)
@@ -1062,13 +1062,13 @@ def plot(results, useGPU):
         multi_scatter_plot(x1=mem_plot_data[0]["perf"], x2=mem_plot_data[1]["perf"], x3=mem_plot_data[2]["perf"], x4=mem_plot_data[3]["perf"], x5=mem_plot_data[4]["perf"], x6=mem_plot_data[5]["perf"], x7=mem_plot_data[6]["perf"], x8=mem_plot_data[7]["perf"], x9=mem_plot_data[8]["perf"], x10=mem_plot_data[9]["perf"], 
                            y1=mem_plot_data[0]["cost"], y2=mem_plot_data[1]["cost"], y3=mem_plot_data[2]["cost"], y4=mem_plot_data[3]["cost"], y5=mem_plot_data[4]["cost"], y6=mem_plot_data[5]["cost"], y7=mem_plot_data[6]["cost"], y8=mem_plot_data[7]["cost"], y9=mem_plot_data[8]["cost"], y10=mem_plot_data[9]["cost"], 
                            y1_label=mems[0]['name'], y2_label=mems[1]['name'], y3_label=mems[2]['name'], y4_label=mems[3]['name'], y5_label=mems[4]['name'], y6_label=mems[5]['name'], y7_label=mems[6]['name'], y8_label=mems[7]['name'], y9_label=mems[8]['name'], y10_label=mems[9]['name'], 
-                           x_axis_label='Performance (Gflop/s)', y_axis_label='Cost (USD)',
+                           x_axis_label='Performance (GFLOPS)', y_axis_label='Cost (USD)',
                            title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DDR vs HBM Design Space Exploration')
 
         multi_line_plot(x1=mem_plot_data[0]["l3_count"], x2=mem_plot_data[1]["l3_count"], x3=mem_plot_data[2]["l3_count"], x4=mem_plot_data[3]["l3_count"], x5=mem_plot_data[4]["l3_count"], x6=mem_plot_data[5]["l3_count"], x7=mem_plot_data[6]["l3_count"], x8=mem_plot_data[7]["l3_count"], x9=mem_plot_data[8]["l3_count"], x10=mem_plot_data[9]["l3_count"], 
                         y1=mem_plot_data[0]["perf"], y2=mem_plot_data[1]["perf"], y3=mem_plot_data[2]["perf"], y4=mem_plot_data[3]["perf"], y5=mem_plot_data[4]["perf"], y6=mem_plot_data[5]["perf"], y7=mem_plot_data[6]["perf"], y8=mem_plot_data[7]["perf"], y9=mem_plot_data[8]["perf"], y10=mem_plot_data[9]["perf"], 
                         y1_label=mems[0]['name'], y2_label=mems[1]['name'], y3_label=mems[2]['name'], y4_label=mems[3]['name'], y5_label=mems[4]['name'], y6_label=mems[5]['name'], y7_label=mems[6]['name'], y8_label=mems[7]['name'], y9_label=mems[8]['name'], y10_label=mems[9]['name'], 
-                        x_axis_label='L3 Capacity (MB)', y_axis_label='Performance (Gflop/s)',
+                        x_axis_label='L3 Capacity (MB)', y_axis_label='Performance (GFLOPS)',
                         title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DDR vs HBM Performance')
 
         multi_line_plot(x1=mem_plot_data[0]["l3_count"], x2=mem_plot_data[1]["l3_count"], x3=mem_plot_data[2]["l3_count"], x4=mem_plot_data[3]["l3_count"], x5=mem_plot_data[4]["l3_count"], x6=mem_plot_data[5]["l3_count"], x7=mem_plot_data[6]["l3_count"], x8=mem_plot_data[7]["l3_count"], x9=mem_plot_data[8]["l3_count"], x10=mem_plot_data[9]["l3_count"], 
