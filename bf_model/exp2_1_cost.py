@@ -1109,7 +1109,7 @@ def plot(results, useGPU):
 
         double_line_plot(x1=mem_plot_data[0]["l3_count"], x2=mem_plot_data[0]["l3_count"], 
                          y1=mem_plot_data[0]["l3_bound"], y2=mem_plot_data[0]["mc_bound"], 
-                         y1_label='Compute Core-L3 Bandwidth', y2_label='L3-Main Memory Bandwidth',
+                         y1_label='Compute Core-L3 Bandwidth', y2_label='Effective L3-Main Memory Bandwidth',
                          x_axis_label='L3 Capacity (MB)', y_axis_label='',
                          title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DDR4-2400 4Ch L3 vs MC Bound')
 
@@ -1121,7 +1121,7 @@ def plot(results, useGPU):
 
         double_line_plot(x1=mem_plot_data[4]["l3_count"], x2=mem_plot_data[4]["l3_count"], 
                          y1=mem_plot_data[4]["l3_bound"], y2=mem_plot_data[4]["mc_bound"], 
-                         y1_label='Compute Core-L3 Bandwidth', y2_label='L3-Main Memory Bandwidth',
+                         y1_label='Compute Core-L3 Bandwidth', y2_label='Effective L3-Main Memory Bandwidth',
                          x_axis_label='L3 Capacity (MB)', y_axis_label='',
                          title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DDR5-4800 4Ch L3 vs MC Bound')
 
@@ -1133,7 +1133,7 @@ def plot(results, useGPU):
 
         double_line_plot(x1=mem_plot_data[9]["l3_count"], x2=mem_plot_data[9]["l3_count"], 
                          y1=mem_plot_data[9]["l3_bound"], y2=mem_plot_data[9]["mc_bound"], 
-                         y1_label='Compute Core-L3 Bandwidth', y2_label='L3-Main Memory Bandwidth',
+                         y1_label='Compute Core-L3 Bandwidth', y2_label='Effective L3-Main Memory Bandwidth',
                          x_axis_label='L3 Capacity (MB)', y_axis_label='',
                          title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] HBM2 4Ch L3 vs MC Bound')
 
