@@ -134,7 +134,7 @@ def load_data():
 
     mems = []
     mems.append({})
-    mems[0]['name'] = "DDR4-2400 4Ch theta_ca=0.18561"
+    mems[0]['name'] = "DDR4-2400 4Ch theta_ca=0.1837"
     mems[0]['mc_bw'] = 1200E6 * 2 * 8
     mems[0]['mc_count'] = 4
     mems[0]['mc_area'] = 10E-6
@@ -144,14 +144,14 @@ def load_data():
     mems[0]['current_per_bump_die'] = 520.8333333E-3
     mems[0]['mc_bump_count'] = 160
     mems[0]['wires_per_mc'] = 160
-    mems[0]['theta_ca'] = 0.18561
+    mems[0]['theta_ca'] = 0.1837
     mems[0]["use_intp"] = 0
     mems[0]['mem_cost_per_mc'] = 41.99
     mems[0]['l3_bw'] = 30E9
     mems[0]['T_j_max'] = 110
 
     mems.append({})
-    mems[1]['name'] = "DDR4-2400 6Ch theta_ca=0.17837"
+    mems[1]['name'] = "DDR4-2400 6Ch theta_ca=0.17656"
     mems[1]['mc_bw'] = 1200E6 * 2 * 8
     mems[1]['mc_count'] = 6
     mems[1]['mc_area'] = 10E-6
@@ -161,14 +161,14 @@ def load_data():
     mems[1]['current_per_bump_die'] = 520.8333333E-3
     mems[1]['mc_bump_count'] = 160
     mems[1]['wires_per_mc'] = 160
-    mems[1]['theta_ca'] = 0.17837
+    mems[1]['theta_ca'] = 0.17656
     mems[1]["use_intp"] = 0
     mems[1]['mem_cost_per_mc'] = 41.99
     mems[1]['l3_bw'] = 30E9
     mems[1]['T_j_max'] = 110
 
     mems.append({})
-    mems[2]['name'] = "DDR4-3200 4Ch theta_ca=0.17465"
+    mems[2]['name'] = "DDR4-3200 4Ch theta_ca=0.17288"
     mems[2]['mc_bw'] = 1600E6 * 2 * 8
     mems[2]['mc_count'] = 4
     mems[2]['mc_area'] = 10E-6
@@ -178,14 +178,14 @@ def load_data():
     mems[2]['current_per_bump_die'] = 520.8333333E-3
     mems[2]['mc_bump_count'] = 160
     mems[2]['wires_per_mc'] = 160
-    mems[2]['theta_ca'] = 0.17465
+    mems[2]['theta_ca'] = 0.17288
     mems[2]["use_intp"] = 0
     mems[2]['mem_cost_per_mc'] = 41.99
     mems[2]['l3_bw'] = 30E9
     mems[2]['T_j_max'] = 110
 
     mems.append({})
-    mems[3]['name'] = "DDR4-3200 6Ch theta_ca=0.16302"
+    mems[3]['name'] = "DDR4-3200 6Ch theta_ca=0.1614"
     mems[3]['mc_bw'] = 1600E6 * 2 * 8
     mems[3]['mc_count'] = 6
     mems[3]['mc_area'] = 10E-6
@@ -195,14 +195,14 @@ def load_data():
     mems[3]['current_per_bump_die'] = 520.8333333E-3
     mems[3]['mc_bump_count'] = 160
     mems[3]['wires_per_mc'] = 160
-    mems[3]['theta_ca'] = 0.16302
+    mems[3]['theta_ca'] = 0.1614
     mems[3]["use_intp"] = 0
     mems[3]['mem_cost_per_mc'] = 41.99
     mems[3]['l3_bw'] = 30E9
     mems[3]['T_j_max'] = 110
 
     mems.append({})
-    mems[4]['name'] = "DDR5-4800 4Ch theta_ca=0.1415"
+    mems[4]['name'] = "DDR5-4800 4Ch theta_ca=0.14013"
     mems[4]['mc_bw'] = 2400E6 * 2 * 8
     mems[4]['mc_count'] = 4
     mems[4]['mc_area'] = 10E-6
@@ -212,14 +212,14 @@ def load_data():
     mems[4]['current_per_bump_die'] = 520.8333333E-3
     mems[4]['mc_bump_count'] = 160
     mems[4]['wires_per_mc'] = 160
-    mems[4]['theta_ca'] = 0.1415     
+    mems[4]['theta_ca'] = 0.14013     
     mems[4]["use_intp"] = 0
     mems[4]['mem_cost_per_mc'] = 52.99
     mems[4]['l3_bw'] = 30E9
     mems[4]['T_j_max'] = 110
 
     mems.append({})
-    mems[5]['name'] = "DDR5-4800 6Ch theta_ca=0.1197"
+    mems[5]['name'] = "DDR5-4800 6Ch theta_ca=0.11857"
     mems[5]['mc_bw'] = 2400E6 * 2 * 8
     mems[5]['mc_count'] = 6
     mems[5]['mc_area'] = 10E-6
@@ -229,7 +229,7 @@ def load_data():
     mems[5]['current_per_bump_die'] = 520.8333333E-3
     mems[5]['mc_bump_count'] = 160
     mems[5]['wires_per_mc'] = 160
-    mems[5]['theta_ca'] = 0.1197
+    mems[5]['theta_ca'] = 0.11857
     mems[5]["use_intp"] = 0
     mems[5]['mem_cost_per_mc'] = 52.99
     mems[5]['l3_bw'] = 30E9
@@ -253,7 +253,7 @@ def load_data():
     mems[6]['T_j_max'] = 110
 
     mems.append({})
-    mems[7]['name'] = "DDR5-5600 4Ch theta_ca=0.12052"
+    mems[7]['name'] = "DDR5-5600 4Ch theta_ca=0.11938"
     mems[7]['mc_bw'] = 2800E6 * 2 * 8
     mems[7]['mc_count'] = 4
     mems[7]['mc_area'] = 10E-6
@@ -263,14 +263,14 @@ def load_data():
     mems[7]['current_per_bump_die'] = 520.8333333E-3
     mems[7]['mc_bump_count'] = 160
     mems[7]['wires_per_mc'] = 160
-    mems[7]['theta_ca'] = 0.12052     
+    mems[7]['theta_ca'] = 0.11938     
     mems[7]["use_intp"] = 0
     mems[7]['mem_cost_per_mc'] = 73.99
     mems[7]['l3_bw'] = 30E9
     mems[7]['T_j_max'] = 110
 
     mems.append({})
-    mems[8]['name'] = "DDR5-5600 6Ch theta_ca=0.09446"
+    mems[8]['name'] = "DDR5-5600 6Ch theta_ca=0.09357"
     mems[8]['mc_bw'] = 2800E6 * 2 * 8
     mems[8]['mc_count'] = 6
     mems[8]['mc_area'] = 10E-6
@@ -280,14 +280,14 @@ def load_data():
     mems[8]['current_per_bump_die'] = 520.8333333E-3
     mems[8]['mc_bump_count'] = 160
     mems[8]['wires_per_mc'] = 160
-    mems[8]['theta_ca'] = 0.09446
+    mems[8]['theta_ca'] = 0.09357
     mems[8]["use_intp"] = 0
     mems[8]['mem_cost_per_mc'] = 73.99
     mems[8]['l3_bw'] = 30E9
     mems[8]['T_j_max'] = 110
 
     mems.append({})
-    mems[9]['name'] = "HBM2 4Ch theta_ca=0.15934"
+    mems[9]['name'] = "HBM2 4Ch theta_ca=0.15777"
     mems[9]['mc_bw'] = 256E9
     mems[9]['mc_count'] = 4
     mems[9]['mc_area'] = 6.6831E-6
@@ -297,7 +297,7 @@ def load_data():
     mems[9]['current_per_bump_die'] = 57.87037E-3
     mems[9]['mc_bump_count'] = 1024
     mems[9]['wires_per_mc'] = 1024
-    mems[9]['theta_ca'] = 0.15934
+    mems[9]['theta_ca'] = 0.15777
     mems[9]["use_intp"] = 1
     mems[9]['mem_cost_per_mc'] = 120
     mems[9]['l3_bw'] = 30E9
@@ -307,7 +307,7 @@ def load_data():
         json.dump(mems, outfile)
 
     l3_configs = []
-    for i in range(1, 51):
+    for i in range(1, 61):
         l3_configs.append({"name": f"{i}x L3s", "l3_count":i})
     
     with open("l3_configs.json", "w") as outfile:
@@ -355,7 +355,7 @@ def load_data():
 
     mems_gpu = []
     mems_gpu.append({})
-    mems_gpu[0]['name'] = "DDR4-2400 4Ch theta_ca=0.34046"
+    mems_gpu[0]['name'] = "DDR4-2400 4Ch theta_ca=0.33594"
     mems_gpu[0]['mc_bw'] = 1200E6 * 2 * 8
     mems_gpu[0]['mc_count'] = 4
     mems_gpu[0]['mc_area'] = 10E-6
@@ -365,14 +365,14 @@ def load_data():
     mems_gpu[0]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[0]['mc_bump_count'] = 160
     mems_gpu[0]['wires_per_mc'] = 160
-    mems_gpu[0]['theta_ca'] = 0.34046
+    mems_gpu[0]['theta_ca'] = 0.33594
     mems_gpu[0]["use_intp"] = 0
     mems_gpu[0]['mem_cost_per_mc'] = 41.99
     mems_gpu[0]['l3_bw'] = 30E9
     mems_gpu[0]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[1]['name'] = "DDR4-2400 6Ch theta_ca=0.32347"
+    mems_gpu[1]['name'] = "DDR4-2400 6Ch theta_ca=0.31929"
     mems_gpu[1]['mc_bw'] = 1200E6 * 2 * 8
     mems_gpu[1]['mc_count'] = 6
     mems_gpu[1]['mc_area'] = 10E-6
@@ -382,14 +382,14 @@ def load_data():
     mems_gpu[1]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[1]['mc_bump_count'] = 160
     mems_gpu[1]['wires_per_mc'] = 160
-    mems_gpu[1]['theta_ca'] = 0.32347
+    mems_gpu[1]['theta_ca'] = 0.31929
     mems_gpu[1]["use_intp"] = 0
     mems_gpu[1]['mem_cost_per_mc'] = 41.99
     mems_gpu[1]['l3_bw'] = 30E9
     mems_gpu[1]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[2]['name'] = "DDR4-3200 4Ch theta_ca=0.31491"
+    mems_gpu[2]['name'] = "DDR4-3200 4Ch theta_ca=0.3109"
     mems_gpu[2]['mc_bw'] = 1600E6 * 2 * 8
     mems_gpu[2]['mc_count'] = 4
     mems_gpu[2]['mc_area'] = 10E-6
@@ -399,14 +399,14 @@ def load_data():
     mems_gpu[2]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[2]['mc_bump_count'] = 160
     mems_gpu[2]['wires_per_mc'] = 160
-    mems_gpu[2]['theta_ca'] = 0.31491
+    mems_gpu[2]['theta_ca'] = 0.3109
     mems_gpu[2]["use_intp"] = 0
     mems_gpu[2]['mem_cost_per_mc'] = 41.99
     mems_gpu[2]['l3_bw'] = 30E9
     mems_gpu[2]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[3]['name'] = "DDR4-3200 6Ch theta_ca=0.28894"
+    mems_gpu[3]['name'] = "DDR4-3200 6Ch theta_ca=0.28541"
     mems_gpu[3]['mc_bw'] = 1600E6 * 2 * 8
     mems_gpu[3]['mc_count'] = 6
     mems_gpu[3]['mc_area'] = 10E-6
@@ -416,14 +416,14 @@ def load_data():
     mems_gpu[3]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[3]['mc_bump_count'] = 160
     mems_gpu[3]['wires_per_mc'] = 160
-    mems_gpu[3]['theta_ca'] = 0.28894
+    mems_gpu[3]['theta_ca'] = 0.28541
     mems_gpu[3]["use_intp"] = 0
     mems_gpu[3]['mem_cost_per_mc'] = 41.99
     mems_gpu[3]['l3_bw'] = 30E9
     mems_gpu[3]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[4]['name'] = "DDR5-4800 4Ch theta_ca=0.24365"
+    mems_gpu[4]['name'] = "DDR5-4800 4Ch theta_ca=0.24089"
     mems_gpu[4]['mc_bw'] = 2400E6 * 2 * 8
     mems_gpu[4]['mc_count'] = 4
     mems_gpu[4]['mc_area'] = 10E-6
@@ -433,14 +433,14 @@ def load_data():
     mems_gpu[4]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[4]['mc_bump_count'] = 160
     mems_gpu[4]['wires_per_mc'] = 160
-    mems_gpu[4]['theta_ca'] = 0.24365     
+    mems_gpu[4]['theta_ca'] = 0.24089     
     mems_gpu[4]["use_intp"] = 0
     mems_gpu[4]['mem_cost_per_mc'] = 52.99
     mems_gpu[4]['l3_bw'] = 30E9
     mems_gpu[4]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[5]['name'] = "DDR5-4800 6Ch theta_ca=0.20114"
+    mems_gpu[5]['name'] = "DDR5-4800 6Ch theta_ca=0.19902"
     mems_gpu[5]['mc_bw'] = 2400E6 * 2 * 8
     mems_gpu[5]['mc_count'] = 6
     mems_gpu[5]['mc_area'] = 10E-6
@@ -450,7 +450,7 @@ def load_data():
     mems_gpu[5]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[5]['mc_bump_count'] = 160
     mems_gpu[5]['wires_per_mc'] = 160
-    mems_gpu[5]['theta_ca'] = 0.20114
+    mems_gpu[5]['theta_ca'] = 0.19902
     mems_gpu[5]["use_intp"] = 0
     mems_gpu[5]['mem_cost_per_mc'] = 52.99
     mems_gpu[5]['l3_bw'] = 30E9
@@ -474,7 +474,7 @@ def load_data():
     mems_gpu[6]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[7]['name'] = "DDR5-5600 4Ch theta_ca=0.20268"
+    mems_gpu[7]['name'] = "DDR5-5600 4Ch theta_ca=0.20054"
     mems_gpu[7]['mc_bw'] = 2800E6 * 2 * 8
     mems_gpu[7]['mc_count'] = 4
     mems_gpu[7]['mc_area'] = 10E-6
@@ -484,14 +484,14 @@ def load_data():
     mems_gpu[7]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[7]['mc_bump_count'] = 160
     mems_gpu[7]['wires_per_mc'] = 160
-    mems_gpu[7]['theta_ca'] = 0.20268     
+    mems_gpu[7]['theta_ca'] = 0.20054     
     mems_gpu[7]["use_intp"] = 0
     mems_gpu[7]['mem_cost_per_mc'] = 73.99
     mems_gpu[7]['l3_bw'] = 30E9
     mems_gpu[7]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[8]['name'] = "DDR5-5600 6Ch theta_ca=0.15565"
+    mems_gpu[8]['name'] = "DDR5-5600 6Ch theta_ca=0.15412"
     mems_gpu[8]['mc_bw'] = 2800E6 * 2 * 8
     mems_gpu[8]['mc_count'] = 6
     mems_gpu[8]['mc_area'] = 10E-6
@@ -501,14 +501,14 @@ def load_data():
     mems_gpu[8]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[8]['mc_bump_count'] = 160
     mems_gpu[8]['wires_per_mc'] = 160
-    mems_gpu[8]['theta_ca'] = 0.15565
+    mems_gpu[8]['theta_ca'] = 0.15412
     mems_gpu[8]["use_intp"] = 0
     mems_gpu[8]['mem_cost_per_mc'] = 73.99
     mems_gpu[8]['l3_bw'] = 30E9
     mems_gpu[8]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[9]['name'] = "HBM2 3Ch theta_ca=0.3062"
+    mems_gpu[9]['name'] = "HBM2 3Ch theta_ca=0.30236"
     mems_gpu[9]['mc_bw'] = 850E6 * 2 * 1024            # mem freq * double data rate * bus width
     mems_gpu[9]['mc_count'] = 3                        # 3 Channel since TITAN V bus is 3072b wide      
     mems_gpu[9]['mc_area'] = 6.6831E-6
@@ -518,7 +518,7 @@ def load_data():
     mems_gpu[9]['current_per_bump_die'] = 57.87037E-3
     mems_gpu[9]['mc_bump_count'] = 1024
     mems_gpu[9]['wires_per_mc'] = 1024
-    mems_gpu[9]['theta_ca'] = 0.3062
+    mems_gpu[9]['theta_ca'] = 0.30236
     mems_gpu[9]["use_intp"] = 1
     mems_gpu[9]['mem_cost_per_mc'] = 120
     mems_gpu[9]['l3_bw'] = 30E9
@@ -528,7 +528,7 @@ def load_data():
         json.dump(mems_gpu, outfile)
 
     l3_configs_gpu = []
-    for i in range(1, 51):
+    for i in range(1, 61):
         l3_configs_gpu.append({"name": f"{i}x L3s", "l3_count":i})
     
     with open("l3_configs_gpu.json", "w") as outfile:
@@ -840,8 +840,8 @@ def solve(obj, useGPU, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
                     # Dump the entire namespace with all model param/variables
                     result["dump"] = copy.deepcopy(p.__dict__)
 
-                    # calculate theta_ca @ max P_pkg which takes place at 50 L3 slices
-                    if(calibrate_theta_ca == True and p.l3_count == 50):
+                    # calculate theta_ca @ max P_pkg which takes place at 60 L3 slices
+                    if(calibrate_theta_ca == True and p.l3_count == 60):
                         reverse_theta_ja = (p.T_j_max - p.T_ambient) / p.P_pkg
 
                         reverse_theta_ca = (p.theta_jc * p.theta_jb + p.theta_jc * p.theta_ba - reverse_theta_ja * p.theta_jc - reverse_theta_ja * p.theta_jb - p.theta_ba * reverse_theta_ja)
