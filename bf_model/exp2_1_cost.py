@@ -764,6 +764,12 @@ def solve(obj, useGPU, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
                     # total cost 
                     p.cost = p.die_cost + p.intp_cost + p.mem_cost + p.pkg_cost 
 
+                    # theta_ca Calibration
+                    p.reverse_theta_ja = (p.T_j_max - p.T_ambient) / p.P_pkg
+
+                    p.reverse_theta_ca = (p.theta_jc * p.theta_jb + p.theta_jc * p.theta_ba - p.reverse_theta_ja * p.theta_jc - p.reverse_theta_ja * p.theta_jb - p.theta_ba * p.reverse_theta_ja)
+                    p.reverse_theta_ca /= (p.reverse_theta_ja - p.theta_jb - p.theta_ba)
+
                     # ****************************** ENFORCE OBJ-INDEPENDENT CONSTRAINTS ******************************
                     if(p.core_count < 1 or p.l3_count < 1 or p.mc_count < 1 or p.io_count < 1):
                         infs_handler(result, "must have at least one of each component")
@@ -840,14 +846,9 @@ def solve(obj, useGPU, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
                     # Dump the entire namespace with all model param/variables
                     result["dump"] = copy.deepcopy(p.__dict__)
 
-                    # calculate theta_ca @ max P_pkg which takes place at 60 L3 slices
+                    # fill calibrated_theta_ca @ max L3 slice count if requested by CLI flag
                     if(calibrate_theta_ca == True and p.l3_count == 60):
-                        reverse_theta_ja = (p.T_j_max - p.T_ambient) / p.P_pkg
-
-                        reverse_theta_ca = (p.theta_jc * p.theta_jb + p.theta_jc * p.theta_ba - reverse_theta_ja * p.theta_jc - reverse_theta_ja * p.theta_jb - p.theta_ba * reverse_theta_ja)
-                        reverse_theta_ca /= (reverse_theta_ja - p.theta_jb - p.theta_ba)
-
-                        calibrated_theta_ca[mem['name']] = reverse_theta_ca
+                        calibrated_theta_ca[mem['name']] = p.reverse_theta_ca
 
                     results.append(result)
 
@@ -956,7 +957,7 @@ def multi_line_plot(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, y1, y2, y3, y4, y5,
     plt.plot(x4, y4, **{'color': 'purple', 'marker': 'D'}, label=y4_label, linestyle='-')
     plt.plot(x5, y5, **{'color': 'gold', 'marker': 'o'}, label=y5_label, linestyle='-')
     plt.plot(x6, y6, **{'color': 'gold', 'marker': 'D'}, label=y6_label, linestyle='-')
-    plt.plot(x7, y7, **{'color': 'grey', 'marker': 'o'}, label=y7_label, linestyle='-', linewidth=10)
+    # plt.plot(x7, y7, **{'color': 'grey', 'marker': 'o'}, label=y7_label, linestyle='-', linewidth=10)
     plt.plot(x8, y8, **{'color': 'darkorange', 'marker': 'o'}, label=y8_label, linestyle='-')
     plt.plot(x9, y9, **{'color': 'darkorange', 'marker': 'D'}, label=y9_label, linestyle='-')
     plt.plot(x10, y10, **{'color': 'red', 'marker': 'o'}, label=y10_label, linestyle='-')
@@ -978,7 +979,7 @@ def multi_scatter_plot(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, y1, y2, y3, y4, 
     plt.scatter(x4, y4, c ="purple", linewidths = 0, marker ="D", edgecolor ="black", s = 100, label=y4_label)
     plt.scatter(x5, y5, c ="gold", linewidths = 0, marker ="o", edgecolor ="black", s = 50, label=y5_label)
     plt.scatter(x6, y6, c ="gold", linewidths = 0, marker ="D", edgecolor ="black", s = 100, label=y6_label)
-    plt.scatter(x7, y7, c ="grey", linewidths = 0, marker ="o", edgecolor ="black", s = 50, label=y7_label)
+    # plt.scatter(x7, y7, c ="grey", linewidths = 0, marker ="o", edgecolor ="black", s = 50, label=y7_label)
     plt.scatter(x8, y8, c ="darkorange", linewidths = 0, marker ="o", edgecolor ="black", s = 50, label=y8_label)
     plt.scatter(x9, y9, c ="darkorange", linewidths = 0, marker ="D", edgecolor ="black", s = 100, label=y9_label)
     plt.scatter(x10, y10, c ="red", linewidths = 0, marker ="o", edgecolor ="black", s = 50, label=y10_label)
@@ -1017,7 +1018,7 @@ def plot(results, useGPU):
 
         # format mem_plot_data before filling it with data
         for i in range(len(mems)):
-            mem_plot_data.append({"l3_count": [], "perf": [], "l3_bound": [], "mc_bound": [], "compute_bound": [], "io_bound": [], "die_cost": [], "mem_cost": [], "intp_cost": [], "pkg_cost": [], "cost": []})
+            mem_plot_data.append({"l3_count": [], "perf": [], "l3_bound": [], "mc_bound": [], "compute_bound": [], "io_bound": [], "die_cost": [], "mem_cost": [], "intp_cost": [], "pkg_cost": [], "cost": [], "reverse_theta_ca": []})
 
         # filter all results into a subset which has a specific app profile
         # nothing changes, simply removing all entries from "results" that does not have the current "app_prop" 
@@ -1047,6 +1048,7 @@ def plot(results, useGPU):
                 mem_plot_data[i]["intp_cost"].append(result['dump']['intp_cost'])
                 mem_plot_data[i]["pkg_cost"].append(result['dump']['pkg_cost'])
                 mem_plot_data[i]["cost"].append(result['dump']['cost'])
+                mem_plot_data[i]["reverse_theta_ca"].append(result['dump']['reverse_theta_ca'])
 
         
         # rescale mem_plot_data (adding the "Giga" prefix) 
@@ -1100,6 +1102,12 @@ def plot(results, useGPU):
                         y1_label=mems[0]['name'], y2_label=mems[1]['name'], y3_label=mems[2]['name'], y4_label=mems[3]['name'], y5_label=mems[4]['name'], y6_label=mems[5]['name'], y7_label=mems[6]['name'], y8_label=mems[7]['name'], y9_label=mems[8]['name'], y10_label=mems[9]['name'], 
                         x_axis_label='L3 Capacity (MB)', y_axis_label='Cost (USD)',
                         title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DDR vs HBM Cost')
+
+        multi_line_plot(x1=mem_plot_data[0]["l3_count"], x2=mem_plot_data[1]["l3_count"], x3=mem_plot_data[2]["l3_count"], x4=mem_plot_data[3]["l3_count"], x5=mem_plot_data[4]["l3_count"], x6=mem_plot_data[5]["l3_count"], x7=mem_plot_data[6]["l3_count"], x8=mem_plot_data[7]["l3_count"], x9=mem_plot_data[8]["l3_count"], x10=mem_plot_data[9]["l3_count"], 
+                        y1=mem_plot_data[0]["reverse_theta_ca"], y2=mem_plot_data[1]["reverse_theta_ca"], y3=mem_plot_data[2]["reverse_theta_ca"], y4=mem_plot_data[3]["reverse_theta_ca"], y5=mem_plot_data[4]["reverse_theta_ca"], y6=mem_plot_data[5]["reverse_theta_ca"], y7=mem_plot_data[6]["reverse_theta_ca"], y8=mem_plot_data[7]["reverse_theta_ca"], y9=mem_plot_data[8]["reverse_theta_ca"], y10=mem_plot_data[9]["reverse_theta_ca"], 
+                        y1_label=mems[0]['name'], y2_label=mems[1]['name'], y3_label=mems[2]['name'], y4_label=mems[3]['name'], y5_label=mems[4]['name'], y6_label=mems[5]['name'], y7_label=mems[6]['name'], y8_label=mems[7]['name'], y9_label=mems[8]['name'], y10_label=mems[9]['name'], 
+                        x_axis_label='L3 Capacity (MB)', y_axis_label='θ_ca (ΔK/W)',
+                        title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DDR vs HBM θ_ca')
 
         double_line_plot(x1=mem_plot_data[0]["l3_count"], x2=mem_plot_data[0]["l3_count"], 
                          y1=mem_plot_data[0]["compute_bound"], y2=mem_plot_data[0]["io_bound"], 
