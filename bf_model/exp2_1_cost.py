@@ -838,6 +838,7 @@ def solve(obj, useGPU, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
                     
                     result["perf"] = p.perf
                     result["A_die"] = p.A_die
+                    result["A_pkg"] = p.A_pkg
                     result["P_die"] = p.P_die
                     result["core_freq"] = p.core_freq
                     result["die_cost"] = p.die_cost
