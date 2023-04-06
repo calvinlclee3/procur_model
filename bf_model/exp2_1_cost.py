@@ -134,7 +134,7 @@ def load_data():
 
     mems = []
     mems.append({})
-    mems[0]['name'] = "DDR4-2400 4Ch theta_ca=0.1837"
+    mems[0]['name'] = "4 Ch. DDR4-2400"
     mems[0]['mc_bw'] = 1200E6 * 2 * 8
     mems[0]['mc_count'] = 4
     mems[0]['mc_area'] = 10E-6
@@ -151,7 +151,7 @@ def load_data():
     mems[0]['T_j_max'] = 110
 
     mems.append({})
-    mems[1]['name'] = "DDR4-2400 6Ch theta_ca=0.17656"
+    mems[1]['name'] = "6 Ch. DDR4-2400"
     mems[1]['mc_bw'] = 1200E6 * 2 * 8
     mems[1]['mc_count'] = 6
     mems[1]['mc_area'] = 10E-6
@@ -168,7 +168,7 @@ def load_data():
     mems[1]['T_j_max'] = 110
 
     mems.append({})
-    mems[2]['name'] = "DDR4-3200 4Ch theta_ca=0.17288"
+    mems[2]['name'] = "4 Ch. DDR4-3200"
     mems[2]['mc_bw'] = 1600E6 * 2 * 8
     mems[2]['mc_count'] = 4
     mems[2]['mc_area'] = 10E-6
@@ -185,7 +185,7 @@ def load_data():
     mems[2]['T_j_max'] = 110
 
     mems.append({})
-    mems[3]['name'] = "DDR4-3200 6Ch theta_ca=0.1614"
+    mems[3]['name'] = "6 Ch. DDR4-3200"
     mems[3]['mc_bw'] = 1600E6 * 2 * 8
     mems[3]['mc_count'] = 6
     mems[3]['mc_area'] = 10E-6
@@ -202,7 +202,7 @@ def load_data():
     mems[3]['T_j_max'] = 110
 
     mems.append({})
-    mems[4]['name'] = "DDR5-4800 4Ch theta_ca=0.14013"
+    mems[4]['name'] = "4 Ch. DDR5-4800"
     mems[4]['mc_bw'] = 2400E6 * 2 * 8
     mems[4]['mc_count'] = 4
     mems[4]['mc_area'] = 10E-6
@@ -219,7 +219,7 @@ def load_data():
     mems[4]['T_j_max'] = 110
 
     mems.append({})
-    mems[5]['name'] = "DDR5-4800 6Ch theta_ca=0.11857"
+    mems[5]['name'] = "6 Ch. DDR5-4800"
     mems[5]['mc_bw'] = 2400E6 * 2 * 8
     mems[5]['mc_count'] = 6
     mems[5]['mc_area'] = 10E-6
@@ -236,7 +236,7 @@ def load_data():
     mems[5]['T_j_max'] = 110
 
     mems.append({})
-    mems[6]['name'] = "DDR5-5600 4Ch theta_ca=0.12389"
+    mems[6]['name'] = "4 Ch. DDR5-5600 MIDLINE"
     mems[6]['mc_bw'] = 2800E6 * 2 * 8
     mems[6]['mc_count'] = 4
     mems[6]['mc_area'] = 10E-6
@@ -253,7 +253,7 @@ def load_data():
     mems[6]['T_j_max'] = 110
 
     mems.append({})
-    mems[7]['name'] = "DDR5-5600 4Ch theta_ca=0.11938"
+    mems[7]['name'] = "4 Ch. DDR5-5600"
     mems[7]['mc_bw'] = 2800E6 * 2 * 8
     mems[7]['mc_count'] = 4
     mems[7]['mc_area'] = 10E-6
@@ -270,7 +270,7 @@ def load_data():
     mems[7]['T_j_max'] = 110
 
     mems.append({})
-    mems[8]['name'] = "DDR5-5600 6Ch theta_ca=0.09357"
+    mems[8]['name'] = "6 Ch. DDR5-5600"
     mems[8]['mc_bw'] = 2800E6 * 2 * 8
     mems[8]['mc_count'] = 6
     mems[8]['mc_area'] = 10E-6
@@ -287,7 +287,7 @@ def load_data():
     mems[8]['T_j_max'] = 110
 
     mems.append({})
-    mems[9]['name'] = "HBM2 4Ch theta_ca=0.15777"
+    mems[9]['name'] = "4 Ch. HBM2"
     mems[9]['mc_bw'] = 256E9
     mems[9]['mc_count'] = 4
     mems[9]['mc_area'] = 6.6831E-6
@@ -355,7 +355,7 @@ def load_data():
 
     mems_gpu = []
     mems_gpu.append({})
-    mems_gpu[0]['name'] = "DDR4-2400 4Ch theta_ca=0.33594"
+    mems_gpu[0]['name'] = "4 Ch. DDR4-2400"
     mems_gpu[0]['mc_bw'] = 1200E6 * 2 * 8
     mems_gpu[0]['mc_count'] = 4
     mems_gpu[0]['mc_area'] = 10E-6
@@ -372,7 +372,7 @@ def load_data():
     mems_gpu[0]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[1]['name'] = "DDR4-2400 6Ch theta_ca=0.31929"
+    mems_gpu[1]['name'] = "6 Ch. DDR4-2400"
     mems_gpu[1]['mc_bw'] = 1200E6 * 2 * 8
     mems_gpu[1]['mc_count'] = 6
     mems_gpu[1]['mc_area'] = 10E-6
@@ -389,7 +389,7 @@ def load_data():
     mems_gpu[1]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[2]['name'] = "DDR4-3200 4Ch theta_ca=0.3109"
+    mems_gpu[2]['name'] = "4 Ch. DDR4-3200"
     mems_gpu[2]['mc_bw'] = 1600E6 * 2 * 8
     mems_gpu[2]['mc_count'] = 4
     mems_gpu[2]['mc_area'] = 10E-6
@@ -406,7 +406,7 @@ def load_data():
     mems_gpu[2]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[3]['name'] = "DDR4-3200 6Ch theta_ca=0.28541"
+    mems_gpu[3]['name'] = "6 Ch. DDR4-3200"
     mems_gpu[3]['mc_bw'] = 1600E6 * 2 * 8
     mems_gpu[3]['mc_count'] = 6
     mems_gpu[3]['mc_area'] = 10E-6
@@ -423,7 +423,7 @@ def load_data():
     mems_gpu[3]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[4]['name'] = "DDR5-4800 4Ch theta_ca=0.24089"
+    mems_gpu[4]['name'] = "4 Ch. DDR5-4800"
     mems_gpu[4]['mc_bw'] = 2400E6 * 2 * 8
     mems_gpu[4]['mc_count'] = 4
     mems_gpu[4]['mc_area'] = 10E-6
@@ -440,7 +440,7 @@ def load_data():
     mems_gpu[4]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[5]['name'] = "DDR5-4800 6Ch theta_ca=0.19902"
+    mems_gpu[5]['name'] = "6 Ch. DDR5-4800"
     mems_gpu[5]['mc_bw'] = 2400E6 * 2 * 8
     mems_gpu[5]['mc_count'] = 6
     mems_gpu[5]['mc_area'] = 10E-6
@@ -457,7 +457,7 @@ def load_data():
     mems_gpu[5]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[6]['name'] = "DDR5-5600 4Ch theta_ca=0.20906"
+    mems_gpu[6]['name'] = "4 Ch. DDR5-5600 MIDLINE"
     mems_gpu[6]['mc_bw'] = 2800E6 * 2 * 8
     mems_gpu[6]['mc_count'] = 4
     mems_gpu[6]['mc_area'] = 10E-6
@@ -474,7 +474,7 @@ def load_data():
     mems_gpu[6]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[7]['name'] = "DDR5-5600 4Ch theta_ca=0.20054"
+    mems_gpu[7]['name'] = "4 Ch. DDR5-5600"
     mems_gpu[7]['mc_bw'] = 2800E6 * 2 * 8
     mems_gpu[7]['mc_count'] = 4
     mems_gpu[7]['mc_area'] = 10E-6
@@ -491,7 +491,7 @@ def load_data():
     mems_gpu[7]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[8]['name'] = "DDR5-5600 6Ch theta_ca=0.15412"
+    mems_gpu[8]['name'] = "6 Ch. DDR5-5600"
     mems_gpu[8]['mc_bw'] = 2800E6 * 2 * 8
     mems_gpu[8]['mc_count'] = 6
     mems_gpu[8]['mc_area'] = 10E-6
@@ -508,7 +508,7 @@ def load_data():
     mems_gpu[8]['T_j_max'] = 110
 
     mems_gpu.append({})
-    mems_gpu[9]['name'] = "HBM2 3Ch theta_ca=0.30236"
+    mems_gpu[9]['name'] = "3 Ch. HBM2"
     mems_gpu[9]['mc_bw'] = 850E6 * 2 * 1024            # mem freq * double data rate * bus width
     mems_gpu[9]['mc_count'] = 3                        # 3 Channel since TITAN V bus is 3072b wide      
     mems_gpu[9]['mc_area'] = 6.6831E-6
