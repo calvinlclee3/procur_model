@@ -144,7 +144,7 @@ def load_data():
     mems[0]['current_per_bump_die'] = 520.8333333E-3
     mems[0]['mc_bump_count'] = 160
     mems[0]['wires_per_mc'] = 160
-    mems[0]['theta_ca'] = 0.1837
+    mems[0]['theta_ca'] = 0.17633
     mems[0]["use_intp"] = 0
     mems[0]['mem_cost_per_mc'] = 41.99
     mems[0]['l3_bw'] = 30E9
@@ -161,7 +161,7 @@ def load_data():
     mems[1]['current_per_bump_die'] = 520.8333333E-3
     mems[1]['mc_bump_count'] = 160
     mems[1]['wires_per_mc'] = 160
-    mems[1]['theta_ca'] = 0.17656
+    mems[1]['theta_ca'] = 0.16954
     mems[1]["use_intp"] = 0
     mems[1]['mem_cost_per_mc'] = 41.99
     mems[1]['l3_bw'] = 30E9
@@ -178,7 +178,7 @@ def load_data():
     mems[2]['current_per_bump_die'] = 520.8333333E-3
     mems[2]['mc_bump_count'] = 160
     mems[2]['wires_per_mc'] = 160
-    mems[2]['theta_ca'] = 0.17288
+    mems[2]['theta_ca'] = 0.16605
     mems[2]["use_intp"] = 0
     mems[2]['mem_cost_per_mc'] = 41.99
     mems[2]['l3_bw'] = 30E9
@@ -195,7 +195,7 @@ def load_data():
     mems[3]['current_per_bump_die'] = 520.8333333E-3
     mems[3]['mc_bump_count'] = 160
     mems[3]['wires_per_mc'] = 160
-    mems[3]['theta_ca'] = 0.1614
+    mems[3]['theta_ca'] = 0.15513
     mems[3]["use_intp"] = 0
     mems[3]['mem_cost_per_mc'] = 41.99
     mems[3]['l3_bw'] = 30E9
@@ -212,7 +212,7 @@ def load_data():
     mems[4]['current_per_bump_die'] = 520.8333333E-3
     mems[4]['mc_bump_count'] = 160
     mems[4]['wires_per_mc'] = 160
-    mems[4]['theta_ca'] = 0.14013     
+    mems[4]['theta_ca'] = 0.13483     
     mems[4]["use_intp"] = 0
     mems[4]['mem_cost_per_mc'] = 52.99
     mems[4]['l3_bw'] = 30E9
@@ -229,7 +229,7 @@ def load_data():
     mems[5]['current_per_bump_die'] = 520.8333333E-3
     mems[5]['mc_bump_count'] = 160
     mems[5]['wires_per_mc'] = 160
-    mems[5]['theta_ca'] = 0.11857
+    mems[5]['theta_ca'] = 0.11416
     mems[5]["use_intp"] = 0
     mems[5]['mem_cost_per_mc'] = 52.99
     mems[5]['l3_bw'] = 30E9
@@ -246,7 +246,7 @@ def load_data():
     mems[6]['current_per_bump_die'] = 520.8333333E-3
     mems[6]['mc_bump_count'] = 160
     mems[6]['wires_per_mc'] = 160
-    mems[6]['theta_ca'] = 0.12389     # MIDLINE 0.12389
+    mems[6]['theta_ca'] = 0.11494     # MIDLINE 0.11494
     mems[6]["use_intp"] = 0
     mems[6]['mem_cost_per_mc'] = 73.99
     mems[6]['l3_bw'] = 30E9
@@ -263,7 +263,7 @@ def load_data():
     mems[7]['current_per_bump_die'] = 520.8333333E-3
     mems[7]['mc_bump_count'] = 160
     mems[7]['wires_per_mc'] = 160
-    mems[7]['theta_ca'] = 0.11938     
+    mems[7]['theta_ca'] = 0.11494     
     mems[7]["use_intp"] = 0
     mems[7]['mem_cost_per_mc'] = 73.99
     mems[7]['l3_bw'] = 30E9
@@ -280,7 +280,7 @@ def load_data():
     mems[8]['current_per_bump_die'] = 520.8333333E-3
     mems[8]['mc_bump_count'] = 160
     mems[8]['wires_per_mc'] = 160
-    mems[8]['theta_ca'] = 0.09357
+    mems[8]['theta_ca'] = 0.09011
     mems[8]["use_intp"] = 0
     mems[8]['mem_cost_per_mc'] = 73.99
     mems[8]['l3_bw'] = 30E9
@@ -297,7 +297,7 @@ def load_data():
     mems[9]['current_per_bump_die'] = 57.87037E-3
     mems[9]['mc_bump_count'] = 1024
     mems[9]['wires_per_mc'] = 1024
-    mems[9]['theta_ca'] = 0.15777
+    mems[9]['theta_ca'] = 0.15166
     mems[9]["use_intp"] = 1
     mems[9]['mem_cost_per_mc'] = 120
     mems[9]['l3_bw'] = 30E9
@@ -307,15 +307,15 @@ def load_data():
         json.dump(mems, outfile)
 
     l3_configs = []
-    for i in range(1, 61):
+    for i in range(1, 101):
         l3_configs.append({"name": f"{i}x L3s", "l3_count":i})
     
     with open("l3_configs.json", "w") as outfile:
         json.dump(l3_configs, outfile)
 
 
-    ai_apps = [0.25, 0.5, 1]
-    workset_sizes = [100E6, 50E6, 25E6]
+    ai_apps = [0.125, 0.25, 0.5, 1]
+    workset_sizes = [150E6, 100E6, 50E6, 25E6]
     app_props = []
     for ai_app in ai_apps:
         for workset_size in workset_sizes:
@@ -853,7 +853,7 @@ def solve(obj, useGPU, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
                     result["dump"] = copy.deepcopy(p.__dict__)
 
                     # fill calibrated_theta_ca @ max L3 slice count if requested by CLI flag
-                    if(calibrate_theta_ca == True and p.l3_count == 60):
+                    if(calibrate_theta_ca == True and p.l3_count == 100):
                         calibrated_theta_ca[mem['name']] = p.reverse_theta_ca
 
                     results.append(result)
