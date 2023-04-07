@@ -343,7 +343,7 @@ def load_data():
     cores_gpu[0]["l2_capacity"] = 4.5E6 / 5120         # spec (4.5 MB Global L2; 5120 SPs in the entire GPU)              
     cores_gpu[0]["l3_capacity"] = 2E6                  # guessed, TITAN V only have L1/L2
     cores_gpu[0]["IPC"] = 12288E9 / 5120 / 1200E6      # worked backwards from FP32 flop rate (12288 GFLOPS)
-    cores_gpu[0]["wafer_cost_die"] = 3984              # from CSET report for TSMC 12nm 300mm wafer (TITAN V is 12nm)
+    cores_gpu[0]["wafer_cost_die"] = 5992              # from CSET report for TSMC 12nm 300mm wafer (TITAN V is 12nm)
     cores_gpu[0]["core_freq_nominal"] = 1200E6         # scaling of die voltage from the correct baseline   
     cores_gpu[0]["core_freq_base_max"] = 1200E6        # scaling of core area from the correct baseline
     cores_gpu[0]["capacitance_per_core"] = 200 / 5120 / math.pow(1.2, 2) / 1200E6
@@ -365,7 +365,7 @@ def load_data():
     mems_gpu[0]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[0]['mc_bump_count'] = 160
     mems_gpu[0]['wires_per_mc'] = 160
-    mems_gpu[0]['theta_ca'] = 0.33594
+    mems_gpu[0]['theta_ca'] = 0.31876
     mems_gpu[0]["use_intp"] = 0
     mems_gpu[0]['mem_cost_per_mc'] = 41.99
     mems_gpu[0]['l3_bw'] = 30E9
@@ -382,7 +382,7 @@ def load_data():
     mems_gpu[1]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[1]['mc_bump_count'] = 160
     mems_gpu[1]['wires_per_mc'] = 160
-    mems_gpu[1]['theta_ca'] = 0.31929
+    mems_gpu[1]['theta_ca'] = 0.30337
     mems_gpu[1]["use_intp"] = 0
     mems_gpu[1]['mem_cost_per_mc'] = 41.99
     mems_gpu[1]['l3_bw'] = 30E9
@@ -399,7 +399,7 @@ def load_data():
     mems_gpu[2]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[2]['mc_bump_count'] = 160
     mems_gpu[2]['wires_per_mc'] = 160
-    mems_gpu[2]['theta_ca'] = 0.3109
+    mems_gpu[2]['theta_ca'] = 0.2956
     mems_gpu[2]["use_intp"] = 0
     mems_gpu[2]['mem_cost_per_mc'] = 41.99
     mems_gpu[2]['l3_bw'] = 30E9
@@ -416,7 +416,7 @@ def load_data():
     mems_gpu[3]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[3]['mc_bump_count'] = 160
     mems_gpu[3]['wires_per_mc'] = 160
-    mems_gpu[3]['theta_ca'] = 0.28541
+    mems_gpu[3]['theta_ca'] = 0.27192
     mems_gpu[3]["use_intp"] = 0
     mems_gpu[3]['mem_cost_per_mc'] = 41.99
     mems_gpu[3]['l3_bw'] = 30E9
@@ -433,7 +433,7 @@ def load_data():
     mems_gpu[4]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[4]['mc_bump_count'] = 160
     mems_gpu[4]['wires_per_mc'] = 160
-    mems_gpu[4]['theta_ca'] = 0.24089     
+    mems_gpu[4]['theta_ca'] = 0.2303     
     mems_gpu[4]["use_intp"] = 0
     mems_gpu[4]['mem_cost_per_mc'] = 52.99
     mems_gpu[4]['l3_bw'] = 30E9
@@ -450,7 +450,7 @@ def load_data():
     mems_gpu[5]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[5]['mc_bump_count'] = 160
     mems_gpu[5]['wires_per_mc'] = 160
-    mems_gpu[5]['theta_ca'] = 0.19902
+    mems_gpu[5]['theta_ca'] = 0.19083
     mems_gpu[5]["use_intp"] = 0
     mems_gpu[5]['mem_cost_per_mc'] = 52.99
     mems_gpu[5]['l3_bw'] = 30E9
@@ -467,7 +467,7 @@ def load_data():
     mems_gpu[6]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[6]['mc_bump_count'] = 160
     mems_gpu[6]['wires_per_mc'] = 160
-    mems_gpu[6]['theta_ca'] = 0.20906     # MIDLINE 0.20906
+    mems_gpu[6]['theta_ca'] = 0.19227     # MIDLINE 0.19227
     mems_gpu[6]["use_intp"] = 0
     mems_gpu[6]['mem_cost_per_mc'] = 73.99
     mems_gpu[6]['l3_bw'] = 30E9
@@ -484,7 +484,7 @@ def load_data():
     mems_gpu[7]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[7]['mc_bump_count'] = 160
     mems_gpu[7]['wires_per_mc'] = 160
-    mems_gpu[7]['theta_ca'] = 0.20054     
+    mems_gpu[7]['theta_ca'] = 0.19227     
     mems_gpu[7]["use_intp"] = 0
     mems_gpu[7]['mem_cost_per_mc'] = 73.99
     mems_gpu[7]['l3_bw'] = 30E9
@@ -501,7 +501,7 @@ def load_data():
     mems_gpu[8]['current_per_bump_die'] = 520.8333333E-3
     mems_gpu[8]['mc_bump_count'] = 160
     mems_gpu[8]['wires_per_mc'] = 160
-    mems_gpu[8]['theta_ca'] = 0.15412
+    mems_gpu[8]['theta_ca'] = 0.14818
     mems_gpu[8]["use_intp"] = 0
     mems_gpu[8]['mem_cost_per_mc'] = 73.99
     mems_gpu[8]['l3_bw'] = 30E9
@@ -518,7 +518,7 @@ def load_data():
     mems_gpu[9]['current_per_bump_die'] = 57.87037E-3
     mems_gpu[9]['mc_bump_count'] = 1024
     mems_gpu[9]['wires_per_mc'] = 1024
-    mems_gpu[9]['theta_ca'] = 0.30236
+    mems_gpu[9]['theta_ca'] = 0.28768
     mems_gpu[9]["use_intp"] = 1
     mems_gpu[9]['mem_cost_per_mc'] = 120
     mems_gpu[9]['l3_bw'] = 30E9
@@ -528,15 +528,15 @@ def load_data():
         json.dump(mems_gpu, outfile)
 
     l3_configs_gpu = []
-    for i in range(1, 61):
+    for i in range(1, 101):
         l3_configs_gpu.append({"name": f"{i}x L3s", "l3_count":i})
     
     with open("l3_configs_gpu.json", "w") as outfile:
         json.dump(l3_configs_gpu, outfile)
 
 
-    ai_apps_gpu = [0.25, 0.5, 1]
-    workset_sizes_gpu = [100E6, 50E6 , 25E6]
+    ai_apps_gpu = [0.125, 0.25, 0.5, 1]
+    workset_sizes_gpu = [150E6, 100E6, 50E6, 25E6]
     # workset_sizes_gpu = [100E6 * ((96E3 / 64) + (4.5E6 / 5120))/(64E3+1E6), 50E6 * ((96E3 / 64) + (4.5E6 / 5120))/(64E3+1E6), 25E6 * ((96E3 / 64) + (4.5E6 / 5120))/(64E3+1E6)]           # smaller workset size for each SP, computed from L1+L2 ratio between CPU and GPU
     app_props_gpu = []
     for ai_app in ai_apps_gpu:
