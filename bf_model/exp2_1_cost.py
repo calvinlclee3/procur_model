@@ -1082,25 +1082,25 @@ def plot(results, useGPU):
         multi_scatter_plot(x1=mem_plot_data[0]["perf"], x2=mem_plot_data[1]["perf"], x3=mem_plot_data[2]["perf"], x4=mem_plot_data[3]["perf"], x5=mem_plot_data[4]["perf"], x6=mem_plot_data[5]["perf"], x7=mem_plot_data[6]["perf"], x8=mem_plot_data[7]["perf"], x9=mem_plot_data[8]["perf"], x10=mem_plot_data[9]["perf"], 
                            y1=mem_plot_data[0]["A_die"], y2=mem_plot_data[1]["A_die"], y3=mem_plot_data[2]["A_die"], y4=mem_plot_data[3]["A_die"], y5=mem_plot_data[4]["A_die"], y6=mem_plot_data[5]["A_die"], y7=mem_plot_data[6]["A_die"], y8=mem_plot_data[7]["A_die"], y9=mem_plot_data[8]["A_die"], y10=mem_plot_data[9]["A_die"], 
                            y1_label=mems[0]['name'], y2_label=mems[1]['name'], y3_label=mems[2]['name'], y4_label=mems[3]['name'], y5_label=mems[4]['name'], y6_label=mems[5]['name'], y7_label=mems[6]['name'], y8_label=mems[7]['name'], y9_label=mems[8]['name'], y10_label=mems[9]['name'], 
-                           x_axis_label='Area (sqmm)', y_axis_label='Cost (USD)',
+                           x_axis_label='Performance (GFLOPS)', y_axis_label='Compute Die Area (sqmm)',
                            title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DSE A_die vs Performance')
 
         multi_scatter_plot(x1=mem_plot_data[0]["perf"], x2=mem_plot_data[1]["perf"], x3=mem_plot_data[2]["perf"], x4=mem_plot_data[3]["perf"], x5=mem_plot_data[4]["perf"], x6=mem_plot_data[5]["perf"], x7=mem_plot_data[6]["perf"], x8=mem_plot_data[7]["perf"], x9=mem_plot_data[8]["perf"], x10=mem_plot_data[9]["perf"], 
                            y1=mem_plot_data[0]["A_pkg"], y2=mem_plot_data[1]["A_pkg"], y3=mem_plot_data[2]["A_pkg"], y4=mem_plot_data[3]["A_pkg"], y5=mem_plot_data[4]["A_pkg"], y6=mem_plot_data[5]["A_pkg"], y7=mem_plot_data[6]["A_pkg"], y8=mem_plot_data[7]["A_pkg"], y9=mem_plot_data[8]["A_pkg"], y10=mem_plot_data[9]["A_pkg"], 
                            y1_label=mems[0]['name'], y2_label=mems[1]['name'], y3_label=mems[2]['name'], y4_label=mems[3]['name'], y5_label=mems[4]['name'], y6_label=mems[5]['name'], y7_label=mems[6]['name'], y8_label=mems[7]['name'], y9_label=mems[8]['name'], y10_label=mems[9]['name'], 
-                           x_axis_label='Area (sqmm)', y_axis_label='Cost (USD)',
+                           x_axis_label='Performance (GFLOPS)', y_axis_label='Package Area (sqmm)',
                            title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DSE A_pkg vs Performance')
 
         multi_scatter_plot(x1=mem_plot_data[0]["perf"], x2=mem_plot_data[1]["perf"], x3=mem_plot_data[2]["perf"], x4=mem_plot_data[3]["perf"], x5=mem_plot_data[4]["perf"], x6=mem_plot_data[5]["perf"], x7=mem_plot_data[6]["perf"], x8=mem_plot_data[7]["perf"], x9=mem_plot_data[8]["perf"], x10=mem_plot_data[9]["perf"], 
                            y1=mem_plot_data[0]["P_die"], y2=mem_plot_data[1]["P_die"], y3=mem_plot_data[2]["P_die"], y4=mem_plot_data[3]["P_die"], y5=mem_plot_data[4]["P_die"], y6=mem_plot_data[5]["P_die"], y7=mem_plot_data[6]["P_die"], y8=mem_plot_data[7]["P_die"], y9=mem_plot_data[8]["P_die"], y10=mem_plot_data[9]["P_die"], 
                            y1_label=mems[0]['name'], y2_label=mems[1]['name'], y3_label=mems[2]['name'], y4_label=mems[3]['name'], y5_label=mems[4]['name'], y6_label=mems[5]['name'], y7_label=mems[6]['name'], y8_label=mems[7]['name'], y9_label=mems[8]['name'], y10_label=mems[9]['name'], 
-                           x_axis_label='Power (W)', y_axis_label='Cost (USD)',
+                           x_axis_label='Performance (GFLOPS)', y_axis_label='Compute Die Power (W)',
                            title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DSE P_die vs Performance')
 
         multi_scatter_plot(x1=mem_plot_data[0]["perf"], x2=mem_plot_data[1]["perf"], x3=mem_plot_data[2]["perf"], x4=mem_plot_data[3]["perf"], x5=mem_plot_data[4]["perf"], x6=mem_plot_data[5]["perf"], x7=mem_plot_data[6]["perf"], x8=mem_plot_data[7]["perf"], x9=mem_plot_data[8]["perf"], x10=mem_plot_data[9]["perf"], 
                            y1=mem_plot_data[0]["P_pkg"], y2=mem_plot_data[1]["P_pkg"], y3=mem_plot_data[2]["P_pkg"], y4=mem_plot_data[3]["P_pkg"], y5=mem_plot_data[4]["P_pkg"], y6=mem_plot_data[5]["P_pkg"], y7=mem_plot_data[6]["P_pkg"], y8=mem_plot_data[7]["P_pkg"], y9=mem_plot_data[8]["P_pkg"], y10=mem_plot_data[9]["P_pkg"], 
                            y1_label=mems[0]['name'], y2_label=mems[1]['name'], y3_label=mems[2]['name'], y4_label=mems[3]['name'], y5_label=mems[4]['name'], y6_label=mems[5]['name'], y7_label=mems[6]['name'], y8_label=mems[7]['name'], y9_label=mems[8]['name'], y10_label=mems[9]['name'], 
-                           x_axis_label='Power (W)', y_axis_label='Cost (USD)',
+                           x_axis_label='Performance (GFLOPS)', y_axis_label='Package Power (W)',
                            title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DSE P_pkg vs Performance')
 
         multi_line_plot(x1=mem_plot_data[0]["l3_count"], x2=mem_plot_data[1]["l3_count"], x3=mem_plot_data[2]["l3_count"], x4=mem_plot_data[3]["l3_count"], x5=mem_plot_data[4]["l3_count"], x6=mem_plot_data[5]["l3_count"], x7=mem_plot_data[6]["l3_count"], x8=mem_plot_data[7]["l3_count"], x9=mem_plot_data[8]["l3_count"], x10=mem_plot_data[9]["l3_count"], 
