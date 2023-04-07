@@ -288,7 +288,7 @@ def load_data():
 
     mems.append({})
     mems[9]['name'] = "4 Ch. HBM2"
-    mems[9]['mc_bw'] = 256E9
+    mems[9]['mc_bw'] = 1000E6 * 2 * (1024/8)
     mems[9]['mc_count'] = 4
     mems[9]['mc_area'] = 6.6831E-6
     mems[9]['mc_freq'] = 1000E6
@@ -509,7 +509,7 @@ def load_data():
 
     mems_gpu.append({})
     mems_gpu[9]['name'] = "3 Ch. HBM2"
-    mems_gpu[9]['mc_bw'] = 850E6 * 2 * 1024            # mem freq * double data rate * bus width
+    mems_gpu[9]['mc_bw'] = 850E6 * 2 * (1024/8)        # mem freq * double data rate * bus width
     mems_gpu[9]['mc_count'] = 3                        # 3 Channel since TITAN V bus is 3072b wide      
     mems_gpu[9]['mc_area'] = 6.6831E-6
     mems_gpu[9]['mc_freq'] = 850E6                     # Spec gives 1700 MT/s but it is double data rate	
@@ -840,6 +840,7 @@ def solve(obj, useGPU, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
                     result["A_die"] = p.A_die
                     result["A_pkg"] = p.A_pkg
                     result["P_die"] = p.P_die
+                    result["P_pkg"] = p.P_pkg
                     result["core_freq"] = p.core_freq
                     result["die_cost"] = p.die_cost
                     result["mem_cost"] = p.mem_cost
@@ -1023,7 +1024,7 @@ def plot(results, useGPU):
 
         # format mem_plot_data before filling it with data
         for i in range(len(mems)):
-            mem_plot_data.append({"l3_count": [], "perf": [], "l3_bound": [], "mc_bound": [], "compute_bound": [], "io_bound": [], "die_cost": [], "mem_cost": [], "intp_cost": [], "pkg_cost": [], "cost": [], "reverse_theta_ca": []})
+            mem_plot_data.append({"l3_count": [], "perf": [], "l3_bound": [], "mc_bound": [], "compute_bound": [], "io_bound": [], "die_cost": [], "mem_cost": [], "intp_cost": [], "pkg_cost": [], "cost": [], "reverse_theta_ca": [], "A_die": [], "A_pkg": [], "P_die": [], "P_pkg": []})
 
         # filter all results into a subset which has a specific app profile
         # nothing changes, simply removing all entries from "results" that does not have the current "app_prop" 
@@ -1054,6 +1055,10 @@ def plot(results, useGPU):
                 mem_plot_data[i]["pkg_cost"].append(result['dump']['pkg_cost'])
                 mem_plot_data[i]["cost"].append(result['dump']['cost'])
                 mem_plot_data[i]["reverse_theta_ca"].append(result['dump']['reverse_theta_ca'])
+                mem_plot_data[i]["A_die"].append(result['dump']['A_die'])
+                mem_plot_data[i]["A_pkg"].append(result['dump']['A_pkg'])
+                mem_plot_data[i]["P_die"].append(result['dump']['P_die'])
+                mem_plot_data[i]["P_pkg"].append(result['dump']['P_pkg'])
 
         
         # rescale mem_plot_data (adding the "Giga" prefix) 
@@ -1064,13 +1069,39 @@ def plot(results, useGPU):
             mem_plot_data[i]["mc_bound"] = np.array(mem_plot_data[i]["mc_bound"]) / 1E9
             mem_plot_data[i]["compute_bound"] = np.array(mem_plot_data[i]["compute_bound"]) / 1E9
             mem_plot_data[i]["io_bound"] = np.array(mem_plot_data[i]["io_bound"]) / 1E9
+            mem_plot_data[i]["A_die"] = np.array(mem_plot_data[i]["A_die"]) * 1E6
+            mem_plot_data[i]["A_pkg"] = np.array(mem_plot_data[i]["A_pkg"]) * 1E6
 
         # plot
         multi_scatter_plot(x1=mem_plot_data[0]["perf"], x2=mem_plot_data[1]["perf"], x3=mem_plot_data[2]["perf"], x4=mem_plot_data[3]["perf"], x5=mem_plot_data[4]["perf"], x6=mem_plot_data[5]["perf"], x7=mem_plot_data[6]["perf"], x8=mem_plot_data[7]["perf"], x9=mem_plot_data[8]["perf"], x10=mem_plot_data[9]["perf"], 
                            y1=mem_plot_data[0]["cost"], y2=mem_plot_data[1]["cost"], y3=mem_plot_data[2]["cost"], y4=mem_plot_data[3]["cost"], y5=mem_plot_data[4]["cost"], y6=mem_plot_data[5]["cost"], y7=mem_plot_data[6]["cost"], y8=mem_plot_data[7]["cost"], y9=mem_plot_data[8]["cost"], y10=mem_plot_data[9]["cost"], 
                            y1_label=mems[0]['name'], y2_label=mems[1]['name'], y3_label=mems[2]['name'], y4_label=mems[3]['name'], y5_label=mems[4]['name'], y6_label=mems[5]['name'], y7_label=mems[6]['name'], y8_label=mems[7]['name'], y9_label=mems[8]['name'], y10_label=mems[9]['name'], 
                            x_axis_label='Performance (GFLOPS)', y_axis_label='Cost (USD)',
-                           title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DDR vs HBM Design Space Exploration')
+                           title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DSE Cost vs Performance')
+
+        multi_scatter_plot(x1=mem_plot_data[0]["perf"], x2=mem_plot_data[1]["perf"], x3=mem_plot_data[2]["perf"], x4=mem_plot_data[3]["perf"], x5=mem_plot_data[4]["perf"], x6=mem_plot_data[5]["perf"], x7=mem_plot_data[6]["perf"], x8=mem_plot_data[7]["perf"], x9=mem_plot_data[8]["perf"], x10=mem_plot_data[9]["perf"], 
+                           y1=mem_plot_data[0]["A_die"], y2=mem_plot_data[1]["A_die"], y3=mem_plot_data[2]["A_die"], y4=mem_plot_data[3]["A_die"], y5=mem_plot_data[4]["A_die"], y6=mem_plot_data[5]["A_die"], y7=mem_plot_data[6]["A_die"], y8=mem_plot_data[7]["A_die"], y9=mem_plot_data[8]["A_die"], y10=mem_plot_data[9]["A_die"], 
+                           y1_label=mems[0]['name'], y2_label=mems[1]['name'], y3_label=mems[2]['name'], y4_label=mems[3]['name'], y5_label=mems[4]['name'], y6_label=mems[5]['name'], y7_label=mems[6]['name'], y8_label=mems[7]['name'], y9_label=mems[8]['name'], y10_label=mems[9]['name'], 
+                           x_axis_label='Area (sqmm)', y_axis_label='Cost (USD)',
+                           title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DSE A_die vs Performance')
+
+        multi_scatter_plot(x1=mem_plot_data[0]["perf"], x2=mem_plot_data[1]["perf"], x3=mem_plot_data[2]["perf"], x4=mem_plot_data[3]["perf"], x5=mem_plot_data[4]["perf"], x6=mem_plot_data[5]["perf"], x7=mem_plot_data[6]["perf"], x8=mem_plot_data[7]["perf"], x9=mem_plot_data[8]["perf"], x10=mem_plot_data[9]["perf"], 
+                           y1=mem_plot_data[0]["A_pkg"], y2=mem_plot_data[1]["A_pkg"], y3=mem_plot_data[2]["A_pkg"], y4=mem_plot_data[3]["A_pkg"], y5=mem_plot_data[4]["A_pkg"], y6=mem_plot_data[5]["A_pkg"], y7=mem_plot_data[6]["A_pkg"], y8=mem_plot_data[7]["A_pkg"], y9=mem_plot_data[8]["A_pkg"], y10=mem_plot_data[9]["A_pkg"], 
+                           y1_label=mems[0]['name'], y2_label=mems[1]['name'], y3_label=mems[2]['name'], y4_label=mems[3]['name'], y5_label=mems[4]['name'], y6_label=mems[5]['name'], y7_label=mems[6]['name'], y8_label=mems[7]['name'], y9_label=mems[8]['name'], y10_label=mems[9]['name'], 
+                           x_axis_label='Area (sqmm)', y_axis_label='Cost (USD)',
+                           title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DSE A_pkg vs Performance')
+
+        multi_scatter_plot(x1=mem_plot_data[0]["perf"], x2=mem_plot_data[1]["perf"], x3=mem_plot_data[2]["perf"], x4=mem_plot_data[3]["perf"], x5=mem_plot_data[4]["perf"], x6=mem_plot_data[5]["perf"], x7=mem_plot_data[6]["perf"], x8=mem_plot_data[7]["perf"], x9=mem_plot_data[8]["perf"], x10=mem_plot_data[9]["perf"], 
+                           y1=mem_plot_data[0]["P_die"], y2=mem_plot_data[1]["P_die"], y3=mem_plot_data[2]["P_die"], y4=mem_plot_data[3]["P_die"], y5=mem_plot_data[4]["P_die"], y6=mem_plot_data[5]["P_die"], y7=mem_plot_data[6]["P_die"], y8=mem_plot_data[7]["P_die"], y9=mem_plot_data[8]["P_die"], y10=mem_plot_data[9]["P_die"], 
+                           y1_label=mems[0]['name'], y2_label=mems[1]['name'], y3_label=mems[2]['name'], y4_label=mems[3]['name'], y5_label=mems[4]['name'], y6_label=mems[5]['name'], y7_label=mems[6]['name'], y8_label=mems[7]['name'], y9_label=mems[8]['name'], y10_label=mems[9]['name'], 
+                           x_axis_label='Power (W)', y_axis_label='Cost (USD)',
+                           title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DSE P_die vs Performance')
+
+        multi_scatter_plot(x1=mem_plot_data[0]["perf"], x2=mem_plot_data[1]["perf"], x3=mem_plot_data[2]["perf"], x4=mem_plot_data[3]["perf"], x5=mem_plot_data[4]["perf"], x6=mem_plot_data[5]["perf"], x7=mem_plot_data[6]["perf"], x8=mem_plot_data[7]["perf"], x9=mem_plot_data[8]["perf"], x10=mem_plot_data[9]["perf"], 
+                           y1=mem_plot_data[0]["P_pkg"], y2=mem_plot_data[1]["P_pkg"], y3=mem_plot_data[2]["P_pkg"], y4=mem_plot_data[3]["P_pkg"], y5=mem_plot_data[4]["P_pkg"], y6=mem_plot_data[5]["P_pkg"], y7=mem_plot_data[6]["P_pkg"], y8=mem_plot_data[7]["P_pkg"], y9=mem_plot_data[8]["P_pkg"], y10=mem_plot_data[9]["P_pkg"], 
+                           y1_label=mems[0]['name'], y2_label=mems[1]['name'], y3_label=mems[2]['name'], y4_label=mems[3]['name'], y5_label=mems[4]['name'], y6_label=mems[5]['name'], y7_label=mems[6]['name'], y8_label=mems[7]['name'], y9_label=mems[8]['name'], y10_label=mems[9]['name'], 
+                           x_axis_label='Power (W)', y_axis_label='Cost (USD)',
+                           title=concatTitleName + f'[{ai_app} App. AI, {"{:.2f}".format(arithmetic_intensity)} Eff. AI, {"{:.2f}".format(workset_size)} MB Workset] DSE P_pkg vs Performance')
 
         multi_line_plot(x1=mem_plot_data[0]["l3_count"], x2=mem_plot_data[1]["l3_count"], x3=mem_plot_data[2]["l3_count"], x4=mem_plot_data[3]["l3_count"], x5=mem_plot_data[4]["l3_count"], x6=mem_plot_data[5]["l3_count"], x7=mem_plot_data[6]["l3_count"], x8=mem_plot_data[7]["l3_count"], x9=mem_plot_data[8]["l3_count"], x10=mem_plot_data[9]["l3_count"], 
                         y1=mem_plot_data[0]["perf"], y2=mem_plot_data[1]["perf"], y3=mem_plot_data[2]["perf"], y4=mem_plot_data[3]["perf"], y5=mem_plot_data[4]["perf"], y6=mem_plot_data[5]["perf"], y7=mem_plot_data[6]["perf"], y8=mem_plot_data[7]["perf"], y9=mem_plot_data[8]["perf"], y10=mem_plot_data[9]["perf"], 
