@@ -524,7 +524,7 @@ def load_data():
     mems_gpu[9]['mem_cost_per_mc'] = 120
     mems_gpu[9]['l3_bw'] = 30E9
     mems_gpu[9]['T_j_max'] = 110
-    mems[9]['HBM_power_per_mc'] = 3.97E-12 * 850E6 * 2 * (1024/8) * 8
+    mems_gpu[9]['HBM_power_per_mc'] = 3.97E-12 * 850E6 * 2 * (1024/8) * 8
 
     with open("mems_gpu.json", "w") as outfile:
         json.dump(mems_gpu, outfile)
