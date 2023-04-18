@@ -749,6 +749,16 @@ def solve(obj, useGPU, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
                     # power of the entire package
                     p.P_pkg = p.P_die + p.in_pkg_mem_power
 
+                    # interposer wire constraint
+                    if(p.use_intp == 0):
+                        ## DDR System
+                        p.A_intp_wire = 0.0
+                    else:
+                        ## HBM System
+                        p.A_intp_wire  = (p.bump_pitch_intp**2) * (((p.P_pkg) / (p.die_voltage * 520E-3) * 2) + p.io_bump_count * p.io_count)
+                        p.A_intp_wire += (p.bump_pitch_die**2) * (p.mc_bump_count * p.mc_count)
+                        p.A_intp_wire += (p.bump_pitch_die**2) * (p.mc_bump_count * p.mc_count)
+
                     # number of power bumps on the package
                     p.power_bump_count_pkg = (p.P_pkg) / (p.die_voltage * p.current_per_bump_pkg) * 2
 
@@ -803,6 +813,11 @@ def solve(obj, useGPU, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
                     if(p.dead_space_die > 0):
                         infs_handler(result, "dead_space_die > 0")
                     
+                    if(p.use_intp == 1):
+                        ## HBM System
+                        if(p.A_intp < p.A_intp_wire):
+                            infs_handler(result, "A_intp < A_intp_wire")
+
                     # Sanity Check: no param/var in the model should be negative
                     for key, value in p.__dict__.items():
                         if(value < 0):
@@ -850,6 +865,8 @@ def solve(obj, useGPU, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
                     result["pkg_cost"] = p.pkg_cost
                     result["cost"] = p.cost
                     result["dead_space_die"] = p.dead_space_die
+                    result["A_intp"] = p.A_intp
+                    result["A_intp_wire"] = p.A_intp_wire
 
                     # Dump the entire namespace with all model param/variables
                     result["dump"] = copy.deepcopy(p.__dict__)
