@@ -55,6 +55,7 @@ def load_data():
     # wire parameters
     default["package_layer"] = 6
     default["link_pitch"] = 25E-6
+    default["wires_per_io"] = 114
 
     # memory controller parameters
     default["wires_per_mc"] = 160
@@ -668,7 +669,7 @@ def solve(obj, useGPU, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
 
                     p.A_die = max(p.A_die_components, p.A_die_bump)
 
-                    p.max_wire_die = 6 * math.sqrt(p.A_die / 6) * p.package_layer / p.link_pitch
+                    p.max_wire_die = 10 * math.sqrt(p.A_die / 6) * p.package_layer / p.link_pitch
 
                     # relative size of the working set and the L3 cache determines L3 hit rate
                     p.l3_to_workset_ratio = (p.l3_capacity * p.l3_count) / p.workset_size
@@ -755,9 +756,16 @@ def solve(obj, useGPU, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
                         p.A_intp_wire = 0.0
                     else:
                         ## HBM System
-                        p.A_intp_wire  = (p.bump_pitch_intp**2) * (((p.P_pkg) / (p.die_voltage * 520E-3) * 2) + p.io_bump_count * p.io_count)
-                        p.A_intp_wire += (p.bump_pitch_die**2) * (p.mc_bump_count * p.mc_count)
-                        p.A_intp_wire += (p.bump_pitch_die**2) * (p.mc_bump_count * p.mc_count)
+                        p.A_intp_wire_1  = pow(p.bump_pitch_intp, 2) * (((p.P_pkg) / (p.die_voltage * 520.8333333E-3) * 2) + p.io_bump_count * p.io_count)
+                        p.A_intp_wire_1 += pow(p.bump_pitch_die, 2) * (p.mc_bump_count * p.mc_count)
+                        p.A_intp_wire_1 += pow(p.bump_pitch_die, 2) * (p.mc_bump_count * p.mc_count)
+
+                        p.A_intp_wire_2  = pow(p.bump_pitch_die, 2) * ((p.P_pkg) / (p.die_voltage * 57.87037E-3) * 2) 
+                        p.A_intp_wire_2 += pow(p.bump_pitch_intp, 2) * (p.io_bump_count * p.io_count)
+                        p.A_intp_wire_2 += pow(p.bump_pitch_die, 2) * (p.mc_bump_count * p.mc_count)
+                        p.A_intp_wire_2 += pow(p.bump_pitch_die, 2) * (p.mc_bump_count * p.mc_count)
+
+                        p.A_intp_wire = max(p.A_intp_wire_1, p.A_intp_wire_2)
 
                     # number of power bumps on the package
                     p.power_bump_count_pkg = (p.P_pkg) / (p.die_voltage * p.current_per_bump_pkg) * 2
@@ -792,7 +800,7 @@ def solve(obj, useGPU, perfLB, areaUB, powerUB, costUB, calibrate_theta_ca):
                     if(p.P_max_pkg < p.P_pkg):
                         infs_handler(result, "P_max_pkg < P_pkg")
                     
-                    if(p.max_wire_die < p.mc_count * p.wires_per_mc):
+                    if(p.max_wire_die < (p.mc_count * p.wires_per_mc + p.io_count * p.wires_per_io)):
                         infs_handler(result, "wire constraint not met")
 
                     if(p.use_intp == 0):
