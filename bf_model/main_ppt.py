@@ -979,7 +979,7 @@ def double_line_plot(x1, x2, y1, y2, y1_label, y2_label, x_axis_label, y_axis_la
     plt.ylabel(y_axis_label, fontweight ='bold', fontsize = 15)
     plt.legend()
 
-    plt.savefig(f'results/{title}.pdf')
+    plt.savefig(f'results/{title}.png')
     plt.close()
 
 def multi_line_plot(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y1_label, y2_label, y3_label, y4_label, y5_label, y6_label, y7_label, y8_label, y9_label, y10_label, x_axis_label, y_axis_label, title, plot_title):
@@ -1000,7 +1000,7 @@ def multi_line_plot(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, y1, y2, y3, y4, y5,
     plt.ylabel(y_axis_label, fontweight ='bold', fontsize = 15)
     plt.legend()
 
-    plt.savefig(f'results/{title}.pdf')
+    plt.savefig(f'results/{title}.png')
     plt.close()
 
 def multi_scatter_plot(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y1_label, y2_label, y3_label, y4_label, y5_label, y6_label, y7_label, y8_label, y9_label, y10_label, x_axis_label, y_axis_label, title, plot_title):
@@ -1021,7 +1021,7 @@ def multi_scatter_plot(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, y1, y2, y3, y4, 
     plt.xlabel(x_axis_label, fontweight ='bold', fontsize = 15)
     plt.ylabel(y_axis_label, fontweight ='bold', fontsize = 15)
     plt.legend()
-    plt.savefig(f'results/{title}.pdf')
+    plt.savefig(f'results/{title}.png')
     plt.close()
 
 def plot(results, useGPU):
